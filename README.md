@@ -4,6 +4,7 @@
 ## 功能介绍
 
 ### 1.弹窗
+![](https://github.com/fanhua1994/BaseAndroid/blob/master/image/%E4%BB%BFIOS%E5%BC%B9%E5%87%BA%E6%8F%90%E7%A4%BA%E6%A1%86.png?raw=true)
 ```
 CustomAlertDialog dialog = new CustomAlertDialog(this).builder();
 dialog.setTitle("温馨提示");
@@ -27,6 +28,23 @@ dialog.setNegativeButton("确定", new View.OnClickListener() {
 dialog.setPositiveButton("取消",null);
 dialog.show();
 
+CountDownUtil cd = new CountDownUtil(5000,1000);
+cd.start(new CountDownUtil.setOnCountDownListener() {
+	@Override
+	public void onTick(int second) {
+
+	}
+
+	@Override
+	public void onFinish() {
+		ActivityStack.getInstance().clearAllActivity();
+		kill();
+	}
+});
+```
+
+### 3.倒计时控件
+```
 CountDownUtil cd = new CountDownUtil(5000,1000);
 cd.start(new CountDownUtil.setOnCountDownListener() {
 	@Override
