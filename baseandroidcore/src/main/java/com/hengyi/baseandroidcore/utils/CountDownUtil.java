@@ -12,7 +12,7 @@ public class CountDownUtil{
     private CountDownTimer timer = null;
 
     public CountDownUtil(int CountSecond,int IntervalSecond){
-        timer = new CountDownTimer(CountSecond * 1000,IntervalSecond * 1000){
+        timer = new CountDownTimer(CountSecond,IntervalSecond){
 
             @Override
             public void onTick(long millisUntilFinished) {
