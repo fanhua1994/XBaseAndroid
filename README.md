@@ -12,6 +12,7 @@ dialog.show();
 ```
 
 ### 2.可以选择的弹窗
+![](https://github.com/fanhua1994/BaseAndroid/blob/master/image/%E4%BB%BFIOS%E5%BC%B9%E5%87%BA%E9%80%89%E6%8B%A9%E6%A1%86.png?raw=true)
 ```
 CustomAlertDialog dialog = new CustomAlertDialog(this).builder();
 dialog.setTitle("温馨提示");
