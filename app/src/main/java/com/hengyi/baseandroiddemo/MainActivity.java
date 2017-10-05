@@ -1,6 +1,7 @@
 package com.hengyi.baseandroiddemo;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.hengyi.baseandroidcore.base.BaseActivity;
 import com.hengyi.baseandroidcore.dialog.CustomAlertDialog;
@@ -14,11 +15,19 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
 
         //弹出提示框
-        /*
+
         CustomAlertDialog dialog = new CustomAlertDialog(this).builder();
         dialog.setTitle("温馨提示");
         dialog.setMsg("你好啊");
-        dialog.show();*/
+        dialog.setNegativeButton("确定", new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                toast("点击了确定");
+            }
+        });
+
+        dialog.setPositiveButton("取消",null);
+        dialog.show();
 
         CountDownUtil cd = new CountDownUtil(5000,1000);
         cd.start(new CountDownUtil.setOnCountDownListener() {
