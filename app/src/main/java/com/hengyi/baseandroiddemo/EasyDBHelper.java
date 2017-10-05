@@ -1,8 +1,9 @@
-package com.hengyi.baseandroidcore.utils;
+package com.hengyi.baseandroiddemo;
 
 
 import com.easydblib.helper.BaseDBHelper;
 import com.hengyi.baseandroidcore.base.BaseApplication;
+import com.hengyi.baseandroidcore.utils.FileUtil;
 
 import java.sql.SQLException;
 
@@ -36,10 +37,6 @@ public class EasyDBHelper extends BaseDBHelper {
 			}
 		}
 		return helper;
-	}
-
-	public void setTables(Class<?>[] tables){
-		this.tables = tables;
 	}
 
 	private EasyDBHelper() {

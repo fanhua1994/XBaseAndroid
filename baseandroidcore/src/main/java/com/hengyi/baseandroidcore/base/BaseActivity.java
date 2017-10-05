@@ -1,8 +1,6 @@
 package com.hengyi.baseandroidcore.base;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -18,12 +16,8 @@ import android.view.VelocityTracker;
 import android.view.View;
 import android.widget.Toast;
 
-import com.hengyi.baseandroidcore.R;
 import com.hengyi.baseandroidcore.dialog.CustomLoadingDialog;
 import com.hengyi.baseandroidcore.utils.ActivityStack;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.ButterKnife;
 
@@ -50,19 +44,6 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnT
     private float xMove;
     //用于计算手指滑动的速度。
     private VelocityTracker mVelocityTracker;
-
-    /**
-     * 需要进行检测的权限数组
-     */
-    private String[] needPermissions = {
-//            Manifest.permission.WRITE_EXTERNAL_STORAGE,
-//            Manifest.permission.READ_EXTERNAL_STORAGE,
-//            Manifest.permission.ACCESS_COARSE_LOCATION,
-//            Manifest.permission.ACCESS_FINE_LOCATION,
-//            Manifest.permission.WRITE_EXTERNAL_STORAGE,
-//            Manifest.permission.READ_EXTERNAL_STORAGE,
-//            Manifest.permission.READ_PHONE_STATE
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -171,6 +152,25 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnT
         startService(intent);
     }
 
+    public void StartService(Class cla,String[] names, Object... param){
+        intent = null;
+        intent = new Intent(context,cla);
+        for (int i = 0; i < param.length; i++) {
+            if (param[i].getClass().equals(Integer.class)) {
+                intent.putExtra(names[i], (Integer) param[i]);
+            } else if (param[i].getClass().equals(String.class)) {
+                intent.putExtra(names[i], (String) param[i]);
+            } else if (param[i].getClass().equals(Boolean.class)) {
+                intent.putExtra(names[i], (Boolean) param[i]);
+            } else if (param[i].getClass().equals(Float.class)) {
+                intent.putExtra(names[i], (Float) param[i]);
+            } else if (param[i].getClass().equals(Double.class)) {
+                intent.putExtra(names[i], (Double) param[i]);
+            }
+        }
+        startService(intent);
+    }
+
     public void CloseService(Class cla){
         intent = null;
         intent = new Intent(context,cla);
@@ -178,86 +178,30 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnT
     }
 
     //发送广播
-    public void SendBroadCast(Class cla){
+    public void SendBroadCast(Class cla,String[] names, Object... param){
         intent  = null;
         intent = new Intent(context,cla);
+        for (int i = 0; i < param.length; i++) {
+            if (param[i].getClass().equals(Integer.class)) {
+                intent.putExtra(names[i], (Integer) param[i]);
+            } else if (param[i].getClass().equals(String.class)) {
+                intent.putExtra(names[i], (String) param[i]);
+            } else if (param[i].getClass().equals(Boolean.class)) {
+                intent.putExtra(names[i], (Boolean) param[i]);
+            } else if (param[i].getClass().equals(Float.class)) {
+                intent.putExtra(names[i], (Float) param[i]);
+            } else if (param[i].getClass().equals(Double.class)) {
+                intent.putExtra(names[i], (Double) param[i]);
+            }
+        }
         sendBroadcast(intent);
     }
 
 
-    /**
-     * 检测权限
-     */
-    private void checkPermissions(String... permissions) {
-        List<String> needRequestPermissionList = findDeniedPermissions(permissions);
-        if (null != needRequestPermissionList && needRequestPermissionList.size() > 0) {
-            ActivityCompat.requestPermissions(this,
-                    needRequestPermissionList.toArray(new String[needRequestPermissionList.size()]), PERMISSION_REQUEST_CODE);
-        }
-    }
-
-    /**
-     * 获取权限集中需要申请权限的列表
-     */
-    private List<String> findDeniedPermissions(String[] permissions) {
-        List<String> needRequestPermissionList = new ArrayList<String>();
-        for (String perm : permissions) {
-            if (ContextCompat.checkSelfPermission(this,
-                    perm) != PackageManager.PERMISSION_GRANTED
-                    || ActivityCompat.shouldShowRequestPermissionRationale(
-                    this, perm)) {
-                needRequestPermissionList.add(perm);
-            }
-        }
-        return needRequestPermissionList;
-    }
-
-    /**
-     * 检测是否所有的权限都已经授权
-     */
-    private boolean verifyPermissions(int[] grantResults) {
-        for (int result : grantResults) {
-            if (result != PackageManager.PERMISSION_GRANTED) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public void onRequestPermissionsResult(int requestCode,String[] permissions, int[] paramArrayOfInt) {
-        if (requestCode == PERMISSION_REQUEST_CODE) {
-            if (!verifyPermissions(paramArrayOfInt)) {
-                showMissingPermissionDialog();
-                isNeedCheck = false;
-            }
-        }
-    }
-
-    /**
-     * 显示提示信息
-     */
-    private void showMissingPermissionDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(R.string.map_notifyTitle);
-        builder.setMessage(R.string.map_notifyMsg);
-        // 拒绝, 退出应用
-        builder.setNegativeButton(R.string.map_cancel,
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        finish();
-                    }
-                });
-
-        builder.setPositiveButton(R.string.map_setting,
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        startAppSettings();
-                    }
-                });
-        builder.setCancelable(false);
-        builder.show();
+    public void SendBroadCast(Class cla){
+        intent  = null;
+        intent = new Intent(context,cla);
+        sendBroadcast(intent);
     }
 
     public boolean onTouch(View v, MotionEvent event) {
@@ -333,11 +277,4 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnT
         super.onDestroy();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (isNeedCheck) {
-            checkPermissions(needPermissions);
-        }
-    }
 }

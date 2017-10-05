@@ -46,5 +46,6 @@ dependencies {
     compile 'com.github.dmytrodanylyk.circular-progress-button:library:1.1.3'
     compile 'com.github.johnkil.android-appmsg:appmsg:1.2.0'
     compile 'com.zhousf.lib:easydb:1.7.2'
+    compile 'pub.devrel:easypermissions:1.0.1'
     testCompile 'junit:junit:4.12'
 }

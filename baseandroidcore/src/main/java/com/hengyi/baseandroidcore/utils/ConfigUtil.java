@@ -3,16 +3,14 @@ package com.hengyi.baseandroidcore.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-/**
- * Created by 繁华 on 2017/5/14.
+/*
+ * SharedPreferences  帮助类
+ * 作者：繁华
+ * csdn:http://blog.csdn.net/dong_18383219470?viewmode=list
  */
 
 public class ConfigUtil {
-    /*
-     * SharedPreferences  帮助类
-     * 作者：繁华
-     * csdn:http://blog.csdn.net/dong_18383219470?viewmode=list
-     */
+
     private static SharedPreferences sp = null;
     private static SharedPreferences.Editor edit = null;
     private static ConfigUtil instance = null;
