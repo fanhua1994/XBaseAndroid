@@ -89,7 +89,10 @@ public void onPermissionsDenied(int requestCode, List<String> list) {
 ```
 
 ### 5.创建工作组
+> 工作组就好比我们将我们的外部储存分为很多很多目录，每个目录一个分组。文件互不影响。可以删除写入数据。目前默认的有db、cache、file分组。其他需要自定义。
 ```
 boolean isok = FileUtil.getInstance().setContext(this).setIdCard(true).setFileType(FileUtil.CACHE_FILE).createWorkGroup("mycache12");
 toast("执行结果：" + isok);
+
+//其中setContext方法必须调用。setIdCard setFileType可以不调用。默认是自定义分组模式，外部储存有优先。
 ```

@@ -25,8 +25,8 @@ public class MainActivity extends BaseActivity {
 //
 //        dialog.setPositiveButton("取消",null);
 //        dialog.show();
-        boolean isok = FileUtil.getInstance().setContext(this).setIdCard(true).setFileType(FileUtil.CACHE_FILE).createWorkGroup("mycache12");
-        toast("执行结果：" + isok);
+      //  String path = FileUtil.getInstance().setContext(this).setIdCard(true).setFileType(FileUtil.DB_FILE).getWorkDir();
+       // toast(path);
     }
 
     @Override

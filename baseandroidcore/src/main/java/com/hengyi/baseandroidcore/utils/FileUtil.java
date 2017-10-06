@@ -16,14 +16,15 @@ import java.util.Date;
  */
 
 public class FileUtil {
-    public static final int COMMON_FILE = 0;
-    public static final int DB_FILE  = 1;
-    public static final int CACHE_FILE = 2;
+    public static final int COMMON_TYPE = 0;
+    public static final int DB_TYPE  = 1;
+    public static final int CACHE_TYPE = 2;
+    public static final int FILE_TYPE = 3;
 
     private static  FileUtil instance;
     private static boolean IdCardStatus = false;
     private int file_type = 0;
-    private static Context context = null;
+    private Context context = null;
 
     public static FileUtil getInstance(){
         if(instance == null) {
@@ -43,10 +44,6 @@ public class FileUtil {
         }
     }
 
-    public void init(Context context){
-        this.context = context;
-    }
-
     public FileUtil setContext(Context context){
         this.context = context;
         return this;
@@ -61,9 +58,6 @@ public class FileUtil {
         this.IdCardStatus = idcard;
         return this;
     }
-
-
-
     //================删除方法========================
     //删除工程组
     public boolean deleteWorkGroup(String group_name){
@@ -123,36 +117,52 @@ public class FileUtil {
         String workDir = null;
         if(IdCardStatus){
             switch(file_type){
-                case COMMON_FILE:
+                case COMMON_TYPE:
                     workDir = context.getExternalCacheDir().getParentFile().getAbsolutePath();
                     break;
 
-                case DB_FILE:
-                    workDir = context.getExternalCacheDir().getParentFile().getAbsolutePath() + File.separator +"db";
+                case DB_TYPE:
+                    workDir = context.getExternalCacheDir().getParentFile().getAbsolutePath() + File.separator +"database";
                     break;
 
-                case CACHE_FILE:
+                case CACHE_TYPE:
                     workDir = context.getExternalCacheDir().getAbsolutePath();
+                    break;
+
+                case FILE_TYPE:
+                    workDir = context.getExternalFilesDir("db").getParentFile().getAbsolutePath();
                     break;
             }
         }else{
             switch(file_type) {
-                case COMMON_FILE:
+                case COMMON_TYPE:
+                    workDir = context.getCacheDir().getParentFile().getAbsolutePath();
+                    break;
+
+                case DB_TYPE:
+                    workDir = context.getDatabasePath("db").getParentFile().getAbsolutePath();
+                    break;
+
+                case CACHE_TYPE:
                     workDir = context.getCacheDir().getAbsolutePath();
                     break;
 
-                case DB_FILE:
-                    workDir = context.getDatabasePath("db").getAbsolutePath();
-                    break;
-
-                case CACHE_FILE:
-                    workDir = context.getCacheDir().getAbsolutePath();
+                case FILE_TYPE:
+                    workDir = context.getFilesDir().getAbsolutePath();
                     break;
             }
         }
 
+        File workdir  = new File(workDir);
+        if(!workdir.exists())
+            workdir.mkdirs();
+
         return workDir;
     }
+
+    /**
+     * 获取根缓存目录、数据库目录、其他目录
+     */
 
     /**
      * 获取一个File对象
@@ -220,7 +230,7 @@ public class FileUtil {
         return this.getWorkDir() + File.separator + group_name;
     }
 
-    public File getWorkGroupDirFile(String group_name){
+    public File getWorkGroupFile(String group_name){
         createWorkGroup(group_name);
         return new File(this.getWorkDir() + File.separator + group_name);
     }
@@ -240,7 +250,7 @@ public class FileUtil {
      */
 
     public File[] getWorkGroupDirFileList(String group_name){
-        File dir = getWorkGroupDirFile(group_name);
+        File dir = getWorkGroupFile(group_name);
         return dir.listFiles();
     }
 
