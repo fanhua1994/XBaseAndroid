@@ -25,7 +25,7 @@ public class MainActivity extends BaseActivity {
 //
 //        dialog.setPositiveButton("取消",null);
 //        dialog.show();
-      //  String path = FileUtil.getInstance().setContext(this).setIdCard(true).setFileType(FileUtil.DB_FILE).getWorkDir();
+      FileUtil.getInstance().setContext(this).setIdCard(true).setFileType(FileUtil.COMMON_TYPE).writeWorkGroup("dongzhiping","你好啊");
        // toast(path);
     }
 

@@ -6,9 +6,11 @@ import android.os.Environment;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Date;
 
 /**
@@ -54,19 +56,66 @@ public class FileUtil {
         return this;
     }
 
-    public FileUtil setIdCard(boolean idcard){
+    public FileUtil setIdCard(boolean idcard) {
         this.IdCardStatus = idcard;
         return this;
     }
+
+    private String getDefalutName() {
+        return MD5.get(Math.random()+":" + System.currentTimeMillis());
+    }
+
+    private String getDefalutName(String Suffix) {
+        return MD5.get(Math.random()+":" + System.currentTimeMillis())+"."+Suffix;
+    }
+
+    /**
+     * 往一个分组写入数据
+
+     * @param group_name
+     * @return
+     */
+    public void writeWorkGroup(String filename,String group_name,String content){
+        File files = this.getWorkGroupFile(group_name,filename,true);
+        writeFile(files,content,false);
+    }
+
+    /**
+     * 默认生成文件名 返回文件File,此类文件没有后缀
+     * @param group_name
+     * @param content
+     * @return
+     */
+    public File writeWorkGroup(String group_name,String content){
+        File files = this.getWorkGroupFile(group_name,getDefalutName(),true);
+        writeFile(files,content,false);
+        return files;
+    }
     //================删除方法========================
-    //删除工程组
-    public boolean deleteWorkGroup(String group_name){
+    //清空工程组
+    public boolean clearWorkGroup(String group_name){
         File dir2 = new File(this.getWorkDir() + File.separator + group_name);
         if(dir2.exists()){
             File[] files = dir2.listFiles();
             for(File f: files){
                 f.delete();
             }
+            dir2.delete();
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    //清空工程组
+    public boolean clearWorkGroup(String group_name,boolean delele_work_group){
+        File dir2 = new File(this.getWorkDir() + File.separator + group_name);
+        if(dir2.exists()){
+            File[] files = dir2.listFiles();
+            for(File f: files){
+                f.delete();
+            }
+            if(delele_work_group)
             dir2.delete();
             return true;
         }else{
@@ -258,10 +307,10 @@ public class FileUtil {
     //===========公用方法======================
     public void writeFile(File file,String content,boolean add){
         try {
-            // 打开一个写文件器，构造函数中的第二个参数true表示以追加形式写文件
-            FileWriter writer = new FileWriter(file.getAbsolutePath(), add);
-            writer.write(content);
-            writer.close();
+            OutputStream outputStream = new FileOutputStream(file);
+            outputStream.write(content.getBytes());
+            outputStream.flush();
+            outputStream.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -286,7 +335,27 @@ public class FileUtil {
                 sb.append(new String(buffer,0,len));
             }
             in.close();
+            if(is_delete)
             file.delete();
+            return sb.toString();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public String readFile(File file){
+        try {
+            if(!file.exists()){
+                return null;
+            }
+            InputStream in = new FileInputStream(file);
+            int len = 0;
+            byte[] buffer = new byte[1024];
+            StringBuffer sb = new StringBuffer();
+            while(( len = in.read(buffer)) != -1){
+                sb.append(new String(buffer,0,len));
+            }
+            in.close();
             return sb.toString();
         } catch (Exception e) {
             return null;

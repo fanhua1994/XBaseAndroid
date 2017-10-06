@@ -1,5 +1,5 @@
 # BaseAndroid
-一款快速开发的基本框架
+一款集成了网络请求，本地缓存，配置文件，数据库映射，权限申请，链表管理Activity，简化Activity、Service、Broadcast启动，万能ListView,GridView适配器、高仿IOS弹窗、倒计时/延迟执行，标题栏组件
 
 ## 功能介绍
 
