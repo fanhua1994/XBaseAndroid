@@ -23,7 +23,7 @@ public class FileUtil {
     private static  FileUtil instance;
     private static boolean IdCardStatus = false;
     private int file_type = 0;
-    private Context context = null;
+    private static Context context = null;
 
     public static FileUtil getInstance(){
         if(instance == null) {
@@ -43,16 +43,23 @@ public class FileUtil {
         }
     }
 
-    public void setContext(Context context){
+    public void init(Context context){
         this.context = context;
     }
 
-    public void setFileType(int file_type){
-        this.file_type = file_type;
+    public FileUtil setContext(Context context){
+        this.context = context;
+        return this;
     }
 
-    public void setIdCard(boolean idcard){
+    public FileUtil setFileType(int file_type){
+        this.file_type = file_type;
+        return this;
+    }
+
+    public FileUtil setIdCard(boolean idcard){
         this.IdCardStatus = idcard;
+        return this;
     }
 
 

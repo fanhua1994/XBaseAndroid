@@ -87,3 +87,9 @@ public void onPermissionsDenied(int requestCode, List<String> list) {
 	// ...
 }
 ```
+
+### 5.创建工作组
+```
+boolean isok = FileUtil.getInstance().setContext(this).setIdCard(true).setFileType(FileUtil.CACHE_FILE).createWorkGroup("mycache12");
+toast("执行结果：" + isok);
+```

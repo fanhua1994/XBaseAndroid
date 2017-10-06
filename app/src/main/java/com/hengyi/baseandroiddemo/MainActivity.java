@@ -1,10 +1,9 @@
 package com.hengyi.baseandroiddemo;
 
 import android.os.Bundle;
-import android.view.View;
 
 import com.hengyi.baseandroidcore.base.BaseActivity;
-import com.hengyi.baseandroidcore.dialog.CustomAlertDialog;
+import com.hengyi.baseandroidcore.utils.FileUtil;
 
 public class MainActivity extends BaseActivity {
 
@@ -12,20 +11,22 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //弹出提示框
-
-        CustomAlertDialog dialog = new CustomAlertDialog(this).builder();
-        dialog.setTitle("温馨提示");
-        dialog.setMsg("你好啊");
-        dialog.setNegativeButton("确定", new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                toast("点击了确定");
-            }
-        });
-
-        dialog.setPositiveButton("取消",null);
-        dialog.show();
+//        //弹出提示框
+//
+//        CustomAlertDialog dialog = new CustomAlertDialog(this).builder();
+//        dialog.setTitle("温馨提示");
+//        dialog.setMsg("你好啊");
+//        dialog.setNegativeButton("确定", new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                toast("点击了确定");
+//            }
+//        });
+//
+//        dialog.setPositiveButton("取消",null);
+//        dialog.show();
+        boolean isok = FileUtil.getInstance().setContext(this).setIdCard(true).setFileType(FileUtil.CACHE_FILE).createWorkGroup("mycache12");
+        toast("执行结果：" + isok);
     }
 
     @Override

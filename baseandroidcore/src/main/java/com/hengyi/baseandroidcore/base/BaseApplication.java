@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.easydblib.EasyDBConfig;
 import com.hengyi.baseandroidcore.utils.CrashHandler;
+import com.hengyi.baseandroidcore.utils.FileUtil;
 
 /**
  * Created by Administrator on 2017/9/12.
@@ -34,7 +35,6 @@ public class BaseApplication extends Application {
             CrashHandler handler = CrashHandler.getInstance();
             handler.init(this);
         }
-
     }
 
     @Override
