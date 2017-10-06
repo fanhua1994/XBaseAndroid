@@ -27,20 +27,6 @@ dialog.setNegativeButton("确定", new View.OnClickListener() {
 
 dialog.setPositiveButton("取消",null);
 dialog.show();
-
-CountDownUtil cd = new CountDownUtil(5000,1000);
-cd.start(new CountDownUtil.setOnCountDownListener() {
-	@Override
-	public void onTick(int second) {
-
-	}
-
-	@Override
-	public void onFinish() {
-		ActivityStack.getInstance().clearAllActivity();
-		kill();
-	}
-});
 ```
 
 ### 3.倒计时控件
