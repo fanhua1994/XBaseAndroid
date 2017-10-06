@@ -45,3 +45,45 @@ cd.start(new CountDownUtil.setOnCountDownListener() {
 	}
 });
 ```
+
+### 4.权限设置
+BaseAndroid引入了easypermissions框架。使用如下
+#### 1.检查权限
+```
+String[] perms = {Manifest.permission.CAMERA, Manifest.permission.CHANGE_WIFI_STATE};
+if (EasyPermissions.hasPermissions(this, perms)) {
+   //...     
+} else {
+    //...
+}
+```
+
+#### 2.申请权限
+```
+EasyPermissions.requestPermissions(this, "拍照需要摄像头权限",
+RC_CAMERA_AND_WIFI, perms);
+```
+#### 3.实现EasyPermissions.PermissionCallbacks接口，直接处理权限是否成功申请
+```
+@Override
+public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+	super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+	// Forward results to EasyPermissions
+	EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+}
+
+//成功
+@Override
+public void onPermissionsGranted(int requestCode, List<String> list) {
+	// Some permissions have been granted
+	// ...
+}
+
+//失败
+@Override
+public void onPermissionsDenied(int requestCode, List<String> list) {
+	// Some permissions have been denied
+	// ...
+}
+```
