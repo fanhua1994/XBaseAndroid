@@ -2,8 +2,8 @@ package com.hengyi.db.dao;
 
 import com.easydblib.dao.BaseDao;
 import com.easydblib.info.WhereInfo;
-import com.zhiweism.signterminal.db.table.Student;
-import com.zhiweism.signterminal.db.util.EasyDBHelper;
+import com.hengyi.db.table.Student;
+import com.hengyi.db.util.EasyDBHelper;
 
 import java.util.List;
 
