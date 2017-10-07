@@ -2,14 +2,7 @@
 一款集成了网络请求，本地缓存，配置文件，数据库映射，权限申请，链表管理Activity，简化Activity、Service、Broadcast启动，万能ListView,GridView适配器、高仿IOS弹窗、倒计时/延迟执行，标题栏组件,图片显示
 
 # 使用方式
-### 1.
-```
-compile 'com.github.fanhua1994:BaseAndroid:1.0'
-```
-### 2.
-```
-compile project(path: ':baseandroidcore')
-```
+> 建议使用compile project(path: ':baseandroidcore')导入项目。现将本项目下载，将baseandroidcore目录导入到as.即可
 ## 功能介绍
 
 ### 1.弹窗

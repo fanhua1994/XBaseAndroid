@@ -7,7 +7,6 @@ import android.os.Environment;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -17,20 +16,20 @@ import java.util.Date;
  * Created by Administrator on 2017/9/13.
  */
 
-public class FileUtil {
+public class ProjectUtil {
     public static final int COMMON_TYPE = 0;
     public static final int DB_TYPE  = 1;
     public static final int CACHE_TYPE = 2;
     public static final int FILE_TYPE = 3;
 
-    private static  FileUtil instance;
+    private static ProjectUtil instance;
     private static boolean IdCardStatus = false;
     private int file_type = 0;
     private Context context = null;
 
-    public static FileUtil getInstance(){
+    public static ProjectUtil getInstance(){
         if(instance == null) {
-            instance = new FileUtil();
+            instance = new ProjectUtil();
             IdCardStatus = Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
         }
         return instance;
@@ -46,17 +45,17 @@ public class FileUtil {
         }
     }
 
-    public FileUtil setContext(Context context){
+    public ProjectUtil setContext(Context context){
         this.context = context;
         return this;
     }
 
-    public FileUtil setFileType(int file_type){
+    public ProjectUtil setFileType(int file_type){
         this.file_type = file_type;
         return this;
     }
 
-    public FileUtil setIdCard(boolean idcard) {
+    public ProjectUtil setIdCard(boolean idcard) {
         this.IdCardStatus = idcard;
         return this;
     }

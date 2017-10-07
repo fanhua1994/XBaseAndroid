@@ -3,7 +3,7 @@ package com.hengyi.baseandroiddemo;
 import android.os.Bundle;
 
 import com.hengyi.baseandroidcore.base.BaseActivity;
-import com.hengyi.baseandroidcore.utils.FileUtil;
+import com.hengyi.baseandroidcore.utils.ProjectUtil;
 
 public class MainActivity extends BaseActivity {
 
@@ -25,7 +25,7 @@ public class MainActivity extends BaseActivity {
 //
 //        dialog.setPositiveButton("取消",null);
 //        dialog.show();
-      FileUtil.getInstance().setContext(this).setIdCard(true).setFileType(FileUtil.COMMON_TYPE).writeWorkGroup("dongzhiping","你好啊");
+      ProjectUtil.getInstance().setContext(this).setIdCard(true).setFileType(ProjectUtil.COMMON_TYPE).writeWorkGroup("dongzhiping","你好啊");
        // toast(path);
     }
 

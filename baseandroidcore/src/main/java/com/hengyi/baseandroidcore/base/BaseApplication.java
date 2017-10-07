@@ -3,8 +3,7 @@ package com.hengyi.baseandroidcore.base;
 import android.app.Application;
 
 import com.easydblib.EasyDBConfig;
-import com.hengyi.baseandroidcore.utils.CrashHandler;
-import com.hengyi.baseandroidcore.utils.FileUtil;
+import com.hengyi.baseandroidcore.utilscode.CrashUtils;
 
 /**
  * Created by Administrator on 2017/9/12.
@@ -12,14 +11,9 @@ import com.hengyi.baseandroidcore.utils.FileUtil;
 
 public class BaseApplication extends Application {
     private static BaseApplication application;
-    private static boolean DEBUG = true;//设置为true才会向服务器提交BUG日志
 
     public static BaseApplication getApplication(){
         return application;
-    }
-
-    public static boolean getDeBUG(){
-        return DEBUG;
     }
 
     @Override
@@ -31,10 +25,7 @@ public class BaseApplication extends Application {
                 .setLogTAG("EASY_DB")//日志显示标识
                 .build();
 
-        if(DEBUG) {
-            CrashHandler handler = CrashHandler.getInstance();
-            handler.init(this);
-        }
+        CrashUtils.init();
     }
 
     @Override
