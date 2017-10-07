@@ -1,9 +1,15 @@
-package com.hengyi.baseandroiddemo;
+package com.hengyi.db.util;
 
+
+import android.os.Environment;
 
 import com.easydblib.helper.BaseDBHelper;
-import com.hengyi.baseandroidcore.base.BaseApplication;
-import com.hengyi.baseandroidcore.utils.FileUtil;
+import com.zhiweism.signterminal.db.table.Classes;
+import com.zhiweism.signterminal.db.table.SignTask;
+import com.zhiweism.signterminal.db.table.SignTime;
+import com.zhiweism.signterminal.db.table.Student;
+import com.zhiweism.signterminal.ui.app.BaseApplication;
+import com.zhiweism.signterminal.utils.FileUtil;
 
 import java.sql.SQLException;
 
@@ -18,13 +24,15 @@ public class EasyDBHelper extends BaseDBHelper {
 	private static final int DB_VERSION = 1;
 
 	//数据库存放路径
-	private static final String DB_PATH = FileUtil.getInstance().getWorkDir();
+	private static final String DB_PATH = FileUtil.getInstance().getWorkChildDir("db");
 
 	//数据库名称
-	private static final String DB_NAME = "app.db";
+	private static final String DB_NAME = "sign_terminal.db";
 
 	//数据表清单
-	private static Class<?>[] tables = {};
+	private static final Class<?>[] tables = {
+		Classes.class, Student.class, SignTask.class, SignTime.class
+	};
 
 	private static EasyDBHelper helper = null;
 
