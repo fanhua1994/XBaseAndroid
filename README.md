@@ -1,6 +1,15 @@
 # BaseAndroid
-一款集成了网络请求，本地缓存，配置文件，数据库映射，权限申请，链表管理Activity，简化Activity、Service、Broadcast启动，万能ListView,GridView适配器、高仿IOS弹窗、倒计时/延迟执行，标题栏组件
+一款集成了网络请求，本地缓存，配置文件，数据库映射，权限申请，链表管理Activity，简化Activity、Service、Broadcast启动，万能ListView,GridView适配器、高仿IOS弹窗、倒计时/延迟执行，标题栏组件,图片显示
 
+# 使用方式
+### 1.
+```
+compile 'com.github.fanhua1994:BaseAndroid:1.0'
+```
+### 2.
+```
+compile project(path: ':baseandroidcore')
+```
 ## 功能介绍
 
 ### 1.弹窗
@@ -47,45 +56,76 @@ cd.start(new CountDownUtil.setOnCountDownListener() {
 ```
 
 ### 4.权限设置
-BaseAndroid引入了easypermissions框架。使用如下
-#### 1.检查权限
 ```
-String[] perms = {Manifest.permission.CAMERA, Manifest.permission.CHANGE_WIFI_STATE};
-if (EasyPermissions.hasPermissions(this, perms)) {
-   //...     
-} else {
-    //...
-}
+// 在Activity：
+AndPermission.with(activity)
+    .requestCode(100)
+    .permission(Permission.SMS)
+    .rationale(...)
+    .callback(...)
+    .start();
+
+// 在Fragment：
+AndPermission.with(fragment)
+    .requestCode(101)
+    .permission(
+        // 申请多个权限组方式：
+        Permission.LOCATION,
+        Permissioin.STORAGE
+    )
+    .rationale(...)
+    .callback(...)
+    .start();
+
+// 在其它任何地方：
+AndPermission.with(context)
+    .requestCode(102)
+    .permission(Permission.LOCATION)
+    .rationale(...)
+    .callback(...)
+    .start();
+
+// 如果你不想申请权限组，仅仅想申请某一个权限：
+AndPermission.with(this)
+    .requestCode(300)
+    .permission(Manifest.permission.WRITE_CONTACTS)
+    .rationale(...)
+    .callback(...)
+    .start();
+
+// 如果你不想申请权限组，仅仅想申请某几个权限：
+AndPermission.with(this)
+    .requestCode(300)
+    .permission(
+        Manifest.permission.WRITE_CONTACTS,
+        Manifest.permission.READ_SMS
+    )
+    .rationale(...)
+    .callback(...)
+    .start();
 ```
 
-#### 2.申请权限
 ```
-EasyPermissions.requestPermissions(this, "拍照需要摄像头权限",
-RC_CAMERA_AND_WIFI, perms);
-```
-#### 3.实现EasyPermissions.PermissionCallbacks接口，直接处理权限是否成功申请
-```
-@Override
-public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-	super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+private PermissionListener listener = new PermissionListener() {
+    @Override
+    public void onSucceed(int requestCode, List<String> grantedPermissions) {
+        // 权限申请成功回调。
+        
+        // 这里的requestCode就是申请时设置的requestCode。
+        // 和onActivityResult()的requestCode一样，用来区分多个不同的请求。
+        if(requestCode == 200) {
+            // TODO ...
+        }
+    }
 
-	// Forward results to EasyPermissions
-	EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
-}
-
-//成功
-@Override
-public void onPermissionsGranted(int requestCode, List<String> list) {
-	// Some permissions have been granted
-	// ...
-}
-
-//失败
-@Override
-public void onPermissionsDenied(int requestCode, List<String> list) {
-	// Some permissions have been denied
-	// ...
-}
+    @Override
+    public void onFailed(int requestCode, List<String> deniedPermissions) {
+        // 权限申请失败回调。
+        if(requestCode == 200) {
+            // TODO ...
+        }
+    }
+};
 ```
 
 ### 5.创建工作组

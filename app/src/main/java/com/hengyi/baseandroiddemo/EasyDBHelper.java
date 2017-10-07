@@ -24,7 +24,7 @@ public class EasyDBHelper extends BaseDBHelper {
 	private static final String DB_NAME = "app.db";
 
 	//数据表清单
-	private static Class<?>[] tables = new Class[50];
+	private static Class<?>[] tables = {};
 
 	private static EasyDBHelper helper = null;
 

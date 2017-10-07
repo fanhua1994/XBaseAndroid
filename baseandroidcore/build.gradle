@@ -44,6 +44,6 @@ dependencies {
     compile 'jp.wasabeef:glide-transformations:2.0.2'
     compile 'com.github.johnkil.android-appmsg:appmsg:1.2.0'
     compile 'com.zhousf.lib:easydb:1.7.2'
-    compile 'pub.devrel:easypermissions:1.0.1'
+    compile 'com.yanzhenjie:permission:1.1.0'
     testCompile 'junit:junit:4.12'
 }
