@@ -7,11 +7,11 @@ import android.os.CountDownTimer;
  * 倒计时工具类
  */
 
-public class CountDownUtil{
+public class CountDownUtils {
     private setOnCountDownListener listener = null;
     private CountDownTimer timer = null;
 
-    public CountDownUtil(int CountSecond,int IntervalSecond){
+    public CountDownUtils(int CountSecond, int IntervalSecond){
         timer = new CountDownTimer(CountSecond,IntervalSecond){
 
             @Override

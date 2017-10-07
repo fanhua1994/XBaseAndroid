@@ -16,20 +16,20 @@ import java.util.Date;
  * Created by Administrator on 2017/9/13.
  */
 
-public class ProjectUtil {
+public class ProjectUtils {
     public static final int COMMON_TYPE = 0;
     public static final int DB_TYPE  = 1;
     public static final int CACHE_TYPE = 2;
     public static final int FILE_TYPE = 3;
 
-    private static ProjectUtil instance;
+    private static ProjectUtils instance;
     private static boolean IdCardStatus = false;
     private int file_type = 0;
     private Context context = null;
 
-    public static ProjectUtil getInstance(){
+    public static ProjectUtils getInstance(){
         if(instance == null) {
-            instance = new ProjectUtil();
+            instance = new ProjectUtils();
             IdCardStatus = Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
         }
         return instance;
@@ -45,17 +45,17 @@ public class ProjectUtil {
         }
     }
 
-    public ProjectUtil setContext(Context context){
+    public ProjectUtils setContext(Context context){
         this.context = context;
         return this;
     }
 
-    public ProjectUtil setFileType(int file_type){
+    public ProjectUtils setFileType(int file_type){
         this.file_type = file_type;
         return this;
     }
 
-    public ProjectUtil setIdCard(boolean idcard) {
+    public ProjectUtils setIdCard(boolean idcard) {
         this.IdCardStatus = idcard;
         return this;
     }
@@ -206,6 +206,10 @@ public class ProjectUtil {
             workdir.mkdirs();
 
         return workDir;
+    }
+
+    public String getRootDir(){
+        return Environment.getExternalStorageDirectory().getAbsolutePath();
     }
 
     /**

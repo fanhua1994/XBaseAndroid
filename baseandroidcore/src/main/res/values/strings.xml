@@ -1,9 +1,4 @@
 <resources>
-    <string name="app_name">BaseAndroidCore</string>
+    <string name="app_name">Base安卓</string>
 
-    <!-- 权限提示 -->
-    <string name="map_notifyTitle">提示</string>
-    <string name="map_notifyMsg">当前应用缺少必要权限。\n\n请点击\"设置\"-\"权限\"-打开所需权限。</string>
-    <string name="map_setting">设置</string>
-    <string name="map_cancel">取消</string>
 </resources>

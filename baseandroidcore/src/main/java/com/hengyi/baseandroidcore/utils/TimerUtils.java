@@ -10,17 +10,17 @@ import java.util.TimerTask;
  * Created by 繁华 on 2017/5/14.
  */
 
-public class TimerUtil {
-    private static TimerUtil instance = null;
+public class TimerUtils {
+    private static TimerUtils instance = null;
     private TimerTaskCallbackListener listener;
     private Timer timer = new Timer();
     private int timerInterval = 0;
     private int timer_id = 0;
     private int timer_count = 0;
 
-    public static TimerUtil getInstance(){
+    public static TimerUtils getInstance(){
         if(instance == null)
-            instance = new TimerUtil();
+            instance = new TimerUtils();
         return instance;
     }
 

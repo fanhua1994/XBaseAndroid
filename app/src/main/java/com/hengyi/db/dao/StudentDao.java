@@ -23,6 +23,11 @@ public class StudentDao {
         return res > 0;
     }
 
+    public boolean addStudent(Student s){
+        int res = student_dao.add(s);
+        return res > 0;
+    }
+
     public void clearTable(){
         student_dao.clearTable();
     }

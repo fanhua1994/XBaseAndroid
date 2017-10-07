@@ -15,7 +15,7 @@ import java.util.Locale;
  * 系统工具类
  * Created by zhuwentao on 2016-07-18.
  */
-public class SystemUtil {
+public class SystemUtils {
 
     /**
      * 获取当前手机系统语言。

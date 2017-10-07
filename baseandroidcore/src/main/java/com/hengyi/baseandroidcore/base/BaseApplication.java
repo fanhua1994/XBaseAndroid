@@ -4,13 +4,14 @@ import android.app.Application;
 
 import com.easydblib.EasyDBConfig;
 import com.hengyi.baseandroidcore.utilscode.CrashUtils;
+import com.hengyi.baseandroidcore.utilscode.Utils;
 
 /**
  * Created by Administrator on 2017/9/12.
  */
 
 public class BaseApplication extends Application {
-    private static BaseApplication application;
+    private static BaseApplication application = null;
 
     public static BaseApplication getApplication(){
         return application;
@@ -26,6 +27,7 @@ public class BaseApplication extends Application {
                 .build();
 
         CrashUtils.init();
+        Utils.init(this);
     }
 
     @Override

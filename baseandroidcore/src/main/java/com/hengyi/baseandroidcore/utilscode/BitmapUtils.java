@@ -53,9 +53,9 @@ import java.io.OutputStream;
  *     desc  : 图片相关工具类
  * </pre>
  */
-public final class ImageUtils {
+public final class BitmapUtils {
 
-    private ImageUtils() {
+    private BitmapUtils() {
         throw new UnsupportedOperationException("u can't instantiate me...");
     }
 

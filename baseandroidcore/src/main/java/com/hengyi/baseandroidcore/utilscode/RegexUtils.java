@@ -1,6 +1,6 @@
 package com.hengyi.baseandroidcore.utilscode;
 
-import com.blankj.utilcode.constant.RegexConstants;
+import com.hengyi.baseandroidcore.constant.RegexConstants;
 
 import java.util.ArrayList;
 import java.util.List;

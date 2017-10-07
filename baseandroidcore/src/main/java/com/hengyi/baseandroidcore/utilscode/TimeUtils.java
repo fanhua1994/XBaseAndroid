@@ -1,6 +1,6 @@
 package com.hengyi.baseandroidcore.utilscode;
 
-import com.blankj.utilcode.constant.TimeConstants;
+import com.hengyi.baseandroidcore.constant.TimeConstants;
 
 import java.text.DateFormat;
 import java.text.ParseException;

@@ -9,25 +9,25 @@ import android.content.SharedPreferences;
  * csdn:http://blog.csdn.net/dong_18383219470?viewmode=list
  */
 
-public class ConfigUtil {
+public class ConfigUtils {
 
     private static SharedPreferences sp = null;
     private static SharedPreferences.Editor edit = null;
-    private static ConfigUtil instance = null;
+    private static ConfigUtils instance = null;
 
 
-    public static ConfigUtil getInstance(Context context){
+    public static ConfigUtils getInstance(Context context){
         if(instance == null){
             sp = context.getSharedPreferences("config",Context.MODE_PRIVATE);
-            instance = new ConfigUtil();
+            instance = new ConfigUtils();
         }
         return instance;
     }
 
-    public static ConfigUtil getInstance(String config,Context context){
+    public static ConfigUtils getInstance(String config, Context context){
         if(instance == null){
             sp = context.getSharedPreferences(config,Context.MODE_PRIVATE);
-            instance = new ConfigUtil();
+            instance = new ConfigUtils();
         }
         return instance;
     }
