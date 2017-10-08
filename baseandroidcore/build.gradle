@@ -21,12 +21,6 @@ android {
     }
 }
 
-allprojects {
-    repositories {
-        maven { url 'https://jitpack.io' }
-    }
-}
-
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
@@ -36,12 +30,9 @@ dependencies {
     compile 'com.google.code.gson:gson:2.6.2'
     compile 'com.j256.ormlite:ormlite-core:4.48'
     compile 'com.j256.ormlite:ormlite-android:4.48'
-    compile 'com.jakewharton:butterknife:8.5.1'
     compile 'com.squareup.okhttp3:okhttp:3.9.0'
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'jp.wasabeef:glide-transformations:2.0.2'
     compile 'com.github.johnkil.android-appmsg:appmsg:1.2.0'
-    compile 'com.zhousf.lib:easydb:1.7.2'
     compile 'com.yanzhenjie:permission:1.1.0'
-    testCompile 'junit:junit:4.12'
 }

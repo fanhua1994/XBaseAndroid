@@ -9,15 +9,10 @@ import android.os.Process;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
-import android.view.MotionEvent;
-import android.view.VelocityTracker;
-import android.view.View;
 import android.widget.Toast;
 
 import com.hengyi.baseandroidcore.dialog.CustomLoadingDialog;
 import com.hengyi.baseandroidcore.utils.ActivityStack;
-
-import butterknife.ButterKnife;
 
 /**
  * Created by 繁华 on 2017/5/14.
@@ -34,7 +29,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         setContentView(setBaseContentView());//设置布局文件
         ActivityStack.getInstance().pushActivity(this);//将界面加入堆栈
         context = this;//复制上下文
-        ButterKnife.bind(this);//注入控件
+        //ButterKnife.bind(this);//注入控件
     }
 
     public abstract int setBaseContentView();

@@ -2,7 +2,6 @@ package com.hengyi.baseandroidcore.base;
 
 import android.app.Application;
 
-import com.easydblib.EasyDBConfig;
 import com.hengyi.baseandroidcore.utilscode.CrashUtils;
 import com.hengyi.baseandroidcore.utilscode.Utils;
 
@@ -21,13 +20,10 @@ public class BaseApplication extends Application {
     public void onCreate() {
         super.onCreate();
         application = this;
-        EasyDBConfig.init()
-                .showDBLog(true)//显示数据库操作日志
-                .setLogTAG("EASY_DB")//日志显示标识
-                .build();
 
-        CrashUtils.init();
         Utils.init(this);
+        CrashUtils.init();
+
     }
 
     @Override
