@@ -204,3 +204,18 @@ toast("执行结果：" + isok);
 
 //其中setContext方法必须调用。setIdCard setFileType可以不调用。默认是自定义分组模式，外部储存有优先。
 ```
+
+### 本地缓存使用
+```
+DiskLruCacheHelper cache = DiskLruCacheHelper.getInstance(this);
+cache.put("cache","21424984034324934320434940494044904239");
+toast(cache.getAsString("cache") +"缓存大小："+cache.getCacheCount());
+```
+
+### 配置文件使用
+```
+ConfigUtils config = ConfigUtils.getInstance(this);
+config.addOrUpdateText("name","繁华");
+toast(config.findStringByKey("name"));
+config.clearConfig();
+```

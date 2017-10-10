@@ -35,7 +35,7 @@ public class ConfigUtils {
     /*
      * 添加或者更新一个方法
      */
-    public boolean AddOrUpdateText(String key,String content){
+    public boolean addOrUpdateText(String key,String content){
         if(edit == null){
             edit = sp.edit();
         }
@@ -43,7 +43,7 @@ public class ConfigUtils {
         return edit.commit();
     }
 
-    public boolean AddOrUpdateIntNumber(String key,int content){
+    public boolean addOrUpdateIntNumber(String key,int content){
         if(edit == null){
             edit = sp.edit();
         }
@@ -51,7 +51,7 @@ public class ConfigUtils {
         return edit.commit();
     }
 
-    public boolean AddOrUpdateFloatNumber(String key,float content){
+    public boolean addOrUpdateFloatNumber(String key,float content){
         if(edit == null){
             edit = sp.edit();
         }
@@ -59,7 +59,7 @@ public class ConfigUtils {
         return edit.commit();
     }
 
-    public boolean AddOrUpdateBoolean(String key,boolean content){
+    public boolean addOrUpdateBoolean(String key,boolean content){
         if(edit == null){
             edit = sp.edit();
         }
@@ -71,22 +71,43 @@ public class ConfigUtils {
      * 查询
      */
 
-    public String FindStringByKey(String key){
+    public String findStringByKey(String key){
         return sp.getString(key, null);
     }
 
-    public boolean FindBoolByKey(String key){
+
+    public String findStringByKey(String key,String default_value){
+        return sp.getString(key, default_value);
+    }
+
+    public boolean findBoolByKey(String key){
         return sp.getBoolean(key,false);
     }
 
-    public int FindIntByKey(String key){
+    public boolean findBoolByKey(String key,boolean default_value){
+        return sp.getBoolean(key,default_value);
+    }
+
+    public int findIntByKey(String key){
         return sp.getInt(key, -1);
+    }
+
+    public int findIntByKey(String key,int default_value){
+        return sp.getInt(key, default_value);
+    }
+
+    public float findFloatByKey(String key){
+        return sp.getFloat(key,-1);
+    }
+
+    public float findFloatByKey(String key,float default_value){
+        return sp.getFloat(key,default_value);
     }
 
     /*
      * 删除
      */
-    public void DeleteByKey(String key){
+    public void deleteByKey(String key){
         if(edit == null){
             edit = sp.edit();
         }
@@ -97,7 +118,7 @@ public class ConfigUtils {
     /*
      * 清空
      */
-    public void ClearShared(){
+    public void clearConfig(){
         if(edit == null){
             edit = sp.edit();
         }

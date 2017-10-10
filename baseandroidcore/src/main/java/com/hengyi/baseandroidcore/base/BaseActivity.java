@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.hengyi.baseandroidcore.dialog.CustomLoadingDialog;
 import com.hengyi.baseandroidcore.utils.ActivityStack;
+import com.hengyi.baseandroidcore.utils.NetworkUtils;
 
 /**
  * Created by 繁华 on 2017/5/14.
@@ -33,6 +34,10 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     public abstract int setBaseContentView();
+
+    public boolean getNetworkStatus(){
+        return NetworkUtils.isNetworkConnected(this);
+    }
 
     /**
      * 显示正在加载的提示
