@@ -7,6 +7,7 @@ import android.widget.Button;
 import com.devspark.appmsg.AppMsg;
 import com.hengyi.baseandroidcore.base.BaseActivity;
 import com.hengyi.baseandroidcore.dialog.CustomAlertDialog;
+import com.hengyi.baseandroidcore.dialog.CustomConfirmDialog;
 import com.hengyi.baseandroidcore.utils.ProjectUtils;
 
 import butterknife.BindView;
@@ -19,23 +20,26 @@ public class MainActivity extends MyBaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //弹出提示框
-        CustomAlertDialog dialog = new CustomAlertDialog(this).builder();
+        //弹出输入框
+        CustomConfirmDialog dialog = new CustomConfirmDialog(this).builder();
         dialog.setTitle("温馨提示");
-        dialog.setMsg("你好啊");
-        dialog.setNegativeButton("确定", new View.OnClickListener() {
+        dialog.setInputNumber(false);
+        dialog.setNegativeButton("取消", new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                toast("点击了确定");
-                AppMsg.makeText(MainActivity.this,"点击了确定",AppMsg.STYLE_CONFIRM).show();
 
             }
         });
 
-        dialog.setPositiveButton("取消",null);
+        dialog.setPositiveButton("取消",new CustomConfirmDialog.OnPostListener(){
+
+            @Override
+            public void OnPost(String value) {
+                toast(value);
+            }
+        });
         dialog.show();
 
-       //toast(ProjectUtils.getInstance().getWorkDir());
      }
 
     @Override

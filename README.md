@@ -5,7 +5,7 @@
 > 建议使用compile project(path: ':baseandroidcore')导入项目。现将本项目下载，将baseandroidcore目录导入到as.即可。使用前请将BaseApplication加入项目  BaseActivity加入项目
 ## 功能介绍
 
-### 0.BaseActivity
+### BaseActivity
 > 由于BaseActivity已经进行简单的封装，所以不方便进行修改。因此方式如下
 ```
 package com.hengyi.baseandroiddemo;
@@ -45,7 +45,7 @@ public abstract class MyBaseActivity extends BaseActivity {
 
 ```
 
-### 1.弹窗
+### 弹窗
 ![](https://github.com/fanhua1994/BaseAndroid/blob/master/image/%E4%BB%BFIOS%E5%BC%B9%E5%87%BA%E6%8F%90%E7%A4%BA%E6%A1%86.png?raw=true)
 ```
 CustomAlertDialog dialog = new CustomAlertDialog(this).builder();
@@ -54,7 +54,7 @@ dialog.setMsg("你好啊");
 dialog.show();
 ```
 
-### 2.可以选择的弹窗
+### 可以选择的弹窗
 ![](https://github.com/fanhua1994/BaseAndroid/blob/master/image/%E4%BB%BFIOS%E5%BC%B9%E5%87%BA%E9%80%89%E6%8B%A9%E6%A1%86.png?raw=true)
 ```
 CustomAlertDialog dialog = new CustomAlertDialog(this).builder();
@@ -71,7 +71,29 @@ dialog.setPositiveButton("取消",null);
 dialog.show();
 ```
 
-### 3.倒计时控件
+### 弹出输入框
+```
+CustomConfirmDialog dialog = new CustomConfirmDialog(this).builder();
+dialog.setTitle("温馨提示");
+dialog.setInputNumber(false);
+dialog.setNegativeButton("取消", new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+
+    }
+});
+
+dialog.setPositiveButton("取消",new CustomConfirmDialog.OnPostListener(){
+
+    @Override
+    public void OnPost(String value) {
+	toast(value);
+    }
+});
+dialog.show();
+```
+
+### 倒计时控件
 ```
 CountDownUtil cd = new CountDownUtil(5000,1000);
 cd.start(new CountDownUtil.setOnCountDownListener() {
@@ -88,7 +110,7 @@ cd.start(new CountDownUtil.setOnCountDownListener() {
 });
 ```
 
-### 4.权限设置
+### 权限设置
 ```
 // 在Activity：
 AndPermission.with(activity)
@@ -161,7 +183,7 @@ private PermissionListener listener = new PermissionListener() {
 };
 ```
 
-### 5.创建工作组
+### 创建工作组
 > 工作组就好比我们将我们的外部储存分为很多很多目录，每个目录一个分组。文件互不影响。可以删除写入数据。目前默认的有db、cache、file分组。其他需要自定义。
 ```
 boolean isok = FileUtil.getInstance().setContext(this).setIdCard(true).setFileType(FileUtil.CACHE_FILE).createWorkGroup("mycache12");
