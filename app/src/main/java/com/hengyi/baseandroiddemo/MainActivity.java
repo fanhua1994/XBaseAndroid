@@ -7,6 +7,7 @@ import android.widget.Button;
 import com.devspark.appmsg.AppMsg;
 import com.hengyi.baseandroidcore.base.BaseActivity;
 import com.hengyi.baseandroidcore.dialog.CustomAlertDialog;
+import com.hengyi.baseandroidcore.utils.ProjectUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -35,7 +36,7 @@ public class MainActivity extends BaseActivity {
         dialog.setPositiveButton("取消",null);
         dialog.show();
 
-       // cache.setText("我曹可以啊");
+       toast(ProjectUtils.getInstance().getWorkDir());
      }
 
     @Override

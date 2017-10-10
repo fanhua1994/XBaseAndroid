@@ -4,6 +4,8 @@ import android.content.Context;
 import android.os.Environment;
 
 
+import com.hengyi.baseandroidcore.base.BaseApplication;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -25,7 +27,6 @@ public class ProjectUtils {
     private static ProjectUtils instance;
     private static boolean IdCardStatus = false;
     private int file_type = 0;
-    private Context context = null;
 
     public static ProjectUtils getInstance(){
         if(instance == null) {
@@ -43,11 +44,6 @@ public class ProjectUtils {
         }else{
             return true;
         }
-    }
-
-    public ProjectUtils setContext(Context context){
-        this.context = context;
-        return this;
     }
 
     public ProjectUtils setFileType(int file_type){
@@ -159,44 +155,42 @@ public class ProjectUtils {
      * 获取工作目录
      */
     public String getWorkDir(){
-        if(context == null)
-            return null;
 
         String workDir = null;
         if(IdCardStatus){
             switch(file_type){
                 case COMMON_TYPE:
-                    workDir = context.getExternalCacheDir().getParentFile().getAbsolutePath();
+                    workDir = BaseApplication.getApplication().getExternalCacheDir().getParentFile().getAbsolutePath();
                     break;
 
                 case DB_TYPE:
-                    workDir = context.getExternalCacheDir().getParentFile().getAbsolutePath() + File.separator +"database";
+                    workDir = BaseApplication.getApplication().getExternalCacheDir().getParentFile().getAbsolutePath() + File.separator +"database";
                     break;
 
                 case CACHE_TYPE:
-                    workDir = context.getExternalCacheDir().getAbsolutePath();
+                    workDir = BaseApplication.getApplication().getExternalCacheDir().getAbsolutePath();
                     break;
 
                 case FILE_TYPE:
-                    workDir = context.getExternalFilesDir("db").getParentFile().getAbsolutePath();
+                    workDir = BaseApplication.getApplication().getExternalFilesDir("db").getParentFile().getAbsolutePath();
                     break;
             }
         }else{
             switch(file_type) {
                 case COMMON_TYPE:
-                    workDir = context.getCacheDir().getParentFile().getAbsolutePath();
+                    workDir = BaseApplication.getApplication().getCacheDir().getParentFile().getAbsolutePath();
                     break;
 
                 case DB_TYPE:
-                    workDir = context.getDatabasePath("db").getParentFile().getAbsolutePath();
+                    workDir = BaseApplication.getApplication().getDatabasePath("db").getParentFile().getAbsolutePath();
                     break;
 
                 case CACHE_TYPE:
-                    workDir = context.getCacheDir().getAbsolutePath();
+                    workDir = BaseApplication.getApplication().getCacheDir().getAbsolutePath();
                     break;
 
                 case FILE_TYPE:
-                    workDir = context.getFilesDir().getAbsolutePath();
+                    workDir = BaseApplication.getApplication().getFilesDir().getAbsolutePath();
                     break;
             }
         }
