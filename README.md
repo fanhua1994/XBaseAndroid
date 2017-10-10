@@ -5,6 +5,46 @@
 > 建议使用compile project(path: ':baseandroidcore')导入项目。现将本项目下载，将baseandroidcore目录导入到as.即可。使用前请将BaseApplication加入项目  BaseActivity加入项目
 ## 功能介绍
 
+### 0.BaseActivity
+> 由于BaseActivity已经进行简单的封装，所以不方便进行修改。因此方式如下
+```
+package com.hengyi.baseandroiddemo;
+
+import android.os.Bundle;
+
+import com.hengyi.baseandroidcore.base.BaseActivity;
+
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+
+/**
+ * Created by Administrator on 2017/10/10.
+ */
+
+public abstract class MyBaseActivity extends BaseActivity {
+    private Unbinder unbind = null;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        unbind = ButterKnife.bind(this);
+    }
+
+    @Override
+    public int setBaseContentView() {
+        return setContentView();
+    }
+
+    public abstract int setContentView();
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unbind.unbind();
+    }
+}
+
+```
+
 ### 1.弹窗
 ![](https://github.com/fanhua1994/BaseAndroid/blob/master/image/%E4%BB%BFIOS%E5%BC%B9%E5%87%BA%E6%8F%90%E7%A4%BA%E6%A1%86.png?raw=true)
 ```

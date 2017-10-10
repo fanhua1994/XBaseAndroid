@@ -13,12 +13,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends MyBaseActivity {
     @BindView(R.id.cache_admin)Button cache;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ButterKnife.bind(this);//注册事件
 
         //弹出提示框
         CustomAlertDialog dialog = new CustomAlertDialog(this).builder();
@@ -36,11 +35,11 @@ public class MainActivity extends BaseActivity {
         dialog.setPositiveButton("取消",null);
         dialog.show();
 
-       toast(ProjectUtils.getInstance().getWorkDir());
+       //toast(ProjectUtils.getInstance().getWorkDir());
      }
 
     @Override
-    public int setBaseContentView() {
+    public int setContentView() {
         return R.layout.activity_main;
     }
 
