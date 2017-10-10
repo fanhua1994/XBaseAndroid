@@ -121,65 +121,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         startActivityForResult(intent, result);
     }
 
-    //启动服务
-    public void StartService(Class cla){
-        intent = null;
-        intent = new Intent(context,cla);
-        startService(intent);
-    }
-
-    public void StartService(Class cla,String[] names, Object... param){
-        intent = null;
-        intent = new Intent(context,cla);
-        for (int i = 0; i < param.length; i++) {
-            if (param[i].getClass().equals(Integer.class)) {
-                intent.putExtra(names[i], (Integer) param[i]);
-            } else if (param[i].getClass().equals(String.class)) {
-                intent.putExtra(names[i], (String) param[i]);
-            } else if (param[i].getClass().equals(Boolean.class)) {
-                intent.putExtra(names[i], (Boolean) param[i]);
-            } else if (param[i].getClass().equals(Float.class)) {
-                intent.putExtra(names[i], (Float) param[i]);
-            } else if (param[i].getClass().equals(Double.class)) {
-                intent.putExtra(names[i], (Double) param[i]);
-            }
-        }
-        startService(intent);
-    }
-
-    public void CloseService(Class cla){
-        intent = null;
-        intent = new Intent(context,cla);
-        stopService(intent);
-    }
-
-    //发送广播
-    public void SendBroadCast(Class cla,String[] names, Object... param){
-        intent  = null;
-        intent = new Intent(context,cla);
-        for (int i = 0; i < param.length; i++) {
-            if (param[i].getClass().equals(Integer.class)) {
-                intent.putExtra(names[i], (Integer) param[i]);
-            } else if (param[i].getClass().equals(String.class)) {
-                intent.putExtra(names[i], (String) param[i]);
-            } else if (param[i].getClass().equals(Boolean.class)) {
-                intent.putExtra(names[i], (Boolean) param[i]);
-            } else if (param[i].getClass().equals(Float.class)) {
-                intent.putExtra(names[i], (Float) param[i]);
-            } else if (param[i].getClass().equals(Double.class)) {
-                intent.putExtra(names[i], (Double) param[i]);
-            }
-        }
-        sendBroadcast(intent);
-    }
-
-
-    public void SendBroadCast(Class cla) {
-        intent = null;
-        intent = new Intent(context, cla);
-        sendBroadcast(intent);
-    }
-
     /**
      * 启动应用的设置
      */
