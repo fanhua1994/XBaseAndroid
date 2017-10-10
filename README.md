@@ -110,6 +110,19 @@ cd.start(new CountDownUtil.setOnCountDownListener() {
 });
 ```
 
+### 定时器控件
+```
+TimerUtils timer = TimerUtils.getInstance();
+timer.setTimer_id(123);
+timer.startTimer(5);//单位秒
+timer.setTimerListener(new TimerUtils.TimerTaskCallbackListener() {
+    @Override
+    public void Timing(int timer_id, int timer_count) {
+	toast("timer_id:"+timer_id);
+    }
+});
+```
+
 ### 权限设置
 ```
 // 在Activity：

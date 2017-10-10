@@ -9,6 +9,7 @@ import com.hengyi.baseandroidcore.base.BaseActivity;
 import com.hengyi.baseandroidcore.dialog.CustomAlertDialog;
 import com.hengyi.baseandroidcore.dialog.CustomConfirmDialog;
 import com.hengyi.baseandroidcore.utils.ProjectUtils;
+import com.hengyi.baseandroidcore.utils.TimerUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -20,26 +21,15 @@ public class MainActivity extends MyBaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //弹出输入框
-        CustomConfirmDialog dialog = new CustomConfirmDialog(this).builder();
-        dialog.setTitle("温馨提示");
-        dialog.setInputNumber(false);
-        dialog.setNegativeButton("取消", new View.OnClickListener() {
+        TimerUtils timer = TimerUtils.getInstance();
+        timer.setTimer_id(123);
+        timer.startTimer(5);//单位秒
+        timer.setTimerListener(new TimerUtils.TimerTaskCallbackListener() {
             @Override
-            public void onClick(View view) {
-
+            public void Timing(int timer_id, int timer_count) {
+                toast("timer_id:"+timer_id);
             }
         });
-
-        dialog.setPositiveButton("取消",new CustomConfirmDialog.OnPostListener(){
-
-            @Override
-            public void OnPost(String value) {
-                toast(value);
-            }
-        });
-        dialog.show();
-
      }
 
     @Override
