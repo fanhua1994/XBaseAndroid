@@ -127,77 +127,7 @@ timer.setTimerListener(new TimerUtils.TimerTaskCallbackListener() {
 
 ### 权限设置
 ```
-// 在Activity：
-AndPermission.with(activity)
-    .requestCode(100)
-    .permission(Permission.SMS)
-    .rationale(...)
-    .callback(...)
-    .start();
-
-// 在Fragment：
-AndPermission.with(fragment)
-    .requestCode(101)
-    .permission(
-        // 申请多个权限组方式：
-        Permission.LOCATION,
-        Permissioin.STORAGE
-    )
-    .rationale(...)
-    .callback(...)
-    .start();
-
-// 在其它任何地方：
-AndPermission.with(context)
-    .requestCode(102)
-    .permission(Permission.LOCATION)
-    .rationale(...)
-    .callback(...)
-    .start();
-
-// 如果你不想申请权限组，仅仅想申请某一个权限：
-AndPermission.with(this)
-    .requestCode(300)
-    .permission(Manifest.permission.WRITE_CONTACTS)
-    .rationale(...)
-    .callback(...)
-    .start();
-
-// 如果你不想申请权限组，仅仅想申请某几个权限：
-AndPermission.with(this)
-    .requestCode(300)
-    .permission(
-        Manifest.permission.WRITE_CONTACTS,
-        Manifest.permission.READ_SMS
-    )
-    .rationale(...)
-    .callback(...)
-    .start();
-```
-
-```
-private PermissionListener listener = new PermissionListener() {
-    @Override
-    public void onSucceed(int requestCode, List<String> grantedPermissions) {
-        // 权限申请成功回调。
-        
-        // 这里的requestCode就是申请时设置的requestCode。
-        // 和onActivityResult()的requestCode一样，用来区分多个不同的请求。
-        if(requestCode == 200) {
-            // TODO ...
-        }
-    }
-
-    @Override
-    public void onFailed(int requestCode, List<String> deniedPermissions) {
-        // 权限申请失败回调。
-        if(requestCode == 200) {
-            // TODO ...
-        }
-    }
-};
-```
-
+> permissionUtils查看使用方法
 ### 创建工作组
 > 工作组就好比我们将我们的外部储存分为很多很多目录，每个目录一个分组。文件互不影响。可以删除写入数据。目前默认的有db、cache、file分组。其他需要自定义。
 ```
@@ -220,4 +150,30 @@ ConfigUtils config = ConfigUtils.getInstance(this);
 config.addOrUpdateText("name","繁华");
 toast(config.findStringByKey("name"));
 config.clearConfig();
+```
+
+### 标题栏使用
+```
+<com.hengyi.baseandroidcore.weight.EaseTitleBar
+android:layout_width="match_parent"
+app:titleBarTitle="标题栏演示"
+app:titleBarLeftImage="@drawable/icon_back"
+android:layout_height="50dp">
+</com.hengyi.baseandroidcore.weight.EaseTitleBar>
+
+```
+```
+@BindView(R.id.titleBar)EaseTitleBar easeTitleBar;
+easeTitleBar.setLeftLayoutClickListener(new View.OnClickListener(){
+    @Override
+    public void onClick(View view) {
+	ActivityStack.getInstance().popActivity();
+    }
+});
+```
+
+### 如何高效关闭Activity
+```
+ActivityStack.getInstance().popActivity();
+千万不要使用finish();
 ```

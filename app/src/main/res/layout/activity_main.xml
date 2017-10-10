@@ -8,6 +8,7 @@
     tools:context="com.hengyi.baseandroiddemo.MainActivity">
 
     <com.hengyi.baseandroidcore.weight.EaseTitleBar
+        android:id="@+id/titleBar"
         android:layout_width="match_parent"
         app:titleBarTitle="标题栏演示"
         app:titleBarLeftImage="@drawable/icon_back"
