@@ -26,12 +26,11 @@ public class MainActivity extends MyBaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ProjectUtils p = ProjectUtils.getInstance();
-        p.setIdCard(true);
-        p.setFileType(ProjectUtils.COMMON_TYPE);
-        p.createWorkGroup("繁华");
-        p.writeWorkGroup("dongzhiping.txt","繁华","你好啊");
-        
+
+        showLoadingDialog("正在加载");
+
+        //closeLoadingDialog();
+
         easeTitleBar.setLeftLayoutClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
