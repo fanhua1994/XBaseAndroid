@@ -133,8 +133,8 @@ timer.setTimerListener(new TimerUtils.TimerTaskCallbackListener() {
 ```
 
 ### 权限设置
-```
 > permissionUtils查看使用方法
+
 ### 创建工作组
 > 工作组就好比我们将我们的外部储存分为很多很多目录，每个目录一个分组。文件互不影响。可以删除写入数据。目前默认的有db、cache、file分组。其他需要自定义。
 ```
