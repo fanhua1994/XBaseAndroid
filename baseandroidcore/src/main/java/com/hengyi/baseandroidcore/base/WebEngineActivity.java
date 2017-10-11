@@ -7,6 +7,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.view.KeyEvent;
 import android.view.View;
+import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
@@ -15,6 +16,7 @@ import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
 import com.hengyi.baseandroidcore.R;
+import com.hengyi.baseandroidcore.dialog.CustomAlertDialog;
 import com.hengyi.baseandroidcore.utils.ActivityStack;
 import com.hengyi.baseandroidcore.weight.EaseTitleBar;
 
@@ -106,8 +108,17 @@ public class WebEngineActivity extends BaseActivity {
             @Override
 			public void onReceivedTitle(WebView view, String tit) {
             		easeTitleBar.setTitle(tit);
-			} 
-        });
+			}
+
+			@Override
+			public boolean onJsAlert(WebView view, String url, String message, final JsResult result) {
+				CustomAlertDialog alert = new CustomAlertDialog(WebEngineActivity.this).builder();
+				alert.setTitle("温馨提示");
+				alert.setMsg(message);
+				alert.show();
+				return true;
+			}
+		});
 	}
 
 	@Override
