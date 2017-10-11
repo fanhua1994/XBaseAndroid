@@ -184,3 +184,16 @@ easeTitleBar.setLeftLayoutClickListener(new View.OnClickListener(){
 ActivityStack.getInstance().popActivity();
 千万不要使用finish();
 ```
+
+
+### 感谢以下项目的支持
+```
+compile 'com.google.code.gson:gson:2.6.2'
+compile 'com.j256.ormlite:ormlite-core:4.48'
+compile 'com.j256.ormlite:ormlite-android:4.48'
+compile 'com.squareup.okhttp3:okhttp:3.9.0'
+compile 'com.github.bumptech.glide:glide:3.7.0'
+compile 'jp.wasabeef:glide-transformations:2.0.2'
+compile 'com.github.johnkil.android-appmsg:appmsg:1.2.0'
+compile 'com.lzy.net:okgo:3.0.4'
+```
