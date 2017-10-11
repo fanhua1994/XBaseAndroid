@@ -8,6 +8,7 @@ import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -84,9 +85,9 @@ public class WebEngineActivity extends BaseActivity {
 		
 		webview.setWebViewClient(new WebViewClient(){
 	           @Override
-	        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+	        public boolean shouldOverrideUrlLoading(WebView view,WebResourceRequest request) {
 	        	   progressBar.setVisibility(View.VISIBLE);
-	        	   view.loadUrl(url);
+	        	   view.loadUrl(request.getUrl().toString());
 	        	   return true;
 	        }
        });
