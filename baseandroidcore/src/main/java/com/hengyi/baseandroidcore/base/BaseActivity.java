@@ -30,7 +30,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         setContentView(setBaseContentView());//设置布局文件
         ActivityStack.getInstance().pushActivity(this);//将界面加入堆栈
         context = this;//复制上下文
-        //ButterKnife.bind(this);//注入控件
     }
 
     public abstract int setBaseContentView();

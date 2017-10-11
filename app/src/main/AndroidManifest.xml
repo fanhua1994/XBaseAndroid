@@ -3,6 +3,7 @@
     package="com.hengyi.baseandroiddemo">
 
     <application
+        android:hardwareAccelerated="true"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -17,6 +18,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".CacheActivity"></activity>
+
+        <activity android:name="com.hengyi.baseandroidcore.base.WebEngineActivity"></activity>
     </application>
 
 </manifest>
