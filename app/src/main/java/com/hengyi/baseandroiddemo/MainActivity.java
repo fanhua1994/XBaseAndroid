@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.hengyi.baseandroidcore.base.WebEngineActivity;
-import com.hengyi.baseandroidcore.utils.ActivityStack;
+import com.hengyi.baseandroidcore.database.DatabaseHelper;
 import com.hengyi.baseandroidcore.weight.EaseTitleBar;
 import com.hengyi.db.Student;
 import com.hengyi.db.StudentDao;
@@ -20,14 +20,15 @@ public class MainActivity extends MyBaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        DatabaseHelper.addTable(Student.class);
 
-        //showLoadingDialog("正在加载");
         easeTitleBar.setLeftLayoutClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
                 //ActivityStack.getInstance().popActivity();
                 StudentDao sd = new StudentDao(context);
                 Student s = new Student();
+                s.setId(1);
                 s.setName("ggeegegerger");
                 int res = sd.add(s);
                 toast("添加学生结果是：" + res);

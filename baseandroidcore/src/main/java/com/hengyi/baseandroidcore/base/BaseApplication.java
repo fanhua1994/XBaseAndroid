@@ -3,6 +3,7 @@ package com.hengyi.baseandroidcore.base;
 import android.app.Application;
 
 import com.hengyi.baseandroidcore.utilscode.CrashUtils;
+import com.hengyi.baseandroidcore.utilscode.LogUtils;
 import com.hengyi.baseandroidcore.utilscode.Utils;
 
 /**

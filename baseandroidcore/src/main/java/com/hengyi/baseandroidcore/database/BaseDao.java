@@ -32,7 +32,6 @@ public abstract class BaseDao<T, Integer> {
             //如果为空，则扔出非法参数异常
         }
         mContext = context.getApplicationContext();
-        //避免产生内存泄露，使用getApplicationContext()
         mDatabaseHelper = DatabaseHelper.getInstance(mContext);
         //获得单例helper
     }
