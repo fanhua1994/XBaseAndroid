@@ -49,7 +49,7 @@ public class MainActivity extends MyBaseActivity {
                 break;
 
             case R.id.web:
-                StartActivity(WebEngineActivity.class,new String[]{"url"},"http://www.iqiyi.com/");
+                StartActivity(WebEngineActivity.class,new String[]{"url"},"http://www.baidu.com/");
                 break;
         }
     }

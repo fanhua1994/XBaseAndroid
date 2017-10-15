@@ -38,6 +38,7 @@ public class WebEngineActivity extends BaseActivity {
 		progressBar = (ProgressBar) findViewById(R.id.progressBar);
 		swipe_container = (SwipeRefreshLayout) findViewById(R.id.swipe_container);
 		easeTitleBar = (EaseTitleBar) findViewById(R.id.titleBar);
+
         init();
 	}
 
@@ -135,5 +136,14 @@ public class WebEngineActivity extends BaseActivity {
             }
 		}
 		return true;
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		//销毁网页
+		webview.removeAllViews();
+		webview.destroy();
+		webview = null;
 	}
 }
