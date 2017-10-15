@@ -184,3 +184,22 @@ easeTitleBar.setLeftLayoutClickListener(new View.OnClickListener(){
 ActivityStack.getInstance().popActivity();
 千万不要使用finish();
 ```
+
+### 调用web引擎
+> WebEngineActivity.java需要在Mainfast.xml注册activity
+```
+StartActivity(WebEngineActivity.class,new String[]{"url"},"https://yunqi.aliyun.com/?open_id=5a5a2d8b-e185-4efa-8722-4a841b72c7f4--1199333720&open_cid=3483#/video/detail1106");
+```
+
+
+### 感谢以下项目的支持
+```
+compile 'com.google.code.gson:gson:2.6.2'
+compile 'com.j256.ormlite:ormlite-core:4.48'
+compile 'com.j256.ormlite:ormlite-android:4.48'
+compile 'com.squareup.okhttp3:okhttp:3.9.0'
+compile 'com.github.bumptech.glide:glide:3.7.0'
+compile 'jp.wasabeef:glide-transformations:2.0.2'
+compile 'com.github.johnkil.android-appmsg:appmsg:1.2.0'
+compile 'com.lzy.net:okgo:3.0.4'
+```

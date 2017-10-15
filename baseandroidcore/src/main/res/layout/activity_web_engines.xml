@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <com.hengyi.baseandroidcore.weight.EaseTitleBar
+        android:id="@+id/titleBar"
+        android:layout_width="match_parent"
+        app:titleBarTitle=""
+        app:titleBarLeftImage="@drawable/icon_back"
+        android:layout_height="50dp">
+
+    </com.hengyi.baseandroidcore.weight.EaseTitleBar>
+
+     <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal" 
+        android:layout_width="match_parent"
+        android:max="100"
+        android:progressDrawable="@drawable/public_progressbar_style"
+        android:layout_height="4dip" />
+    
+     <android.support.v4.widget.SwipeRefreshLayout  
+        android:id="@+id/swipe_container"  
+        android:layout_width="match_parent"  
+        android:layout_height="match_parent" >  
+        
+	    <WebView 
+	        android:id="@+id/webview"
+	        android:layout_height="match_parent"
+	        android:layout_width="match_parent"
+	        />
+	    
+    </android.support.v4.widget.SwipeRefreshLayout>
+</LinearLayout>

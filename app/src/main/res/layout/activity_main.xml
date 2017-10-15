@@ -23,4 +23,12 @@
         android:text="缓存管理"
         />
 
+    <Button
+        android:id="@+id/web"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="打开webview组件"
+        />
+
+
 </LinearLayout>
