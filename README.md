@@ -191,6 +191,91 @@ ActivityStack.getInstance().popActivity();
 StartActivity(WebEngineActivity.class,new String[]{"url"},"https://yunqi.aliyun.com/?open_id=5a5a2d8b-e185-4efa-8722-4a841b72c7f4--1199333720&open_cid=3483#/video/detail1106");
 ```
 
+### 本地数据库使用
+#### 创建实体Student
+```
+package com.hengyi.db;
+
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+
+/**
+ * Created by Administrator on 2017/10/8.
+ */
+
+@DatabaseTable
+public class Student {
+
+    @DatabaseField
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @DatabaseField
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+}
+```
+#### 创建StudentDao
+```
+package com.hengyi.db;
+
+import android.content.Context;
+
+import com.hengyi.baseandroidcore.database.BaseDao;
+import com.hengyi.baseandroidcore.database.BaseDaoImpl;
+
+import java.sql.SQLException;
+
+/**
+ * Created by Administrator on 2017/10/11.
+ */
+
+public class StudentDao {
+    private BaseDao<Student,Integer> studentDao;
+
+    public StudentDao(Context context){
+        studentDao = new BaseDaoImpl<>(context,Student.class);
+    }
+
+    public int add(Student s){
+        try {
+            return studentDao.save(s);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+}
+```
+
+#### 先添加Student表
+```
+DatabaseHelper.addTable(Student.class);
+```
+#### 使用
+```
+StudentDao sd = new StudentDao(context);
+Student s = new Student();
+s.setId(1);
+s.setName("ggeegegerger");
+int res = sd.add(s);
+toast("添加学生结果是：" + res);
+```
+
 
 ### 感谢以下项目的支持
 ```
