@@ -20,7 +20,6 @@ public class MainActivity extends MyBaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         //showLoadingDialog("正在加载");
         easeTitleBar.setLeftLayoutClickListener(new View.OnClickListener(){
             @Override
