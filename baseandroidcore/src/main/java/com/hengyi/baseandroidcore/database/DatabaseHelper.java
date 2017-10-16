@@ -7,6 +7,7 @@ import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,7 +20,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     private static int DB_VERSION = 1;
     //数据库版本
     private static DatabaseHelper instance;
-    private static List<Class> tables;
+    private static List<Class> tables = new ArrayList<Class>();
 
     //Helper单例
     public DatabaseHelper(Context context) {
@@ -31,15 +32,15 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         DB_VERSION = db_version;
     }
 
-    public static void setTables(List<Class> m_tables){
-        tables = m_tables;
+    public static void addTable(Class table){
+        tables.add(table);
     }
 
     @Override
     public void onCreate(SQLiteDatabase database, ConnectionSource connectionSource) {
         //创建表
         try {
-            for(int i = 0;i<tables.size();i++){
+            for(int i = 0;i<tables.size() ;i++){
                 TableUtils.createTable(connectionSource,tables.get(i));
             }
         } catch (Exception e) {
@@ -69,7 +70,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     public static synchronized DatabaseHelper getInstance(Context context) {
         if (instance == null) {
             synchronized (DatabaseHelper.class) {
-                if (instance == null) {
+                if (instance == null){
                     instance = new DatabaseHelper(context);
                 }
             }

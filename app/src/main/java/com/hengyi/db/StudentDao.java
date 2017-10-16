@@ -22,6 +22,7 @@ public class StudentDao {
         try {
             return studentDao.save(s);
         } catch (SQLException e) {
+            e.printStackTrace();
             return 0;
         }
     }

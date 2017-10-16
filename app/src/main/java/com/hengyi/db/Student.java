@@ -9,6 +9,18 @@ import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable
 public class Student {
+
+    @DatabaseField
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @DatabaseField
     private String name;
 
