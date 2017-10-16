@@ -7,12 +7,15 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 import com.hengyi.baseandroidcore.R;
@@ -29,16 +32,18 @@ public class WebEngineActivity extends BaseActivity {
 	private EaseTitleBar easeTitleBar;
 	private SwipeRefreshLayout swipe_container;
 	private WebView webview;
+	private LinearLayout linerLayout_webview;
 	private ProgressBar progressBar;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		webview = (WebView) findViewById(R.id.webview);
 		progressBar = (ProgressBar) findViewById(R.id.progressBar);
 		swipe_container = (SwipeRefreshLayout) findViewById(R.id.swipe_container);
 		easeTitleBar = (EaseTitleBar) findViewById(R.id.titleBar);
-
+		linerLayout_webview = (LinearLayout) findViewById(R.id.linerLayout_webview);
+		webview = new WebView(this);
+		linerLayout_webview.addView(webview);
         init();
 	}
 
@@ -50,6 +55,7 @@ public class WebEngineActivity extends BaseActivity {
 		easeTitleBar.setLeftLayoutClickListener(new View.OnClickListener(){
 			@Override
 			public void onClick(View view) {
+				destory();
 				ActivityStack.getInstance().popActivity(WebEngineActivity.this);
 			}
 		});
@@ -132,18 +138,43 @@ public class WebEngineActivity extends BaseActivity {
             else
             {
             	webview.loadUrl("about:blank");
+				destory();
 				ActivityStack.getInstance().popActivity(this);
             }
 		}
 		return true;
 	}
 
+	private void destory(){
+		if(linerLayout_webview != null){
+			linerLayout_webview.removeAllViews();
+			linerLayout_webview = null;
+		}
+		if (webview != null) {
+			// 如果先调用destroy()方法，则会命中if (isDestroyed()) return;这一行代码，需要先onDetachedFromWindow()，再
+			// destory()
+			ViewParent parent = webview.getParent();
+			if (parent != null) {
+				((ViewGroup) parent).removeView(webview);
+			}
+
+			webview.stopLoading();
+			webview.getSettings().setJavaScriptEnabled(false);
+			webview.clearHistory();
+			webview.removeAllViews();
+
+			try {
+				webview.destroy();
+			} catch (Throwable ex) {
+
+			}
+		}
+	}
+
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
 		//销毁网页
-		webview.removeAllViews();
-		webview.destroy();
-		webview = null;
+		destory();
 	}
 }

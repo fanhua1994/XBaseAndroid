@@ -19,13 +19,10 @@ public class MainActivity extends MyBaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-<<<<<<< HEAD
         //showLoadingDialog("正在加载");
-=======
+
         DatabaseHelper.addTable(Student.class);
 
->>>>>>> 79ad3682c28a6b9cb938e2c69291039de620d7f0
         easeTitleBar.setLeftLayoutClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
