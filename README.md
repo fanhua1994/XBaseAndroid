@@ -276,6 +276,22 @@ int res = sd.add(s);
 toast("添加学生结果是：" + res);
 ```
 
+### 提供状态栏工具
+```
+//set color for status bar
+StatusBarCompat.setStatusBarColor(Activity activity, int color)
+//add alpha to color
+StatusBarCompat.setStatusBarColor(Activity activity, int statusColor, int alpha)
+
+//translucent status bar
+StatusBarCompat.translucentStatusBar(activity);
+//should hide status bar background (default black background) when SDK >= 21
+StatusBarCompat.translucentStatusBar(Activity activity, boolean hideStatusBarBackground);
+
+//set color for CollapsingToolbarLayout
+setStatusBarColorForCollapsingToolbar(Activity activity, AppBarLayout appBarLayout, CollapsingToolbarLayout collapsingToolbarLayout,Toolbar toolbar, int statusColor)
+ ```
+
 
 ### 感谢以下项目的支持
 ```

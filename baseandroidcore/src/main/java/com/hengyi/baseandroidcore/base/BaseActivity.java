@@ -3,6 +3,7 @@ package com.hengyi.baseandroidcore.base;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Process;
@@ -11,7 +12,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.widget.Toast;
 
+import com.hengyi.baseandroidcore.R;
 import com.hengyi.baseandroidcore.dialog.CustomLoadingDialog;
+import com.hengyi.baseandroidcore.statusbar.StatusBarCompat;
 import com.hengyi.baseandroidcore.utils.ActivityStack;
 import com.hengyi.baseandroidcore.utils.NetworkUtils;
 
@@ -21,7 +24,7 @@ import com.hengyi.baseandroidcore.utils.NetworkUtils;
 
 public abstract class BaseActivity extends AppCompatActivity {
     private CustomLoadingDialog loading = null;
-    public Context context;
+    private Context context;
     private Intent intent;
 
     @Override
@@ -29,13 +32,19 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(setBaseContentView());//设置布局文件
         ActivityStack.getInstance().pushActivity(this);//将界面加入堆栈
+
         context = this;//复制上下文
+
     }
 
     public abstract int setBaseContentView();
 
     public boolean getNetworkStatus(){
         return NetworkUtils.isNetworkConnected(this);
+    }
+
+    public Context getContext(){
+        return context;
     }
 
     /**

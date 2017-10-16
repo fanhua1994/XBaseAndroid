@@ -27,7 +27,7 @@ public class MainActivity extends MyBaseActivity {
             @Override
             public void onClick(View view) {
                 //ActivityStack.getInstance().popActivity();
-                StudentDao sd = new StudentDao(context);
+                StudentDao sd = new StudentDao(getContext());
                 Student s = new Student();
                 s.setId(1);
                 s.setName("ggeegegerger");
