@@ -93,13 +93,10 @@ public class WebEngineActivity extends BaseActivity {
 		
 		webview.setWebViewClient(new WebViewClient(){
 			@Override
-			public boolean shouldOverrideUrlLoading(WebView view, String url) {
-				progressBar.setVisibility(View.VISIBLE);
-				webview.loadUrl(url);
-				return false;
+			public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+				return super.shouldOverrideUrlLoading(view, request);
 			}
 		});
-		
 		
 		webview.setWebChromeClient(new WebChromeClient() {
             @Override
@@ -107,7 +104,6 @@ public class WebEngineActivity extends BaseActivity {
             	progressBar.setProgress(newProgress);
             	if(newProgress == 100){
             		 swipe_container.setRefreshing(false);
-            		 progressBar.setVisibility(View.GONE);
             	}
             }
 
