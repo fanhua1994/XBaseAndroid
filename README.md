@@ -295,6 +295,12 @@ setStatusBarColorForCollapsingToolbar(Activity activity, AppBarLayout appBarLayo
  
  ### 网络请求
  > 本框架网络请求使用的是OkGo框架，文档地址如下[wiki](https://github.com/jeasonlzy/okhttp-OkGo/wiki)
+ 
+ ### 杀死当前APP进程
+ ```
+ ActivityStack.getInstance().clearAllActivity();
+kill();
+```
 
 ### 感谢以下项目的支持
 ```

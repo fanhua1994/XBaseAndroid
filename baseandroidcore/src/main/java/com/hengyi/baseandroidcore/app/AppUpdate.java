@@ -18,6 +18,6 @@ public class AppUpdate {
         return !VersionUtils.getAppVersion(BaseApplication.getApplication(),"1.0.0.0").equals(new_version);
     }
 
-    
+
 
 }
