@@ -292,6 +292,9 @@ StatusBarCompat.translucentStatusBar(Activity activity, boolean hideStatusBarBac
 setStatusBarColorForCollapsingToolbar(Activity activity, AppBarLayout appBarLayout, CollapsingToolbarLayout collapsingToolbarLayout,Toolbar toolbar, int statusColor)
  ```
 
+ 
+ ### 网络请求
+ > 本框架网络请求使用的是OkGo框架，文档地址如下[wiki](https://github.com/jeasonlzy/okhttp-OkGo/wiki)
 
 ### 感谢以下项目的支持
 ```
