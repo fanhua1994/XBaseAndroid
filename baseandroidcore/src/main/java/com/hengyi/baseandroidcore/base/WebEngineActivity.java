@@ -55,8 +55,7 @@ public class WebEngineActivity extends BaseActivity {
 		easeTitleBar.setLeftLayoutClickListener(new View.OnClickListener(){
 			@Override
 			public void onClick(View view) {
-				destory();
-				ActivityStack.getInstance().popActivity(WebEngineActivity.this);
+				back();
 			}
 		});
 
@@ -93,13 +92,13 @@ public class WebEngineActivity extends BaseActivity {
 		webview.loadUrl(url);
 		
 		webview.setWebViewClient(new WebViewClient(){
-	           @Override
-	        public boolean shouldOverrideUrlLoading(WebView view,WebResourceRequest request) {
-	        	   progressBar.setVisibility(View.VISIBLE);
-	        	   view.loadUrl(request.getUrl().toString());
-	        	   return true;
-	        }
-       });
+			@Override
+			public boolean shouldOverrideUrlLoading(WebView view, String url) {
+				progressBar.setVisibility(View.VISIBLE);
+				webview.loadUrl(url);
+				return false;
+			}
+		});
 		
 		
 		webview.setWebChromeClient(new WebChromeClient() {
@@ -128,19 +127,23 @@ public class WebEngineActivity extends BaseActivity {
 		});
 	}
 
+	private void back(){
+		if(webview.canGoBack())
+		{
+			webview.goBack();//返回上一页面
+		}
+		else
+		{
+			webview.loadUrl("about:blank");
+			destory();
+			ActivityStack.getInstance().popActivity(this);
+		}
+	}
+
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if(keyCode == KeyEvent.KEYCODE_BACK){
-			if(webview.canGoBack())
-            {
-                webview.goBack();//返回上一页面
-            }
-            else
-            {
-            	webview.loadUrl("about:blank");
-				destory();
-				ActivityStack.getInstance().popActivity(this);
-            }
+			back();
 		}
 		return true;
 	}
