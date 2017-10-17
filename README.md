@@ -9,7 +9,7 @@
 ## 功能介绍
 
 ### BaseActivity
-> 由于BaseActivity已经进行简单的封装，所以不方便进行修改。因此方式如下
+> 由于ButterKnife不能再lib中不能bind。所以必须继承BaseActivity进行二次封装。
 ```
 package com.hengyi.baseandroiddemo;
 
@@ -285,10 +285,10 @@ StatusBarCompat.setStatusBarColor(Activity activity, int statusColor, int alpha)
 
 //translucent status bar
 StatusBarCompat.translucentStatusBar(activity);
+
 //should hide status bar background (default black background) when SDK >= 21
 StatusBarCompat.translucentStatusBar(Activity activity, boolean hideStatusBarBackground);
 
-//set color for CollapsingToolbarLayout
 setStatusBarColorForCollapsingToolbar(Activity activity, AppBarLayout appBarLayout, CollapsingToolbarLayout collapsingToolbarLayout,Toolbar toolbar, int statusColor)
  ```
 

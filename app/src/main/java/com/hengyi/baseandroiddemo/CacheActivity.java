@@ -3,6 +3,7 @@ package com.hengyi.baseandroiddemo;
 import android.os.Bundle;
 
 import com.hengyi.baseandroidcore.base.BaseActivity;
+import com.hengyi.baseandroidcore.statusbar.StatusBarCompat;
 import com.hengyi.baseandroidcore.utils.DiskLruCacheHelper;
 
 /**
