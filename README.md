@@ -395,6 +395,7 @@ if(msg.isPass()){
    toast("验证失败："+msg.getMsg());
 }
 ```
+> 如果您只需要接入校验模块，请参考这个地址：[https://github.com/fanhua1994/java_validation](https://github.com/fanhua1994/java_validation)
 
 ### 感谢以下项目的支持
 ```
