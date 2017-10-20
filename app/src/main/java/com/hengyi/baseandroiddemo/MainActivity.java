@@ -35,8 +35,8 @@ public class MainActivity extends MyBaseActivity {
                 user.setAge(90);
                 user.setName("董志平");
                 user.setSex("44444");
-                user.setMail("dddddd.com");
-                user.setIdcard("5141991013311X");
+                user.setMail("dddddd@163.com");
+                user.setIdcard("514199101331343241X");
 
                 ValidMsg msg = Validation.AutoVerifiy(user);
                 //ValidMsg msg = Validation.StringSize(user.getName(), "用户姓名", 2, 10);//仅演示了校验长度，其他的方法请参考Method.java内部。
