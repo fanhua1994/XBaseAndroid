@@ -7,9 +7,12 @@ import android.widget.Button;
 import com.hengyi.baseandroidcore.base.WebEngineActivity;
 import com.hengyi.baseandroidcore.database.DatabaseHelper;
 import com.hengyi.baseandroidcore.utils.ActivityStack;
+import com.hengyi.baseandroidcore.validation.ValidMsg;
+import com.hengyi.baseandroidcore.validation.Validation;
 import com.hengyi.baseandroidcore.weight.EaseTitleBar;
 import com.hengyi.db.Student;
 import com.hengyi.db.StudentDao;
+import com.hengyi.validation.User;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -27,15 +30,22 @@ public class MainActivity extends MyBaseActivity {
         easeTitleBar.setLeftLayoutClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-//                //ActivityStack.getInstance().popActivity();
-//                StudentDao sd = new StudentDao(getContext());
-//                Student s = new Student();
-//                s.setId(1);
-//                s.setName("ggeegegerger");
-//                int res = sd.add(s);
-//                toast("添加学生结果是：" + res);
-                ActivityStack.getInstance().clearAllActivity();
-                kill();
+                User user = new User();
+                user.setAddress("四川");
+                user.setAge(90);
+                user.setName("董志平");
+                user.setSex("44444");
+                user.setMail("dddddd.com");
+                user.setIdcard("5141991013311X");
+
+                ValidMsg msg = Validation.AutoVerifiy(user);
+                //ValidMsg msg = Validation.StringSize(user.getName(), "用户姓名", 2, 10);//仅演示了校验长度，其他的方法请参考Method.java内部。
+
+                if(msg.isPass()){
+                    toast("验证通过");
+                }else{
+                   toast("验证失败："+msg.getMsg());
+                }
 
             }
         });

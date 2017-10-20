@@ -1,5 +1,276 @@
 [
     {
+        "outputFile": "F:\\GitHub\\BaseAndroid\\pulltorefresh\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values\\values.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 16,
+                    "startColumn": 4,
+                    "startOffset": 1660,
+                    "endColumn": 63,
+                    "endOffset": 1719
+                },
+                "from": {
+                    "file": "F:\\GitHub\\BaseAndroid\\pulltorefresh\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 16,
+                        "startColumn": 4,
+                        "startOffset": 1660,
+                        "endColumn": 63,
+                        "endOffset": 1719
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 17,
+                    "startColumn": 4,
+                    "startOffset": 1724,
+                    "endColumn": 63,
+                    "endOffset": 1783
+                },
+                "from": {
+                    "file": "F:\\GitHub\\BaseAndroid\\pulltorefresh\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 17,
+                        "startColumn": 4,
+                        "startOffset": 1724,
+                        "endColumn": 63,
+                        "endOffset": 1783
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 18,
+                    "startColumn": 4,
+                    "startOffset": 1788,
+                    "endColumn": 54,
+                    "endOffset": 1838
+                },
+                "from": {
+                    "file": "F:\\GitHub\\BaseAndroid\\pulltorefresh\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 18,
+                        "startColumn": 4,
+                        "startOffset": 1788,
+                        "endColumn": 54,
+                        "endOffset": 1838
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 19,
+                    "startColumn": 4,
+                    "startOffset": 1843,
+                    "endColumn": 56,
+                    "endOffset": 1895
+                },
+                "from": {
+                    "file": "F:\\GitHub\\BaseAndroid\\pulltorefresh\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 19,
+                        "startColumn": 4,
+                        "startOffset": 1843,
+                        "endColumn": 56,
+                        "endOffset": 1895
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 20,
+                    "startColumn": 4,
+                    "startOffset": 1900,
+                    "endColumn": 54,
+                    "endOffset": 1950
+                },
+                "from": {
+                    "file": "F:\\GitHub\\BaseAndroid\\pulltorefresh\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 20,
+                        "startColumn": 4,
+                        "startOffset": 1900,
+                        "endColumn": 54,
+                        "endOffset": 1950
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 21,
+                    "startColumn": 4,
+                    "startOffset": 1955,
+                    "endColumn": 37,
+                    "endOffset": 1988
+                },
+                "from": {
+                    "file": "F:\\GitHub\\BaseAndroid\\pulltorefresh\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 21,
+                        "startColumn": 4,
+                        "startOffset": 1955,
+                        "endColumn": 37,
+                        "endOffset": 1988
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 22,
+                    "startColumn": 4,
+                    "startOffset": 1993,
+                    "endColumn": 39,
+                    "endOffset": 2028
+                },
+                "from": {
+                    "file": "F:\\GitHub\\BaseAndroid\\pulltorefresh\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 22,
+                        "startColumn": 4,
+                        "startOffset": 1993,
+                        "endColumn": 39,
+                        "endOffset": 2028
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 23,
+                    "startColumn": 4,
+                    "startOffset": 2033,
+                    "endColumn": 36,
+                    "endOffset": 2065
+                },
+                "from": {
+                    "file": "F:\\GitHub\\BaseAndroid\\pulltorefresh\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 23,
+                        "startColumn": 4,
+                        "startOffset": 2033,
+                        "endColumn": 36,
+                        "endOffset": 2065
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 24,
+                    "startColumn": 4,
+                    "startOffset": 2070,
+                    "endColumn": 101,
+                    "endOffset": 2167
+                },
+                "from": {
+                    "file": "F:\\GitHub\\BaseAndroid\\pulltorefresh\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 24,
+                        "startColumn": 4,
+                        "startOffset": 2070,
+                        "endColumn": 101,
+                        "endOffset": 2167
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 25,
+                    "startColumn": 4,
+                    "startOffset": 2172,
+                    "endColumn": 113,
+                    "endOffset": 2281
+                },
+                "from": {
+                    "file": "F:\\GitHub\\BaseAndroid\\pulltorefresh\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 25,
+                        "startColumn": 4,
+                        "startOffset": 2172,
+                        "endColumn": 113,
+                        "endOffset": 2281
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 26,
+                    "startColumn": 4,
+                    "startOffset": 2286,
+                    "endColumn": 107,
+                    "endOffset": 2389
+                },
+                "from": {
+                    "file": "F:\\GitHub\\BaseAndroid\\pulltorefresh\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 26,
+                        "startColumn": 4,
+                        "startOffset": 2286,
+                        "endColumn": 107,
+                        "endOffset": 2389
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 27,
+                    "startColumn": 4,
+                    "startOffset": 2394,
+                    "endColumn": 71,
+                    "endOffset": 2461
+                },
+                "from": {
+                    "file": "F:\\GitHub\\BaseAndroid\\pulltorefresh\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 27,
+                        "startColumn": 4,
+                        "startOffset": 2394,
+                        "endColumn": 71,
+                        "endOffset": 2461
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 28,
+                    "startColumn": 4,
+                    "startOffset": 2466,
+                    "endColumn": 69,
+                    "endOffset": 2531
+                },
+                "from": {
+                    "file": "F:\\GitHub\\BaseAndroid\\pulltorefresh\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 28,
+                        "startColumn": 4,
+                        "startOffset": 2466,
+                        "endColumn": 69,
+                        "endOffset": 2531
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 29,
+                    "startColumn": 4,
+                    "startOffset": 2536,
+                    "endColumn": 77,
+                    "endOffset": 2609
+                },
+                "from": {
+                    "file": "F:\\GitHub\\BaseAndroid\\pulltorefresh\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 29,
+                        "startColumn": 4,
+                        "startOffset": 2536,
+                        "endColumn": 77,
+                        "endOffset": 2609
+                    }
+                }
+            }
+        ]
+    },
+    {
         "outputFile": "D:\\Github\\BaseAndroid\\pulltorefresh\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values\\values.xml",
         "map": [
             {
