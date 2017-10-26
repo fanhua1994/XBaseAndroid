@@ -29,6 +29,9 @@ import com.hengyi.baseandroidcore.weight.EaseTitleBar;
  * 配置：支持多重地址访问  支持javascript  支持文件上传   支持Session设置
  */
 public class WebEngineActivity extends BaseActivity {
+	public static final String WEB_SHOW_TITLE_BAR = "show_title_bar";
+	public static final String WEB_URL_PARAM = "url";
+
 	private EaseTitleBar easeTitleBar;
 	private SwipeRefreshLayout swipe_container;
 	private WebView webview;
@@ -49,15 +52,21 @@ public class WebEngineActivity extends BaseActivity {
 
 	private void init(){
 		Intent i = getIntent();
-		String url = i.getStringExtra("url");
+		String url = i.getStringExtra(WEB_URL_PARAM);
+		boolean show_title_bar = i.getBooleanExtra(WEB_SHOW_TITLE_BAR,true);
 		InitWeb(url);
+		if(show_title_bar){
+			easeTitleBar.setLeftLayoutClickListener(new View.OnClickListener(){
+				@Override
+				public void onClick(View view) {
+					back();
+				}
+			});
+		}else{
+			easeTitleBar.setVisibility(View.GONE);
+		}
 
-		easeTitleBar.setLeftLayoutClickListener(new View.OnClickListener(){
-			@Override
-			public void onClick(View view) {
-				back();
-			}
-		});
+
 
 		swipe_container.setOnRefreshListener(new OnRefreshListener() {
 			@Override
@@ -102,8 +111,12 @@ public class WebEngineActivity extends BaseActivity {
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
             	progressBar.setProgress(newProgress);
+				if(newProgress == 1){
+					progressBar.setVisibility(View.VISIBLE);
+				}
             	if(newProgress == 100){
             		 swipe_container.setRefreshing(false);
+					progressBar.setVisibility(View.GONE);
             	}
             }
 

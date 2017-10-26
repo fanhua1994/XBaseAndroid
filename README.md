@@ -186,9 +186,9 @@ ActivityStack.getInstance().popActivity();
 ```
 
 ### 调用web引擎
-> WebEngineActivity.java需要在Mainfast.xml注册activity
+> WebEngineActivity.java需要在Mainfast.xml注册activity。最新修复web引擎支持隐藏标题栏。
 ```
-StartActivity(WebEngineActivity.class,new String[]{"url"},"https://yunqi.aliyun.com/?open_id=5a5a2d8b-e185-4efa-8722-4a841b72c7f4--1199333720&open_cid=3483#/video/detail1106");
+ StartActivity(WebEngineActivity.class,new String[]{WebEngineActivity.WEB_URL_PARAM,WebEngineActivity.WEB_SHOW_TITLE_BAR},"http://www.baidu.com/",false);
 ```
 
 ### 本地数据库使用

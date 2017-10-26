@@ -64,7 +64,7 @@ public class MainActivity extends MyBaseActivity {
                 break;
 
             case R.id.web:
-                StartActivity(WebEngineActivity.class,new String[]{"url"},"http://www.baidu.com/");
+                StartActivity(WebEngineActivity.class,new String[]{WebEngineActivity.WEB_URL_PARAM,WebEngineActivity.WEB_SHOW_TITLE_BAR},"http://www.baidu.com/",false);
                 break;
         }
     }
