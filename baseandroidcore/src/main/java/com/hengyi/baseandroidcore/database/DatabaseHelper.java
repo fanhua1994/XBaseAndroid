@@ -3,6 +3,7 @@ package com.hengyi.baseandroidcore.database;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.hengyi.baseandroidcore.utilscode.LogUtils;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
@@ -21,6 +22,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     //数据库版本
     private static DatabaseHelper instance;
     private static List<Class> tables = new ArrayList<Class>();
+    private DatabaseVersionChangeListener listener = null;
 
     //Helper单例
     public DatabaseHelper(Context context) {
@@ -32,8 +34,16 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         DB_VERSION = db_version;
     }
 
+    public int getVersion(){
+        return this.DB_VERSION;
+    }
+
     public static void addTable(Class table){
         tables.add(table);
+    }
+
+    public  void setDatabaseVersionChangeListener(DatabaseVersionChangeListener listener){
+        this.listener = listener;
     }
 
     @Override
@@ -41,7 +51,8 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         //创建表
         try {
             for(int i = 0;i<tables.size() ;i++){
-                TableUtils.createTable(connectionSource,tables.get(i));
+                TableUtils.createTableIfNotExists(connectionSource,tables.get(i));
+                LogUtils.d("创建数据表：",tables.get(i).getClass().toString());
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -50,11 +61,17 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase database, ConnectionSource connectionSource, int oldVersion, int newVersion) {
+        if(listener != null){
+            listener.onChange(oldVersion,newVersion);
+        }
         //更新表
         try {
             for(int i = 0;i<tables.size();i++){
                 TableUtils.dropTable(connectionSource,tables.get(i),true);
+                LogUtils.d("删除数据表：",tables.get(i).getClass().toString());
             }
+
+            LogUtils.d("数据库版本","老版本："+oldVersion+":::新版本：" + newVersion);
             onCreate(database, connectionSource);
         } catch (Exception e) {
             e.printStackTrace();
@@ -77,5 +94,4 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         }
         return instance;
     }
-
 }

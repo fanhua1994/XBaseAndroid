@@ -24,7 +24,6 @@ public class BaseApplication extends Application {
 
         Utils.init(this);
         CrashUtils.init();
-
     }
 
     @Override

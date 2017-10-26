@@ -262,8 +262,9 @@ public class StudentDao {
 }
 ```
 
-#### 先添加Student表
+#### 初始化数据库（切记在启动界面做好初始化，或者Application文件做好相关初始化操作）
 ```
+DatabaseHelper.setDatabase("easy",2);//设置数据库版本及名称
 DatabaseHelper.addTable(Student.class);
 ```
 #### 使用
@@ -274,6 +275,27 @@ s.setId(1);
 s.setName("ggeegegerger");
 int res = sd.add(s);
 toast("添加学生结果是：" + res);
+```
+
+#### 数据库版本变化监听
+```
+DatabaseHelper.getInstance(this).setDatabaseVersionChangeListener(new DatabaseVersionChangeListener() {
+    @Override
+    public void onChange(int oldVersion, int newVersion) {
+	toast("数据库版本繁盛变化：老版本:"+oldVersion +" 新版本："+newVersion);
+	if(newVersion == 2){
+	    try {
+		DatabaseHelper.getInstance(getContext()).getDao(Student.class).executeRaw("ALTER TABLE 'student' ADD COLUMN sex int");
+		toast("数据更新成功");
+	    } catch (SQLException e) {
+		e.printStackTrace();
+		toast("数据更新失败");
+	    }
+	}
+    }
+});
+
+toast("当前数据库版本："+DatabaseHelper.getInstance(this).getVersion() +"数据库名："+DatabaseHelper.getInstance(this).getDatabaseName());
 ```
 
 ### 提供状态栏工具

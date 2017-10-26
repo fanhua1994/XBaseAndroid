@@ -1,18 +1,24 @@
 package com.hengyi.baseandroiddemo;
 
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.Button;
 
 import com.hengyi.baseandroidcore.base.WebEngineActivity;
 import com.hengyi.baseandroidcore.database.DatabaseHelper;
+import com.hengyi.baseandroidcore.database.DatabaseVersionChangeListener;
 import com.hengyi.baseandroidcore.utils.ActivityStack;
+import com.hengyi.baseandroidcore.utilscode.LogUtils;
 import com.hengyi.baseandroidcore.validation.ValidMsg;
 import com.hengyi.baseandroidcore.validation.Validation;
 import com.hengyi.baseandroidcore.weight.EaseTitleBar;
 import com.hengyi.db.Student;
 import com.hengyi.db.StudentDao;
 import com.hengyi.validation.User;
+import com.j256.ormlite.field.DatabaseField;
+
+import java.sql.SQLException;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -20,12 +26,38 @@ import butterknife.OnClick;
 public class MainActivity extends MyBaseActivity {
     @BindView(R.id.cache_admin)Button cache;
     @BindView(R.id.titleBar)EaseTitleBar easeTitleBar;
+    private StudentDao studentDao;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //showLoadingDialog("正在加载");
 
+
+
+        //扫描表
         DatabaseHelper.addTable(Student.class);
+        DatabaseHelper.setDatabase("easy",2);
+
+        DatabaseHelper.getInstance(this).setDatabaseVersionChangeListener(new DatabaseVersionChangeListener() {
+            @Override
+            public void onChange(int oldVersion, int newVersion) {
+                toast("数据库版本繁盛变化：老版本:"+oldVersion +" 新版本："+newVersion);
+                if(newVersion == 2){
+                    try {
+                        DatabaseHelper.getInstance(getContext()).getDao(Student.class).executeRaw("ALTER TABLE 'student' ADD COLUMN sex int");
+                        toast("数据更新成功");
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                        toast("数据更新失败");
+                    }
+                }
+            }
+        });
+
+        toast("当前数据库版本："+DatabaseHelper.getInstance(this).getVersion() +"数据库名："+DatabaseHelper.getInstance(this).getDatabaseName());
+
+        studentDao = new StudentDao(this);
 
         easeTitleBar.setLeftLayoutClickListener(new View.OnClickListener(){
             @Override
@@ -56,7 +88,7 @@ public class MainActivity extends MyBaseActivity {
         return R.layout.activity_main;
     }
 
-    @OnClick({R.id.cache_admin,R.id.web})
+    @OnClick({R.id.cache_admin,R.id.web,R.id.database})
     public void Click(View view){
         switch(view.getId()){
             case R.id.cache_admin:
@@ -65,6 +97,19 @@ public class MainActivity extends MyBaseActivity {
 
             case R.id.web:
                 StartActivity(WebEngineActivity.class,new String[]{WebEngineActivity.WEB_URL_PARAM,WebEngineActivity.WEB_SHOW_TITLE_BAR},"http://www.baidu.com/",false);
+                break;
+
+            case R.id.database:
+                Student student = new Student();
+                student.setName("董志平");
+                student.setId(123);
+                student.setSex(1);
+                student.setAge(90);
+                if(studentDao.add(student) > 0){
+                    toast("数据添加成功");
+                }else{
+                    toast("数据添加失败");
+                }
                 break;
         }
     }

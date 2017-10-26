@@ -13,6 +13,31 @@ public class Student {
     @DatabaseField
     private int id;
 
+    @DatabaseField
+    private String name;
+
+    @DatabaseField
+    private int age;
+
+    @DatabaseField
+    private int sex;
+
+    public int getSex() {
+        return sex;
+    }
+
+    public void setSex(int sex) {
+        this.sex = sex;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
     public int getId() {
         return id;
     }
@@ -21,8 +46,7 @@ public class Student {
         this.id = id;
     }
 
-    @DatabaseField
-    private String name;
+
 
     public String getName() {
         return name;
