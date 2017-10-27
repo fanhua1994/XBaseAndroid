@@ -1,6 +1,7 @@
 package com.hengyi.baseandroidcore.base;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -9,6 +10,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
+import android.webkit.JsPromptResult;
 import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
@@ -132,6 +134,27 @@ public class WebEngineActivity extends BaseActivity {
 				alert.setMsg(message);
 				alert.show();
 				return true;
+			}
+
+			@Override
+			public void onCloseWindow(WebView window) {
+				super.onCloseWindow(window);
+				ActivityStack.getInstance().popActivity();
+			}
+
+			@Override
+			public void onReceivedIcon(WebView view, Bitmap icon) {
+				super.onReceivedIcon(view, icon);
+			}
+
+			@Override
+			public boolean onJsConfirm(WebView view, String url, String message, JsResult result) {
+				return super.onJsConfirm(view, url, message, result);
+			}
+
+			@Override
+			public boolean onJsPrompt(WebView view, String url, String message, String defaultValue, JsPromptResult result) {
+				return super.onJsPrompt(view, url, message, defaultValue, result);
 			}
 		});
 	}

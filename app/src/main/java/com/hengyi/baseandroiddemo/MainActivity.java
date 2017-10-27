@@ -43,7 +43,7 @@ public class MainActivity extends MyBaseActivity {
             @Override
             public void onChange(int oldVersion, int newVersion) {
                 toast("数据库版本繁盛变化：老版本:"+oldVersion +" 新版本："+newVersion);
-                if(newVersion == 2){
+                if(oldVersion < 2){
                     try {
                         DatabaseHelper.getInstance(getContext()).getDao(Student.class).executeRaw("ALTER TABLE 'student' ADD COLUMN sex int");
                         toast("数据更新成功");
@@ -96,7 +96,7 @@ public class MainActivity extends MyBaseActivity {
                 break;
 
             case R.id.web:
-                StartActivity(WebEngineActivity.class,new String[]{WebEngineActivity.WEB_URL_PARAM,WebEngineActivity.WEB_SHOW_TITLE_BAR},"http://www.baidu.com/",false);
+                StartActivity(WebEngineActivity.class,new String[]{WebEngineActivity.WEB_URL_PARAM,WebEngineActivity.WEB_SHOW_TITLE_BAR},"file:///android_asset/index.html",false);
                 break;
 
             case R.id.database:
