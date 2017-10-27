@@ -30,7 +30,7 @@ import com.hengyi.baseandroidcore.weight.EaseTitleBar;
  * 名称：通用安卓web引擎
  * 配置：支持多重地址访问  支持javascript  支持文件上传   支持Session设置
  */
-public class WebEngineActivity extends BaseActivity {
+public class BaseWebActivity extends BaseActivity {
 	public static final String WEB_SHOW_TITLE_BAR = "show_title_bar";
 	public static final String WEB_URL_PARAM = "url";
 
@@ -129,7 +129,7 @@ public class WebEngineActivity extends BaseActivity {
 
 			@Override
 			public boolean onJsAlert(WebView view, String url, String message, final JsResult result) {
-				CustomAlertDialog alert = new CustomAlertDialog(WebEngineActivity.this).builder();
+				CustomAlertDialog alert = new CustomAlertDialog(BaseWebActivity.this).builder();
 				alert.setTitle("温馨提示");
 				alert.setMsg(message);
 				alert.show();

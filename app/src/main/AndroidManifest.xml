@@ -19,7 +19,7 @@
         </activity>
         <activity android:name=".CacheActivity"></activity>
 
-        <activity android:name="com.hengyi.baseandroidcore.base.WebEngineActivity"></activity>
+        <activity android:name="com.hengyi.baseandroidcore.base.BaseWebActivity"></activity>
     </application>
 
 </manifest>

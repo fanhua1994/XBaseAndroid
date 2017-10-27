@@ -1,22 +1,18 @@
 package com.hengyi.baseandroiddemo;
 
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.Button;
 
-import com.hengyi.baseandroidcore.base.WebEngineActivity;
+import com.hengyi.baseandroidcore.base.BaseWebActivity;
 import com.hengyi.baseandroidcore.database.DatabaseHelper;
 import com.hengyi.baseandroidcore.database.DatabaseVersionChangeListener;
-import com.hengyi.baseandroidcore.utils.ActivityStack;
-import com.hengyi.baseandroidcore.utilscode.LogUtils;
 import com.hengyi.baseandroidcore.validation.ValidMsg;
 import com.hengyi.baseandroidcore.validation.Validation;
 import com.hengyi.baseandroidcore.weight.EaseTitleBar;
 import com.hengyi.db.Student;
 import com.hengyi.db.StudentDao;
 import com.hengyi.validation.User;
-import com.j256.ormlite.field.DatabaseField;
 
 import java.sql.SQLException;
 
@@ -96,7 +92,7 @@ public class MainActivity extends MyBaseActivity {
                 break;
 
             case R.id.web:
-                StartActivity(WebEngineActivity.class,new String[]{WebEngineActivity.WEB_URL_PARAM,WebEngineActivity.WEB_SHOW_TITLE_BAR},"file:///android_asset/index.html",false);
+                StartActivity(BaseWebActivity.class,new String[]{BaseWebActivity.WEB_URL_PARAM, BaseWebActivity.WEB_SHOW_TITLE_BAR},"file:///android_asset/index.html",false);
                 break;
 
             case R.id.database:
