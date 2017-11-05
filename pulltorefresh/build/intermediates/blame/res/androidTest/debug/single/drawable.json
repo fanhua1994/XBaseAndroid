@@ -1,10 +1,18 @@
 [
     {
-        "merged": "F:\\GitHub\\BaseAndroid\\pulltorefresh\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\indicator_bg_bottom.xml",
-        "source": "F:\\GitHub\\BaseAndroid\\pulltorefresh\\build\\intermediates\\bundles\\debug\\res\\drawable\\indicator_bg_bottom.xml"
+        "merged": "/home/fanhua/Github/BaseAndroid/F:\\GitHub\\BaseAndroid\\pulltorefresh\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\indicator_bg_bottom.xml",
+        "source": "/home/fanhua/Github/BaseAndroid/F:\\GitHub\\BaseAndroid\\pulltorefresh\\build\\intermediates\\bundles\\debug\\res\\drawable\\indicator_bg_bottom.xml"
     },
     {
-        "merged": "F:\\GitHub\\BaseAndroid\\pulltorefresh\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\indicator_bg_top.xml",
-        "source": "F:\\GitHub\\BaseAndroid\\pulltorefresh\\build\\intermediates\\bundles\\debug\\res\\drawable\\indicator_bg_top.xml"
+        "merged": "/home/fanhua/Github/BaseAndroid/pulltorefresh/build/intermediates/res/merged/androidTest/debug/drawable/indicator_bg_top.xml",
+        "source": "/home/fanhua/Github/BaseAndroid/pulltorefresh/build/intermediates/bundles/debug/res/drawable/indicator_bg_top.xml"
+    },
+    {
+        "merged": "/home/fanhua/Github/BaseAndroid/pulltorefresh/build/intermediates/res/merged/androidTest/debug/drawable/indicator_bg_bottom.xml",
+        "source": "/home/fanhua/Github/BaseAndroid/pulltorefresh/build/intermediates/bundles/debug/res/drawable/indicator_bg_bottom.xml"
+    },
+    {
+        "merged": "/home/fanhua/Github/BaseAndroid/F:\\GitHub\\BaseAndroid\\pulltorefresh\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\indicator_bg_top.xml",
+        "source": "/home/fanhua/Github/BaseAndroid/F:\\GitHub\\BaseAndroid\\pulltorefresh\\build\\intermediates\\bundles\\debug\\res\\drawable\\indicator_bg_top.xml"
     }
 ]

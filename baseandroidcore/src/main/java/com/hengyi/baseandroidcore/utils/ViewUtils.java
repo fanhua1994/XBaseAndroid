@@ -33,7 +33,7 @@ public class ViewUtils {
         }
     }
 
-    private View getViews(int layout_id){
+    private View get(int layout_id){
         return LayoutInflater.from(BaseApplication.getApplication()).inflate(layout_id,null);
     }
 
@@ -43,13 +43,28 @@ public class ViewUtils {
         if(views.containsKey(layout_id)){
             view = views.get(layout_id);
         }else{
-            view = getViews(layout_id);
+            view = get(layout_id);
+
             if(views.size() <= MAX_VIEW_COUNT){
                 views.put(layout_id,view);
             }
         }
 
         return view;
+    }
+
+    public void removeView(int layout_id){
+        if(views.containsKey(layout_id)){
+            View view = views.get(layout_id);
+            view = null;
+            views.remove(layout_id);
+        }
+    }
+
+    public void clearView(){
+        for (Map.Entry<Integer, View> entry : views.entrySet()) {
+            removeView(entry.getKey());
+        }
     }
 
 }

@@ -193,11 +193,14 @@ public class BaseWebActivity extends BaseActivity {
 				((ViewGroup) parent).removeView(webview);
 			}
 
+			webview.clearHistory();
+			webview.clearCache(true);
+			webview.loadUrl("about:blank"); // clearView() should be changed to loadUrl("about:blank"), since clearView() is deprecated now
+			webview.pauseTimers();
 			webview.stopLoading();
 			webview.getSettings().setJavaScriptEnabled(false);
-			webview.clearHistory();
 			webview.removeAllViews();
-
+			webview = null;
 			try {
 				webview.destroy();
 			} catch (Throwable ex) {
