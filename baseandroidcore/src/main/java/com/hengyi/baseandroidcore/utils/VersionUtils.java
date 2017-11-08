@@ -9,7 +9,6 @@ import android.content.pm.PackageManager;
  */
 
 public class VersionUtils {
-
     /**
      * old version：1.2.0.0  老版本
      * now version：1.2.0.7  最新版本
