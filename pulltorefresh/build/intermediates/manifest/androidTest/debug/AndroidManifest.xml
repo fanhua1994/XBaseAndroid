@@ -13,7 +13,7 @@
         android:label="Tests for com.handmark.pulltorefresh.library.test"
         android:targetPackage="com.handmark.pulltorefresh.library.test" />
 
-    <application>
+    <application android:debuggable="true" >
         <uses-library android:name="android.test.runner" />
     </application>
 
