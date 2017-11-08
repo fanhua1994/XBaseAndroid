@@ -10,16 +10,66 @@ import android.content.pm.PackageManager;
 
 public class VersionUtils {
 
-    public static String getAppVersion(Context context,String default_version)
-    {
-        try
-        {
+    /**
+     * old version：1.2.0.0  老版本
+     * now version：1.2.0.7  最新版本
+     */
+    public static int checkVersion(String old_version,String new_version) {
+        return check(parseVersion(old_version),parseVersion(new_version));
+    }
+
+    public static String getAppVersion(Context context,String default_version) {
+        try {
             PackageInfo info = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
             return info.versionName;
-        } catch (PackageManager.NameNotFoundException e)
-        {
+        } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
         return default_version;
+    }
+
+    private static int parseInt(String num) {
+        return Integer.parseInt(num);
+    }
+
+    private static int[] parseVersion(String version) {
+        String[] ver_arr = version.split("\\.");
+        System.out.println("parseVersion str" + ver_arr.length);
+        int[] version_code = new int[ver_arr.length];
+        for(int i = 0;i<ver_arr.length;i++) {
+            version_code[i] = parseInt(ver_arr[i]);
+        }
+        return version_code;
+    }
+
+    /**
+     * 如果old_version 更大 返回-1  new_version 更大 返回1 相等返回 0   出现错误返回-2
+     * @param old_version
+     * @param new_version
+     * @return
+     */
+    private static int check(int[] old_version,int[] new_version) {
+        if(old_version.length != new_version.length) {
+            return -2;
+        }
+
+        int o = 0,n = 0;
+        for(int i = 0;i < old_version.length;i++) {
+            o = old_version[i];
+            n = new_version[i];
+
+            //如果是最后一位 并且相等  返回0
+            if(i == old_version.length - 1 && o == n) {
+                return 0;
+            }
+
+            if(o > n) {
+                return -1;
+            }else if(o < n){
+                return 1;
+            }
+
+        }
+        return -2;
     }
 }
