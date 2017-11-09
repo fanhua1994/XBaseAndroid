@@ -2,6 +2,8 @@
 <resources>
     <!-- 软件主题色 -->
     <color name="main_color">#20a7e6</color>
+    <!-- loading透明色调 -->
+    <color name="dialog_loading_bg">#323232</color>
 
 
     <color name="colorPrimary">#3F51B5</color>

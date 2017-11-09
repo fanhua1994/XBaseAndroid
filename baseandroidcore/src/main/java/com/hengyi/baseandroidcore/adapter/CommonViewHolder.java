@@ -75,4 +75,18 @@ public class CommonViewHolder {
         ImageView mImageView = (ImageView) mView;
         GlideImageUtils.showImageViewToCircle(context,image_url,mImageView);
     }
+
+    /**
+     * 获取通用的视图
+     * @param layout_id
+     * @return
+     */
+    public View getView(int layout_id){
+        View mView = mViews.get(layout_id);
+        if(mView == null) {
+            mView = view.findViewById(layout_id);
+            mViews.put(layout_id,mView);
+        }
+        return mView;
+    }
 }

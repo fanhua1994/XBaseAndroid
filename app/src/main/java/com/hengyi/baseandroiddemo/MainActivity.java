@@ -7,6 +7,7 @@ import android.widget.Button;
 import com.hengyi.baseandroidcore.base.BaseWebActivity;
 import com.hengyi.baseandroidcore.database.DatabaseHelper;
 import com.hengyi.baseandroidcore.database.DatabaseVersionChangeListener;
+import com.hengyi.baseandroidcore.utils.CountDownUtils;
 import com.hengyi.baseandroidcore.validation.ValidMsg;
 import com.hengyi.baseandroidcore.validation.Validation;
 import com.hengyi.baseandroidcore.weight.EaseTitleBar;
@@ -27,7 +28,20 @@ public class MainActivity extends MyBaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //showLoadingDialog("正在加载");
+        showLoadingDialog("正在加载");
+
+        CountDownUtils countDownUtils = new CountDownUtils(10000,1000);
+        countDownUtils.start(new CountDownUtils.setOnCountDownListener() {
+            @Override
+            public void onTick(int second) {
+
+            }
+
+            @Override
+            public void onFinish() {
+                closeLoadingDialog();
+            }
+        });
 
 
 
