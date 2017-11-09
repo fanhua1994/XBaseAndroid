@@ -98,6 +98,7 @@ dialog.show();
 ```
 
 ### 加载Loading
+![](https://github.com/fanhua1994/BaseAndroid/blob/master/image/dialog_loading.png?raw=true)
 ```
 showLoadingDialog("正在加载");
 closeLoadingDialog();
