@@ -75,6 +75,7 @@ dialog.show();
 ```
 
 ### 弹出输入框
+![](https://github.com/fanhua1994/BaseAndroid/blob/master/image/dialog_confirm.png?raw=true)
 ```
 CustomConfirmDialog dialog = new CustomConfirmDialog(this).builder();
 dialog.setTitle("温馨提示");
