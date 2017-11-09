@@ -80,11 +80,6 @@ public class CustomConfirmDialog {
         return this;
     }
 
-    public CustomConfirmDialog setMsg(String msg) {
-        showMsg = true;
-        return this;
-    }
-
     public CustomConfirmDialog setCancelable(boolean cancel) {
         dialog.setCancelable(cancel);
         return this;

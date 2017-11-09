@@ -7,6 +7,7 @@ import android.widget.Button;
 import com.hengyi.baseandroidcore.base.BaseWebActivity;
 import com.hengyi.baseandroidcore.database.DatabaseHelper;
 import com.hengyi.baseandroidcore.database.DatabaseVersionChangeListener;
+import com.hengyi.baseandroidcore.dialog.CustomConfirmDialog;
 import com.hengyi.baseandroidcore.utils.CountDownUtils;
 import com.hengyi.baseandroidcore.validation.ValidMsg;
 import com.hengyi.baseandroidcore.validation.Validation;
@@ -29,6 +30,28 @@ public class MainActivity extends MyBaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        CustomConfirmDialog confirmDialog = new CustomConfirmDialog(this).builder();
+        confirmDialog.setTitle("请输入您的姓名");
+        confirmDialog.setMsg("请输入您的姓名");
+        confirmDialog.setInputNumber(false);//限制数字
+        confirmDialog.setNegativeButton("取消", new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        confirmDialog.setPositiveButton("确定",new CustomConfirmDialog.OnPostListener(){
+            @Override
+            public void OnPost(String value) {
+                toast(value);
+            }
+        });
+        confirmDialog.show();
+
+
+
         showLoadingDialog("正在加载");
 
         CountDownUtils countDownUtils = new CountDownUtils(10000,1000);
