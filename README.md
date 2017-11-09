@@ -154,6 +154,7 @@ toast(cache.getAsString("cache") +"缓存大小："+cache.getCacheCount());
 ```
 
 ### 配置文件使用
+> ConfigUtil自主维护了一个哈希表可以很快的根据数据缓存拿到数据，不用去xml里面读取，性能很不错。
 ```
 ConfigUtils config = ConfigUtils.getInstance(this);
 config.addOrUpdateText("name","繁华");

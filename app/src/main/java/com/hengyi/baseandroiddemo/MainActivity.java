@@ -33,7 +33,6 @@ public class MainActivity extends MyBaseActivity {
 
         CustomConfirmDialog confirmDialog = new CustomConfirmDialog(this).builder();
         confirmDialog.setTitle("请输入您的姓名");
-        confirmDialog.setMsg("请输入您的姓名");
         confirmDialog.setInputNumber(false);//限制数字
         confirmDialog.setNegativeButton("取消", new View.OnClickListener() {
             @Override
