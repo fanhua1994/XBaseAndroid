@@ -16,6 +16,7 @@ import com.hengyi.db.StudentDao;
 import com.hengyi.validation.User;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -68,6 +69,13 @@ public class MainActivity extends MyBaseActivity {
         toast("当前数据库版本："+DatabaseHelper.getInstance(this).getVersion() +"数据库名："+DatabaseHelper.getInstance(this).getDatabaseName());
 
         studentDao = new StudentDao(this);
+        toast("学生数量：" + studentDao.count());
+        List<Student> allstudent = studentDao.getAll();
+        if(allstudent == null){
+            toast("数据为空");
+        }else{
+            toast(allstudent.get(0).getName());
+        }
 
         easeTitleBar.setLeftLayoutClickListener(new View.OnClickListener(){
             @Override
