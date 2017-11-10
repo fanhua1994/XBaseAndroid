@@ -2,7 +2,7 @@ package com.hengyi.baseandroiddemo;
 
 import android.os.Bundle;
 
-import com.hengyi.baseandroidcore.base.BaseActivity;
+import com.hengyi.baseandroidcore.base.XbaseActivity;
 import com.hengyi.baseandroidcore.statusbar.StatusBarCompat;
 import com.hengyi.baseandroidcore.utils.DiskLruCacheHelper;
 
@@ -11,8 +11,9 @@ import com.hengyi.baseandroidcore.utils.DiskLruCacheHelper;
  */
 
 public class CacheActivity extends BaseActivity {
+
     @Override
-    public int setBaseContentView() {
+    public int setContentView() {
         return R.layout.activity_cache;
     }
 

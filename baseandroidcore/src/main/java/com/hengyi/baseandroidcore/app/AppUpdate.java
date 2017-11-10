@@ -1,6 +1,6 @@
 package com.hengyi.baseandroidcore.app;
 
-import com.hengyi.baseandroidcore.base.BaseApplication;
+import com.hengyi.baseandroidcore.base.XbaseApplication;
 import com.hengyi.baseandroidcore.utils.VersionUtils;
 
 /**
@@ -15,7 +15,7 @@ import com.hengyi.baseandroidcore.utils.VersionUtils;
 public class AppUpdate {
 
     public boolean checkUpdate(String new_version){
-        return !VersionUtils.getAppVersion(BaseApplication.getApplication(),"1.0.0.0").equals(new_version);
+        return !VersionUtils.getAppVersion(XbaseApplication.getApplication(),"1.0.0.0").equals(new_version);
     }
 
 

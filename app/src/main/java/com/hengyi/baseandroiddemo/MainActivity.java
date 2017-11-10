@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.hengyi.baseandroidcore.base.BaseWebActivity;
+import com.hengyi.baseandroidcore.base.XbaseWebActivity;
 import com.hengyi.baseandroidcore.database.DatabaseHelper;
 import com.hengyi.baseandroidcore.database.DatabaseVersionChangeListener;
 import com.hengyi.baseandroidcore.dialog.CustomConfirmDialog;
@@ -22,7 +22,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class MainActivity extends MyBaseActivity {
+public class MainActivity extends BaseActivity {
     @BindView(R.id.cache_admin)Button cache;
     @BindView(R.id.titleBar)EaseTitleBar easeTitleBar;
     private StudentDao studentDao;
@@ -136,7 +136,7 @@ public class MainActivity extends MyBaseActivity {
                 break;
 
             case R.id.web:
-                StartActivity(BaseWebActivity.class,new String[]{BaseWebActivity.WEB_URL_PARAM, BaseWebActivity.WEB_SHOW_TITLE_BAR},"file:///android_asset/index.html",false);
+                StartActivity(XbaseWebActivity.class,new String[]{XbaseWebActivity.WEB_URL_PARAM, XbaseWebActivity.WEB_SHOW_TITLE_BAR},"file:///android_asset/index.html",false);
                 break;
 
             case R.id.database:

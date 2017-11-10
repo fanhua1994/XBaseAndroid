@@ -3,7 +3,7 @@ package com.hengyi.baseandroidcore.utils;
 import android.view.LayoutInflater;
 import android.view.View;
 
-import com.hengyi.baseandroidcore.base.BaseApplication;
+import com.hengyi.baseandroidcore.base.XbaseApplication;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -34,7 +34,7 @@ public class ViewUtils {
     }
 
     private View get(int layout_id){
-        return LayoutInflater.from(BaseApplication.getApplication()).inflate(layout_id,null);
+        return LayoutInflater.from(XbaseApplication.getApplication()).inflate(layout_id,null);
     }
 
     //获取一个视图

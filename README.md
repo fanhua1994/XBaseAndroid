@@ -15,7 +15,7 @@ package com.hengyi.baseandroiddemo;
 
 import android.os.Bundle;
 
-import com.hengyi.baseandroidcore.base.BaseActivity;
+import com.hengyi.baseandroidcore.base.XbaseActivity;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -24,7 +24,7 @@ import butterknife.Unbinder;
  * Created by Administrator on 2017/10/10.
  */
 
-public abstract class MyBaseActivity extends BaseActivity {
+public abstract class MyBaseActivity extends XbaseActivity {
     private Unbinder unbind = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
