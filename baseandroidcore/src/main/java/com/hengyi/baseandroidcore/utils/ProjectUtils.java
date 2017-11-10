@@ -1,10 +1,9 @@
 package com.hengyi.baseandroidcore.utils;
 
-import android.content.Context;
 import android.os.Environment;
 
 
-import com.hengyi.baseandroidcore.base.BaseApplication;
+import com.hengyi.baseandroidcore.base.XbaseApplication;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -160,37 +159,37 @@ public class ProjectUtils {
         if(IdCardStatus){
             switch(file_type){
                 case COMMON_TYPE:
-                    workDir = BaseApplication.getApplication().getExternalCacheDir().getParentFile().getAbsolutePath();
+                    workDir = XbaseApplication.getApplication().getExternalCacheDir().getParentFile().getAbsolutePath();
                     break;
 
                 case DB_TYPE:
-                    workDir = BaseApplication.getApplication().getExternalCacheDir().getParentFile().getAbsolutePath() + File.separator +"database";
+                    workDir = XbaseApplication.getApplication().getExternalCacheDir().getParentFile().getAbsolutePath() + File.separator +"database";
                     break;
 
                 case CACHE_TYPE:
-                    workDir = BaseApplication.getApplication().getExternalCacheDir().getAbsolutePath();
+                    workDir = XbaseApplication.getApplication().getExternalCacheDir().getAbsolutePath();
                     break;
 
                 case FILE_TYPE:
-                    workDir = BaseApplication.getApplication().getExternalFilesDir("db").getParentFile().getAbsolutePath();
+                    workDir = XbaseApplication.getApplication().getExternalFilesDir("db").getParentFile().getAbsolutePath();
                     break;
             }
         }else{
             switch(file_type) {
                 case COMMON_TYPE:
-                    workDir = BaseApplication.getApplication().getCacheDir().getParentFile().getAbsolutePath();
+                    workDir = XbaseApplication.getApplication().getCacheDir().getParentFile().getAbsolutePath();
                     break;
 
                 case DB_TYPE:
-                    workDir = BaseApplication.getApplication().getDatabasePath("db").getParentFile().getAbsolutePath();
+                    workDir = XbaseApplication.getApplication().getDatabasePath("db").getParentFile().getAbsolutePath();
                     break;
 
                 case CACHE_TYPE:
-                    workDir = BaseApplication.getApplication().getCacheDir().getAbsolutePath();
+                    workDir = XbaseApplication.getApplication().getCacheDir().getAbsolutePath();
                     break;
 
                 case FILE_TYPE:
-                    workDir = BaseApplication.getApplication().getFilesDir().getAbsolutePath();
+                    workDir = XbaseApplication.getApplication().getFilesDir().getAbsolutePath();
                     break;
             }
         }

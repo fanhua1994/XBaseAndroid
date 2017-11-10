@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 /**
  * Created by Administrator on 2017/10/10.
  */
-public abstract class BaseFragment extends Fragment {
+public abstract class XbaseFragment extends Fragment {
 
     public Activity mActivity;
 

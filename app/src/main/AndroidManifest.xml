@@ -9,7 +9,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:name="com.hengyi.baseandroidcore.base.BaseApplication"
+        android:name="com.hengyi.baseandroidcore.base.XbaseApplication"
         android:theme="@style/NoActionBarTheme">
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -19,7 +19,7 @@
         </activity>
         <activity android:name=".CacheActivity"></activity>
 
-        <activity android:name="com.hengyi.baseandroidcore.base.BaseWebActivity"></activity>
+        <activity android:name="com.hengyi.baseandroidcore.base.XbaseWebActivity"></activity>
     </application>
 
 </manifest>
