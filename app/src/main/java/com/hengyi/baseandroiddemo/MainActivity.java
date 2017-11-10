@@ -7,6 +7,8 @@ import android.widget.Button;
 import com.hengyi.baseandroidcore.base.BaseWebActivity;
 import com.hengyi.baseandroidcore.database.DatabaseHelper;
 import com.hengyi.baseandroidcore.database.DatabaseVersionChangeListener;
+import com.hengyi.baseandroidcore.dialog.CustomConfirmDialog;
+import com.hengyi.baseandroidcore.utils.CountDownUtils;
 import com.hengyi.baseandroidcore.validation.ValidMsg;
 import com.hengyi.baseandroidcore.validation.Validation;
 import com.hengyi.baseandroidcore.weight.EaseTitleBar;
@@ -15,6 +17,7 @@ import com.hengyi.db.StudentDao;
 import com.hengyi.validation.User;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -27,7 +30,41 @@ public class MainActivity extends MyBaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //showLoadingDialog("正在加载");
+
+        CustomConfirmDialog confirmDialog = new CustomConfirmDialog(this).builder();
+        confirmDialog.setTitle("请输入您的姓名");
+        confirmDialog.setInputNumber(false);//限制数字
+        confirmDialog.setNegativeButton("取消", new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        confirmDialog.setPositiveButton("确定",new CustomConfirmDialog.OnPostListener(){
+            @Override
+            public void OnPost(String value) {
+                toast(value);
+            }
+        });
+        confirmDialog.show();
+
+
+
+        showLoadingDialog("正在加载");
+
+        CountDownUtils countDownUtils = new CountDownUtils(10000,1000);
+        countDownUtils.start(new CountDownUtils.setOnCountDownListener() {
+            @Override
+            public void onTick(int second) {
+
+            }
+
+            @Override
+            public void onFinish() {
+                closeLoadingDialog();
+            }
+        });
 
 
 
@@ -54,6 +91,13 @@ public class MainActivity extends MyBaseActivity {
         toast("当前数据库版本："+DatabaseHelper.getInstance(this).getVersion() +"数据库名："+DatabaseHelper.getInstance(this).getDatabaseName());
 
         studentDao = new StudentDao(this);
+        toast("学生数量：" + studentDao.count());
+        List<Student> allstudent = studentDao.getAll();
+        if(allstudent == null){
+            toast("数据为空");
+        }else{
+            toast(allstudent.get(0).getName());
+        }
 
         easeTitleBar.setLeftLayoutClickListener(new View.OnClickListener(){
             @Override

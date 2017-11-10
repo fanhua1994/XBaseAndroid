@@ -6,6 +6,7 @@ import com.hengyi.baseandroidcore.database.BaseDao;
 import com.hengyi.baseandroidcore.database.BaseDaoImpl;
 
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * Created by Administrator on 2017/10/11.
@@ -24,6 +25,22 @@ public class StudentDao {
         } catch (SQLException e) {
             e.printStackTrace();
             return 0;
+        }
+    }
+
+    public long count(){
+        try {
+            return studentDao.count();
+        } catch (SQLException e) {
+            return -1;
+        }
+    }
+
+    public List<Student> getAll(){
+        try {
+            return studentDao.queryAll();
+        } catch (SQLException e) {
+            return null;
         }
     }
 }

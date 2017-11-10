@@ -75,6 +75,7 @@ dialog.show();
 ```
 
 ### 弹出输入框
+![](https://github.com/fanhua1994/BaseAndroid/blob/master/image/dialog_confirm.png?raw=true)
 ```
 CustomConfirmDialog dialog = new CustomConfirmDialog(this).builder();
 dialog.setTitle("温馨提示");
@@ -97,6 +98,7 @@ dialog.show();
 ```
 
 ### 加载Loading
+![](https://github.com/fanhua1994/BaseAndroid/blob/master/image/dialog_loading.png?raw=true)
 ```
 showLoadingDialog("正在加载");
 closeLoadingDialog();
@@ -152,6 +154,7 @@ toast(cache.getAsString("cache") +"缓存大小："+cache.getCacheCount());
 ```
 
 ### 配置文件使用
+> ConfigUtil自主维护了一个哈希表可以很快的根据数据缓存拿到数据，不用去xml里面读取，性能很不错。
 ```
 ConfigUtils config = ConfigUtils.getInstance(this);
 config.addOrUpdateText("name","繁华");
