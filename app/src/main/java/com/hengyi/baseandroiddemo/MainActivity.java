@@ -75,7 +75,7 @@ public class MainActivity extends BaseActivity {
         DatabaseHelper.getInstance(this).setDatabaseVersionChangeListener(new DatabaseVersionChangeListener() {
             @Override
             public void onChange(int oldVersion, int newVersion) {
-                toast("数据库版本繁盛变化：老版本:"+oldVersion +" 新版本："+newVersion);
+                toast("数据库版本发生变化：老版本:"+oldVersion +" 新版本："+newVersion);
                 if(oldVersion < 2){
                     try {
                         DatabaseHelper.getInstance(getContext()).getDao(Student.class).executeRaw("ALTER TABLE 'student' ADD COLUMN sex int");
