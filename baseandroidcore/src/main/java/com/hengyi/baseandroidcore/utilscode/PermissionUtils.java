@@ -73,6 +73,7 @@ public final class PermissionUtils {
                     ((Activity) context).requestPermissions(deniedPermissions, requestCode);
                 }
             } else {
+                LogUtils.d("权限申请成功");
                 if (mOnPermissionListener != null)
                     mOnPermissionListener.onPermissionGranted();
             }

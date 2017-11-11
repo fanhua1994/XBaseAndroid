@@ -38,5 +38,12 @@
         android:text="添加一行数据"
         />
 
+    <Button
+        android:id="@+id/requestPermission"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="申请联系人操作权限"
+        />
+
 
 </LinearLayout>

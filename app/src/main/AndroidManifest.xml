@@ -20,6 +20,9 @@
         <activity android:name=".CacheActivity"></activity>
 
         <activity android:name="com.hengyi.baseandroidcore.base.XbaseWebActivity"></activity>
+
     </application>
+
+    <uses-permission android:name="android.permission.READ_CONTACTS"></uses-permission>
 
 </manifest>

@@ -9,6 +9,7 @@ import com.hengyi.baseandroidcore.database.DatabaseHelper;
 import com.hengyi.baseandroidcore.database.DatabaseVersionChangeListener;
 import com.hengyi.baseandroidcore.dialog.CustomConfirmDialog;
 import com.hengyi.baseandroidcore.utils.CountDownUtils;
+import com.hengyi.baseandroidcore.utilscode.PermissionUtils;
 import com.hengyi.baseandroidcore.validation.ValidMsg;
 import com.hengyi.baseandroidcore.validation.Validation;
 import com.hengyi.baseandroidcore.weight.EaseTitleBar;
@@ -128,7 +129,7 @@ public class MainActivity extends BaseActivity {
         return R.layout.activity_main;
     }
 
-    @OnClick({R.id.cache_admin,R.id.web,R.id.database})
+    @OnClick({R.id.cache_admin,R.id.web,R.id.database,R.id.requestPermission})
     public void Click(View view){
         switch(view.getId()){
             case R.id.cache_admin:
@@ -150,6 +151,22 @@ public class MainActivity extends BaseActivity {
                 }else{
                     toast("数据添加失败");
                 }
+                break;
+
+            case R.id.requestPermission:
+                toast("request permission now!");
+                PermissionUtils.requestPermissions(this,200,new String[]{"android.permission.READ_CONTACTS"},new PermissionUtils.OnPermissionListener(){
+
+                    @Override
+                    public void onPermissionGranted() {
+                        toast("权限申请成功");
+                    }
+
+                    @Override
+                    public void onPermissionDenied(String[] deniedPermissions) {
+                        toast("权限申请失败");
+                    }
+                });
                 break;
         }
     }
