@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.hengyi.baseandroidcore.app.AppUpdateManager;
+import com.hengyi.baseandroidcore.app.UpdateBean;
 import com.hengyi.baseandroidcore.base.XbaseWebActivity;
 import com.hengyi.baseandroidcore.database.DatabaseHelper;
 import com.hengyi.baseandroidcore.database.DatabaseVersionChangeListener;
@@ -129,7 +131,7 @@ public class MainActivity extends BaseActivity {
         return R.layout.activity_main;
     }
 
-    @OnClick({R.id.cache_admin,R.id.web,R.id.database,R.id.requestPermission})
+    @OnClick({R.id.cache_admin,R.id.web,R.id.database,R.id.requestPermission,R.id.checkUpdate})
     public void Click(View view){
         switch(view.getId()){
             case R.id.cache_admin:
@@ -167,6 +169,18 @@ public class MainActivity extends BaseActivity {
                         toast("权限申请失败");
                     }
                 });
+                break;
+
+            case R.id.checkUpdate:
+                UpdateBean updateBean = new UpdateBean();
+                updateBean.setDescription("今日更新了XBaseAndroid框架的更新管理器。");
+                updateBean.setDownload_url("http://file.cleveriip.com:88/group1/M00/00/05/rBKtqFn8OEGAPBQ6AJG8u_zmv5o991.apk");
+                updateBean.setForce(true);
+                updateBean.setMd5_code("a034366c2257281060a3ee27df38a793");
+                updateBean.setNew_version("1.0.0.1");
+                updateBean.setTitle("新版本来啦，立即更新吧");
+                AppUpdateManager appUpdateManager = AppUpdateManager.getInstance();
+                appUpdateManager.checkUpdate(updateBean,this);
                 break;
         }
     }

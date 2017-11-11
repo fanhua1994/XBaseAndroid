@@ -45,5 +45,12 @@
         android:text="申请联系人操作权限"
         />
 
+    <Button
+        android:id="@+id/checkUpdate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="检查是否有更新"
+        />
+
 
 </LinearLayout>
