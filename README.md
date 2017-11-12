@@ -8,8 +8,8 @@
 > 建议使用compile project(path: ':baseandroidcore')导入项目。现将本项目下载，将baseandroidcore目录导入到as.即可。使用前请将BaseApplication加入项目  BaseActivity加入项目
 ## 功能介绍
 
-### BaseActivity
-> 由于ButterKnife不能再lib中不能bind。所以必须继承BaseActivity进行二次封装。
+### XBaseActivity
+> 由于ButterKnife不能再lib中bind。所以必须继承XBaseActivity进行二次封装。
 ```
 package com.hengyi.baseandroiddemo;
 

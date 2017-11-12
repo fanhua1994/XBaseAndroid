@@ -125,7 +125,7 @@ public class AppUpdateManager {
             public void downloadProgress(Progress progress) {
                 super.downloadProgress(progress);
                 if(listener != null) {
-                    listener.downloadProgressBar(formatProgress(progress.fraction * 100), formatSpeed(progress.speed));
+                    listener.downloadProgressBar(formatProgress(progress.fraction * 100),(int)(progress.fraction * 100.0f),formatSpeed(progress.speed));
                 }
             }
         });
@@ -177,7 +177,7 @@ public class AppUpdateManager {
 
 
     public interface AppUpdateListener{
-        public void downloadProgressBar(String progress,String speed);
+        public void downloadProgressBar(String progress,int progress2,String speed);
         public void downloadSuccess(File app_path);
         public void downloadStart();
         public void downloadError(String message);

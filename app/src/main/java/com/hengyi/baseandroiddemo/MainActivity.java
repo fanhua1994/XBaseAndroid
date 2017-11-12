@@ -1,5 +1,6 @@
 package com.hengyi.baseandroiddemo;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,6 +13,7 @@ import com.hengyi.baseandroidcore.database.DatabaseHelper;
 import com.hengyi.baseandroidcore.database.DatabaseVersionChangeListener;
 import com.hengyi.baseandroidcore.dialog.CustomConfirmDialog;
 import com.hengyi.baseandroidcore.utils.CountDownUtils;
+import com.hengyi.baseandroidcore.utils.NotifacationUtils;
 import com.hengyi.baseandroidcore.utilscode.PermissionUtils;
 import com.hengyi.baseandroidcore.validation.ValidMsg;
 import com.hengyi.baseandroidcore.validation.Validation;
@@ -174,6 +176,7 @@ public class MainActivity extends BaseActivity {
                 break;
 
             case R.id.checkUpdate:
+                final NotifacationUtils notifacation = new NotifacationUtils(this);
                 UpdateBean updateBean = new UpdateBean();
                 updateBean.setDescription("今日更新了XBaseAndroid框架的更新管理器。");
                 updateBean.setDownload_url("http://file.cleveriip.com:88/group2/M00/00/03/rBJbXVnlcPCATMAtAtnNwW8wwRs625.apk");
@@ -189,8 +192,9 @@ public class MainActivity extends BaseActivity {
 
 
                     @Override
-                    public void downloadProgressBar(String progress, String speed) {
-                        Log.d("AppUpdateManager","进度条：" + progress +"   下载速度："  + speed);
+                    public void downloadProgressBar(String progress, int progress2,String speed) {
+                        notifacation.showProgressNotify(progress2,"当前下载网速" + speed);
+                        Log.d("AppUpdateManager","进度条：" + progress + "  p2:"+ progress2 +"   下载速度："  + speed);
                     }
 
                     @Override
@@ -201,6 +205,7 @@ public class MainActivity extends BaseActivity {
                     @Override
                     public void downloadStart() {
                         Log.d("AppUpdateManager","下载开始");
+                        notifacation.createProgressNotify(R.drawable.ic_launcher,200,"正在下载中","APP更新","App正在准备下载",new Intent());
                     }
 
                     @Override
