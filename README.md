@@ -1,4 +1,4 @@
-# BaseAndroid
+# XBaseAndroid
 一款集成了网络请求，本地缓存，配置文件，数据库映射，权限申请，链表管理Activity，简化Activity、Service、Broadcast启动，
 万能ListView,GridView适配器、高仿IOS弹窗、倒计时/延迟执行，标题栏组件,图片显示，webview引擎，APP更新组件，APP崩溃日志组件（热更新组件暂未加入，有需要请联系）。
 ![BaseAndroid](https://github.com/fanhua1994/BaseAndroid/blob/master/image/logo.png?raw=true)
@@ -441,13 +441,38 @@ if(msg.isPass()){
 
 ### APP更新组件（AppUpdateManager）
 ![](https://github.com/fanhua1994/BaseAndroid/blob/master/image/APP_update.png?raw=true)
++ 支持MD5文件校验
++ 支持强制更新(isForce)
++ 支持在获取root情况下静默安装
++ 支持下载完跳转到安装界面
++ 支持安卓7.0
++ 支持各类回调接口
+
+### 如何兼容Android7.0
+#### AndroidMainfest.xml
+application节点下添加
+```
+<provider
+    android:name="android.support.v4.content.FileProvider"
+    android:authorities="com.hengyi.xbaseandroid.fileProvider"//这个请替换为你的软件包名
+    android:exported="false"
+    android:grantUriPermissions="true">
+    <meta-data
+        android:name="android.support.FILE_PROVIDER_PATHS"
+        android:resource="@xml/file_paths"/>
+</provider>
+```
+#### 将demo res-> xml文件夹复制到你的应用目录。
+
 ```
 UpdateBean updateBean = new UpdateBean();
 updateBean.setDescription("今日更新了XBaseAndroid框架的更新管理器。");
 updateBean.setDownload_url("http://file.cleveriip.com:88/group2/M00/00/03/rBJbXVnlcPCATMAtAtnNwW8wwRs625.apk");
-updateBean.setForce(true);//是否强制更新 强行安装
-updateBean.setMd5_code("a034366c2257281060a3ee27df38a793");//APK文件MD5
+updateBean.setForce(true);//是否强制更新 或 静默安装
+updateBean.setAuthority("com.hengyi.xbaseandroid.fileProvider");//兼容安卓7.0 安装  
+updateBean.setMd5_code("a034366c2257281060a3ee27df38a793");
 updateBean.setNew_version("1.0.0.1");
+
 updateBean.setTitle("新版本来啦，立即更新吧");
 AppUpdateManager appUpdateManager = AppUpdateManager.getInstance();
 appUpdateManager.checkUpdate(updateBean,this);
@@ -456,42 +481,70 @@ appUpdateManager.setAppUpdateListener(new AppUpdateManager.AppUpdateListener() {
 
     @Override
     public void downloadProgressBar(String progress, String speed) {
-        Log.d("AppUpdateManager","进度条：" + progress +"   下载速度："  + speed);
+	Log.d("AppUpdateManager","进度条：" + progress +"   下载速度："  + speed);
     }
 
     @Override
-    public void downloadSuccess() {
-        Log.d("AppUpdateManager","下载成功");
+    public void downloadSuccess(File app_path) {
+	Log.d("AppUpdateManager","下载成功    路径如下：" + app_path.getAbsolutePath());
     }
 
     @Override
     public void downloadStart() {
-        Log.d("AppUpdateManager","下载开始");
+	Log.d("AppUpdateManager","下载开始");
     }
 
     @Override
     public void downloadError(String message) {
-        Log.d("AppUpdateManager","下载错误");
+	Log.d("AppUpdateManager","下载错误");
     }
 
     @Override
     public void downloadFinish() {
-        Log.d("AppUpdateManager","下载结束");
+	Log.d("AppUpdateManager","下载结束");
     }
 
     @Override
     public void cancelDownload() {
-        Log.d("AppUpdateManager","取消下载");
+	Log.d("AppUpdateManager","取消下载");
     }
 
     @Override
     public void NoUpdate() {
-        Log.d("AppUpdateManager","没有更新");
+	Log.d("AppUpdateManager","没有更新");
     }
 });
 ```
 
-### 感谢以下项目的支持
+### 下载日志
+```
+:48:39.332 9028-9028/com.hengyi.baseandroiddemo D/AppUpdateManager: 进度条：78.49   下载速度：789.25kb/s
+11-12 05:48:39.645 9028-9028/com.hengyi.baseandroiddemo D/AppUpdateManager: 进度条：79.43   下载速度：889.85kb/s
+11-12 05:48:39.945 9028-9028/com.hengyi.baseandroiddemo D/AppUpdateManager: 进度条：80.80   下载速度：1.03mb/s
+11-12 05:48:40.250 9028-9028/com.hengyi.baseandroiddemo D/AppUpdateManager: 进度条：82.20   下载速度：1.18mb/s
+11-12 05:48:40.548 9028-9028/com.hengyi.baseandroiddemo D/AppUpdateManager: 进度条：83.84   下载速度：1.37mb/s
+11-12 05:48:41.186 9028-9028/com.hengyi.baseandroiddemo D/AppUpdateManager: 进度条：85.09   下载速度：1.40mb/s
+11-12 05:48:41.488 9028-9028/com.hengyi.baseandroiddemo D/AppUpdateManager: 进度条：85.91   下载速度：1.45mb/s
+11-12 05:48:41.791 9028-9028/com.hengyi.baseandroiddemo D/AppUpdateManager: 进度条：86.79   下载速度：1.49mb/s
+11-12 05:48:42.089 9028-9028/com.hengyi.baseandroiddemo D/AppUpdateManager: 进度条：88.55   下载速度：1.66mb/s
+11-12 05:48:42.440 9028-9028/com.hengyi.baseandroiddemo D/AppUpdateManager: 进度条：89.74   下载速度：1.70mb/s
+11-12 05:48:42.740 9028-9028/com.hengyi.baseandroiddemo D/AppUpdateManager: 进度条：90.63   下载速度：1.71mb/s
+11-12 05:48:43.046 9028-9028/com.hengyi.baseandroiddemo D/AppUpdateManager: 进度条：91.54   下载速度：1.71mb/s
+11-12 05:48:43.358 9028-9028/com.hengyi.baseandroiddemo D/AppUpdateManager: 进度条：92.31   下载速度：1.61mb/s
+11-12 05:48:43.663 9028-9028/com.hengyi.baseandroiddemo D/AppUpdateManager: 进度条：93.06   下载速度：1.51mb/s
+11-12 05:48:43.974 9028-9028/com.hengyi.baseandroiddemo D/AppUpdateManager: 进度条：93.96   下载速度：1.40mb/s
+11-12 05:48:44.309 9028-9028/com.hengyi.baseandroiddemo D/AppUpdateManager: 进度条：94.55   下载速度：1.39mb/s
+11-12 05:48:44.641 9028-9028/com.hengyi.baseandroiddemo D/AppUpdateManager: 进度条：95.88   下载速度：1.44mb/s
+11-12 05:48:45.027 9028-9028/com.hengyi.baseandroiddemo D/AppUpdateManager: 进度条：96.70   下载速度：1.41mb/s
+11-12 05:48:45.336 9028-9028/com.hengyi.baseandroiddemo D/AppUpdateManager: 进度条：97.53   下载速度：1.27mb/s
+11-12 05:48:45.638 9028-9028/com.hengyi.baseandroiddemo D/AppUpdateManager: 进度条：98.34   下载速度：1.23mb/s
+11-12 05:48:45.937 9028-9028/com.hengyi.baseandroiddemo D/AppUpdateManager: 进度条：99.18   下载速度：1.23mb/s
+11-12 05:48:46.243 9028-9028/com.hengyi.baseandroiddemo D/AppUpdateManager: 进度条：99.93   下载速度：1.20mb/s
+11-12 05:48:46.250 9028-9028/com.hengyi.baseandroiddemo D/AppUpdateManager: 进度条：100.00   下载速度：1.35mb/s
+11-12 05:48:46.253 9028-9028/com.hengyi.baseandroiddemo D/AppUpdateManager: 下载成功    路径如下：/storage/emulated/0/Android/data/com.hengyi.baseandroiddemo/download/XBaseAndroid_软件更新_1.0.0.1.apk
+```
+
+### 感谢以下开源项目的支持
 ```
 compile 'com.google.code.gson:gson:2.6.2'
 compile 'com.j256.ormlite:ormlite-core:4.48'

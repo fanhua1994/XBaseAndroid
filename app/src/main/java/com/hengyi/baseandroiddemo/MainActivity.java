@@ -20,6 +20,7 @@ import com.hengyi.db.Student;
 import com.hengyi.db.StudentDao;
 import com.hengyi.validation.User;
 
+import java.io.File;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -176,9 +177,11 @@ public class MainActivity extends BaseActivity {
                 UpdateBean updateBean = new UpdateBean();
                 updateBean.setDescription("今日更新了XBaseAndroid框架的更新管理器。");
                 updateBean.setDownload_url("http://file.cleveriip.com:88/group2/M00/00/03/rBJbXVnlcPCATMAtAtnNwW8wwRs625.apk");
-                updateBean.setForce(true);
-                updateBean.setMd5_code("a034366c2257281060a3ee27df38a793");
+                updateBean.setForce(true);//是否强制更新 或 静默安装
+                updateBean.setAuthority("com.hengyi.xbaseandroid.fileProvider");//兼容安卓7.0 安装
+                updateBean.setMd5_code(null);
                 updateBean.setNew_version("1.0.0.1");
+
                 updateBean.setTitle("新版本来啦，立即更新吧");
                 AppUpdateManager appUpdateManager = AppUpdateManager.getInstance();
                 appUpdateManager.checkUpdate(updateBean,this);
@@ -191,8 +194,8 @@ public class MainActivity extends BaseActivity {
                     }
 
                     @Override
-                    public void downloadSuccess() {
-                        Log.d("AppUpdateManager","下载成功");
+                    public void downloadSuccess(File app_path) {
+                        Log.d("AppUpdateManager","下载成功    路径如下：" + app_path.getAbsolutePath());
                     }
 
                     @Override

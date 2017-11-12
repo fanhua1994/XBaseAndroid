@@ -9,6 +9,9 @@ import com.hengyi.baseandroidcore.base.XbaseApplication;
 import com.hengyi.baseandroidcore.dialog.CustomAlertDialog;
 import com.hengyi.baseandroidcore.utils.ProjectUtils;
 import com.hengyi.baseandroidcore.utils.VersionUtils;
+import com.hengyi.baseandroidcore.utilscode.AppUtils;
+import com.hengyi.baseandroidcore.utilscode.EncryptUtils;
+import com.hengyi.baseandroidcore.utilscode.LogUtils;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.FileCallback;
 import com.lzy.okgo.model.Progress;
@@ -51,7 +54,7 @@ public class AppUpdateManager {
      * @return
      */
     private String formatProgress(float progressbar){
-        DecimalFormat decimalFormat=new DecimalFormat(".00");//构造方法的字符格式这里如果小数不足2位,会以0补足.
+        DecimalFormat decimalFormat=new DecimalFormat("##0.00");//构造方法的字符格式这里如果小数不足2位,会以0补足.
         String p = decimalFormat.format(progressbar);//format 返回的是字符串
         return p;
     }
@@ -71,7 +74,7 @@ public class AppUpdateManager {
     /**
      * 下载APK
      */
-    private void downloadApk(Context context,UpdateBean updateBean){
+    private void downloadApk(Context context, final UpdateBean updateBean){
         String download_path = ProjectUtils.getInstance().setIdCard(true).setFileType(ProjectUtils.COMMON_TYPE).getWorkGroup("download");
         String download_name = context.getString(R.string.framework_name) + "_" + updateBean.getNew_version() +".apk";
 
@@ -79,7 +82,22 @@ public class AppUpdateManager {
             @Override
             public void onSuccess(Response<File> response) {
                 if(listener != null)
-                    listener.downloadSuccess();
+                    listener.downloadSuccess(response.body());
+
+                String file_md5 = EncryptUtils.encryptMD5File2String(response.body()).toLowerCase();
+                LogUtils.d(AppUpdateManager.class.getName(),"下载文件的MD5:" + file_md5);
+
+                if(updateBean.getMd5_code() != null){
+                    if(!updateBean.getMd5_code().equals(file_md5)){
+                        return ;
+                    }
+                }
+
+                if(AppUtils.isAppRoot()){
+                    AppUtils.installAppSilent(response.body().getAbsolutePath());
+                }else{
+                    AppUtils.installApp(response.body(),updateBean.getAuthority());
+                }
             }
 
             @Override
@@ -135,13 +153,15 @@ public class AppUpdateManager {
                 }
             });
 
-            updateDialog.setNegativeButton(context.getString(R.string.app_update_manager_dialog_cancel),new View.OnClickListener(){
-                @Override
-                public void onClick(View view) {
-                    if(listener != null)
-                        listener.cancelDownload();
-                }
-            });
+            if(!updateBean.isForce()) {
+                updateDialog.setNegativeButton(context.getString(R.string.app_update_manager_dialog_cancel), new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (listener != null)
+                            listener.cancelDownload();
+                    }
+                });
+            }
 
             updateDialog.show();
 
@@ -158,7 +178,7 @@ public class AppUpdateManager {
 
     public interface AppUpdateListener{
         public void downloadProgressBar(String progress,String speed);
-        public void downloadSuccess();
+        public void downloadSuccess(File app_path);
         public void downloadStart();
         public void downloadError(String message);
         public void downloadFinish();

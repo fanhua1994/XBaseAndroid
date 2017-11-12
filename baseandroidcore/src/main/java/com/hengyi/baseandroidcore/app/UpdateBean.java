@@ -11,6 +11,15 @@ public class UpdateBean {
     private boolean isForce = false;//是否强制更新，不更新允许运行。
     private String download_url;//下载地址
     private String md5_code;//apk文件的MD5
+    private String authority;//安卓7.0适配
+
+    public String getAuthority() {
+        return authority;
+    }
+
+    public void setAuthority(String authority) {
+        this.authority = authority;
+    }
 
     public String getNew_version() {
         return new_version;
