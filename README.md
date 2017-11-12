@@ -440,6 +440,7 @@ if(msg.isPass()){
 > 如果您只需要接入校验模块，请参考这个地址：[https://github.com/fanhua1994/java_validation](https://github.com/fanhua1994/java_validation)
 
 ### APP更新组件（AppUpdateManager）
+![](https://github.com/fanhua1994/BaseAndroid/blob/master/image/APP_update.png?raw=true)
 ```
 UpdateBean updateBean = new UpdateBean();
 updateBean.setDescription("今日更新了XBaseAndroid框架的更新管理器。");
