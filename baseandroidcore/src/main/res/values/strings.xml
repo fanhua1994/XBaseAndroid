@@ -5,5 +5,4 @@
 
     <string name="app_update_manager_dialog_download">立即更新</string>
     <string name="app_update_manager_dialog_cancel">下次再说</string>
-    <string name="app_update_manager_isforce_update">该本版修复致命错误，请务必升级</string>
 </resources>

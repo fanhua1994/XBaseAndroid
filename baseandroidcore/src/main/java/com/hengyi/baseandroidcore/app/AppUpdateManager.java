@@ -16,6 +16,7 @@ import com.lzy.okgo.model.Response;
 import com.lzy.okgo.request.base.Request;
 
 import java.io.File;
+import java.text.DecimalFormat;
 
 /**
  * Created by Administrator on 2017/10/10.
@@ -42,6 +43,29 @@ public class AppUpdateManager {
 
             return instance;
         }
+    }
+
+    /**
+     * 进度条格式化
+     * @param progressbar
+     * @return
+     */
+    private String formatProgress(float progressbar){
+        DecimalFormat decimalFormat=new DecimalFormat(".00");//构造方法的字符格式这里如果小数不足2位,会以0补足.
+        String p = decimalFormat.format(progressbar);//format 返回的是字符串
+        return p;
+    }
+
+    private String formatSpeed(long speed){
+        String down_speed = null;
+            //KB计算
+        if(speed < 1024 * 1024){
+            down_speed = formatProgress((float)speed / 1024.0f) + "kb/s";
+        }else{
+            //MB计算
+            down_speed = formatProgress((float)speed / 1024.0f / 1024.0f) + "mb/s";
+        }
+        return down_speed;
     }
 
     /**
@@ -82,8 +106,9 @@ public class AppUpdateManager {
             @Override
             public void downloadProgress(Progress progress) {
                 super.downloadProgress(progress);
-                if(listener != null)
-                    listener.downloadProgressBar(progress.fraction,progress.speed + "");
+                if(listener != null) {
+                    listener.downloadProgressBar(formatProgress(progress.fraction * 100), formatSpeed(progress.speed));
+                }
             }
         });
     }
@@ -113,10 +138,6 @@ public class AppUpdateManager {
             updateDialog.setNegativeButton(context.getString(R.string.app_update_manager_dialog_cancel),new View.OnClickListener(){
                 @Override
                 public void onClick(View view) {
-                    if(updateBean.isForce()){
-                        Toast.makeText(context,context.getString(R.string.app_update_manager_isforce_update),Toast.LENGTH_LONG).show();
-                        return ;
-                    }
                     if(listener != null)
                         listener.cancelDownload();
                 }
@@ -136,7 +157,7 @@ public class AppUpdateManager {
 
 
     public interface AppUpdateListener{
-        public void downloadProgressBar(float progress,String speed);
+        public void downloadProgressBar(String progress,String speed);
         public void downloadSuccess();
         public void downloadStart();
         public void downloadError(String message);

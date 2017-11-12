@@ -1,6 +1,7 @@
 package com.hengyi.baseandroiddemo;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -174,13 +175,51 @@ public class MainActivity extends BaseActivity {
             case R.id.checkUpdate:
                 UpdateBean updateBean = new UpdateBean();
                 updateBean.setDescription("今日更新了XBaseAndroid框架的更新管理器。");
-                updateBean.setDownload_url("http://file.cleveriip.com:88/group1/M00/00/05/rBKtqFn8OEGAPBQ6AJG8u_zmv5o991.apk");
+                updateBean.setDownload_url("http://file.cleveriip.com:88/group2/M00/00/03/rBJbXVnlcPCATMAtAtnNwW8wwRs625.apk");
                 updateBean.setForce(true);
                 updateBean.setMd5_code("a034366c2257281060a3ee27df38a793");
                 updateBean.setNew_version("1.0.0.1");
                 updateBean.setTitle("新版本来啦，立即更新吧");
                 AppUpdateManager appUpdateManager = AppUpdateManager.getInstance();
                 appUpdateManager.checkUpdate(updateBean,this);
+                appUpdateManager.setAppUpdateListener(new AppUpdateManager.AppUpdateListener() {
+
+
+                    @Override
+                    public void downloadProgressBar(String progress, String speed) {
+                        Log.d("AppUpdateManager","进度条：" + progress +"   下载速度："  + speed);
+                    }
+
+                    @Override
+                    public void downloadSuccess() {
+                        Log.d("AppUpdateManager","下载成功");
+                    }
+
+                    @Override
+                    public void downloadStart() {
+                        Log.d("AppUpdateManager","下载开始");
+                    }
+
+                    @Override
+                    public void downloadError(String message) {
+                        Log.d("AppUpdateManager","下载错误");
+                    }
+
+                    @Override
+                    public void downloadFinish() {
+                        Log.d("AppUpdateManager","下载结束");
+                    }
+
+                    @Override
+                    public void cancelDownload() {
+                        Log.d("AppUpdateManager","取消下载");
+                    }
+
+                    @Override
+                    public void NoUpdate() {
+                        Log.d("AppUpdateManager","没有更新");
+                    }
+                });
                 break;
         }
     }
