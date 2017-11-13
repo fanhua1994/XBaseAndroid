@@ -544,6 +544,15 @@ appUpdateManager.setAppUpdateListener(new AppUpdateManager.AppUpdateListener() {
 11-12 05:48:46.253 9028-9028/com.hengyi.baseandroiddemo D/AppUpdateManager: 下载成功    路径如下：/storage/emulated/0/Android/data/com.hengyi.baseandroiddemo/download/XBaseAndroid_软件更新_1.0.0.1.apk
 ```
 
+### 通知栏工具类
+```
+NotifacationUtils notifacation = new NotifacationUtils(this);//实例化通知栏
+notifacation.createProgressNotify(R.drawable.ic_launcher,200,"正在下载中","APP更新","App正在准备下载",new Intent());//创建进度条通知栏
+notifacation.showProgressNotify(progress2,"当前下载网速" + speed);//设置进度条及文字显示
+
+//notifacation.createNotify();//创建普通通知栏
+```
+
 ### 感谢以下开源项目的支持
 ```
 compile 'com.google.code.gson:gson:2.6.2'
