@@ -32,13 +32,10 @@
         <activity android:name=".CacheActivity"></activity>
 
         <activity android:name="com.hengyi.baseandroidcore.base.XbaseWebActivity"></activity>
+        <activity android:name=".BluetoothActivity"></activity>
 
     </application>
 
     <uses-permission android:name="android.permission.READ_CONTACTS"></uses-permission>
-
-    <!--蓝牙操作  -->
-    <uses-permission android:name="android.permission.BLUETOOTH"/>
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
 
 </manifest>

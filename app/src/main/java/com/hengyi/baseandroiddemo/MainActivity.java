@@ -23,7 +23,6 @@ import butterknife.OnClick;
 public class MainActivity extends BaseActivity {
     @BindView(R.id.cache_admin)Button cache;
     @BindView(R.id.titleBar)EaseTitleBar easeTitleBar;
-    private StudentDao studentDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +36,7 @@ public class MainActivity extends BaseActivity {
         return R.layout.activity_main;
     }
 
-    @OnClick({R.id.cache_admin,R.id.web,R.id.database,R.id.requestPermission,R.id.checkUpdate})
+    @OnClick({R.id.cache_admin,R.id.web,R.id.bluetooth,R.id.requestPermission,R.id.checkUpdate})
     public void Click(View view){
         switch(view.getId()){
             case R.id.cache_admin:
@@ -48,17 +47,8 @@ public class MainActivity extends BaseActivity {
                 StartActivity(XbaseWebActivity.class,new String[]{XbaseWebActivity.WEB_URL_PARAM, XbaseWebActivity.WEB_SHOW_TITLE_BAR},"file:///android_asset/index.html",false);
                 break;
 
-            case R.id.database:
-                Student student = new Student();
-                student.setName("董志平");
-                student.setId(123);
-                student.setSex(1);
-                student.setAge(90);
-                if(studentDao.add(student) > 0){
-                    toast("数据添加成功");
-                }else{
-                    toast("数据添加失败");
-                }
+            case R.id.bluetooth:
+                StartActivity(BluetoothActivity.class);
                 break;
 
             case R.id.requestPermission:
@@ -82,7 +72,7 @@ public class MainActivity extends BaseActivity {
                 UpdateBean updateBean = new UpdateBean();
                 updateBean.setDescription("今日更新了XBaseAndroid框架的更新管理器。");
                 updateBean.setDownload_url("http://file.cleveriip.com:88/group2/M00/00/03/rBJbXVnlcPCATMAtAtnNwW8wwRs625.apk");
-                updateBean.setForce(true);//是否强制更新 或 静默安装
+                updateBean.setForce(false);//是否强制更新 或 静默安装
                 updateBean.setAuthority("com.hengyi.xbaseandroid.fileProvider");//兼容安卓7.0 安装
                 updateBean.setMd5_code(null);
                 updateBean.setNew_version("1.0.0.1");

@@ -32,10 +32,10 @@
         />
 
     <Button
-        android:id="@+id/database"
+        android:id="@+id/bluetooth"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="添加一行数据"
+        android:text="打开蓝牙管理器"
         />
 
     <Button

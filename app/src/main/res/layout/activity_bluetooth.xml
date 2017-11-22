@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <com.hengyi.baseandroidcore.weight.EaseTitleBar
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/titleBar"
+        android:layout_width="match_parent"
+        app:titleBarTitle="蓝牙设备demo"
+        app:titleBarLeftImage="@drawable/icon_back"
+        android:layout_height="50dp">
+
+    </com.hengyi.baseandroidcore.weight.EaseTitleBar>
+    <Button
+        android:id="@+id/scan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="搜索"
+        />
+
+    <ListView
+        android:id="@+id/listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></ListView>
+
+</LinearLayout>
