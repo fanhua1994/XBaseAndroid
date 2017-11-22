@@ -544,6 +544,63 @@ appUpdateManager.setAppUpdateListener(new AppUpdateManager.AppUpdateListener() {
 11-12 05:48:46.253 9028-9028/com.hengyi.baseandroiddemo D/AppUpdateManager: 下载成功    路径如下：/storage/emulated/0/Android/data/com.hengyi.baseandroiddemo/download/XBaseAndroid_软件更新_1.0.0.1.apk
 ```
 
+### 图片压缩
+#### 效果与对比
+
+内容 | 原图 | `Luban` | `Wechat`
+---- | ---- | ------ | ------
+截屏 720P |720*1280,390k|720*1280,87k|720*1280,56k
+截屏 1080P|1080*1920,2.21M|1080*1920,104k|1080*1920,112k
+拍照 13M(4:3)|3096*4128,3.12M|1548*2064,141k|1548*2064,147k
+拍照 9.6M(16:9)|4128*2322,4.64M|1032*581,97k|1032*581,74k
+滚动截屏|1080*6433,1.56M|1080*6433,351k|1080*6433,482k
+
+# 使用
+
+### 异步调用
+
+`Luban`内部采用`IO`线程进行图片压缩，外部调用只需设置好结果监听即可：
+
+```java
+Luban.with(this)
+        .load(photos)                                   // 传人要压缩的图片列表
+        .ignoreBy(100)                                  // 忽略不压缩图片的大小
+        .setTargetDir(getPath())                        // 设置压缩后文件存储位置
+        .setCompressListener(new OnCompressListener() { //设置回调
+          @Override
+          public void onStart() {
+            // TODO 压缩开始前调用，可以在方法内启动 loading UI
+          }
+
+          @Override
+          public void onSuccess(File file) {
+            // TODO 压缩成功后调用，返回压缩后的图片文件
+          }
+
+          @Override
+          public void onError(Throwable e) {
+            // TODO 当压缩过程出现问题时调用
+          }
+        }).launch();    //启动压缩
+```
+
+### 同步调用
+
+同步方法请尽量避免在主线程调用以免阻塞主线程，下面以rxJava调用为例
+
+```java
+Flowable.just(photos)
+    .observeOn(Schedulers.io())
+    .map(new Function<List<String>, List<File>>() {
+      @Override public List<File> apply(@NonNull List<String> list) throws Exception {
+        // 同步方法直接返回压缩后的文件
+        return Luban.with(MainActivity.this).load(list).get();
+      }
+    })
+    .observeOn(AndroidSchedulers.mainThread())
+    .subscribe();
+```
+
 ### 感谢以下开源项目的支持
 ```
 compile 'com.google.code.gson:gson:2.6.2'
@@ -554,4 +611,5 @@ compile 'com.github.bumptech.glide:glide:3.7.0'
 compile 'jp.wasabeef:glide-transformations:2.0.2'
 compile 'com.github.johnkil.android-appmsg:appmsg:1.2.0'
 compile 'com.lzy.net:okgo:3.0.4'
+compile 'top.zibin:Luban:1.1.3'
 ```
