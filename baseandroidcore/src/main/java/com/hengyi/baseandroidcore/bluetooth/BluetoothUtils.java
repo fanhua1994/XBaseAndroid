@@ -28,14 +28,14 @@ import java.util.UUID;
  */
 public class BluetoothUtils {
     // UUID，蓝牙建立链接需要的
-    public final UUID MY_UUID = UUID.fromString("db764ac8-4b08-7f25-aafe-59d03c27bae3");
+    public final UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
     private static BluetoothUtils instance = null;
     private BluetoothAdapter bluetoothAdapter = null;
     private boolean supportBluetooth = false;
     private static Context context;
     private List<BluetoothDevice> scanBluetooth = null;
+    private BluetoothConnListener listener = null;
 
-    private boolean bluetoothServerSwitch = false;
     // 选中发送数据的蓝牙设备，全局变量，否则连接在方法执行完就结束了
     private BluetoothDevice connBluetoothDevice;
     // 获取到选中设备的客户端串口，全局变量，否则连接在方法执行完就结束了
@@ -61,10 +61,8 @@ public class BluetoothUtils {
             supportBluetooth = true;
     }
 
-    public void startBluetoothServer(){
-        bluetoothServerSwitch = true;
-        AcceptThread acceptThread = new AcceptThread();
-        acceptThread.start();
+    public void setBluetoothListener(BluetoothConnListener bluetoothListener){
+        this.listener = bluetoothListener;
     }
 
     public BluetoothAdapter getBluetoothAdapter(){
@@ -190,88 +188,95 @@ public class BluetoothUtils {
         }
     }
 
-    public boolean connection(BluetoothDevice bluetoothDevice){
+    public void connection(BluetoothDevice bluetoothDevice){
         connBluetoothDevice = bluetoothDevice;
-        try {
-            connBluetoothSocket = connBluetoothDevice.createRfcommSocketToServiceRecord(MY_UUID);
-            connBluetoothSocket.connect();
-            outputStream = connBluetoothSocket.getOutputStream();
-            if(outputStream!= null){
-                outputStream.write("hello".getBytes());
-                outputStream.close();
+        new Thread(){
+            public void run(){
+                try {
+                    connBluetoothSocket = connBluetoothDevice.createRfcommSocketToServiceRecord(MY_UUID);
+                    connBluetoothSocket.connect();
+                    outputStream = connBluetoothSocket.getOutputStream();
+                    handler.sendEmptyMessage(BluetoothType.CONNECTION_BLUETOOTH_SUCCESS);
+                } catch (IOException e) {
+                    Message msg = new Message();
+                    msg.what = BluetoothType.CONNECTION_BLUETOOTH_ERROR;
+                    msg.obj = "连接错误:" + e.getMessage();
+                    handler.sendMessage(msg);
+                }
             }
+        }.start();
+    }
+
+    public void close(){
+        if(connBluetoothSocket == null || !connBluetoothSocket.isConnected()){
+            Message msg = new Message();
+            msg.what = BluetoothType.BLUETOOTH_CONNECTION_NOT_OPEN;
+            msg.obj = "蓝牙未连接";
+            handler.sendMessage(msg);
+            return ;
+        }
+        try{
+            if(outputStream != null){
+                outputStream.flush();
+                outputStream.close();
+                outputStream = null;
+            }
+            connBluetoothDevice = null;
             connBluetoothSocket.close();
-            return true;
-        } catch (IOException e) {
-            return false;
+            Message msg = new Message();
+            msg.what = BluetoothType.BLUETOOTH_CONNECTION_CLOSE_SUCCESS;
+            msg.obj = "蓝牙连接关闭成功";
+            handler.sendMessage(msg);
+        }catch(Exception e){
+            Message msg = new Message();
+            msg.what = BluetoothType.BLUETOOTH_CONNECTION_CLOSE_ERROR;
+            msg.obj = "蓝牙连接关闭失败";
+            handler.sendMessage(msg);
         }
     }
 
-
-    // 创建handler，因为我们接收是采用线程来接收的，在线程中无法操作UI，所以需要handler
+    //=======================ui线程回调============================
     @SuppressLint("HandlerLeak")
-    private Handler handler = new Handler() {
+    private Handler handler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
-            super.handleMessage(msg);
+            switch(msg.what){
+                case BluetoothType.CONNECTION_BLUETOOTH_SUCCESS:
+                    if(listener != null)
+                        listener.connSuccess();
+                    break;
 
+                case BluetoothType.CONNECTION_BLUETOOTH_ERROR:
+                    if(listener != null) {
+                        listener.connError(msg.obj.toString());
+                    }
+                    break;
+
+                case BluetoothType.BLUETOOTH_CONNECTION_NOT_OPEN:
+                    if(listener != null)
+                        listener.connClose(false,msg.obj.toString());
+                    break;
+
+                case BluetoothType.BLUETOOTH_CONNECTION_CLOSE_SUCCESS:
+                    if(listener != null)
+                        listener.connClose(true,msg.obj.toString());
+                    break;
+
+                case BluetoothType.BLUETOOTH_CONNECTION_CLOSE_ERROR:
+                    if(listener != null)
+                        listener.connClose(false,msg.obj.toString());
+                    break;
+
+
+
+
+            }
         }
     };
 
-    // 服务端接收信息线程
-    private class AcceptThread extends Thread {
-        private BluetoothServerSocket serverSocket;// 服务端接口
-        private BluetoothSocket socket;// 获取到客户端的接口
-        private InputStream is;// 获取到输入流
-        private OutputStream os;// 获取到输出流
-
-        public AcceptThread() {
-            try {
-                // 通过UUID监听请求，然后获取到对应的服务端接口
-                serverSocket = bluetoothAdapter.listenUsingRfcommWithServiceRecord("Sulwhasoo", MY_UUID);
-            } catch (Exception e) {
-            }
-        }
-
-        public void run() {
-            try {
-                // 接收其客户端的接口
-                socket = serverSocket.accept();
-                // 获取到输入流
-                is = socket.getInputStream();
-                // 获取到输出流
-                os = socket.getOutputStream();
-
-                // 无线循环来接收数据
-                while (bluetoothServerSwitch) {
-                    // 创建一个128字节的缓冲
-                    byte[] buffer = new byte[128];
-                    // 每次读取128字节，并保存其读取的角标
-                    int count = is.read(buffer);
-                    // 创建Message类，向handler发送数据
-                    Message msg = new Message();
-                    // 发送一个String的数据，让他向上转型为obj类型
-                    msg.obj = new String(buffer, 0, count, "utf-8");
-                    // 发送数据
-                    handler.sendMessage(msg);
-                }
-
-                if(os != null)
-                    os.close();
-                if(is != null)
-                    is.close();
-                if(socket != null && socket.isConnected()){
-                    socket.close();
-                }
-
-                if(serverSocket != null)
-                    serverSocket.close();
-            } catch (Exception e) {
-                // TODO: handle exception
-                e.printStackTrace();
-            }
-
-        }
+    public interface BluetoothConnListener{
+        public void connSuccess();
+        public void connError(String message);
+        public void connClose(boolean status,String message);
     }
-
 }

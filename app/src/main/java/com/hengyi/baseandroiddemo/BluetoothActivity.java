@@ -51,6 +51,26 @@ public class BluetoothActivity extends BaseActivity {
             bluetoothUtils.setName("iPhone 7");
         }
         registerReceiver();
+
+
+        bluetoothUtils.setBluetoothListener(new BluetoothUtils.BluetoothConnListener() {
+            @Override
+            public void connSuccess() {
+                toast("连接成功");
+            }
+
+            @Override
+            public void connError(String message) {
+                toast("连接错误:" + message);
+            }
+
+            @Override
+            public void connClose(boolean status, String message) {
+                toast("关闭连接：" + message);
+            }
+        });
+
+
         adapter = new BluetoothsAdapter(this,bluetoothUtils.getScanBluetoothList(),R.layout.adapter_bluetooth_item);
         listView.setAdapter(adapter);
 
@@ -74,13 +94,22 @@ public class BluetoothActivity extends BaseActivity {
         return R.layout.activity_bluetooth;
     }
 
-    @OnClick(R.id.scan)
+    @OnClick({R.id.scan,R.id.close})
     public void onClicks(View view){
-        bluetoothUtils.clearScanBluetoothList();
-        adapter.notifyDataSetChanged();
-        scan.setText("正在搜索中...");
-        scan.setEnabled(false);
-        bluetoothUtils.startDiscovery();
+        switch(view.getId()){
+            case R.id.scan:
+                bluetoothUtils.clearScanBluetoothList();
+                adapter.notifyDataSetChanged();
+                scan.setText("正在搜索中...");
+                scan.setEnabled(false);
+                bluetoothUtils.startDiscovery();
+                break;
+
+            case R.id.close:
+                 bluetoothUtils.close();
+                break;
+        }
+
     }
 
 
@@ -115,6 +144,7 @@ public class BluetoothActivity extends BaseActivity {
             toast("配对结果:" + s);
             adapter.notifyDataSetChanged();
         }else{
+            bluetoothUtils.cancelDiscovery();
             toast("建立连接.");
             bluetoothUtils.connection(bluetoothDevice);
         }

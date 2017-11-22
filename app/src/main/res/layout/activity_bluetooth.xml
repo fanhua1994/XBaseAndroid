@@ -21,6 +21,14 @@
         android:text="搜索"
         />
 
+    <Button
+        android:id="@+id/close"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="关闭连接"
+        />
+
+
     <ListView
         android:id="@+id/listview"
         android:layout_width="match_parent"
