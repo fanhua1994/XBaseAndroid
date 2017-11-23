@@ -561,7 +561,7 @@ appUpdateManager.setAppUpdateListener(new AppUpdateManager.AppUpdateListener() {
 
 `Luban`内部采用`IO`线程进行图片压缩，外部调用只需设置好结果监听即可：
 
-```java
+```
 Luban.with(this)
         .load(photos)                                   // 传人要压缩的图片列表
         .ignoreBy(100)                                  // 忽略不压缩图片的大小
@@ -588,7 +588,7 @@ Luban.with(this)
 
 同步方法请尽量避免在主线程调用以免阻塞主线程，下面以rxJava调用为例
 
-```java
+```
 Flowable.just(photos)
     .observeOn(Schedulers.io())
     .map(new Function<List<String>, List<File>>() {

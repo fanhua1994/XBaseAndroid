@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hengyi.adapter.BluetoothsAdapter;
+import com.hengyi.baseandroidcore.dialog.CustomAlertDialog;
 import com.hengyi.baseandroidcore.utils.ActivityStack;
 import com.hengyi.baseandroidcore.bluetooth.BluetoothUtils;
 import com.hengyi.baseandroidcore.weight.EaseTitleBar;
@@ -53,7 +54,7 @@ public class BluetoothActivity extends BaseActivity {
         registerReceiver();
 
 
-        bluetoothUtils.setBluetoothListener(new BluetoothUtils.BluetoothConnListener() {
+        bluetoothUtils.setBluetoothClientListener(new BluetoothUtils.BluetoothClientConnListener() {
             @Override
             public void connSuccess() {
                 toast("连接成功");
@@ -85,6 +86,7 @@ public class BluetoothActivity extends BaseActivity {
     private void registerReceiver(){
         IntentFilter filter=new IntentFilter();
         filter.addAction(BluetoothDevice.ACTION_FOUND);
+        filter.addAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED);//状态改变
         filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
         registerReceiver(mBluetoothReceiver,filter);
     }
@@ -125,6 +127,8 @@ public class BluetoothActivity extends BaseActivity {
             }else if(action.equals(BluetoothAdapter.ACTION_DISCOVERY_FINISHED)){
                 scan.setText("搜索完成");
                 scan.setEnabled(true);
+            }else if(action.equals(BluetoothDevice.ACTION_BOND_STATE_CHANGED)){
+                adapter.notifyDataSetChanged();
             }
         }
     };
@@ -137,16 +141,33 @@ public class BluetoothActivity extends BaseActivity {
 
     @OnItemClick(R.id.listview)
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        BluetoothDevice bluetoothDevice = adapter.getItem(position);
+        final BluetoothDevice bluetoothDevice = adapter.getItem(position);
+        bluetoothUtils.cancelDiscovery();
         if(bluetoothDevice.getBondState() == BluetoothDevice.BOND_NONE) {
             toast("该设备没有配对");
             boolean s = bluetoothUtils.createBond(bluetoothDevice);
-            toast("配对结果:" + s);
             adapter.notifyDataSetChanged();
         }else{
-            bluetoothUtils.cancelDiscovery();
-            toast("建立连接.");
-            bluetoothUtils.connection(bluetoothDevice);
+            CustomAlertDialog dialog = new CustomAlertDialog(this).builder();
+            dialog.setTitle("选择操作");
+            dialog.setMsg("请选择您的操作");
+            dialog.setNegativeButton("取消配对",new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    boolean res = bluetoothUtils.cancelBond(bluetoothDevice);
+                    toast("取消配对结果:" + res);
+                }
+            });
+
+            dialog.setPositiveButton("连接",new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+
+                    bluetoothUtils.connection(bluetoothDevice);
+                }
+            });
+            dialog.show();
+
         }
     }
 }
