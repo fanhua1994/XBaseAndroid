@@ -46,15 +46,19 @@ public class BluetoothActivity extends BaseActivity {
         bluetoothUtils = BluetoothUtils.getInstance(this);
         bluetoothUtils.init();
 
-        if(!bluetoothUtils.isEnabled()){
-            bluetoothUtils.openBluetooth();
-        }else{
-            bluetoothUtils.setName("iPhone 7");
-        }
         registerReceiver();
 
+        bluetoothUtils.setBluetoothClientListener(new BluetoothUtils.BluetoothConnListener() {
+            @Override
+            public void serverOpen() {
+                toast("服务器已经打开");
+            }
 
-        bluetoothUtils.setBluetoothClientListener(new BluetoothUtils.BluetoothClientConnListener() {
+            @Override
+            public void serverClose() {
+                toast("服务器关闭");
+            }
+
             @Override
             public void connSuccess() {
                 toast("连接成功");
@@ -67,10 +71,19 @@ public class BluetoothActivity extends BaseActivity {
 
             @Override
             public void connClose(boolean status, String message) {
-                toast("关闭连接：" + message);
+                toast("关闭状态:" + status + " 结果: " + message);
+            }
+
+            @Override
+            public void onReceive(byte[] data) {
+                toast("接收到数据");
+            }
+
+            @Override
+            public void onReceiveError(String message) {
+                toast("读取线程关闭,连接断开");
             }
         });
-
 
         adapter = new BluetoothsAdapter(this,bluetoothUtils.getScanBluetoothList(),R.layout.adapter_bluetooth_item);
         listView.setAdapter(adapter);
@@ -84,7 +97,7 @@ public class BluetoothActivity extends BaseActivity {
     }
 
     private void registerReceiver(){
-        IntentFilter filter=new IntentFilter();
+        IntentFilter filter = new IntentFilter();
         filter.addAction(BluetoothDevice.ACTION_FOUND);
         filter.addAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED);//状态改变
         filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
@@ -92,11 +105,11 @@ public class BluetoothActivity extends BaseActivity {
     }
 
     @Override
-    public int setContentView() {
+    public int setContentView(){
         return R.layout.activity_bluetooth;
     }
 
-    @OnClick({R.id.scan,R.id.close})
+    @OnClick({R.id.scan,R.id.close,R.id.openServer,R.id.open_bluetooth,R.id.close_bluetooth})
     public void onClicks(View view){
         switch(view.getId()){
             case R.id.scan:
@@ -110,8 +123,19 @@ public class BluetoothActivity extends BaseActivity {
             case R.id.close:
                  bluetoothUtils.close();
                 break;
-        }
 
+            case R.id.openServer:
+                bluetoothUtils.openBluetoothServer();
+                break;
+
+            case R.id.open_bluetooth:
+                bluetoothUtils.openBluetooth();
+                break;
+
+            case R.id.close_bluetooth:
+                bluetoothUtils.closeBluetooth();
+                break;
+        }
     }
 
 
@@ -121,7 +145,7 @@ public class BluetoothActivity extends BaseActivity {
         public void onReceive(Context context, Intent intent) {
             String action=intent.getAction();
             if(action.equals(BluetoothDevice.ACTION_FOUND)) {
-                BluetoothDevice device=intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+                BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                 bluetoothUtils.addScanDevice(device);
                 adapter.notifyDataSetChanged();
             }else if(action.equals(BluetoothAdapter.ACTION_DISCOVERY_FINISHED)){

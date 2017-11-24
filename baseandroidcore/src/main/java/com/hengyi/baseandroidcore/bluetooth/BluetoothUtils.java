@@ -31,13 +31,12 @@ import java.util.UUID;
  * 串口通信服务：00001101-0000-1000-8000-00805F9B34FB
  * 信息同步服务：00001104-0000-1000-8000-00805F9B34FB
  * 文件传输服务：00001106-0000-1000-8000-00805F9B34FB
+ * 网络拨号服务：00001103-0000-1000-8000-00805F9B34FB
+ *
+ * 本工具类不能同时作为服务器又作客户端
  */
 public class BluetoothUtils {
-    public enum CONNECION{
-        NONE,
-        CLIENT,
-        SERVER
-    }
+    public enum CONNECION{NONE, CLIENT, SERVER};
     // UUID，蓝牙建立链接需要的
     public UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
     private static BluetoothUtils instance = null;
@@ -45,23 +44,25 @@ public class BluetoothUtils {
     private boolean supportBluetooth = false;
     private static Context context;
     private List<BluetoothDevice> scanBluetooth = null;
-    private CONNECION connecionType = CONNECION.NONE;
+    private CONNECION mType = CONNECION.NONE;
     private boolean listenerCallback = true;
 
     //服务器
     private BluetoothServerSocket bluetoothServerSocket;
     private boolean serverThreadSwitch = false;//用于服务器的操作
     private boolean readThreadSwitch = false;//用户读取消息的线程
-    public BluetoothServerConnListener serverListener = null;
+    private ServerThread serverThread;
 
     //公用
     private BluetoothSocket bluetoothSocket;
     private OutputStream blueOutputStream;
     private InputStream blueInputStream;
+    private BluetoothConnListener blueListener = null;
+    private ReadThread readThread;
 
     //客户端
     private BluetoothDevice clientBluetoothDevice;
-    private BluetoothClientConnListener clientListener = null;
+
 
     public synchronized static BluetoothUtils getInstance(Context con){
         synchronized (BluetoothUtils.class){
@@ -88,6 +89,10 @@ public class BluetoothUtils {
         else
             supportBluetooth = true;
         MY_UUID = UUID.fromString(uuid);
+    }
+
+    public CONNECION getmType(){
+        return mType;
     }
 
 
@@ -136,12 +141,8 @@ public class BluetoothUtils {
         return supportBluetooth;
     }
 
-    public void setBluetoothClientListener(BluetoothClientConnListener bluetoothListener){
-        this.clientListener = bluetoothListener;
-    }
-
-    public void setBluetoothServerListener(BluetoothServerConnListener bluetoothServerListener){
-        this.serverListener = bluetoothServerListener;
+    public void setBluetoothClientListener(BluetoothConnListener bluetoothListener){
+        this.blueListener = bluetoothListener;
     }
 
     public BluetoothAdapter getBluetoothAdapter(){
@@ -190,9 +191,16 @@ public class BluetoothUtils {
             close();//关闭连接
             listenerCallback = true;
         }
-        ServerThread serverThread = new ServerThread();
-        serverThread.start();
-        connecionType = CONNECION.SERVER;
+        if(!serverThreadSwitch){
+            serverThreadSwitch = true;
+            serverThread = new ServerThread();
+            serverThread.start();
+            mType = CONNECION.SERVER;
+        }
+    }
+
+    public void closeBluetoothServer(){
+        close();
     }
 
     /**
@@ -297,8 +305,10 @@ public class BluetoothUtils {
                     bluetoothSocket.connect();
                     blueOutputStream = bluetoothSocket.getOutputStream();
                     blueInputStream = bluetoothSocket.getInputStream();
-                    connecionType = CONNECION.CLIENT;
+                    mType = CONNECION.CLIENT;
                     sendMessage(BluetoothType.CLIENT_CONNECTION_BLUETOOTH_SUCCESS,null,0,0);
+                    readThread = new ReadThread();
+                    readThread.start();
                 } catch (IOException e) {
                     sendMessage(BluetoothType.CLIENT_CONNECTION_BLUETOOTH_ERROR,e.getMessage(),0,0);
                 }
@@ -307,11 +317,14 @@ public class BluetoothUtils {
     }
 
     public void close(){
-        if(bluetoothSocket == null || !bluetoothSocket.isConnected()){
-            sendMessage(BluetoothType.CLIENT_BLUETOOTH_CONNECTION_NOT_OPEN,"蓝牙未连接",0,0);
-            return ;
-        }
         try{
+
+
+            if(!getBluetoothAdapter().isEnabled() || bluetoothSocket == null || !bluetoothSocket.isConnected()){
+                sendMessage( BluetoothType.CLIENT_BLUETOOTH_CONNECTION_CLOSE_ERROR,"蓝牙连接没有打开",0,0);
+                return ;
+            }
+
             if(blueOutputStream != null){
                 blueOutputStream.flush();
                 blueOutputStream.close();
@@ -322,13 +335,28 @@ public class BluetoothUtils {
                 blueInputStream = null;
             }
 
-            clientBluetoothDevice = null;
-            bluetoothSocket.close();
-            bluetoothSocket = null;
-            readThreadSwitch = false;
-            serverThreadSwitch = false;//关闭一切通信线程
-            sendMessage(BluetoothType.CLIENT_BLUETOOTH_CONNECTION_CLOSE_SUCCESS,"蓝牙连接关闭成功",0,0);
+            if( readThread != null ){
+                readThreadSwitch = false;
+                readThread.interrupt();
+                readThread = null;
+            }
 
+            if(mType == CONNECION.CLIENT){
+                clientBluetoothDevice = null;
+                bluetoothSocket.close();
+                bluetoothSocket = null;
+            }else if(mType == CONNECION.SERVER){
+                if(serverThread != null){
+                    serverThreadSwitch = false;//关闭一切通信线程
+                    serverThread.interrupt();
+                    serverThread = null;
+                }
+
+                if(bluetoothServerSocket != null)
+                    bluetoothServerSocket.close();
+                bluetoothServerSocket = null;
+            }
+            sendMessage(BluetoothType.CLIENT_BLUETOOTH_CONNECTION_CLOSE_SUCCESS,"蓝牙连接关闭成功",0,0);
         }catch(Exception e){
             sendMessage( BluetoothType.CLIENT_BLUETOOTH_CONNECTION_CLOSE_ERROR,"蓝牙连接关闭失败",0,0);
             bluetoothSocket = null;
@@ -342,47 +370,49 @@ public class BluetoothUtils {
         public void handleMessage(Message msg) {
             switch(msg.what){
                 case BluetoothType.CLIENT_CONNECTION_BLUETOOTH_SUCCESS:
-                    if(clientListener != null)
-                        clientListener.connSuccess();
+                    if(blueListener != null)
+                        blueListener.connSuccess();
                     break;
 
                 case BluetoothType.CLIENT_CONNECTION_BLUETOOTH_ERROR:
-                    if(clientListener != null) {
-                        clientListener.connError(msg.obj.toString());
+                    if(blueListener != null) {
+                        blueListener.connError(msg.obj.toString());
                     }
                     break;
 
-                case BluetoothType.CLIENT_BLUETOOTH_CONNECTION_NOT_OPEN:
-                    if(clientListener != null)
-                        clientListener.connClose(false,msg.obj.toString());
-                    break;
-
                 case BluetoothType.CLIENT_BLUETOOTH_CONNECTION_CLOSE_SUCCESS:
-                    if(clientListener != null)
-                        clientListener.connClose(true,msg.obj.toString());
+                    if(blueListener != null)
+                        blueListener.connClose(true,msg.obj.toString());
                     break;
 
                 case BluetoothType.CLIENT_BLUETOOTH_CONNECTION_CLOSE_ERROR:
-                    if(clientListener != null)
-                        clientListener.connClose(false,msg.obj.toString());
+                    if(blueListener != null)
+                        blueListener.connClose(false,msg.obj.toString());
                     break;
 
                 case BluetoothType.SERVER_BLUETOOTH_SERVER_IS_OPEN:
-                    if(serverListener != null)
-                        serverListener.serverOpen();
+                    if(blueListener != null)
+                        blueListener.serverOpen();
                     break;
 
                 case BluetoothType.SERVER_BLUETOOTH_CLIENT_CONNECTION_SUCCESS:
-                    if(serverListener != null)
-                        serverListener.connectionSuccess();
-                    break;
-                case BluetoothType.SERVER_BLUETOOTH_CLIENT_CONNECTION_CLOSE:
-                    if(serverListener != null)
-                        serverListener.connectionClose();
+                    if(blueListener != null)
+                        blueListener.connSuccess();
                     break;
                 case BluetoothType.SERVER_BLUETOOTH_CLIENT_CONNECTION_ERROR:
-                    if(serverListener != null)
-                        serverListener.connError(msg.obj.toString());
+                    if(blueListener != null)
+                        blueListener.connError(msg.obj.toString());
+                    break;
+                case BluetoothType.READ_BLUETOOTH_MESSAGE_ERROR:
+                    if(blueListener != null)
+                        blueListener.onReceiveError(msg.obj.toString());
+                    break;
+                case BluetoothType.RECEIVE_BLUETOOTH_MESSAGE:
+                    if(blueListener != null)
+                        blueListener.onReceive(msg.getData().getByteArray("data"));
+                case BluetoothType.SERVER_BLUETOOTH_SERVER_IS_CLOSE:
+                    if(blueListener != null)
+                        blueListener.serverClose();
                     break;
             }
         }
@@ -392,43 +422,54 @@ public class BluetoothUtils {
     private class ServerThread extends Thread {
         @Override
         public void run() {
-            try {
-                bluetoothServerSocket = getBluetoothAdapter().listenUsingRfcommWithServiceRecord(getBluetoothAdapter().getName(),MY_UUID);
-                LogUtils.d("server", "wait cilent connect...");
-               sendMessage(BluetoothType.SERVER_BLUETOOTH_SERVER_IS_OPEN,null,0,0);
-                bluetoothSocket = bluetoothServerSocket.accept();
-                blueInputStream = bluetoothSocket.getInputStream();
-                blueOutputStream = bluetoothSocket.getOutputStream();
-                LogUtils.d("server", "accept success !");
-                sendMessage(BluetoothType.SERVER_BLUETOOTH_CLIENT_CONNECTION_SUCCESS,null,0,0);
-            } catch (IOException e) {
-                sendMessage(BluetoothType.SERVER_BLUETOOTH_CLIENT_CONNECTION_ERROR,e.getMessage(),0,0);
+            while(serverThreadSwitch){
+                try {
+                    bluetoothServerSocket = getBluetoothAdapter().listenUsingRfcommWithServiceRecord(getBluetoothAdapter().getName(),MY_UUID);
+                    LogUtils.d("server", "wait cilent connect...");
+                    sendMessage(BluetoothType.SERVER_BLUETOOTH_SERVER_IS_OPEN,null,0,0);
+                    bluetoothSocket = bluetoothServerSocket.accept();
+                    blueInputStream = bluetoothSocket.getInputStream();
+                    blueOutputStream = bluetoothSocket.getOutputStream();
+                    LogUtils.d("server", "accept success !");
+                    readThread = new ReadThread();
+                    readThread.start();
+                    sendMessage(BluetoothType.SERVER_BLUETOOTH_CLIENT_CONNECTION_SUCCESS,null,0,0);
+                } catch (IOException e) {
+                    sendMessage(BluetoothType.SERVER_BLUETOOTH_CLIENT_CONNECTION_ERROR,e.getMessage(),0,0);
+                }
             }
+            sendMessage(BluetoothType.SERVER_BLUETOOTH_SERVER_IS_CLOSE,null,0,0);
         }
     };
 
     //开启消息接收
     private class ReadThread extends Thread{
         public void run(){
+            readThreadSwitch = true;
+            Bundle bundle = new Bundle();
             try{
-                //...
+                while(readThreadSwitch) {
+                    byte[] buf = new byte[1024];
+                    int len = -1;
+                    while ((len = blueInputStream.read(buf)) != -1) {
+                        bundle.putByteArray("data",buf);
+                        sendBundleMessage(BluetoothType.RECEIVE_BLUETOOTH_MESSAGE,null,bundle);
+                    }
+                }
             }catch(Exception e){
-
+                sendMessage(BluetoothType.READ_BLUETOOTH_MESSAGE_ERROR,e.getMessage(),0,0);
             }
         }
     };
 
-    //客户端回调接口
-    public interface BluetoothClientConnListener{
+    public interface BluetoothConnListener{
+        public void serverOpen();
+        public void serverClose();
         public void connSuccess();
         public void connError(String message);
         public void connClose(boolean status,String message);
-    }
+        public void onReceive(byte[] data);
+        public void onReceiveError(String message);
 
-    public interface BluetoothServerConnListener{
-        public void serverOpen();
-        public void connectionSuccess();
-        public void connError(String message);
-        public void connectionClose();
     }
 }

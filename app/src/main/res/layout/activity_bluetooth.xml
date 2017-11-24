@@ -14,6 +14,21 @@
         android:layout_height="50dp">
 
     </com.hengyi.baseandroidcore.weight.EaseTitleBar>
+
+    <Button
+        android:id="@+id/open_bluetooth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="打开蓝牙"
+        />
+
+    <Button
+        android:id="@+id/close_bluetooth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="关闭蓝牙"
+        />
+
     <Button
         android:id="@+id/scan"
         android:layout_width="match_parent"
@@ -26,6 +41,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="关闭连接"
+        />
+
+    <Button
+        android:id="@+id/openServer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="开启蓝牙服务器"
         />
 
 
