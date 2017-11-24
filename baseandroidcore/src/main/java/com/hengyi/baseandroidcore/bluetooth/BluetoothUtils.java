@@ -318,12 +318,13 @@ public class BluetoothUtils {
 
     public void close(){
         try{
-
-
-            if(!getBluetoothAdapter().isEnabled() || bluetoothSocket == null || !bluetoothSocket.isConnected()){
-                sendMessage( BluetoothType.CLIENT_BLUETOOTH_CONNECTION_CLOSE_ERROR,"蓝牙连接没有打开",0,0);
-                return ;
+            if(bluetoothServerSocket == null){
+                if(!getBluetoothAdapter().isEnabled() || bluetoothSocket == null || !bluetoothSocket.isConnected()){
+                    sendMessage( BluetoothType.CLIENT_BLUETOOTH_CONNECTION_CLOSE_ERROR,"蓝牙连接没有打开",0,0);
+                    return ;
+                }
             }
+            clearScanBluetoothList();
 
             if(blueOutputStream != null){
                 blueOutputStream.flush();
@@ -343,6 +344,7 @@ public class BluetoothUtils {
 
             if(mType == CONNECION.CLIENT){
                 clientBluetoothDevice = null;
+                if(bluetoothSocket != null)
                 bluetoothSocket.close();
                 bluetoothSocket = null;
             }else if(mType == CONNECION.SERVER){
@@ -438,6 +440,7 @@ public class BluetoothUtils {
                     sendMessage(BluetoothType.SERVER_BLUETOOTH_CLIENT_CONNECTION_ERROR,e.getMessage(),0,0);
                 }
             }
+            LogUtils.d("server", "server close!");
             sendMessage(BluetoothType.SERVER_BLUETOOTH_SERVER_IS_CLOSE,null,0,0);
         }
     };
