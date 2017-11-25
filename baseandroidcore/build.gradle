@@ -34,4 +34,5 @@ dependencies {
     compile 'jp.wasabeef:glide-transformations:2.0.2'
     compile 'com.github.johnkil.android-appmsg:appmsg:1.2.0'
     compile 'com.lzy.net:okgo:3.0.4'
+    compile 'org.greenrobot:eventbus:3.1.1'
 }

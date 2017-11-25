@@ -20,7 +20,11 @@ import com.hengyi.baseandroidcore.validation.Validation;
 import com.hengyi.baseandroidcore.weight.EaseTitleBar;
 import com.hengyi.db.Student;
 import com.hengyi.db.StudentDao;
+import com.hengyi.event.MessageEvent;
 import com.hengyi.validation.User;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.io.File;
 import java.sql.SQLException;
@@ -231,4 +235,9 @@ public class MainActivity extends BaseActivity {
                 break;
         }
     }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(MessageEvent event) {
+        toast(event.getString_str());
+    };
 }

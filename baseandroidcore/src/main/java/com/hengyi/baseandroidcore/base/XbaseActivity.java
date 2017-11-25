@@ -18,6 +18,8 @@ import com.hengyi.baseandroidcore.statusbar.StatusBarCompat;
 import com.hengyi.baseandroidcore.utils.ActivityStack;
 import com.hengyi.baseandroidcore.utils.NetworkUtils;
 
+import org.greenrobot.eventbus.EventBus;
+
 /**
  * Created by 繁华 on 2017/5/14.
  */
@@ -75,6 +77,18 @@ public abstract class XbaseActivity extends AppCompatActivity {
             ActivityStack.getInstance().popActivity(this);
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
     }
 
     //显示toast
