@@ -600,7 +600,7 @@ Flowable.just(photos)
     })
     .observeOn(AndroidSchedulers.mainThread())
     .subscribe();
-=======
+
 ### 通知栏工具类
 ```
 NotifacationUtils notifacation = new NotifacationUtils(this);//实例化通知栏
@@ -608,7 +608,6 @@ notifacation.createProgressNotify(R.drawable.ic_launcher,200,"正在下载中","
 notifacation.showProgressNotify(progress2,"当前下载网速" + speed);//设置进度条及文字显示
 
 //notifacation.createNotify();//创建普通通知栏
->>>>>>> 78b5ec08949e98261ba17a59eadbb07e4349cec5
 ```
 
 ### 感谢以下开源项目的支持
