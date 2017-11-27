@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "/home/fanhua/Github/BaseAndroid/pulltorefresh/build/intermediates/incremental/mergeDebugAndroidTestResources/merged.dir/values-he/values-he.xml",
+            "map": [
+                {
+                    "source": "/home/fanhua/Github/BaseAndroid/pulltorefresh/build/intermediates/bundles/debug/res/values-he/values-he.xml",
+                    "from": {
+                        "startLines": "2,3,4",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,123,190",
+                        "endColumns": "67,66,70",
+                        "endOffsets": "118,185,256"
+                    }
+                }
+            ]
+        }
+    ]
+}

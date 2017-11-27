@@ -35,5 +35,9 @@ dependencies {
     compile 'jp.wasabeef:glide-transformations:2.0.2'
     compile 'com.github.johnkil.android-appmsg:appmsg:1.2.0'
     compile 'com.lzy.net:okgo:3.0.4'
+<<<<<<< HEAD
     compile 'top.zibin:Luban:1.1.3'
+=======
+    compile 'org.greenrobot:eventbus:3.1.1'
+>>>>>>> 78b5ec08949e98261ba17a59eadbb07e4349cec5
 }
