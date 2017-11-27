@@ -544,7 +544,6 @@ appUpdateManager.setAppUpdateListener(new AppUpdateManager.AppUpdateListener() {
 11-12 05:48:46.253 9028-9028/com.hengyi.baseandroiddemo D/AppUpdateManager: 下载成功    路径如下：/storage/emulated/0/Android/data/com.hengyi.baseandroiddemo/download/XBaseAndroid_软件更新_1.0.0.1.apk
 ```
 
-<<<<<<< HEAD
 ### 图片压缩
 #### 效果与对比
 
