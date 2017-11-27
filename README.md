@@ -600,6 +600,7 @@ Flowable.just(photos)
     })
     .observeOn(AndroidSchedulers.mainThread())
     .subscribe();
+```
 
 ### 通知栏工具类
 ```
