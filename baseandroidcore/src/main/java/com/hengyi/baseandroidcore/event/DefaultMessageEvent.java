@@ -1,4 +1,4 @@
-package com.hengyi.event;
+package com.hengyi.baseandroidcore.event;
 
 import java.io.Serializable;
 
@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by fanhua on 17-11-18.
  */
 
-public class MessageEvent implements Serializable{
+public class DefaultMessageEvent implements Serializable{
     private Object obj;
     private String string_str;
 

@@ -36,7 +36,7 @@ public abstract class XbaseActivity extends AppCompatActivity {
         ActivityStack.getInstance().pushActivity(this);//将界面加入堆栈
 
         context = this;//复制上下文
-
+        EventBus.getDefault().register(this);
     }
 
     public abstract int setBaseContentView();
@@ -161,6 +161,6 @@ public abstract class XbaseActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         ActivityStack.getInstance().popActivity(this);
+        EventBus.getDefault().unregister(this);
     }
-
 }

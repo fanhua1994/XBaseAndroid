@@ -12,16 +12,8 @@ import com.hengyi.baseandroidcore.base.XbaseWebActivity;
 import com.hengyi.baseandroidcore.utils.NotifacationUtils;
 import com.hengyi.baseandroidcore.utilscode.PermissionUtils;
 import com.hengyi.baseandroidcore.weight.EaseTitleBar;
-import com.hengyi.db.Student;
-import com.hengyi.db.StudentDao;
-<<<<<<< HEAD
-=======
-import com.hengyi.event.MessageEvent;
-import com.hengyi.validation.User;
->>>>>>> 78b5ec08949e98261ba17a59eadbb07e4349cec5
 
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
+import com.hengyi.baseandroidcore.event.DefaultMessageEvent;
 
 import java.io.File;
 
@@ -132,8 +124,9 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onMessageEvent(MessageEvent event) {
-        toast(event.getString_str());
-    };
+    public void onEventMainThread(DefaultMessageEvent event) {
+        String msg = "onEventMainThread收到了消息：" + event.getString_str();
+        Log.d("harvic", msg);
+        toast(msg);
+    }
 }

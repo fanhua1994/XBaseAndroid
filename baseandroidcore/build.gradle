@@ -25,7 +25,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     
-    compile "com.android.support:design:26.0.0-alpha1"
+    compile "com.android.support:design:26.1.0"
     compile 'com.android.support:appcompat-v7:26.+'
     compile 'com.google.code.gson:gson:2.6.2'
     compile 'com.j256.ormlite:ormlite-core:4.48'
@@ -35,9 +35,6 @@ dependencies {
     compile 'jp.wasabeef:glide-transformations:2.0.2'
     compile 'com.github.johnkil.android-appmsg:appmsg:1.2.0'
     compile 'com.lzy.net:okgo:3.0.4'
-<<<<<<< HEAD
     compile 'top.zibin:Luban:1.1.3'
-=======
     compile 'org.greenrobot:eventbus:3.1.1'
->>>>>>> 78b5ec08949e98261ba17a59eadbb07e4349cec5
 }
