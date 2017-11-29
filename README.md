@@ -613,11 +613,8 @@ notifacation.showProgressNotify(progress2,"当前下载网速" + speed);//设置
 ### 事件总线
 > 只要您集成了XbaseActivity  我们会为您自动注册事件总线。您如果想要实现夸界面数据交换，请直接在接收消息界面执行以下方法即可。
 ```
-public void onEventMainThread(DefaultMessageEvent event) {
-	String msg = "onEventMainThread收到了消息：" + event.getContent();
-	Log.d("harvic", msg);
-	toast(msg);
-}
+@Subscribe(threadMode = ThreadMode.MAIN)  
+public void onMessageEvent(DefaultMessageEvent event) {/* Do something */};
 ```
 如何发送消息？
 ```
