@@ -11,8 +11,44 @@ public class DefaultMessageEvent implements Serializable{
     private Object obj;
     private int code;
     private int status;
+    private int mint;
+    private float mfloat;
+    private double mdouble;
+    private long mlong;
     private String content;
     private Map<String,Object> map;
+
+    public int getMint() {
+        return mint;
+    }
+
+    public void setMint(int mint) {
+        this.mint = mint;
+    }
+
+    public float getMfloat() {
+        return mfloat;
+    }
+
+    public void setMfloat(float mfloat) {
+        this.mfloat = mfloat;
+    }
+
+    public double getMdouble() {
+        return mdouble;
+    }
+
+    public void setMdouble(double mdouble) {
+        this.mdouble = mdouble;
+    }
+
+    public long getMlong() {
+        return mlong;
+    }
+
+    public void setMlong(long mlong) {
+        this.mlong = mlong;
+    }
 
     public Object getObj() {
         return obj;
