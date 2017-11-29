@@ -1,6 +1,6 @@
 # XBaseAndroid
 一款集成了网络请求，本地缓存，配置文件，数据库映射，权限申请，链表管理Activity，简化Activity、Service、Broadcast启动，
-万能ListView,GridView适配器、高仿IOS弹窗、倒计时/延迟执行，标题栏组件,图片显示，webview引擎，APP更新组件，APP崩溃日志组件（热更新组件暂未加入，有需要请联系）。
+万能ListView,GridView适配器、高仿IOS弹窗、倒计时/延迟执行，标题栏组件,图片显示，webview引擎，APP更新组件，APP崩溃日志组件，事件总线（热更新组件暂未加入，有需要请联系）。
 ![BaseAndroid](https://github.com/fanhua1994/BaseAndroid/blob/master/image/logo.png?raw=true)
 
 
@@ -609,6 +609,21 @@ notifacation.showProgressNotify(progress2,"当前下载网速" + speed);//设置
 
 //notifacation.createNotify();//创建普通通知栏
 ```
+
+### 事件总线
+> 只要您集成了XbaseActivity  我们会为您自动注册事件总线。您如果想要实现夸界面数据交换，请直接在接收消息界面执行以下方法即可。
+```
+public void onEventMainThread(DefaultMessageEvent event) {
+	String msg = "onEventMainThread收到了消息：" + event.getContent();
+	Log.d("harvic", msg);
+	toast(msg);
+}
+```
+如何发送消息？
+```
+EventManager.sendDefaultMessage(DefaultMessageEvent defaultMessageEvent);
+```
+DefaultMessageEvent是默认的消息类，您可以自定义消息。但默认的支持扩展数据，完全足够使用。
 
 ### 感谢以下开源项目的支持
 ```
