@@ -5,7 +5,22 @@
 
 
 # 使用方式 初始化
-> 建议使用compile project(path: ':baseandroidcore')导入项目。现将本项目下载，将baseandroidcore目录导入到as.即可。使用前请将BaseApplication加入项目  BaseActivity加入项目
+在项目gradle文件加入
+```
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        **maven { url 'https://jitpack.io' }**
+    }
+}
+```
+app下的gradle加入
+```
+dependencies {
+	compile 'com.github.fanhua1994:XBaseAndroid:1.0.0'
+}
+```
 ## 功能介绍
 
 ### XBaseActivity
