@@ -52,7 +52,6 @@ public class MainActivity extends BaseActivity {
             case R.id.requestPermission:
                 toast("request permission now!");
                 PermissionUtils.requestPermissions(this,200,new String[]{"android.permission.READ_CONTACTS"},new PermissionUtils.OnPermissionListener(){
-
                     @Override
                     public void onPermissionGranted() {
                         toast("权限申请成功");
@@ -79,7 +78,6 @@ public class MainActivity extends BaseActivity {
                 AppUpdateManager appUpdateManager = AppUpdateManager.getInstance();
                 appUpdateManager.checkUpdate(updateBean,this);
                 appUpdateManager.setAppUpdateListener(new AppUpdateManager.AppUpdateListener() {
-
 
                     @Override
                     public void downloadProgressBar(String progress, int progress2,String speed) {
@@ -123,7 +121,7 @@ public class MainActivity extends BaseActivity {
     }
 
     public void onEventMainThread(DefaultMessageEvent event) {
-        String msg = "onEventMainThread收到了消息：" + event.getString_str();
+        String msg = "onEventMainThread收到了消息：" + event.getContent();
         Log.d("harvic", msg);
         toast(msg);
     }

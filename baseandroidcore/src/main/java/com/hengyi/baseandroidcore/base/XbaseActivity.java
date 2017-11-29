@@ -2,8 +2,6 @@ package com.hengyi.baseandroidcore.base;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Process;
@@ -12,9 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.widget.Toast;
 
-import com.hengyi.baseandroidcore.R;
 import com.hengyi.baseandroidcore.dialog.CustomLoadingDialog;
-import com.hengyi.baseandroidcore.statusbar.StatusBarCompat;
 import com.hengyi.baseandroidcore.utils.ActivityStack;
 import com.hengyi.baseandroidcore.utils.NetworkUtils;
 
