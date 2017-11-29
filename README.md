@@ -11,7 +11,8 @@ allprojects {
     repositories {
         google()
         jcenter()
-        **maven { url 'https://jitpack.io' }**
+	//加入以下仓库
+        maven { url 'https://jitpack.io' }
     }
 }
 ```
