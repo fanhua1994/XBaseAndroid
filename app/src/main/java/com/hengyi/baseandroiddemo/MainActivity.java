@@ -9,11 +9,16 @@ import android.widget.Button;
 import com.hengyi.baseandroidcore.app.AppUpdateManager;
 import com.hengyi.baseandroidcore.app.UpdateBean;
 import com.hengyi.baseandroidcore.base.XbaseWebActivity;
+import com.hengyi.baseandroidcore.event.EventManager;
 import com.hengyi.baseandroidcore.utils.NotifacationUtils;
 import com.hengyi.baseandroidcore.utilscode.PermissionUtils;
 import com.hengyi.baseandroidcore.weight.EaseTitleBar;
 
 import com.hengyi.baseandroidcore.event.DefaultMessageEvent;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.io.File;
 
@@ -27,6 +32,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
      }
 
     @Override
@@ -34,9 +40,14 @@ public class MainActivity extends BaseActivity {
         return R.layout.activity_main;
     }
 
-    @OnClick({R.id.cache_admin,R.id.web,R.id.bluetooth,R.id.requestPermission,R.id.checkUpdate})
+    @OnClick({R.id.cache_admin,R.id.web,R.id.bluetooth,R.id.requestPermission,R.id.checkUpdate,R.id.post})
     public void Click(View view){
         switch(view.getId()){
+            case R.id.post:
+                DefaultMessageEvent defaultMessageEvent = new DefaultMessageEvent();
+                defaultMessageEvent.setContent("我是EventBus");
+                EventManager.sendDefaultMessage(defaultMessageEvent);
+                break;
             case R.id.cache_admin:
                 StartActivity(CacheActivity.class);
                 break;
@@ -120,9 +131,14 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-    public void onEventMainThread(DefaultMessageEvent event) {
-        String msg = "onEventMainThread收到了消息：" + event.getContent();
-        Log.d("harvic", msg);
-        toast(msg);
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(DefaultMessageEvent event) {
+        toast("收到回调:" + event.getContent());
+    };
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 }

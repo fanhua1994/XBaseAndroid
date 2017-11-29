@@ -5,7 +5,7 @@
 
 
 # 使用方式 初始化
-在项目gradle文件加入
+在项目root gradle加入
 ```
 allprojects {
     repositories {
@@ -627,7 +627,16 @@ notifacation.showProgressNotify(progress2,"当前下载网速" + speed);//设置
 ```
 
 ### 事件总线
-> 只要您集成了XbaseActivity  我们会为您自动注册事件总线。您如果想要实现夸界面数据交换，请直接在接收消息界面执行以下方法即可。
+```
+//使用时，注册就行了 
+onCreate(){
+	EventBus.getDefault().register(this);
+}
+
+//界面销毁时 反注册
+onDestroy(){
+	EventBus.getDefault().unregister(this);
+}
 ```
 @Subscribe(threadMode = ThreadMode.MAIN)  
 public void onMessageEvent(DefaultMessageEvent event) {/* Do something */};

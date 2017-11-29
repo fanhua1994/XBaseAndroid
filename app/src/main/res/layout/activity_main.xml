@@ -52,5 +52,12 @@
         android:text="检查是否有更新"
         />
 
+    <Button
+        android:id="@+id/post"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="事件总线测试"
+        />
+
 
 </LinearLayout>

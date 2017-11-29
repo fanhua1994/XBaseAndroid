@@ -30,9 +30,7 @@ public abstract class XbaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(setBaseContentView());//设置布局文件
         ActivityStack.getInstance().pushActivity(this);//将界面加入堆栈
-
         context = this;//复制上下文
-        EventBus.getDefault().register(this);
     }
 
     public abstract int setBaseContentView();
@@ -78,13 +76,11 @@ public abstract class XbaseActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        EventBus.getDefault().register(this);
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        EventBus.getDefault().unregister(this);
     }
 
     //显示toast
@@ -157,6 +153,5 @@ public abstract class XbaseActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         ActivityStack.getInstance().popActivity(this);
-        EventBus.getDefault().unregister(this);
     }
 }
