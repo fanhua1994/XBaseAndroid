@@ -30,7 +30,7 @@ public class ProjectUtils {
     public static ProjectUtils getInstance(){
         if(instance == null) {
             instance = new ProjectUtils();
-            IdCardStatus = Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
+            IdCardStatus = Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState()) || !Environment.isExternalStorageRemovable();
         }
         return instance;
     }
@@ -91,11 +91,10 @@ public class ProjectUtils {
         File dir2 = new File(this.getWorkDir() + File.separator + group_name);
         if(dir2.exists()){
             File[] files = dir2.listFiles();
-            for(File f: files){
+            for(File f : files){
                 f.delete();
             }
-            dir2.delete();
-            return true;
+            return dir2.delete();
         }else{
             return false;
         }
