@@ -3,6 +3,10 @@
 万能ListView,GridView适配器、高仿IOS弹窗、倒计时/延迟执行，标题栏组件,图片显示，webview引擎，APP更新组件，APP崩溃日志组件，事件总线（热更新组件暂未加入，有需要请联系）。
 ![BaseAndroid](https://github.com/fanhua1994/BaseAndroid/blob/master/image/logo.png?raw=true)
 
+# 版本更新
+目前最新版本是1.0.2
+[更新日志](https://github.com/fanhua1994/XBaseAndroid/blob/master/LOG.md)
+
 
 # 使用方式 初始化
 在项目root gradle加入
@@ -19,7 +23,7 @@ allprojects {
 app下的gradle加入
 ```
 dependencies {
-	compile 'com.github.fanhua1994:XBaseAndroid:1.0.0'
+	compile 'com.github.fanhua1994:XBaseAndroid:1.0.2'
 }
 ```
 ## 功能介绍
