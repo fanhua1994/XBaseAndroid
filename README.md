@@ -642,6 +642,7 @@ onDestroy(){
 	EventBus.getDefault().unregister(this);
 }
 ```
+```
 @Subscribe(threadMode = ThreadMode.MAIN)  
 public void onMessageEvent(DefaultMessageEvent event) {/* Do something */};
 ```
