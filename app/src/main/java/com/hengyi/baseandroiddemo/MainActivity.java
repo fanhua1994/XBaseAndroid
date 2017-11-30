@@ -44,7 +44,7 @@ public class MainActivity extends BaseActivity {
     public void Click(View view){
         switch(view.getId()){
             case R.id.post:
-                DefaultMessageEvent defaultMessageEvent = new DefaultMessageEvent();
+                DefaultMessageEvent defaultMessageEvent = EventManager.getDefaultMessage();
                 defaultMessageEvent.setContent("我是EventBus");
                 EventManager.sendDefaultMessage(defaultMessageEvent);
                 break;

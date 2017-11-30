@@ -51,6 +51,7 @@ public class ProjectUtils {
     }
 
     public ProjectUtils setIdCard(boolean idcard) {
+        if(getIdCardStatus())
         this.IdCardStatus = idcard;
         return this;
     }
