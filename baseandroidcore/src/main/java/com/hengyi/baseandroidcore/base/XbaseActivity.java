@@ -1,5 +1,6 @@
 package com.hengyi.baseandroidcore.base;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -10,18 +11,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.widget.Toast;
 
-import com.hengyi.baseandroidcore.dialog.CustomLoadingDialog;
+import com.hengyi.baseandroidcore.dialog.WeiboDialogUtils;
 import com.hengyi.baseandroidcore.utils.ActivityStack;
 import com.hengyi.baseandroidcore.utils.NetworkUtils;
-
-import org.greenrobot.eventbus.EventBus;
 
 /**
  * Created by 繁华 on 2017/5/14.
  */
 
 public abstract class XbaseActivity extends AppCompatActivity {
-    private CustomLoadingDialog loading = null;
+    private Dialog loadingDialog = null;
     private Context context;
     private Intent intent;
 
@@ -48,21 +47,14 @@ public abstract class XbaseActivity extends AppCompatActivity {
      * @param message
      */
     public void showLoadingDialog(String message){
-        if(loading == null){
-            loading = new CustomLoadingDialog(context,message);
-        }else{
-            loading.SetMessage(message);
-        }
-        loading.show();
+        loadingDialog = WeiboDialogUtils.createLoadingDialog(this,message);
     }
 
     /**
      * 关闭正在显示的提示
      */
     public void closeLoadingDialog(){
-        if(loading != null){
-            loading.cancel();
-        }
+        WeiboDialogUtils.closeDialog(loadingDialog);
     }
 
     @Override
