@@ -653,6 +653,7 @@ EventManager.sendDefaultMessage(DefaultMessageEvent defaultMessageEvent);
 DefaultMessageEvent是默认的消息类，您可以自定义消息。但默认的支持扩展数据，完全足够使用。
 
 ### 数字进度条
+![](https://github.com/fanhua1994/XBaseAndroid/blob/master/image/%E6%95%B0%E7%BB%84%E8%BF%9B%E5%BA%A6%E6%9D%A1.gif?raw=true)
 ```
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
