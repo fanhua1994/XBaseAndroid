@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.hengyi.baseandroidcore.dialog.WeiboDialogUtils;
 import com.hengyi.baseandroidcore.utils.ActivityStack;
+import com.hengyi.baseandroidcore.utils.ActivityUtils;
 import com.hengyi.baseandroidcore.utils.NetworkUtils;
 
 /**
@@ -22,7 +23,6 @@ import com.hengyi.baseandroidcore.utils.NetworkUtils;
 public abstract class XbaseActivity extends AppCompatActivity {
     private Dialog loadingDialog = null;
     private Context context;
-    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +40,10 @@ public abstract class XbaseActivity extends AppCompatActivity {
 
     public Context getContext(){
         return context;
+    }
+
+    public void toast(String mess){
+        ActivityUtils.toast(this,mess);
     }
 
     /**
@@ -75,71 +79,6 @@ public abstract class XbaseActivity extends AppCompatActivity {
         super.onStop();
     }
 
-    //显示toast
-    public void toast(String toast_text) {
-        Toast.makeText(context, toast_text, Toast.LENGTH_LONG).show();
-    }
-
-    //杀死进程
-    public void kill(){
-        Process.killProcess(Process.myPid());
-    }
-
-    //界面跳转 不带参数
-    public void StartActivity(Class cla) {
-        intent = null;
-        intent = new Intent(context, cla);
-        startActivity(intent);
-    }
-
-    //带自定义参数
-    public void StartActivity(Class cla, String[] names, Object... param) {
-        intent = null;
-        intent = new Intent(context, cla);
-        for (int i = 0; i < param.length; i++) {
-            if (param[i].getClass().equals(Integer.class)) {
-                intent.putExtra(names[i], (Integer) param[i]);
-            } else if (param[i].getClass().equals(String.class)) {
-                intent.putExtra(names[i], (String) param[i]);
-            } else if (param[i].getClass().equals(Boolean.class)) {
-                intent.putExtra(names[i], (Boolean) param[i]);
-            } else if (param[i].getClass().equals(Float.class)) {
-                intent.putExtra(names[i], (Float) param[i]);
-            } else if (param[i].getClass().equals(Double.class)) {
-                intent.putExtra(names[i], (Double) param[i]);
-            }
-        }
-        startActivity(intent);
-    }
-
-    //带自定义参数  带回调
-    public void StartActivity(Class cla, int result, String[] names, Object... param) {
-        intent = null;
-        intent = new Intent(context, cla);
-        for (int i = 0; i < param.length; i++) {
-            if (param[i].getClass().equals(Integer.class)) {
-                intent.putExtra(names[i], (Integer) param[i]);
-            } else if (param[i].getClass().equals(String.class)) {
-                intent.putExtra(names[i], (String) param[i]);
-            } else if (param[i].getClass().equals(Boolean.class)) {
-                intent.putExtra(names[i], (Boolean) param[i]);
-            } else if (param[i].getClass().equals(Float.class)) {
-                intent.putExtra(names[i], (Float) param[i]);
-            } else if (param[i].getClass().equals(Double.class)) {
-                intent.putExtra(names[i], (Double) param[i]);
-            }
-        }
-        startActivityForResult(intent, result);
-    }
-
-    /**
-     * 启动应用的设置
-     */
-    private void startAppSettings() {
-        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-        intent.setData(Uri.parse("package:" + getPackageName()));
-        startActivity(intent);
-    }
 
     @Override
     protected void onDestroy() {

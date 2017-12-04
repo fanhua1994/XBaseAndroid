@@ -10,6 +10,7 @@ import com.hengyi.baseandroidcore.app.AppUpdateManager;
 import com.hengyi.baseandroidcore.app.UpdateBean;
 import com.hengyi.baseandroidcore.base.XbaseWebActivity;
 import com.hengyi.baseandroidcore.event.EventManager;
+import com.hengyi.baseandroidcore.utils.ActivityUtils;
 import com.hengyi.baseandroidcore.utils.NotifacationUtils;
 import com.hengyi.baseandroidcore.utilscode.PermissionUtils;
 import com.hengyi.baseandroidcore.weight.EaseTitleBar;
@@ -51,15 +52,15 @@ public class MainActivity extends BaseActivity {
                 EventManager.sendDefaultMessage(defaultMessageEvent);
                 break;
             case R.id.cache_admin:
-                StartActivity(CacheActivity.class);
+                ActivityUtils.StartActivity(this,CacheActivity.class);
                 break;
 
             case R.id.web:
-                StartActivity(XbaseWebActivity.class,new String[]{XbaseWebActivity.WEB_URL_PARAM, XbaseWebActivity.WEB_SHOW_TITLE_BAR},"file:///android_asset/index.html",false);
+                ActivityUtils.StartActivity(this,XbaseWebActivity.class,new String[]{XbaseWebActivity.WEB_URL_PARAM, XbaseWebActivity.WEB_SHOW_TITLE_BAR},"file:///android_asset/index.html",false);
                 break;
 
             case R.id.bluetooth:
-                StartActivity(BluetoothActivity.class);
+                ActivityUtils.StartActivity(this,BluetoothActivity.class);
                 break;
 
             case R.id.requestPermission:
