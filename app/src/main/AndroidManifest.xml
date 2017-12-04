@@ -33,6 +33,7 @@
 
         <activity android:name="com.hengyi.baseandroidcore.base.XbaseWebActivity"></activity>
         <activity android:name=".BluetoothActivity"></activity>
+        <activity android:name=".ProgressActivity"></activity>
 
     </application>
 

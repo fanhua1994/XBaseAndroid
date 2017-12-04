@@ -177,10 +177,10 @@ PermissionUtils.requestPermissions(this,200,new String[]{"android.permission.REA
 ### 创建工作组
 > 工作组就好比我们将我们的外部储存分为很多很多目录，每个目录一个分组。文件互不影响。可以删除写入数据。目前默认的有db、cache、file分组。其他需要自定义。
 ```
-boolean isok = FileUtil.getInstance().setContext(this).setIdCard(true).setFileType(FileUtil.CACHE_FILE).createWorkGroup("mycache12");
+boolean isok = FileUtil.getInstance().setIdCard(true).setFileType(FileUtil.CACHE_FILE).createWorkGroup("mycache12");
 toast("执行结果：" + isok);
 
-//其中setContext方法必须调用。setIdCard setFileType可以不调用。默认是自定义分组模式，外部储存有优先。
+//setIdCard setFileType可以不调用。默认是自定义分组模式，外部储存有优先。
 ```
 
 ### 本地缓存使用
@@ -652,6 +652,43 @@ EventManager.sendDefaultMessage(DefaultMessageEvent defaultMessageEvent);
 ```
 DefaultMessageEvent是默认的消息类，您可以自定义消息。但默认的支持扩展数据，完全足够使用。
 
+### 数字进度条
+```
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <com.hengyi.baseandroidcore.weight.NumberProgressBar
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/numberbar"
+        android:layout_width="wrap_content"
+        android:padding="20dp"
+        app:progress_current="0"
+        style="@style/NumberProgressBar_Default"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
+
+```
+模拟进度条 采用倒计时控件
+```
+CountDownUtils countDownUtils = new CountDownUtils(100000,1000);
+countDownUtils.start(new CountDownUtils.setOnCountDownListener() {
+    @Override
+    public void onTick(int second) {
+	numberProgressBar.setProgress(100 - second);
+    }
+
+    @Override
+    public void onFinish() {
+
+    }
+});
+```
+
 ### 感谢以下开源项目的支持
 ```
 compile 'com.google.code.gson:gson:2.6.2'
@@ -663,4 +700,5 @@ compile 'jp.wasabeef:glide-transformations:2.0.2'
 compile 'com.github.johnkil.android-appmsg:appmsg:1.2.0'
 compile 'com.lzy.net:okgo:3.0.4'
 compile 'top.zibin:Luban:1.1.3'
+https://github.com/daimajia/NumberProgressBar
 ```

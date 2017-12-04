@@ -43,7 +43,7 @@ public class MainActivity extends BaseActivity {
         return R.layout.activity_main;
     }
 
-    @OnClick({R.id.cache_admin,R.id.web,R.id.bluetooth,R.id.requestPermission,R.id.checkUpdate,R.id.post})
+    @OnClick({R.id.cache_admin,R.id.web,R.id.bluetooth,R.id.requestPermission,R.id.checkUpdate,R.id.post,R.id.progressBar})
     public void Click(View view){
         switch(view.getId()){
             case R.id.post:
@@ -130,6 +130,10 @@ public class MainActivity extends BaseActivity {
                         Log.d("AppUpdateManager","没有更新");
                     }
                 });
+                break;
+
+            case R.id.progressBar:
+                ActivityUtils.StartActivity(this,ProgressActivity.class);
                 break;
         }
     }
