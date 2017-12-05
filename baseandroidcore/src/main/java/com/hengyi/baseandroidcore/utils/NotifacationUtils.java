@@ -8,8 +8,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 
-import com.hengyi.baseandroidcore.R;
-
 public class NotifacationUtils {
 	private Context context;
 	private NotificationManager mNotificationManager;

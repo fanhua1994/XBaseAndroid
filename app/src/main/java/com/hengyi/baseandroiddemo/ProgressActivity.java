@@ -14,6 +14,8 @@ import butterknife.BindView;
 public class ProgressActivity extends BaseActivity {
     @BindView(R.id.numberbar)NumberProgressBar numberProgressBar;
 
+    private  CountDownUtils countDownUtils;
+
     @Override
     public int setContentView() {
         return R.layout.activity_progress;
@@ -22,7 +24,7 @@ public class ProgressActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        CountDownUtils countDownUtils = new CountDownUtils(100000,1000);
+        countDownUtils = new CountDownUtils(100000,1000);
         countDownUtils.start(new CountDownUtils.setOnCountDownListener() {
             @Override
             public void onTick(int second) {
@@ -34,5 +36,11 @@ public class ProgressActivity extends BaseActivity {
 
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        countDownUtils.stop();
     }
 }

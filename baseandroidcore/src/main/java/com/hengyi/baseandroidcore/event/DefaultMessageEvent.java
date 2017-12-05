@@ -12,11 +12,20 @@ public class DefaultMessageEvent implements Serializable{
     private int code;
     private int status;
     private int mint;
+    private int type;
     private float mfloat;
     private double mdouble;
     private long mlong;
     private String content;
     private Map<String,Object> map;
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
 
     public int getMint() {
         return mint;
