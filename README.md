@@ -714,6 +714,21 @@ ClipboardUtils.getInstance().setListener(Context context,ClipboardManager.OnPrim
 boolean status = NetworkUtils.isNetworkConnected(Context context);
 ```
 
+### JSON字符串转对象
+源码如下：
+```
+public static <T> T parseJsonWithGson(String jsonData, Class<T> type) {
+	if(gson == null)
+	    gson = new Gson();
+	T result = gson.fromJson(jsonData, type);
+	return result;
+}
+```
+使用如下：
+```
+User users = GsonUtils.parseJsonWithGson("{\"id\":1,\"name\":\"董志平\"}",User.class);
+```
+
 ### 感谢以下开源项目的支持
 ```
 compile 'com.google.code.gson:gson:2.6.2'
