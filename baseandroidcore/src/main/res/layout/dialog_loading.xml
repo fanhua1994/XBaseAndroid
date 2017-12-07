@@ -8,7 +8,7 @@
 
     <LinearLayout
         android:layout_width="150dp"
-        android:layout_height="110dp"
+        android:layout_height="90dp"
         android:background="@drawable/loading_bg"
         android:gravity="center"
         android:orientation="vertical"
@@ -35,5 +35,4 @@
             android:textColor="#f0f0f0"
             android:textSize="15sp" />
     </LinearLayout>
-
 </LinearLayout>
