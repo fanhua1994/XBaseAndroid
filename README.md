@@ -697,6 +697,11 @@ ClipboardUtils.getInstance().paste(Context context)//黏贴
 ClipboardUtils.getInstance().setListener(Context context,ClipboardManager.OnPrimaryClipChangedListener m_listener);
 ```
 
+### 网络监测
+```
+boolean status = NetworkUtils.isNetworkConnected(Context context);
+```
+
 ### 感谢以下开源项目的支持
 ```
 compile 'com.google.code.gson:gson:2.6.2'
