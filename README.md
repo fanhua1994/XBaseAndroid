@@ -650,7 +650,19 @@ public void onMessageEvent(DefaultMessageEvent event) {/* Do something */};
 ```
 EventManager.sendDefaultMessage(DefaultMessageEvent defaultMessageEvent);
 ```
-DefaultMessageEvent是默认的消息类，您可以自定义消息。但默认的支持扩展数据，完全足够使用。
+DefaultMessageEvent是默认的消息类，您可以自定义消息。但默认的支持扩展数据，完全足够使用。DefaultMessageEvent支持以下的数据格式。
+```
+private Object obj;//传输对象
+private int code;//传输数字
+private int status;
+private int mint;
+private int type;
+private float mfloat;//传输单精度数字
+private double mdouble;//传输双精度数字
+private long mlong;//传输长整型
+private String content;//传输字符串
+private Map<String,Object> map;//扩展包
+```
 
 ### 数字进度条
 ![](https://github.com/fanhua1994/XBaseAndroid/blob/master/image/%E6%95%B0%E7%BB%84%E8%BF%9B%E5%BA%A6%E6%9D%A1.gif?raw=true)
