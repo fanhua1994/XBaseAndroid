@@ -2,9 +2,8 @@ package com.hengyi.baseandroiddemo;
 
 import android.os.Bundle;
 
-import com.hengyi.baseandroidcore.utils.CountDownUtils;
+import com.hengyi.baseandroidcore.utils.CountdownUtils;
 import com.hengyi.baseandroidcore.weight.NumberProgressBar;
-
 import butterknife.BindView;
 
 /**
@@ -14,7 +13,7 @@ import butterknife.BindView;
 public class ProgressActivity extends BaseActivity {
     @BindView(R.id.numberbar)NumberProgressBar numberProgressBar;
 
-    private  CountDownUtils countDownUtils;
+    private CountdownUtils countdownUtils;
 
     @Override
     public int setContentView() {
@@ -24,8 +23,9 @@ public class ProgressActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        countDownUtils = new CountDownUtils(100000,1000);
-        countDownUtils.start(new CountDownUtils.setOnCountDownListener() {
+        countdownUtils = CountdownUtils.getInstance();
+        countdownUtils.start(100000,1000);
+        countdownUtils.setCountdownListener(new CountdownUtils.setOnCountDownListener() {
             @Override
             public void onTick(int second) {
                 numberProgressBar.setProgress(100 - second);
@@ -41,6 +41,6 @@ public class ProgressActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        countDownUtils.stop();
+        countdownUtils.stop();
     }
 }

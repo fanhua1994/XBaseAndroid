@@ -7,13 +7,23 @@ import android.os.CountDownTimer;
  * 倒计时工具类
  */
 
-public class CountDownUtils {
+public class CountdownUtils {
+    private static CountdownUtils instance = null;
     private setOnCountDownListener listener = null;
     private CountDownTimer timer = null;
 
-    public CountDownUtils(int CountSecond, int IntervalSecond){
-        timer = new CountDownTimer(CountSecond,IntervalSecond){
+    public static synchronized  CountdownUtils getInstance(){
+        if(instance == null){
+            synchronized (CountdownUtils.class){
+                if(instance == null)
+                    instance = new CountdownUtils();
+            }
+        }
+        return  instance;
+    }
 
+    public void start(int CountSecond, int IntervalSecond){
+        timer = new CountDownTimer(CountSecond,IntervalSecond){
             @Override
             public void onTick(long millisUntilFinished) {
                 if(listener != null)
@@ -26,11 +36,12 @@ public class CountDownUtils {
                 listener.onFinish();
             }
         };
+        timer.start();
+
     }
 
-    public void start(setOnCountDownListener listener){
+    public void setCountdownListener(setOnCountDownListener listener){
         this.listener = listener;
-        timer.start();
     }
 
     public void stop(){

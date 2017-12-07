@@ -135,18 +135,18 @@ closeLoadingDialog();
 
 ### 倒计时控件
 ```
-CountDownUtil cd = new CountDownUtil(5000,1000);
-cd.start(new CountDownUtil.setOnCountDownListener() {
-	@Override
-	public void onTick(int second) {
+countdownUtils = CountdownUtils.getInstance();
+countdownUtils.start(100000,1000);
+countdownUtils.setCountdownListener(new CountdownUtils.setOnCountDownListener() {
+    @Override
+    public void onTick(int second) {
+	numberProgressBar.setProgress(100 - second);
+    }
 
-	}
+    @Override
+    public void onFinish() {
 
-	@Override
-	public void onFinish() {
-		ActivityStack.getInstance().clearAllActivity();
-		kill();
-	}
+    }
 });
 ```
 
