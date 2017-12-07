@@ -2,10 +2,9 @@ package com.hengyi.baseandroidcore.app;
 
 import android.content.Context;
 import android.view.View;
-import android.widget.Toast;
 
 import com.hengyi.baseandroidcore.R;
-import com.hengyi.baseandroidcore.base.XbaseApplication;
+import com.hengyi.baseandroidcore.base.XBaseApplication;
 import com.hengyi.baseandroidcore.dialog.CustomAlertDialog;
 import com.hengyi.baseandroidcore.utils.ProjectUtils;
 import com.hengyi.baseandroidcore.utils.VersionUtils;
@@ -132,7 +131,7 @@ public class AppUpdateManager {
     }
 
     public void checkUpdate(final UpdateBean updateBean, final Context context){
-         boolean haveUpdate = !VersionUtils.getAppVersion(XbaseApplication.getApplication(),"1.0.0.0").equals(updateBean.getNew_version());
+         boolean haveUpdate = !VersionUtils.getAppVersion(XBaseApplication.getApplication(),"1.0.0.0").equals(updateBean.getNew_version());
         if(haveUpdate){
             StringBuffer desc = new StringBuffer();
             desc.append(context.getString(R.string.app_update_manager_veriosn_str));

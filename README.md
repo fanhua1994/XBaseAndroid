@@ -31,7 +31,7 @@ dependencies {
 ## 1.初始化Application
 ```
 <application
-android:name="com.hengyi.baseandroidcore.base.XbaseApplication"
+android:name="com.hengyi.baseandroidcore.base.XBaseApplication"
 ...
 ...
 />
@@ -44,7 +44,7 @@ package com.hengyi.baseandroiddemo;
 
 import android.os.Bundle;
 
-import com.hengyi.baseandroidcore.base.XbaseActivity;
+import com.hengyi.baseandroidcore.base.XBaseActivity;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -53,7 +53,7 @@ import butterknife.Unbinder;
  * Created by Administrator on 2017/10/10.
  */
 
-public abstract class BaseActivity extends XbaseActivity {
+public abstract class BaseActivity extends XBaseActivity {
     private Unbinder unbind = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -483,7 +483,7 @@ application节点下添加
 ```
 <provider
     android:name="android.support.v4.content.FileProvider"
-    android:authorities="com.hengyi.xbaseandroid.fileProvider"//这个请替换为你的软件包名
+    android:authorities="com.hengyi.XBaseandroid.fileProvider"//这个请替换为你的软件包名
     android:exported="false"
     android:grantUriPermissions="true">
     <meta-data
@@ -498,7 +498,7 @@ UpdateBean updateBean = new UpdateBean();
 updateBean.setDescription("今日更新了XBaseAndroid框架的更新管理器。");
 updateBean.setDownload_url("http://file.cleveriip.com:88/group2/M00/00/03/rBJbXVnlcPCATMAtAtnNwW8wwRs625.apk");
 updateBean.setForce(true);//是否强制更新 或 静默安装
-updateBean.setAuthority("com.hengyi.xbaseandroid.fileProvider");//兼容安卓7.0 安装  
+updateBean.setAuthority("com.hengyi.XBaseandroid.fileProvider");//兼容安卓7.0 安装  
 updateBean.setMd5_code("a034366c2257281060a3ee27df38a793");
 updateBean.setNew_version("1.0.0.1");
 

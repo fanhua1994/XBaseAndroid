@@ -3,7 +3,7 @@ package com.hengyi.baseandroidcore.utils;
 import android.view.LayoutInflater;
 import android.view.View;
 
-import com.hengyi.baseandroidcore.base.XbaseApplication;
+import com.hengyi.baseandroidcore.base.XBaseApplication;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -34,7 +34,7 @@ public class ViewUtils {
     }
 
     private View get(int layout_id){
-        return LayoutInflater.from(XbaseApplication.getApplication()).inflate(layout_id,null);
+        return LayoutInflater.from(XBaseApplication.getApplication()).inflate(layout_id,null);
     }
 
     //获取一个视图
@@ -44,7 +44,6 @@ public class ViewUtils {
             view = views.get(layout_id);
         }else{
             view = get(layout_id);
-
             if(views.size() <= MAX_VIEW_COUNT){
                 views.put(layout_id,view);
             }
@@ -56,7 +55,6 @@ public class ViewUtils {
     public void removeView(int layout_id){
         if(views.containsKey(layout_id)){
             View view = views.get(layout_id);
-            view = null;
             views.remove(layout_id);
         }
     }
@@ -65,6 +63,13 @@ public class ViewUtils {
         for (Map.Entry<Integer, View> entry : views.entrySet()) {
             removeView(entry.getKey());
         }
+    }
+
+
+    public <T> T findViewById(int layout_id,int weight_id,Class<T> widget){
+        View view = getView(layout_id);
+        T weight = (T)view.findViewById(weight_id);
+        return weight;
     }
 
 }

@@ -12,6 +12,7 @@ public class VersionUtils {
     /**
      * old version：1.2.0.0  老版本
      * now version：1.2.0.7  最新版本
+     * 如果old_version 更大 返回-1  new_version 更大 返回1 相等返回 0   出现错误返回-2
      */
     public static int checkVersion(String old_version,String new_version) {
         return check(parseVersion(old_version),parseVersion(new_version));

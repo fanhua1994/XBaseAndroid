@@ -10,10 +10,10 @@ import com.lzy.okgo.OkGo;
  * Created by Administrator on 2017/9/12.
  */
 
-public class XbaseApplication extends Application {
-    private static XbaseApplication application = null;
+public class XBaseApplication extends Application {
+    private static XBaseApplication application = null;
 
-    public static XbaseApplication getApplication(){
+    public static XBaseApplication getApplication(){
         return application;
     }
 
@@ -21,11 +21,9 @@ public class XbaseApplication extends Application {
     public void onCreate() {
         super.onCreate();
         application = this;
-
         Utils.init(this);
         OkGo.getInstance().init(this);
         CrashUtils.init();
-
     }
 
     @Override

@@ -2,10 +2,6 @@ package com.hengyi.baseandroiddemo;
 
 import android.os.Bundle;
 
-import com.hengyi.baseandroidcore.base.XbaseActivity;
-import com.hengyi.baseandroidcore.statusbar.StatusBarCompat;
-import com.hengyi.baseandroidcore.utils.DiskLruCacheHelper;
-
 /**
  * Created by Administrator on 2017/10/8.
  */

@@ -20,7 +20,7 @@ import com.hengyi.baseandroidcore.utils.NetworkUtils;
  * Created by 繁华 on 2017/5/14.
  */
 
-public abstract class XbaseActivity extends AppCompatActivity {
+public abstract class XBaseActivity extends AppCompatActivity {
     private Dialog loadingDialog = null;
     private Context context;
 

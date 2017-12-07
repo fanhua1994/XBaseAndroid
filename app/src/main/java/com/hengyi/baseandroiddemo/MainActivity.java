@@ -8,7 +8,7 @@ import android.widget.Button;
 
 import com.hengyi.baseandroidcore.app.AppUpdateManager;
 import com.hengyi.baseandroidcore.app.UpdateBean;
-import com.hengyi.baseandroidcore.base.XbaseWebActivity;
+import com.hengyi.baseandroidcore.base.XBaseWebActivity;
 import com.hengyi.baseandroidcore.event.EventManager;
 import com.hengyi.baseandroidcore.utils.ActivityUtils;
 import com.hengyi.baseandroidcore.utils.NotifacationUtils;
@@ -56,7 +56,7 @@ public class MainActivity extends BaseActivity {
                 break;
 
             case R.id.web:
-                ActivityUtils.StartActivity(this,XbaseWebActivity.class,new String[]{XbaseWebActivity.WEB_URL_PARAM, XbaseWebActivity.WEB_SHOW_TITLE_BAR},"file:///android_asset/index.html",false);
+                ActivityUtils.StartActivity(this,XBaseWebActivity.class,new String[]{XBaseWebActivity.WEB_URL_PARAM, XBaseWebActivity.WEB_SHOW_TITLE_BAR},"file:///android_asset/index.html",false);
                 break;
 
             case R.id.bluetooth:

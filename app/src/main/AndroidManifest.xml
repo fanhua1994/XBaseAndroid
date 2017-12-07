@@ -9,7 +9,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:name="com.hengyi.baseandroidcore.base.XbaseApplication"
+        android:name="com.hengyi.baseandroidcore.base.XBaseApplication"
         android:theme="@style/NoActionBarTheme">
 
         <provider
@@ -31,7 +31,7 @@
         </activity>
         <activity android:name=".CacheActivity"></activity>
 
-        <activity android:name="com.hengyi.baseandroidcore.base.XbaseWebActivity"></activity>
+        <activity android:name="com.hengyi.baseandroidcore.base.XBaseWebActivity"></activity>
         <activity android:name=".BluetoothActivity"></activity>
         <activity android:name=".ProgressActivity"></activity>
 
