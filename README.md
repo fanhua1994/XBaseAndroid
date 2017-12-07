@@ -211,6 +211,7 @@ config.clearConfig();
 ### 标题栏使用
 ```
 <com.hengyi.baseandroidcore.weight.EaseTitleBar
+ xmlns:app="http://schemas.android.com/apk/res-auto"
 android:layout_width="match_parent"
 app:titleBarTitle="标题栏演示"
 app:titleBarLeftImage="@drawable/icon_back"
