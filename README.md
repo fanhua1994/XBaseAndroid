@@ -8,7 +8,7 @@
 [更新日志](https://github.com/fanhua1994/XBaseAndroid/blob/master/LOG.md)
 
 
-# 使用方式 初始化
+# 引入方式
 在项目root gradle加入
 ```
 allprojects {
@@ -26,9 +26,18 @@ dependencies {
 	compile 'com.github.fanhua1994:XBaseAndroid:1.0.2'
 }
 ```
-## 功能介绍
 
-### XBaseActivity
+# 初始化框架
+## 1.初始化Application
+```
+<application
+android:name="com.hengyi.baseandroidcore.base.XbaseApplication"
+...
+...
+/>
+```
+
+## 2.继承XBaseActivity实现ButterKnife视图自动注入功能，不使用可不继承，直接使用XBaseActivity
 > 由于ButterKnife不能再lib中bind。所以必须继承XBaseActivity进行二次封装。
 ```
 package com.hengyi.baseandroiddemo;
@@ -67,7 +76,7 @@ public abstract class BaseActivity extends XbaseActivity {
 }
 
 ```
-
+## 功能介绍
 ### 弹窗
 ![](https://github.com/fanhua1994/BaseAndroid/blob/master/image/%E4%BB%BFIOS%E5%BC%B9%E5%87%BA%E6%8F%90%E7%A4%BA%E6%A1%86.png?raw=true)
 ```
