@@ -690,6 +690,13 @@ countDownUtils.start(new CountDownUtils.setOnCountDownListener() {
 });
 ```
 
+### 复制黏贴（不再兼容API 11）
+```
+ClipboardUtils.getInstance().copy(Context context,String text);//复制
+ClipboardUtils.getInstance().paste(Context context)//黏贴
+ClipboardUtils.getInstance().setListener(Context context,ClipboardManager.OnPrimaryClipChangedListener m_listener);
+```
+
 ### 感谢以下开源项目的支持
 ```
 compile 'com.google.code.gson:gson:2.6.2'

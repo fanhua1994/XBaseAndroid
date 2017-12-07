@@ -6,3 +6,4 @@
 
 ### 20171204（版本1.0.3）
 + 优化Activity启动，改为从ActivityUtils启动。
++ 新增复制黏贴工具类ClipboardUtils
