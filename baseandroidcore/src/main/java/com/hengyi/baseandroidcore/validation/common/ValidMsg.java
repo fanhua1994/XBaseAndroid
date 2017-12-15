@@ -1,4 +1,4 @@
-package com.hengyi.baseandroidcore.validation;
+package com.hengyi.baseandroidcore.validation.common;
 
 public class ValidMsg {
 	private boolean pass;

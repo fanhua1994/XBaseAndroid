@@ -38,7 +38,11 @@ android:name="com.hengyi.baseandroidcore.base.XBaseApplication"
 ```
 
 ## 2.继承XBaseActivity实现ButterKnife视图自动注入功能，不使用可不继承，直接使用XBaseActivity
-> 由于ButterKnife不能再lib中bind。所以必须继承XBaseActivity进行二次封装。
+> 由于ButterKnife不能再lib中bind。所以必须继承XBaseActivity进行二次封装。XBaseAndroid不提供视图注解，如需使用请自行引入以下库。
+```
+compile 'com.jakewharton:butterknife:8.5.1'
+annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+```
 ```
 package com.hengyi.baseandroiddemo;
 
@@ -374,99 +378,12 @@ setStatusBarColorForCollapsingToolbar(Activity activity, AppBarLayout appBarLayo
 kill();
 ```
 
-### 表单验证
-#### 创建自动校验User.java
+
 ```
-public class User {
-	
-	@Check(name="用户年龄",method= Methods.IntSize,minvalue=10,maxvalue=100)
-	private Integer age;
-	
-	@Check(name="用户性别",method=Methods.StringCheck,param = {"男","女"})
-	private String sex;
-	
-	@Check(name="用户姓名",method=Methods.StringSize,maxlength = 4,minlength = 2)
-	private String name;
-	
-	@Check(name="用户地址",method=Methods.StringSize,maxlength = 10,minlength = 2)
-	private String address;
-	
-	@Check(name="用户邮箱",method=Methods.StringType,type= Validation.MAIL_VAIL)
-	private String mail;
-	
-	@Check(name="用户身份证",method=Methods.StringRegex,regex="^\\d{17}(\\d|[A-Z])$")
-	private String idcard;
-	
-	
+### 表单校验
+[参考文档](https://github.com/fanhua1994/java_validation)
 
-	public String getIdcard() {
-		return idcard;
-	}
 
-	public void setIdcard(String idcard) {
-		this.idcard = idcard;
-	}
-
-	public Integer getAge() {
-		return age;
-	}
-
-	public void setAge(Integer age) {
-		this.age = age;
-	}
-
-	public String getSex() {
-		return sex;
-	}
-
-	public void setSex(String sex) {
-		this.sex = sex;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public String getMail() {
-		return mail;
-	}
-
-	public void setMail(String mail) {
-		this.mail = mail;
-	}
-}
-```
-#### 开始自动校验
-```
-User user = new User();
-user.setAddress("四川");
-user.setAge(90);
-user.setName("董志平");
-user.setSex("44444");
-user.setMail("dddddd.com");
-user.setIdcard("5141991013311X");
-
-ValidMsg msg = Validation.AutoVerifiy(user);
-//ValidMsg msg = Validation.StringSize(user.getName(), "用户姓名", 2, 10);//仅演示了校验长度，其他的方法请参考Method.java内部。
-
-if(msg.isPass()){
-    toast("验证通过");
-}else{
-   toast("验证失败："+msg.getMsg());
-}
-```
 > 如果您只需要接入校验模块，请参考这个地址：[https://github.com/fanhua1994/java_validation](https://github.com/fanhua1994/java_validation)
 
 ### APP更新组件（AppUpdateManager）
