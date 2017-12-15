@@ -5,7 +5,7 @@
 ![BaseAndroid](https://github.com/fanhua1994/BaseAndroid/blob/master/image/logo.png?raw=true)
 
 # 版本更新
-目前最新版本是1.0.2
+目前最新版本是1.0.3
 [更新日志](https://github.com/fanhua1994/XBaseAndroid/blob/master/LOG.md)
 
 
