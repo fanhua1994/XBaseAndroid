@@ -23,7 +23,7 @@ allprojects {
 app下的gradle加入
 ```
 dependencies {
-	compile 'com.github.fanhua1994:XBaseAndroid:1.0.2'
+	compile 'com.github.fanhua1994:XBaseAndroid:1.0.3'
 }
 ```
 
