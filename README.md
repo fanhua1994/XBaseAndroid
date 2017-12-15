@@ -379,8 +379,6 @@ setStatusBarColorForCollapsingToolbar(Activity activity, AppBarLayout appBarLayo
 kill();
 ```
 
-
-```
 ### 表单校验
 [参考文档](https://github.com/fanhua1994/java_validation)
 
