@@ -8,6 +8,10 @@
 目前最新版本是1.0.3
 [更新日志](https://github.com/fanhua1994/XBaseAndroid/blob/master/LOG.md)
 
+# 联系作者
+简书：[http://www.jianshu.com/u/50c9e5f00da3](http://www.jianshu.com/u/50c9e5f00da3)
+CSDN：[http://blog.csdn.net/dong_18383219470?viewmode=list](http://blog.csdn.net/dong_18383219470?viewmode=list)
+
 
 # 引入方式
 在项目root gradle加入
