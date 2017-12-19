@@ -12,5 +12,6 @@
 + 整改校验框架，实现更全面的校验文本。
 
 ### 20171218（版本1.0.4）【未发布】
++ ActivityUtils.kill()会销毁全部Activity并杀死进程。不用再调用ActivityStack.getInstance().clearAllActivity();方法。
 + 预计将引入下拉刷新上拉加载库
 + 引入内存泄漏检测工具
