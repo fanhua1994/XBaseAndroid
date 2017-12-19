@@ -28,7 +28,6 @@ import com.hengyi.baseandroidcore.weight.EaseTitleBar;
 /*
  * 作者：董志平
  * 名称：通用安卓web引擎
- * 配置：支持多重地址访问  支持javascript  支持文件上传   支持Session设置
  */
 public class XBaseWebActivity extends XBaseActivity {
 	public static final String WEB_SHOW_TITLE_BAR = "show_title_bar";

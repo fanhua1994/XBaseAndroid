@@ -2,14 +2,9 @@ package com.hengyi.baseandroidcore.base;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Process;
-import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
-import android.widget.Toast;
 
 import com.hengyi.baseandroidcore.dialog.WeiboDialogUtils;
 import com.hengyi.baseandroidcore.utils.ActivityStack;
