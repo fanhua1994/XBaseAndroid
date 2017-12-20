@@ -664,6 +664,91 @@ public static <T> T parseJsonWithGson(String jsonData, Class<T> type) {
 User users = GsonUtils.parseJsonWithGson("{\"id\":1,\"name\":\"董志平\"}",User.class);
 ```
 
+### ListView、GridView万能适配器
+我们编写一个Adapter
+```
+package com.zhiweism.youerplatformparent.adapter;
+
+import android.content.Context;
+import android.view.View;
+
+import com.hyphenate.chat.EMClient;
+import com.hyphenate.exceptions.HyphenateException;
+import com.zhiweism.youerplatformparent.R;
+import com.zhiweism.youerplatformparent.table.FriendApply;
+import com.zhiweism.youerplatformparent.table.FriendApplyDao;
+import com.zhiweism.youerplatformparent.utils.GeneralUtils;
+
+import java.util.List;
+
+/**
+ * Created by Administrator on 2017/12/4.
+ */
+public class FriendApplyAdapter extends CommonAdapter<FriendApply> {
+    private Context context;
+
+    public FriendApplyAdapter(Context context, List<FriendApply> data, int layout_id) {
+        super(context, data, layout_id);
+        this.context = context;
+    }
+
+    @Override
+    public void ViewHolder(CommonViewHolder holder, int position) {
+        final FriendApply friendApply = getItem(position);
+        holder.setText(R.id.tv_username,friendApply.getUsername(),null);
+        holder.setText(R.id.tv_message,friendApply.getMessage(),null);
+
+        holder.setViewListener(R.id.refuse,new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                try {
+                    EMClient.getInstance().contactManager().declineInvitation(friendApply.getUsername());
+                    data.remove(friendApply);
+                    FriendApplyDao.getInstance().remove(friendApply);
+                    notifyDataSetChanged();
+                } catch (HyphenateException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        holder.setViewListener(R.id.pass,new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                try {
+                    EMClient.getInstance().contactManager().acceptInvitation(friendApply.getUsername());
+                    data.remove(friendApply);
+                    FriendApplyDao.getInstance().remove(friendApply);
+                    notifyDataSetChanged();
+                } catch (HyphenateException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+}
+
+```
+相关方法详解，CommonViewHolder。
+
+可想而知，他是支持事件回调的。可以设置为null
+void setText(int layout_id,String text,View.OnClickListener listener);
+
+设置图片
+void setImage(int layout_id,String image_url,View.OnClickListener listener)
+
+设置原图
+ void setCircleImage(int layout_id,String image_url,View.OnClickListener listener)
+
+获取一个控件视图
+View getView(int layout_id)
+
+获取任意控件，泛型返回
+<T> T getView(int layout_id,Class<T> type)
+
+微控件设置监听单击事件
+void setViewListener(int layout_id,View.OnClickListener listener)
+
 ### 感谢以下开源项目的支持
 ```
 compile 'com.google.code.gson:gson:2.6.2'

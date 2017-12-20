@@ -44,35 +44,41 @@ public class CommonViewHolder {
 
 
     //设置文本
-    public void setText(int layout_id,String text){
+    public void setText(int layout_id,String text,View.OnClickListener listener){
         View mView = mViews.get(layout_id);
         if(mView == null) {
             mView = view.findViewById(layout_id);
             mViews.put(layout_id,mView);
         }
         TextView mTextView = (TextView) mView;
+        if(listener != null)
+            mTextView.setOnClickListener(listener);
         mTextView.setText(text);
     }
 
     //设置图片
-    public void setImage(int layout_id,String image_url){
+    public void setImage(int layout_id,String image_url,View.OnClickListener listener){
         View mView = mViews.get(layout_id);
         if(mView == null) {
             mView = view.findViewById(layout_id);
             mViews.put(layout_id,mView);
         }
         ImageView mImageView = (ImageView) mView;
+        if(listener != null)
+            mImageView.setOnClickListener(listener);
         GlideImageUtils.showImageView(context,image_url,mImageView);
     }
 
     //设置圆角图片
-    public void setCircleImage(int layout_id,String image_url){
+    public void setCircleImage(int layout_id,String image_url,View.OnClickListener listener){
         View mView = mViews.get(layout_id);
         if(mView == null) {
             mView = view.findViewById(layout_id);
             mViews.put(layout_id,mView);
         }
         ImageView mImageView = (ImageView) mView;
+        if(listener != null)
+            mImageView.setOnClickListener(listener);
         GlideImageUtils.showImageViewToCircle(context,image_url,mImageView);
     }
 
@@ -88,5 +94,22 @@ public class CommonViewHolder {
             mViews.put(layout_id,mView);
         }
         return mView;
+    }
+
+    public <T> T getView(int layout_id,Class<T> type){
+        View mView = mViews.get(layout_id);
+        if(mView == null) {
+            mView = view.findViewById(layout_id);
+            mViews.put(layout_id,mView);
+        }
+        T res = (T) mView;
+        return res;
+    }
+
+    public void setViewListener(int layout_id,View.OnClickListener listener){
+        View view = getView(layout_id);
+        if(listener != null){
+            view.setOnClickListener(listener);
+        }
     }
 }
