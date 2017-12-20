@@ -729,25 +729,36 @@ public class FriendApplyAdapter extends CommonAdapter<FriendApply> {
 }
 
 ```
-相关方法详解，CommonViewHolder。
+#### 相关方法详解，CommonViewHolder。
 
-可想而知，他是支持事件回调的。可以设置为null
+#### 可想而知，支持事件回调
+```
 void setText(int layout_id,String text,View.OnClickListener listener);
+```
 
-设置图片
+#### 设置图片
+```
 void setImage(int layout_id,String image_url,View.OnClickListener listener)
-
-设置原图
+```
+#### 设置原图
+```
  void setCircleImage(int layout_id,String image_url,View.OnClickListener listener)
+ ```
 
-获取一个控件视图
+#### 获取一个控件视图
+```
 View getView(int layout_id)
+```
 
-获取任意控件，泛型返回
+#### 获取任意控件，泛型返回
+```
 <T> T getView(int layout_id,Class<T> type)
+```
 
-微控件设置监听单击事件
+#### 控件设置监听单击事件
+```
 void setViewListener(int layout_id,View.OnClickListener listener)
+```
 
 ### 感谢以下开源项目的支持
 ```
