@@ -32,8 +32,8 @@ public class BluetoothsAdapter extends CommonAdapter<BluetoothDevice> {
     @Override
     public void ViewHolder(CommonViewHolder holder, int position) {
         BluetoothDevice bluetoothDevice = getItem(position);
-        holder.setText(R.id.name,bluetoothDevice.getName());
-        holder.setText(R.id.address,bluetoothDevice.getAddress());
-        holder.setText(R.id.status,getStatus(bluetoothDevice.getBondState()));
+        holder.setText(R.id.name,bluetoothDevice.getName(),null);
+        holder.setText(R.id.address,bluetoothDevice.getAddress(),null);
+        holder.setText(R.id.status,getStatus(bluetoothDevice.getBondState()),null);
     }
 }
