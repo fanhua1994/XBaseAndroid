@@ -776,6 +776,7 @@ for(int i = 0;i < 100;i++){
 ```
 StatusBarCompat.setStatusBarColor(this, Color.parseColor(ColorUtils.changeColor(this,R.color.main_color)));
 ```
+![](https://github.com/fanhua1994/XBaseAndroid/blob/master/image/EB0196D85B484AF56FE41943CF9F757A.png?raw=true)
 ### 感谢以下开源项目的支持
 ```
 compile 'com.google.code.gson:gson:2.6.2'
