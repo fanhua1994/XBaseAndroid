@@ -767,20 +767,15 @@ for(int i = 0;i < 100;i++){
 ```
 
 ### 如何设置APP主题色
-### 1.修改string.xml
-```
-<string name="main_color">#20a7e6</string>
-```
-### 2.修改colors.xml
+修改colors.xml
 ```
 <color name="main_color">#20a7e6</color>
 ```
 
 ### 如何让状态栏颜色与主题色相同（沉浸式标题栏）
 ```
- StatusBarCompat.setStatusBarColor(this, Color.parseColor(getString(R.string.main_color)));
+StatusBarCompat.setStatusBarColor(this, Color.parseColor(ColorUtils.changeColor(this,R.color.main_color)));
 ```
-
 ### 感谢以下开源项目的支持
 ```
 compile 'com.google.code.gson:gson:2.6.2'

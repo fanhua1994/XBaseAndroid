@@ -14,6 +14,7 @@ import com.hengyi.baseandroidcore.event.EventManager;
 import com.hengyi.baseandroidcore.statusbar.StatusBarCompat;
 import com.hengyi.baseandroidcore.thread.HandlerExecutorPool;
 import com.hengyi.baseandroidcore.utils.ActivityUtils;
+import com.hengyi.baseandroidcore.utils.ColorUtils;
 import com.hengyi.baseandroidcore.utils.NotifacationUtils;
 import com.hengyi.baseandroidcore.utilscode.PermissionUtils;
 import com.hengyi.baseandroidcore.weight.EaseTitleBar;
@@ -37,7 +38,7 @@ public class MainActivity extends BaseActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        StatusBarCompat.setStatusBarColor(this, Color.parseColor(getString(R.string.main_color)));
+        StatusBarCompat.setStatusBarColor(this, Color.parseColor(ColorUtils.changeColor(this,R.color.main_color)));
         EventBus.getDefault().register(this);
      }
 
