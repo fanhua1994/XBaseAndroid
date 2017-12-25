@@ -7,7 +7,7 @@ import android.widget.BaseAdapter;
 
 import java.util.List;
 
-/**
+/** 万能适配器
  * Created by 繁华 on 2017/5/15.
  */
 
