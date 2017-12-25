@@ -364,23 +364,16 @@ toast("当前数据库版本："+DatabaseHelper.getInstance(this).getVersion() +
 
 ### 提供状态栏工具
 ```
-//set color for status bar
 StatusBarCompat.setStatusBarColor(Activity activity, int color)
-//add alpha to color
 StatusBarCompat.setStatusBarColor(Activity activity, int statusColor, int alpha)
-
-//translucent status bar
 StatusBarCompat.translucentStatusBar(activity);
-
-//should hide status bar background (default black background) when SDK >= 21
+//需要隐藏状态栏背景需要SDK版本大于21
 StatusBarCompat.translucentStatusBar(Activity activity, boolean hideStatusBarBackground);
-
 setStatusBarColorForCollapsingToolbar(Activity activity, AppBarLayout appBarLayout, CollapsingToolbarLayout collapsingToolbarLayout,Toolbar toolbar, int statusColor)
  ```
 
- 
  ### 网络请求
- > 本框架网络请求使用的是OkGo框架，文档地址如下[wiki](https://github.com/jeasonlzy/okhttp-OkGo/wiki)
+ > 本框架网络请求使用的是OkGo框架，文档地址如下[网络请求文档猛戳查看](https://github.com/jeasonlzy/okhttp-OkGo/wiki)
  
  ### 杀死当前APP进程
  ```
@@ -389,6 +382,7 @@ kill();
 ```
 
 ### 表单校验
+> 表单校验作为重要的模块，我独立出来了，需要使用的请看详解介绍咯。
 [参考文档](https://github.com/fanhua1994/java_validation)
 
 
