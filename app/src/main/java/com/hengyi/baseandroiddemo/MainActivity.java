@@ -1,6 +1,7 @@
 package com.hengyi.baseandroiddemo;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,12 +11,15 @@ import com.hengyi.baseandroidcore.app.AppUpdateManager;
 import com.hengyi.baseandroidcore.app.UpdateBean;
 import com.hengyi.baseandroidcore.base.XBaseWebActivity;
 import com.hengyi.baseandroidcore.event.EventManager;
+import com.hengyi.baseandroidcore.statusbar.StatusBarCompat;
+import com.hengyi.baseandroidcore.thread.HandlerExecutorPool;
 import com.hengyi.baseandroidcore.utils.ActivityUtils;
 import com.hengyi.baseandroidcore.utils.NotifacationUtils;
 import com.hengyi.baseandroidcore.utilscode.PermissionUtils;
 import com.hengyi.baseandroidcore.weight.EaseTitleBar;
 
 import com.hengyi.baseandroidcore.event.DefaultMessageEvent;
+import com.hengyi.runnable.LoginThread;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -26,16 +30,15 @@ import java.io.File;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity{
     @BindView(R.id.cache_admin)Button cache;
     @BindView(R.id.titleBar)EaseTitleBar easeTitleBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        StatusBarCompat.setStatusBarColor(this, Color.parseColor(getString(R.string.main_color)));
         EventBus.getDefault().register(this);
-
-        showLoadingDialog("OK");
      }
 
     @Override
@@ -43,9 +46,18 @@ public class MainActivity extends BaseActivity {
         return R.layout.activity_main;
     }
 
-    @OnClick({R.id.cache_admin,R.id.web,R.id.requestPermission,R.id.checkUpdate,R.id.post,R.id.progressBar})
+    @OnClick({R.id.thread_admin,R.id.cache_admin,R.id.web,R.id.requestPermission,R.id.checkUpdate,R.id.post,R.id.progressBar})
     public void Click(View view){
         switch(view.getId()){
+            case R.id.thread_admin:
+                //创建线程池  实际中执行的线程是比maxPoolSize少一个的。
+                HandlerExecutorPool handlerExecutorPool = HandlerExecutorPool.getInstance(5,200);
+                for(int i = 0;i < 100;i++){
+                    LoginThread loginThread = new LoginThread();
+                    Thread thread = new Thread(loginThread);
+                    handlerExecutorPool.execute(thread);
+                }
+                break;
             case R.id.post:
                 DefaultMessageEvent defaultMessageEvent = EventManager.getDefaultMessage();
                 defaultMessageEvent.setContent("我是EventBus");

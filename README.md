@@ -754,6 +754,33 @@ View getView(int layout_id)
 void setViewListener(int layout_id,View.OnClickListener listener)
 ```
 
+### 执行耗时任务，线程池使用
+我这里只讲如何的使用线程池，详细请到demo中查看。下面创建100个线程。但是同时只会创建4个新的对象。当线程池空时，去队列拿线程，直到创建的线程数量 + 1 = maxPoolSize就会停止创建。
+```
+//创建线程池  实际中执行的线程是比maxPoolSize少一个的。
+HandlerExecutorPool handlerExecutorPool = HandlerExecutorPool.getInstance(5,200);
+for(int i = 0;i < 100;i++){
+    LoginThread loginThread = new LoginThread();
+    Thread thread = new Thread(loginThread);
+    handlerExecutorPool.execute(thread);
+}
+```
+
+### 如何设置APP主题色
+### 1.修改string.xml
+```
+<string name="main_color">#20a7e6</string>
+```
+### 2.修改colors.xml
+```
+<color name="main_color">#20a7e6</color>
+```
+
+### 如何让状态栏颜色与主题色相同（沉浸式标题栏）
+```
+ StatusBarCompat.setStatusBarColor(this, Color.parseColor(getString(R.string.main_color)));
+```
+
 ### 感谢以下开源项目的支持
 ```
 compile 'com.google.code.gson:gson:2.6.2'

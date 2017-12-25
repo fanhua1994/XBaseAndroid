@@ -25,6 +25,13 @@
         />
 
     <Button
+        android:id="@+id/thread_admin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="线程池测试"
+        />
+
+    <Button
         android:id="@+id/web"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
