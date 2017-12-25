@@ -30,9 +30,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".CacheActivity"></activity>
-
         <activity android:name="com.hengyi.baseandroidcore.base.XBaseWebActivity"></activity>
-        <activity android:name=".BluetoothActivity"></activity>
         <activity android:name=".ProgressActivity"></activity>
 
     </application>

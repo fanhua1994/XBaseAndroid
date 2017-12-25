@@ -43,7 +43,7 @@ public class MainActivity extends BaseActivity {
         return R.layout.activity_main;
     }
 
-    @OnClick({R.id.cache_admin,R.id.web,R.id.bluetooth,R.id.requestPermission,R.id.checkUpdate,R.id.post,R.id.progressBar})
+    @OnClick({R.id.cache_admin,R.id.web,R.id.requestPermission,R.id.checkUpdate,R.id.post,R.id.progressBar})
     public void Click(View view){
         switch(view.getId()){
             case R.id.post:
@@ -57,10 +57,6 @@ public class MainActivity extends BaseActivity {
 
             case R.id.web:
                 ActivityUtils.StartActivity(this,XBaseWebActivity.class,new String[]{XBaseWebActivity.WEB_URL_PARAM, XBaseWebActivity.WEB_SHOW_TITLE_BAR},"file:///android_asset/index.html",false);
-                break;
-
-            case R.id.bluetooth:
-                ActivityUtils.StartActivity(this,BluetoothActivity.class);
                 break;
 
             case R.id.requestPermission:

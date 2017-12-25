@@ -32,13 +32,6 @@
         />
 
     <Button
-        android:id="@+id/bluetooth"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="打开蓝牙管理器"
-        />
-
-    <Button
         android:id="@+id/requestPermission"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
