@@ -2,6 +2,7 @@ package com.hengyi.baseandroidcore.base;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -22,7 +23,9 @@ import android.widget.ProgressBar;
 
 import com.hengyi.baseandroidcore.R;
 import com.hengyi.baseandroidcore.dialog.CustomAlertDialog;
+import com.hengyi.baseandroidcore.statusbar.StatusBarCompat;
 import com.hengyi.baseandroidcore.utils.ActivityStack;
+import com.hengyi.baseandroidcore.utils.ColorUtils;
 import com.hengyi.baseandroidcore.weight.EaseTitleBar;
 
 /*
@@ -42,6 +45,8 @@ public class XBaseWebActivity extends XBaseActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		StatusBarCompat.setStatusBarColor(this, Color.parseColor(ColorUtils.changeColor(this,R.color.main_color)));
+
 		progressBar = (ProgressBar) findViewById(R.id.progressBar);
 		swipe_container = (SwipeRefreshLayout) findViewById(R.id.swipe_container);
 		easeTitleBar = (EaseTitleBar) findViewById(R.id.titleBar);

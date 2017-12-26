@@ -69,7 +69,7 @@ public class MainActivity extends BaseActivity{
                 break;
 
             case R.id.web:
-                ActivityUtils.StartActivity(this,XBaseWebActivity.class,new String[]{XBaseWebActivity.WEB_URL_PARAM, XBaseWebActivity.WEB_SHOW_TITLE_BAR},"file:///android_asset/index.html",false);
+                ActivityUtils.StartActivity(this,XBaseWebActivity.class,new String[]{XBaseWebActivity.WEB_URL_PARAM, XBaseWebActivity.WEB_SHOW_TITLE_BAR},"file:///android_asset/index.html",true);
                 break;
 
             case R.id.requestPermission:
