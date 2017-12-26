@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 
-import com.hengyi.baseandroidcore.dialog.WeiboDialogUtils;
+import com.hengyi.baseandroidcore.dialog.CustomWeiboDialogUtils;
 import com.hengyi.baseandroidcore.utils.ActivityStack;
 import com.hengyi.baseandroidcore.utils.ActivityUtils;
 import com.hengyi.baseandroidcore.utils.NetworkUtils;
@@ -46,14 +46,14 @@ public abstract class XBaseActivity extends AppCompatActivity {
      * @param message
      */
     public void showLoadingDialog(String message){
-        loadingDialog = WeiboDialogUtils.createLoadingDialog(this,message);
+        loadingDialog = CustomWeiboDialogUtils.createLoadingDialog(this,message);
     }
 
     /**
      * 关闭正在显示的提示
      */
     public void closeLoadingDialog(){
-        WeiboDialogUtils.closeDialog(loadingDialog);
+        CustomWeiboDialogUtils.closeDialog(loadingDialog);
     }
 
     @Override

@@ -21,7 +21,7 @@ import com.hengyi.baseandroidcore.R;
  * @GitHub: https://github.com/QQ986945193
  * @CSDN博客: http://blog.csdn.net/qq_21376985
  */
-public class DefaultDialogUtils {
+public class CustomDefaultDialogUtils {
     /**
      * 显示Dialog
      * @param context  上下文

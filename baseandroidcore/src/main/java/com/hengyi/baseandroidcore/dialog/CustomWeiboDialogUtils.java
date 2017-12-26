@@ -19,7 +19,7 @@ import com.hengyi.baseandroidcore.R;
  * @CSDN博客: http://blog.csdn.net/qq_21376985
  */
 
-public class WeiboDialogUtils {
+public class CustomWeiboDialogUtils {
     public static Dialog createLoadingDialog(Context context, String msg) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View v = inflater.inflate(R.layout.dialog_loading, null);// 得到加载view
