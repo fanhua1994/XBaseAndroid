@@ -65,6 +65,7 @@ public class MainActivity extends BaseActivity{
                     Thread thread = new Thread(loginThread);
                     handlerExecutorPool.execute(thread);
                 }
+                //handlerExecutorPool.stutdown();
                 break;
             case R.id.post:
                 DefaultMessageEvent defaultMessageEvent = EventManager.getDefaultMessage();

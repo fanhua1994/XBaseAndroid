@@ -765,6 +765,10 @@ for(int i = 0;i < 100;i++){
     handlerExecutorPool.execute(thread);
 }
 ```
+//关闭线程池
+```
+handlerExecutorPool.stutdown();
+```
 
 ### 如何设置APP主题色
 修改colors.xml
