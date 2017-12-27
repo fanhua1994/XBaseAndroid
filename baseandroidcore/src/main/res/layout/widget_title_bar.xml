@@ -27,15 +27,17 @@
 
     <TextView
         android:id="@+id/title"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:gravity="center_horizontal"
         android:textColor="#ffffff"
-        android:maxLength="10"
+        android:maxEms="10"
+        android:maxLines="1"
         android:ellipsize="end"
-        android:textSize="20sp"
+        android:textSize="16sp"
         android:layout_marginTop="12dp"
-        android:text="标题"
+        android:text=""
+        android:layout_marginLeft="50dp"
         />
 
     <RelativeLayout

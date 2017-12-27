@@ -11,60 +11,30 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/titleBar"
         android:layout_width="match_parent"
-        app:titleBarTitle="标题栏演示"
+        app:titleBarTitle="XBaseAndroid"
         app:titleBarLeftImage="@drawable/icon_back"
         android:layout_height="50dp">
 
     </com.hengyi.baseandroidcore.weight.EaseTitleBar>
 
     <Button
-        android:id="@+id/cache_admin"
+        android:id="@+id/xbase_home"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="缓存管理"
+        android:text="打开XBaseAndroid主页"
         />
 
     <Button
-        android:id="@+id/thread_admin"
+        android:id="@+id/xbase_demo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="线程池测试"
+        android:text="打开XBaseAndroidDemo"
         />
 
     <Button
-        android:id="@+id/web"
+        android:id="@+id/xbase_csdn_blog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="打开webview组件"
+        android:text="作者CDSN博客"
         />
-
-    <Button
-        android:id="@+id/requestPermission"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="申请联系人操作权限"
-        />
-
-    <Button
-        android:id="@+id/checkUpdate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="检查是否有更新"
-        />
-
-    <Button
-        android:id="@+id/post"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="事件总线测试"
-        />
-
-    <Button
-        android:id="@+id/progressBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="进度条测试"
-        />
-
-
 </LinearLayout>

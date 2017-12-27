@@ -1,52 +1,25 @@
 package com.hengyi.baseandroiddemo;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-
-import com.hengyi.baseandroidcore.app.AppUpdateManager;
-import com.hengyi.baseandroidcore.app.UpdateBean;
 import com.hengyi.baseandroidcore.base.XBaseWebActivity;
-import com.hengyi.baseandroidcore.event.EventManager;
 import com.hengyi.baseandroidcore.statusbar.StatusBarCompat;
-import com.hengyi.baseandroidcore.thread.HandlerExecutorPool;
 import com.hengyi.baseandroidcore.utils.ActivityUtils;
 import com.hengyi.baseandroidcore.utils.ColorUtils;
-import com.hengyi.baseandroidcore.utils.NotifacationUtils;
-import com.hengyi.baseandroidcore.utils.SystemUtils;
-import com.hengyi.baseandroidcore.utilscode.PermissionUtils;
 import com.hengyi.baseandroidcore.weight.EaseTitleBar;
-
-import com.hengyi.baseandroidcore.event.DefaultMessageEvent;
-import com.hengyi.runnable.LoginThread;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
-
-import java.io.File;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity{
-    @BindView(R.id.cache_admin)Button cache;
     @BindView(R.id.titleBar)EaseTitleBar easeTitleBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        StatusBarCompat.setStatusBarColor(this, Color.parseColor(ColorUtils.changeColor(this,R.color.main_color)));
-        EventBus.getDefault().register(this);
 
-        try {
-            toast(SystemUtils.getClientID(this));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        StatusBarCompat.setStatusBarColor(this, Color.parseColor(ColorUtils.changeColor(this,R.color.main_color)));
     }
 
     @Override
@@ -54,115 +27,27 @@ public class MainActivity extends BaseActivity{
         return R.layout.activity_main;
     }
 
-    @OnClick({R.id.thread_admin,R.id.cache_admin,R.id.web,R.id.requestPermission,R.id.checkUpdate,R.id.post,R.id.progressBar})
+    @OnClick({R.id.xbase_home,R.id.xbase_demo,R.id.xbase_csdn_blog})
     public void Click(View view){
         switch(view.getId()){
-            case R.id.thread_admin:
-                //创建线程池  实际中执行的线程是比maxPoolSize少一个的。
-                HandlerExecutorPool handlerExecutorPool = HandlerExecutorPool.getInstance(5,200);
-                for(int i = 0;i < 100;i++){
-                    LoginThread loginThread = new LoginThread();
-                    Thread thread = new Thread(loginThread);
-                    handlerExecutorPool.execute(thread);
-                }
-                break;
-            case R.id.post:
-                DefaultMessageEvent defaultMessageEvent = EventManager.getDefaultMessage();
-                defaultMessageEvent.setContent("我是EventBus");
-                EventManager.sendDefaultMessage(defaultMessageEvent);
-                break;
-            case R.id.cache_admin:
-                ActivityUtils.StartActivity(this,CacheActivity.class);
+            case R.id.xbase_home:
+                ActivityUtils.StartActivity(this,XBaseWebActivity.class,new String[]{XBaseWebActivity.WEB_URL_PARAM, XBaseWebActivity.WEB_SHOW_TITLE_BAR}, "https://github.com/fanhua1994/XBaseAndroid",true);
                 break;
 
-            case R.id.web:
-                ActivityUtils.StartActivity(this,XBaseWebActivity.class,new String[]{XBaseWebActivity.WEB_URL_PARAM, XBaseWebActivity.WEB_SHOW_TITLE_BAR},XBaseWebActivity.WEB_LOCAL_PATH + "template/index.html",true);
+            case R.id.xbase_demo:
+                ActivityUtils.StartActivity(this,XBaseWebActivity.class,new String[]{XBaseWebActivity.WEB_URL_PARAM, XBaseWebActivity.WEB_SHOW_TITLE_BAR}, "https://github.com/fanhua1994/XBaseAndroidDemo",true);
                 break;
 
-            case R.id.requestPermission:
-                toast("request permission now!");
-                PermissionUtils.requestPermissions(this,200,new String[]{"android.permission.READ_CONTACTS"},new PermissionUtils.OnPermissionListener(){
-                    @Override
-                    public void onPermissionGranted() {
-                        toast("权限申请成功");
-                    }
-
-                    @Override
-                    public void onPermissionDenied(String[] deniedPermissions) {
-                        toast("权限申请失败");
-                    }
-                });
-                break;
-
-            case R.id.checkUpdate:
-                final NotifacationUtils notifacation = new NotifacationUtils(this);
-                UpdateBean updateBean = new UpdateBean();
-                updateBean.setDescription("今日更新了XBaseAndroid框架的更新管理器。");
-                updateBean.setDownload_url("http://file.cleveriip.com:88/group2/M00/00/03/rBJbXVnlcPCATMAtAtnNwW8wwRs625.apk");
-                updateBean.setForce(false);//是否强制更新 或 静默安装
-                updateBean.setAuthority("com.hengyi.xbaseandroid.fileProvider");//兼容安卓7.0 安装
-                updateBean.setMd5_code(null);
-                updateBean.setNew_version("1.0.0.1");
-
-                updateBean.setTitle("新版本来啦，立即更新吧");
-                AppUpdateManager appUpdateManager = AppUpdateManager.getInstance();
-                appUpdateManager.checkUpdate(updateBean,this);
-                appUpdateManager.setAppUpdateListener(new AppUpdateManager.AppUpdateListener() {
-
-                    @Override
-                    public void downloadProgressBar(String progress, int progress2,String speed) {
-                        notifacation.showProgressNotify(progress2,"当前下载网速" + speed);
-                        Log.d("AppUpdateManager","进度条：" + progress + "  p2:"+ progress2 +"   下载速度："  + speed);
-                    }
-
-                    @Override
-                    public void downloadSuccess(File app_path) {
-                        Log.d("AppUpdateManager","下载成功    路径如下：" + app_path.getAbsolutePath());
-                    }
-
-                    @Override
-                    public void downloadStart() {
-                        Log.d("AppUpdateManager","下载开始");
-                        notifacation.createProgressNotify(R.drawable.ic_launcher,200,"正在下载中","APP更新","App正在准备下载",new Intent());
-                    }
-
-                    @Override
-                    public void downloadError(String message) {
-                        Log.d("AppUpdateManager","下载错误");
-                    }
-
-                    @Override
-                    public void downloadFinish() {
-                        Log.d("AppUpdateManager","下载结束");
-                    }
-
-                    @Override
-                    public void cancelDownload() {
-                        Log.d("AppUpdateManager","取消下载");
-                    }
-
-                    @Override
-                    public void NoUpdate() {
-                        Log.d("AppUpdateManager","没有更新");
-                    }
-                });
-                break;
-
-            case R.id.progressBar:
-                ActivityUtils.StartActivity(this,ProgressActivity.class);
+            case R.id.xbase_csdn_blog:
+                ActivityUtils.StartActivity(this,XBaseWebActivity.class,new String[]{XBaseWebActivity.WEB_URL_PARAM, XBaseWebActivity.WEB_SHOW_TITLE_BAR}, "http://blog.csdn.net/dong_18383219470?viewmode=list",true);
                 break;
         }
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onMessageEvent(DefaultMessageEvent event) {
-        toast("收到回调:" + event.getContent());
-    };
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        EventBus.getDefault().unregister(this);
         ActivityUtils.kill();
     }
 }

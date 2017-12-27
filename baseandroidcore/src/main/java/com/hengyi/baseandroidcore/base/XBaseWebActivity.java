@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.view.KeyEvent;
@@ -54,6 +55,7 @@ public class XBaseWebActivity extends XBaseActivity {
 		linerLayout_webview = (LinearLayout) findViewById(R.id.linerLayout_webview);
 		webview = new WebView(this);
 		linerLayout_webview.addView(webview);
+
         init();
 	}
 
@@ -73,12 +75,21 @@ public class XBaseWebActivity extends XBaseActivity {
 			easeTitleBar.setVisibility(View.GONE);
 		}
 
+		swipe_container.setColorSchemeColors(getResources().getColor(R.color.main_color));
 		swipe_container.setOnRefreshListener(new OnRefreshListener() {
 			@Override
 			public void onRefresh() {
 				progressBar.setVisibility(View.VISIBLE);
 				swipe_container.setRefreshing(true);
 				webview.reload();
+			}
+		});
+
+		// 设置子视图是否允许滚动到顶部
+		swipe_container.setOnChildScrollUpCallback(new SwipeRefreshLayout.OnChildScrollUpCallback() {
+			@Override
+			public boolean canChildScrollUp(SwipeRefreshLayout parent, @Nullable View child) {
+				return webview.getScrollY() > 0;
 			}
 		});
 	}
