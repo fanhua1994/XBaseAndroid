@@ -4,6 +4,8 @@
 
 项目地址：[https://github.com/fanhua1994/XBaseAndroid](https://github.com/fanhua1994/XBaseAndroid)
 
+demo地址：[https://github.com/fanhua1994/XBaseAndroidDemo](https://github.com/fanhua1994/XBaseAndroidDemo)
+
 ![BaseAndroid](https://github.com/fanhua1994/BaseAndroid/blob/master/image/logo.png?raw=true)
 
 # 版本更新

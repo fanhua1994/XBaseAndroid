@@ -6,19 +6,14 @@ import com.j256.ormlite.table.DatabaseTable;
 /**
  * Created by Administrator on 2017/10/8.
  */
-
 @DatabaseTable
 public class Student {
-
     @DatabaseField
     private int id;
-
     @DatabaseField
     private String name;
-
     @DatabaseField
     private int age;
-
     @DatabaseField
     private int sex;
 

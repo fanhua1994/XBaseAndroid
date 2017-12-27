@@ -9,7 +9,6 @@ import butterknife.BindView;
 /**
  * Created by Administrator on 2017/12/4.
  */
-
 public class ProgressActivity extends BaseActivity {
     @BindView(R.id.numberbar)NumberProgressBar numberProgressBar;
 
