@@ -33,6 +33,7 @@ import com.hengyi.baseandroidcore.weight.EaseTitleBar;
  * 名称：通用安卓web引擎
  */
 public class XBaseWebActivity extends XBaseActivity {
+	public static final String WEB_LOCAL_PATH = "file:///android_asset/";
 	public static final String WEB_SHOW_TITLE_BAR = "show_title_bar";
 	public static final String WEB_URL_PARAM = "url";
 

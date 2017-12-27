@@ -65,7 +65,6 @@ public class MainActivity extends BaseActivity{
                     Thread thread = new Thread(loginThread);
                     handlerExecutorPool.execute(thread);
                 }
-                //handlerExecutorPool.stutdown();
                 break;
             case R.id.post:
                 DefaultMessageEvent defaultMessageEvent = EventManager.getDefaultMessage();
@@ -77,7 +76,7 @@ public class MainActivity extends BaseActivity{
                 break;
 
             case R.id.web:
-                ActivityUtils.StartActivity(this,XBaseWebActivity.class,new String[]{XBaseWebActivity.WEB_URL_PARAM, XBaseWebActivity.WEB_SHOW_TITLE_BAR},"file:///android_asset/index.html",true);
+                ActivityUtils.StartActivity(this,XBaseWebActivity.class,new String[]{XBaseWebActivity.WEB_URL_PARAM, XBaseWebActivity.WEB_SHOW_TITLE_BAR},XBaseWebActivity.WEB_LOCAL_PATH + "template/index.html",true);
                 break;
 
             case R.id.requestPermission:
