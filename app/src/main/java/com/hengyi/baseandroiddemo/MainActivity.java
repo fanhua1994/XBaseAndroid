@@ -20,6 +20,14 @@ public class MainActivity extends BaseActivity{
         super.onCreate(savedInstanceState);
 
         StatusBarCompat.setStatusBarColor(this, Color.parseColor(ColorUtils.changeColor(this,R.color.main_color)));
+
+        easeTitleBar.setLeftLayoutClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                ActivityUtils.kill();
+            }
+        });
     }
 
     @Override
@@ -27,7 +35,7 @@ public class MainActivity extends BaseActivity{
         return R.layout.activity_main;
     }
 
-    @OnClick({R.id.xbase_home,R.id.xbase_demo,R.id.xbase_csdn_blog})
+    @OnClick({R.id.xbase_jianshu_blog,R.id.xbase_home,R.id.xbase_demo,R.id.xbase_csdn_blog})
     public void Click(View view){
         switch(view.getId()){
             case R.id.xbase_home:
@@ -40,6 +48,10 @@ public class MainActivity extends BaseActivity{
 
             case R.id.xbase_csdn_blog:
                 ActivityUtils.StartActivity(this,XBaseWebActivity.class,new String[]{XBaseWebActivity.WEB_URL_PARAM, XBaseWebActivity.WEB_SHOW_TITLE_BAR}, "http://blog.csdn.net/dong_18383219470?viewmode=list",true);
+                break;
+
+            case R.id.xbase_jianshu_blog:
+                ActivityUtils.StartActivity(this,XBaseWebActivity.class,new String[]{XBaseWebActivity.WEB_URL_PARAM, XBaseWebActivity.WEB_SHOW_TITLE_BAR}, "https://www.jianshu.com/u/50c9e5f00da3",true);
                 break;
         }
     }

@@ -28,7 +28,7 @@
         android:id="@+id/xbase_demo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="打开XBaseAndroidDemo"
+        android:text="打开XBaseAndroid演示"
         />
 
     <Button
@@ -36,5 +36,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="作者CDSN博客"
+        />
+
+    <Button
+        android:id="@+id/xbase_jianshu_blog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="作者简书博客"
         />
 </LinearLayout>
