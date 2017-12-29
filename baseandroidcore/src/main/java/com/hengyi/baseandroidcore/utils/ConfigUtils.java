@@ -18,7 +18,7 @@ public class ConfigUtils {
     private static SharedPreferences.Editor edit = null;
     private static ConfigUtils instance = null;
     private static Map<String,Object> data_list = null;
-    private static String data_list_name = "data_list";
+    private static String data_list_name = "config";
 
 
     public static ConfigUtils getInstance(Context context){
@@ -31,18 +31,9 @@ public class ConfigUtils {
         return instance;
     }
 
-    public static ConfigUtils getInstance(String data_list_name_2, Context context){
-        if(instance == null){
-            sp = context.getSharedPreferences(data_list_name_2,Context.MODE_PRIVATE);
-            instance = new ConfigUtils();
-            if(data_list == null) {
-                data_list = new HashMap<String, Object>();
-            }else if(!data_list_name_2.equals(data_list_name)){
-                data_list.clear();
-                data_list_name = data_list_name_2;
-            }
-        }
-        return instance;
+    //设置配置文件的名称
+    public void setConfigName(String configName){
+        this.data_list_name = configName;
     }
 
     /*
@@ -167,11 +158,10 @@ public class ConfigUtils {
     /*
      * 清空
      */
-    public void cleardata_list(){
+    public void clearConfig(){
         if(edit == null){
             edit = sp.edit();
         }
-
         data_list.clear();
         edit.clear();
         edit.commit();
