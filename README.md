@@ -6,7 +6,7 @@
 
 demo地址：[https://github.com/fanhua1994/XBaseAndroidDemo](https://github.com/fanhua1994/XBaseAndroidDemo)
 
-文档地址：https://www.jianshu.com/nb/20489476
+文档地址：https://www.jianshu.com/nb/20489476	（正在努力更新中，要不要个Star鼓励一下）
 
 ![BaseAndroid](https://github.com/fanhua1994/BaseAndroid/blob/master/image/logo.png?raw=true)
 
