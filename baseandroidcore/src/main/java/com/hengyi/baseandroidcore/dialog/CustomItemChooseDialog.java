@@ -5,7 +5,7 @@ package com.hengyi.baseandroidcore.dialog;
  */
 
 /**
- * 暂时不展示
+ * 多项选择提示框
  */
 public class CustomItemChooseDialog {
 }

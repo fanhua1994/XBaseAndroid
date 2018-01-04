@@ -29,11 +29,9 @@ public abstract class BaseDao<T, Integer> {
     public BaseDao(Context context) {
         if (context == null) {
             throw new IllegalArgumentException("Context can't be null!");
-            //如果为空，则扔出非法参数异常
         }
         mContext = context.getApplicationContext();
         mDatabaseHelper = DatabaseHelper.getInstance(mContext);
-        //获得单例helper
     }
 
     /**

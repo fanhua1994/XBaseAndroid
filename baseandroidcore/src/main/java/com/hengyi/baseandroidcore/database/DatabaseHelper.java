@@ -29,6 +29,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         super(context, DB_NAME, null, DB_VERSION);
     }
 
+    //建议在Application里面配置
     public static void setDatabase(String db_name,int db_version){
         DB_NAME = db_name + ".db";
         DB_VERSION = db_version;
@@ -70,7 +71,6 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
                 TableUtils.dropTable(connectionSource,tables.get(i),true);
                 LogUtils.d("删除数据表：",tables.get(i).getClass().toString());
             }
-
             LogUtils.d("数据库版本","老版本："+oldVersion+":::新版本：" + newVersion);
             onCreate(database, connectionSource);
         } catch (Exception e) {
