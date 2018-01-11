@@ -4,15 +4,19 @@ package com.hengyi.baseandroidcore.utils;
  * Created by Administrator on 2017/9/27.
  */
 
-import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.pm.PackageManager;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
-import android.support.v4.app.ActivityCompat;
 import android.telephony.TelephonyManager;
+import android.util.Log;
+
+import com.hengyi.baseandroidcore.utilscode.EmptyUtils;
+import com.hengyi.baseandroidcore.utilscode.LogUtils;
 
 import java.util.Locale;
+import java.util.UUID;
 
 /**
  * 系统工具类
@@ -55,26 +59,53 @@ public class SystemUtils {
         return Build.BRAND;
     }
 
-    public static String getIMEI(Context context) throws Exception {
-        TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
-            throw new Exception("请注意申请权限");
-        }
-        String imei = tm.getImei();
-        if(imei == null){
-            throw new Exception("出现未知错误");
-        }
-
-        return imei;
+    public static String getClientID(String channel){
+        StringBuffer sb = new StringBuffer();
+        sb.append(channel);
+        sb.append(Build.SERIAL);
+        sb.append( Build.BOARD.length()%10);
+        sb.append(Build.BRAND.length()%10);
+        sb.append(Build.CPU_ABI.length()%10);
+        sb.append(Build.DEVICE.length()%10);
+        sb.append(Build.DISPLAY.length()%10);
+        sb.append(Build.HOST.length()%10);
+        sb.append(Build.ID.length()%10);
+        sb.append(Build.MANUFACTURER.length()%10);
+        sb.append(Build.MODEL.length()%10);
+        sb.append(Build.PRODUCT.length()%10);
+        sb.append(Build.TAGS.length()%10);
+        sb.append(Build.TYPE.length()%10);
+        sb.append(Build.USER.length()%10);
+        return MD5.get(sb.toString());
     }
 
+    public static String getClientID(){
+        return getClientID("xbaseandroid");
+    }
+
+    public static String getShortClientID(Context context,String channel){
+        String cid = getClientID(channel);
+        return MD5.get(cid + getUUID(context));
+    }
+
+    public static String getShortClientID(Context context){
+        String cid = getClientID("xbaseandroid");
+        return MD5.get(cid + getUUID(context));
+    }
+
+
     /**
-     * 获取唯一ID
-     * @param context
-     * @return
-     * @throws Exception
+     * 得到全局唯一UUID
      */
-    public static String getClientID(Context context) throws Exception {
-        return MD5.get(getIMEI(context));
+    public static String getUUID(Context context){
+        String system_uuid_key = "system_uuid";
+        ConfigUtils configUtils = ConfigUtils.getInstance(context);
+        configUtils.setConfigName("system-uuid");
+        String system_config_uuid =configUtils.findStringByKey(system_uuid_key);
+        if(system_config_uuid == null) {
+            String uuid = UUID.randomUUID().toString();
+            configUtils.addOrUpdateText(system_uuid_key,uuid);
+        }
+        return system_config_uuid;
     }
 }

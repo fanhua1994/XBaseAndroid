@@ -5,6 +5,7 @@ import android.app.Application;
 import com.hengyi.baseandroidcore.utilscode.CrashUtils;
 import com.hengyi.baseandroidcore.utilscode.Utils;
 import com.lzy.okgo.OkGo;
+import com.squareup.leakcanary.LeakCanary;
 
 /**
  * Created by Administrator on 2017/9/12.
@@ -24,6 +25,14 @@ public class XBaseApplication extends Application {
         Utils.init(this);
         OkGo.getInstance().init(this);
         CrashUtils.init();
+        initLeakCanary();
+    }
+
+    private void initLeakCanary(){
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            return;
+        }
+        LeakCanary.install(this);
     }
 
     @Override

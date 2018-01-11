@@ -3,10 +3,13 @@ package com.hengyi.baseandroiddemo;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
+
 import com.hengyi.baseandroidcore.base.XBaseWebActivity;
 import com.hengyi.baseandroidcore.statusbar.StatusBarCompat;
 import com.hengyi.baseandroidcore.utils.ActivityUtils;
 import com.hengyi.baseandroidcore.utils.ColorUtils;
+import com.hengyi.baseandroidcore.utils.SystemUtils;
 import com.hengyi.baseandroidcore.weight.EaseTitleBar;
 
 import butterknife.BindView;
@@ -14,6 +17,7 @@ import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity{
     @BindView(R.id.titleBar)EaseTitleBar easeTitleBar;
+    @BindView(R.id.cid)TextView cid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,12 +26,13 @@ public class MainActivity extends BaseActivity{
         StatusBarCompat.setStatusBarColor(this, Color.parseColor(ColorUtils.changeColor(this,R.color.main_color)));
 
         easeTitleBar.setLeftLayoutClickListener(new View.OnClickListener(){
-
             @Override
             public void onClick(View v) {
                 ActivityUtils.kill();
             }
         });
+
+        cid.setText("您的永久CID：" + SystemUtils.getClientID() +"\n" + "您的临时CID："+SystemUtils.getShortClientID(this)+"\n（重装失效）");
     }
 
     @Override
