@@ -92,19 +92,18 @@ public class SystemUtils {
         String cid = getClientID("xbaseandroid");
         return MD5.get(cid + getUUID(context));
     }
-
-
+    
     /**
      * 得到全局唯一UUID
      */
     public static String getUUID(Context context){
         String system_uuid_key = "system_uuid";
         ConfigUtils configUtils = ConfigUtils.getInstance(context);
-        configUtils.setConfigName("system-uuid");
+        configUtils.setConfigName(system_uuid_key);
         String system_config_uuid =configUtils.findStringByKey(system_uuid_key);
         if(system_config_uuid == null) {
-            String uuid = UUID.randomUUID().toString();
-            configUtils.addOrUpdateText(system_uuid_key,uuid);
+            system_config_uuid = UUID.randomUUID().toString();
+            configUtils.addOrUpdateText(system_uuid_key,system_config_uuid);
         }
         return system_config_uuid;
     }
