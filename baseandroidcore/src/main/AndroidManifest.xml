@@ -4,18 +4,12 @@
     <!--  网络监测 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <!-- 内存卡 -->
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.BLUETOOTH"/>
 
     <application android:allowBackup="true" android:label="@string/app_name"
         android:supportsRtl="true">
 
     </application>
-
-
-
 </manifest>

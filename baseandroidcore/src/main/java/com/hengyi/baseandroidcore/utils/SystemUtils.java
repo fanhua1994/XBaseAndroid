@@ -92,7 +92,7 @@ public class SystemUtils {
         String cid = getClientID("xbaseandroid");
         return MD5.get(cid + getUUID(context));
     }
-    
+
     /**
      * 得到全局唯一UUID
      */
