@@ -43,16 +43,18 @@ public class DiskLruCacheHelper
     private static Context con;
     private static boolean isInit = false;
 
-    public static DiskLruCacheHelper getInstance(Context context) 
+    public static synchronized DiskLruCacheHelper getInstance(Context context)
     {
-    	if(instance == null){
-    		instance = new DiskLruCacheHelper();
-    		mDiskLruCache = generateCache(context, DIR_NAME, MAX_COUNT);
-    		NOW_APP_VERSION = DiskLruCacheUtils.getAppVersionName(context);
-    		con = context;
-    	}
-    	
-    	return instance;
+        synchronized (DiskLruCacheHelper.class) {
+            if (instance == null) {
+                instance = new DiskLruCacheHelper();
+                mDiskLruCache = generateCache(context, DIR_NAME, MAX_COUNT);
+                NOW_APP_VERSION = DiskLruCacheUtils.getAppVersionName(context);
+                con = context;
+            }
+
+            return instance;
+        }
     }
 
     private static DiskLruCache generateCache(Context context, String dirName, int maxCount)

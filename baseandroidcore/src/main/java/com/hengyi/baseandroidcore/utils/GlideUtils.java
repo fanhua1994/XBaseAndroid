@@ -46,8 +46,7 @@ import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
  *
  * @author huangshuyuan
  */
-public class GlideImageUtils {
-
+public class GlideUtils {
     /**
      * (1)
      * 显示图片Imageview

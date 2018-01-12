@@ -7,6 +7,9 @@ import android.app.ActivityManager.RunningServiceInfo;
 import android.content.Context;
 import android.content.Intent;
 
+/**
+ * by繁华
+ */
 public class ServiceUtils {
 	/** 
 	 * 判断某个服务是否正在运行的方法 

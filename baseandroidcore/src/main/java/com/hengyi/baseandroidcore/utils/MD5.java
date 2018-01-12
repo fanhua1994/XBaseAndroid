@@ -14,7 +14,6 @@ import java.security.NoSuchAlgorithmException;
 
     private static String byteToArrayString(byte bByte) {
         int iRet = bByte;
-        // System.out.println("iRet="+iRet);
         if (iRet < 0) {
             iRet += 256;
         }
