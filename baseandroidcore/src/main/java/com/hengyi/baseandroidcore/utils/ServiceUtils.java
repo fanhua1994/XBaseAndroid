@@ -38,16 +38,16 @@ public class ServiceUtils {
 	}
 
 	//启动服务
-	public static void StartService(Context mContext, Service service){
+	public static void StartService(Context mContext,Class service){
 		Intent intent = null;
-		intent = new Intent(mContext,service.getClass());
+		intent = new Intent(mContext,service);
 		mContext.startService(intent);
 		ServiceStack.getInstance().pushService(service);
 	}
 
-	public static void StartService(Context mContext,Service service,String[] names, Object... param){
+	public static void StartService(Context mContext,Class service,String[] names, Object... param){
 		Intent intent = null;
-		intent = new Intent(mContext,service.getClass());
+		intent = new Intent(mContext,service);
 		for (int i = 0; i < param.length; i++) {
 			if (param[i].getClass().equals(Integer.class)) {
 				intent.putExtra(names[i], (Integer) param[i]);
@@ -65,9 +65,9 @@ public class ServiceUtils {
 		ServiceStack.getInstance().pushService(service);
 	}
 
-	public static void StopService(Context mContext,Service service){
+	public static void StopService(Context mContext,Class service){
 		Intent intent = null;
-		intent = new Intent(mContext,service.getClass());
+		intent = new Intent(mContext,service);
 		mContext.stopService(intent);
 		ServiceStack.getInstance().popService(service);
 	}

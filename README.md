@@ -16,7 +16,14 @@ demo地址：[https://github.com/fanhua1994/XBaseAndroidDemo](https://github.com
 
 引用方式：
 ```
+allprojects {
+    repositories {
+        ...
+        maven { url 'https://jitpack.io' }
+    }
+}
 ```
+compile 'com.github.fanhua1994:XBaseAndroid:1.0.5Final'
 
 # 联系作者
 简书：[http://www.jianshu.com/u/50c9e5f00da3](http://www.jianshu.com/u/50c9e5f00da3)

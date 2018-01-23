@@ -9,6 +9,7 @@ import com.hengyi.baseandroidcore.base.XBaseWebActivity;
 import com.hengyi.baseandroidcore.statusbar.StatusBarCompat;
 import com.hengyi.baseandroidcore.utils.ActivityUtils;
 import com.hengyi.baseandroidcore.utils.ColorUtils;
+import com.hengyi.baseandroidcore.utils.CommonUtils;
 import com.hengyi.baseandroidcore.utils.SystemUtils;
 import com.hengyi.baseandroidcore.weight.EaseTitleBar;
 
@@ -28,7 +29,7 @@ public class MainActivity extends BaseActivity{
         easeTitleBar.setLeftLayoutClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                ActivityUtils.kill();
+                CommonUtils.kill();
             }
         });
 
@@ -65,6 +66,6 @@ public class MainActivity extends BaseActivity{
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        ActivityUtils.kill();
+        CommonUtils.kill();
     }
 }

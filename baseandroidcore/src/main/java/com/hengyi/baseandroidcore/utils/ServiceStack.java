@@ -12,7 +12,7 @@ import java.util.Stack;
  */
 
 public class ServiceStack {
-    private static Stack<Service> mActivityStack = new Stack<Service>();
+    private static Stack<Class> mActivityStack = new Stack<Class>();
     private static ServiceStack instance = null;
 
     public static synchronized ServiceStack getInstance() {
@@ -21,28 +21,28 @@ public class ServiceStack {
         return instance;
     }
     // 弹出当前activity并销毁
-    public void popService(Service service) {
+    public void popService(Class service) {
         if (service != null) {
-            ServiceUtils.CloseService(XBaseApplication.getApplication(),service.getClass());
+            ServiceUtils.StopService(XBaseApplication.getApplication(),service);
             mActivityStack.remove(service);
         }
     }
 
     public void popService(){
         if(mActivityStack.size() != 0){
-            Service service = mActivityStack.pop();
+            Class service = mActivityStack.pop();
             popService(service);
         }
     }
 
     // 将当前Activity推入栈中
-    public void pushService(Service service) {
+    public void pushService(Class service) {
         mActivityStack.add(service);
     }
     // 退出栈中所有Activity
     public void stopAllService() {
         while (!mActivityStack.isEmpty()) {
-            Service service = mActivityStack.pop();
+            Class service = mActivityStack.pop();
             popService(service);
         }
     }

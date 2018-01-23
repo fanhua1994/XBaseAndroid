@@ -75,5 +75,4 @@ public class CommonUtils {
         ActivityStack.getInstance().clearAllActivity();
         Process.killProcess(Process.myPid());
     }
-
 }
