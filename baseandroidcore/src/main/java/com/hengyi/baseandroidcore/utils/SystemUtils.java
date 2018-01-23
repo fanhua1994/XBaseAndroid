@@ -3,17 +3,8 @@ package com.hengyi.baseandroidcore.utils;
 /**
  * Created by Administrator on 2017/9/27.
  */
-
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.net.wifi.WifiInfo;
-import android.net.wifi.WifiManager;
 import android.os.Build;
-import android.telephony.TelephonyManager;
-import android.util.Log;
-
-import com.hengyi.baseandroidcore.utilscode.EmptyUtils;
-import com.hengyi.baseandroidcore.utilscode.LogUtils;
 
 import java.util.Locale;
 import java.util.UUID;

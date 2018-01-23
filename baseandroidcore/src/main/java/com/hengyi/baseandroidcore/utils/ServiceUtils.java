@@ -15,8 +15,7 @@ public class ServiceUtils {
 	 * 判断某个服务是否正在运行的方法 
 	 *  
 	 * @param mContext 
-	 * @param serviceName 
-	 *            是包名+服务的类名（例如：net.loonggg.testbackstage.TestService） 
+	 * @param serviceName
 	 * @return true代表正在运行，false代表服务没有正在运行 
 	 */  
 	public static boolean isServiceWork(Context mContext, String serviceName) {  
