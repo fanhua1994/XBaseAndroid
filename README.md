@@ -14,6 +14,10 @@ demo地址：[https://github.com/fanhua1994/XBaseAndroidDemo](https://github.com
 目前最新版本是1.0.4
 [更新日志](https://github.com/fanhua1994/XBaseAndroid/blob/master/LOG.md)
 
+引用方式：
+```
+```
+
 # 联系作者
 简书：[http://www.jianshu.com/u/50c9e5f00da3](http://www.jianshu.com/u/50c9e5f00da3)
 
@@ -21,19 +25,4 @@ CSDN：[http://blog.csdn.net/dong_18383219470?viewmode=list](http://blog.csdn.ne
 
 # 代码提交
 > 需要提交代码的朋友请邮箱联系并附上代码即可：90fanhua@gmail.com
-
-
-
-### 感谢以下开源项目的支持
-```
-compile 'com.google.code.gson:gson:2.6.2'
-compile 'com.j256.ormlite:ormlite-core:4.48'
-compile 'com.j256.ormlite:ormlite-android:4.48'
-compile 'com.squareup.okhttp3:okhttp:3.9.0'
-compile 'com.github.bumptech.glide:glide:3.7.0'
-compile 'jp.wasabeef:glide-transformations:2.0.2'
-compile 'com.github.johnkil.android-appmsg:appmsg:1.2.0'
-compile 'com.lzy.net:okgo:3.0.4'
-compile 'top.zibin:Luban:1.1.3'
-https://github.com/daimajia/NumberProgressBar
 ```
