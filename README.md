@@ -11,7 +11,7 @@ demo地址：[https://github.com/fanhua1994/XBaseAndroidDemo](https://github.com
 ![BaseAndroid](https://github.com/fanhua1994/BaseAndroid/blob/master/image/logo.png?raw=true)
 
 # 版本更新
-目前最新版本是1.0.4
+目前最新版本是1.0.6
 [更新日志](https://github.com/fanhua1994/XBaseAndroid/blob/master/LOG.md)
 
 引用方式：
