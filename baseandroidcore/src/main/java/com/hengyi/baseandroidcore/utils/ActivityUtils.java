@@ -17,13 +17,7 @@ public class ActivityUtils {
     public static void toast(Context context, String toast_text) {
         Toast.makeText(context, toast_text, Toast.LENGTH_LONG).show();
     }
-
-    //杀死进程
-    public static void kill(){
-        Process.killProcess(Process.myPid());
-        ActivityStack.getInstance().clearAllActivity();
-    }
-
+    
     //界面跳转 不带参数
     public static void StartActivity(Context context,Class cla) {
         intent = null;

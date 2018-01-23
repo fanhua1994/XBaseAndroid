@@ -4,6 +4,7 @@ import java.util.List;
 
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningServiceInfo;
+import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 
@@ -37,15 +38,16 @@ public class ServiceUtils {
 	}
 
 	//启动服务
-	public static void StartService(Context mContext,Class cla){
+	public static void StartService(Context mContext, Service service){
 		Intent intent = null;
-		intent = new Intent(mContext,cla);
+		intent = new Intent(mContext,service.getClass());
 		mContext.startService(intent);
+		ServiceStack.getInstance().pushService(service);
 	}
 
-	public static void StartService(Context mContext,Class cla,String[] names, Object... param){
+	public static void StartService(Context mContext,Service service,String[] names, Object... param){
 		Intent intent = null;
-		intent = new Intent(mContext,cla);
+		intent = new Intent(mContext,service.getClass());
 		for (int i = 0; i < param.length; i++) {
 			if (param[i].getClass().equals(Integer.class)) {
 				intent.putExtra(names[i], (Integer) param[i]);
@@ -60,12 +62,14 @@ public class ServiceUtils {
 			}
 		}
 		mContext.startService(intent);
+		ServiceStack.getInstance().pushService(service);
 	}
 
-	public static void CloseService(Context mContext,Class cla){
+	public static void StopService(Context mContext,Service service){
 		Intent intent = null;
-		intent = new Intent(mContext,cla);
+		intent = new Intent(mContext,service.getClass());
 		mContext.stopService(intent);
+		ServiceStack.getInstance().popService(service);
 	}
 	
 }

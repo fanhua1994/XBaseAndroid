@@ -22,7 +22,6 @@ public class ActivityStack {
         if (activity != null) {
             activity.finish();
             mActivityStack.remove(activity);
-            activity = null;
         }
     }
 
@@ -42,9 +41,7 @@ public class ActivityStack {
     public void clearAllActivity() {
         while (!mActivityStack.isEmpty()) {
             Activity activity = mActivityStack.pop();
-            if (activity != null) {
-                activity.finish();
-            }
+            popActivity(activity);
         }
     }
 }

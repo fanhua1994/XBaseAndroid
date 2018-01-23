@@ -1,5 +1,6 @@
 package com.hengyi.baseandroidcore.utils;
 
+import android.os.Process;
 import android.text.TextUtils;
 
 import java.io.UnsupportedEncodingException;
@@ -66,6 +67,13 @@ public class CommonUtils {
             return null;
         }
         return buff;
+    }
+
+    //杀死进程
+    public static void kill(){
+        ServiceStack.getInstance().stopAllService();
+        ActivityStack.getInstance().clearAllActivity();
+        Process.killProcess(Process.myPid());
     }
 
 }
