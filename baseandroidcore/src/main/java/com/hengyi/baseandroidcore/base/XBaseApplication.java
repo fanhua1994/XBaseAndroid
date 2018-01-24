@@ -25,14 +25,6 @@ public class XBaseApplication extends Application {
         Utils.init(this);
         OkGo.getInstance().init(this);
         CrashUtils.init();
-        initLeakCanary();
-    }
-
-    private void initLeakCanary(){
-        if (LeakCanary.isInAnalyzerProcess(this)) {
-            return;
-        }
-        LeakCanary.install(this);
     }
 
     @Override
