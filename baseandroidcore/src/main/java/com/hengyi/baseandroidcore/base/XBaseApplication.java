@@ -11,10 +11,15 @@ import com.lzy.okgo.OkGo;
  */
 
 public class XBaseApplication extends Application {
+    private static boolean stat_debug = true;
     private static XBaseApplication application = null;
 
     public static XBaseApplication getApplication(){
         return application;
+    }
+
+    public static void setDebug(boolean bug){
+        stat_debug = bug;
     }
 
     @Override
@@ -23,7 +28,8 @@ public class XBaseApplication extends Application {
         application = this;
         Utils.init(this);
         OkGo.getInstance().init(this);
-        CrashUtils.init();
+        if(!stat_debug)
+            CrashUtils.init();
     }
 
     @Override
