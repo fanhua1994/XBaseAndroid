@@ -4,6 +4,7 @@ package com.hengyi.baseandroidcore.dialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.text.InputFilter;
 import android.text.InputType;
 import android.view.Display;
 import android.view.LayoutInflater;
@@ -50,7 +51,6 @@ public class CustomConfirmDialog {
         txt_title = (TextView) view.findViewById(R.id.txt_title);
         txt_title.setVisibility(View.GONE);
         edit_msg = (EditText) view.findViewById(R.id.edit_msg);
-        //edit_msg.setVisibility(View.GONE);
         btn_neg = (Button) view.findViewById(R.id.btn_neg);
         btn_neg.setVisibility(View.GONE);
         btn_pos = (Button) view.findViewById(R.id.btn_pos);
@@ -131,8 +131,12 @@ public class CustomConfirmDialog {
         dialog.setOnKeyListener(onKeyListener);
     }
 
-    public void setInputNumber(boolean type){
-        this.inputNumber = type;
+    public void setInputNumber(){
+        edit_msg.setInputType(InputType.TYPE_CLASS_NUMBER);
+    }
+
+    public void setInputMaxLength(int length){
+        edit_msg.setFilters(new InputFilter[]{new InputFilter.LengthFilter(length)});
     }
 
     public void setCanceledOnTouchOutside(boolean b) {
@@ -186,9 +190,6 @@ public class CustomConfirmDialog {
 
     public void show() {
         setLayout();
-        if(inputNumber){
-            edit_msg.setInputType(InputType.TYPE_CLASS_NUMBER);
-        }
         dialog.show();
     }
 
