@@ -2,8 +2,8 @@ package com.hengyi.baseandroidcore.base;
 
 import android.app.Application;
 
-import com.hengyi.baseandroidcore.utilscode.CrashUtils;
-import com.hengyi.baseandroidcore.utilscode.Utils;
+import com.hengyi.baseandroidcore.utils_ext.CrashUtils;
+import com.hengyi.baseandroidcore.utils_ext.Utils;
 import com.lzy.okgo.OkGo;
 
 /**

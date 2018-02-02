@@ -3,7 +3,7 @@ package com.hengyi.baseandroidcore.event;
 import org.greenrobot.eventbus.EventBus;
 
 /**
- * Created by Administrator on 2017/11/28.
+ * Created by Fanhua on 2017/11/28.
  */
 
 public class EventManager {
