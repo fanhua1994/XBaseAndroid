@@ -14,7 +14,7 @@ import com.hengyi.baseandroidcore.R;
 /**
  * Created by Jabez on 2016/6/22.
  */
-public class ListUtility {
+public class ListUtilityUtils {
 	/**
 	 * 设置listview的空视图 当没有数据时默认显示当前视图。
 	 * @param listview

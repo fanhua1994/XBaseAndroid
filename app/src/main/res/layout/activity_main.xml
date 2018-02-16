@@ -26,6 +26,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="打开XBaseAndroid主页"
+        android:layout_margin="10dp"
         />
 
     <Button
@@ -33,6 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="打开XBaseAndroid演示"
+        android:layout_margin="10dp"
         />
 
     <Button
@@ -40,6 +42,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="作者CDSN博客"
+        android:layout_margin="10dp"
         />
 
     <Button
@@ -47,5 +50,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="作者简书博客"
+        android:layout_margin="10dp"
         />
 </LinearLayout>

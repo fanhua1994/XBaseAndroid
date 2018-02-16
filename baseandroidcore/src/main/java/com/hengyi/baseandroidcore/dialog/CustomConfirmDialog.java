@@ -139,6 +139,10 @@ public class CustomConfirmDialog {
         edit_msg.setFilters(new InputFilter[]{new InputFilter.LengthFilter(length)});
     }
 
+    public void setHintText(String text){
+        edit_msg.setHint(text);
+    }
+
     public void setCanceledOnTouchOutside(boolean b) {
         dialog.setCanceledOnTouchOutside(b);
     }
