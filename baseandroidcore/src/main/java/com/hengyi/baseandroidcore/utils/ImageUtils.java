@@ -32,7 +32,6 @@ import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
 /**
  * 网络图片的工具类
- * <p>
  * (1)ImageView设置图片（错误图片）
  * （2）ImageView设置图片---BitMap(不设置默认图)
  * （3）设置RelativeLayout
@@ -46,7 +45,27 @@ import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
  *
  * @author huangshuyuan
  */
-public class GlideUtils {
+public class ImageUtils {
+    private static ImageUtils instance = null;
+    private static int loading_image = R.drawable.image_loading_default;
+    private static int error_image = R.drawable.image_loading_error;
+
+
+    public static synchronized ImageUtils getInstance(){
+        synchronized (ImageUtils.class){
+            if(instance == null)
+                instance = new ImageUtils();
+
+
+            return instance;
+        }
+    }
+
+    public ImageUtils setImagePlaceholder(int loading, int error){
+        error_image = loading;
+        error_image = error;
+        return this;
+    }
     /**
      * (1)
      * 显示图片Imageview
@@ -55,11 +74,11 @@ public class GlideUtils {
      * @param url      图片链接
      * @param imageview 组件
      */
-    public static void showImageView(Context context,String url,ImageView imageview) {
+    public void showImageView(Context context,String url,ImageView imageview) {
         Glide.with(context).load(url)// 加载图片
-                .error(R.drawable.image_loading_error)// 设置错误图片
+                .error(error_image)// 设置错误图片
                 .crossFade()// 设置淡入淡出效果，默认300ms，可以传参
-                .placeholder(R.drawable.image_loading_default)// 设置占位图
+                .placeholder(loading_image)// 设置占位图
                 .diskCacheStrategy(DiskCacheStrategy.RESULT)// 缓存修改过的图片
                 .into(imageview);
     }
@@ -73,7 +92,7 @@ public class GlideUtils {
      * @param url
      */
 
-    public static void showImageViewGone(Context context,final ImageView imageView, String url) {
+    public void showImageViewGone(Context context,final ImageView imageView, String url) {
         Glide.with(context).load(url).asBitmap()
             .diskCacheStrategy(DiskCacheStrategy.RESULT)// 缓存修改过的图片
             .into(new SimpleTarget<Bitmap>() {
@@ -106,16 +125,15 @@ public class GlideUtils {
      * 获取到Bitmap
      *
      * @param context
-     * @param errorimg
      * @param url
      * @param bgLayout
      */
 
-    public static void showImageView(Context context, String url,final RelativeLayout bgLayout) {
-        Glide.with(context).load(url).asBitmap().error(R.drawable.image_loading_error)// 设置错误图片
+    public void showImageView(Context context, String url,final RelativeLayout bgLayout) {
+        Glide.with(context).load(url).asBitmap().error(error_image)// 设置错误图片
 
                 .diskCacheStrategy(DiskCacheStrategy.RESULT)// 缓存修改过的图片
-                .placeholder(R.drawable.image_loading_default)// 设置占位图
+                .placeholder(loading_image)// 设置占位图
                 .into(new SimpleTarget<Bitmap>() {
 
                     @SuppressLint("NewApi")
@@ -151,12 +169,12 @@ public class GlideUtils {
      * @param bgLayout
      */
 
-    public static void showImageView(Context context, String url,
+    public void showImageView(Context context, String url,
                                      final LinearLayout bgLayout) {
-        Glide.with(context).load(url).asBitmap().error(R.drawable.image_loading_error)// 设置错误图片
+        Glide.with(context).load(url).asBitmap().error(error_image)// 设置错误图片
 
                 .diskCacheStrategy(DiskCacheStrategy.RESULT)// 缓存修改过的图片
-                .placeholder(R.drawable.image_loading_default)// 设置占位图
+                .placeholder(loading_image)// 设置占位图
                 .into(new SimpleTarget<Bitmap>() {
 
                     @SuppressLint("NewApi")
@@ -192,12 +210,12 @@ public class GlideUtils {
      * @param frameBg
      */
 
-    public static void showImageView(Context context, String url,
+    public void showImageView(Context context, String url,
                                      final FrameLayout frameBg) {
-        Glide.with(context).load(url).asBitmap().error(R.drawable.image_loading_error)// 设置错误图片
+        Glide.with(context).load(url).asBitmap().error(error_image)// 设置错误图片
 
                 .diskCacheStrategy(DiskCacheStrategy.RESULT)// 缓存修改过的图片
-                .placeholder(R.drawable.image_loading_default)// 设置占位图
+                .placeholder(loading_image)// 设置占位图
                 .into(new SimpleTarget<Bitmap>() {
 
                     @SuppressLint("NewApi")
@@ -231,13 +249,13 @@ public class GlideUtils {
      * @param bgLayout
      */
 
-    public static void showImageViewBlur(Context context, String url, final RelativeLayout bgLayout) {
-        Glide.with(context).load(url).asBitmap().error(R.drawable.image_loading_error)
+    public void showImageViewBlur(Context context, String url, final RelativeLayout bgLayout) {
+        Glide.with(context).load(url).asBitmap().error(error_image)
                 // 设置错误图片
 
                 .diskCacheStrategy(DiskCacheStrategy.RESULT)
                 // 缓存修改过的图片
-                .placeholder(R.drawable.image_loading_default)
+                .placeholder(loading_image)
                 .transform(new GlideBlurTransformation(context))// 高斯模糊处理
                 // 设置占位图
 
@@ -274,13 +292,13 @@ public class GlideUtils {
      * @param bgLayout
      */
 
-    public static void showImageViewBlur(Context context, String url, final LinearLayout bgLayout) {
-        Glide.with(context).load(url).asBitmap().error(R.drawable.image_loading_error)
+    public void showImageViewBlur(Context context, String url, final LinearLayout bgLayout) {
+        Glide.with(context).load(url).asBitmap().error(error_image)
                 // 设置错误图片
 
                 .diskCacheStrategy(DiskCacheStrategy.RESULT)
                 // 缓存修改过的图片
-                .placeholder(R.drawable.image_loading_default)
+                .placeholder(loading_image)
                 .transform(new GlideBlurTransformation(context))// 高斯模糊处理
                 // 设置占位图
 
@@ -316,14 +334,14 @@ public class GlideUtils {
      * @param url      图片链接
      * @param imageview 组件
      */
-    public static void showImageViewToCircle(Context context,String url,ImageView imageview) {
+    public void showImageViewToCircle(Context context,String url,ImageView imageview) {
         Glide.with(context).load(url)
                 // 加载图片
-                .error(R.drawable.image_loading_default)
+                .error(loading_image)
                 // 设置错误图片
                 .crossFade()
                 // 设置淡入淡出效果，默认300ms，可以传参
-                .placeholder(R.drawable.image_loading_error)
+                .placeholder(error_image)
                 // 设置占位图
                 .transform(new GlideCircleTransform(context))//圆角
                 .diskCacheStrategy(DiskCacheStrategy.RESULT)// 缓存修改过的图片
@@ -338,9 +356,9 @@ public class GlideUtils {
      * @param url      图片链接
      * @param imageview 组件
      */
-    public static void showImageViewToCircleAndBlur(Context context,String url, ImageView imageview) {
+    public void showImageViewToCircleAndBlur(Context context,String url, ImageView imageview) {
         Glide.with(context).load(url)
-                .error(R.drawable.image_loading_error)// 设置错误图片
+                .error(error_image)// 设置错误图片
                 .bitmapTransform(new BlurTransformation(context, 15), new CropCircleTransformation(context))// 设置高斯模糊，圆角
                 .diskCacheStrategy(DiskCacheStrategy.RESULT)// 缓存修改过的图片
                 .into(imageview);
@@ -356,9 +374,9 @@ public class GlideUtils {
      * @param url      图片链接
      * @param imageview 组件
      */
-    public static void showImageViewToRoundedCorners(Context context,String url, ImageView imageview) {
+    public void showImageViewToRoundedCorners(Context context,String url, ImageView imageview) {
         Glide.with(context).load(url)
-                .error(R.drawable.image_loading_default)// 设置错误图片
+                .error(loading_image)// 设置错误图片
                 .bitmapTransform(new RoundedCornersTransformation(context, 30, 0,
                         RoundedCornersTransformation.CornerType.ALL))// 设置矩形圆角
                 .diskCacheStrategy(DiskCacheStrategy.RESULT)// 缓存修改过的图片
@@ -369,7 +387,7 @@ public class GlideUtils {
     /**
      * 清除图片磁盘缓存
      */
-    public static void clearImageDiskCache(final Context context) {
+    public void clearImageDiskCache(final Context context) {
         try {
             if (Looper.myLooper() == Looper.getMainLooper()) {
                 new Thread(new Runnable() {
@@ -389,7 +407,7 @@ public class GlideUtils {
     /**
      * 清除图片内存缓存
      */
-    public static void clearImageMemoryCache(Context context) {
+    public void clearImageMemoryCache(Context context) {
         try {
             if (Looper.myLooper() == Looper.getMainLooper()) { //只能在主线程执行
                 Glide.get(context).clearMemory();
@@ -402,7 +420,7 @@ public class GlideUtils {
     /**
      * 清除图片所有缓存
      */
-    public static void clearImageAllCache(Context context) {
+    public void clearImageAllCache(Context context) {
         clearImageDiskCache(context);
         clearImageMemoryCache(context);
         String ImageExternalCatchDir=context.getExternalCacheDir()+ ExternalCacheDiskCacheFactory.DEFAULT_DISK_CACHE_DIR;
@@ -414,7 +432,7 @@ public class GlideUtils {
      *
      * @return CacheSize
      */
-    public static String getCacheSize(Context context) {
+    public String getCacheSize(Context context) {
         try {
             return getFormatSize(getFolderSize(new File(context.getCacheDir() + "/"+ InternalCacheDiskCacheFactory.DEFAULT_DISK_CACHE_DIR)));
         } catch (Exception e) {
@@ -430,7 +448,7 @@ public class GlideUtils {
      * @return size
      * @throws Exception
      */
-    private static long getFolderSize(File file) throws Exception {
+    private long getFolderSize(File file) throws Exception {
         long size = 0;
         try {
             File[] fileList = file.listFiles();
@@ -453,7 +471,7 @@ public class GlideUtils {
      * @param filePath filePath
      * @param deleteThisPath deleteThisPath
      */
-    private static void deleteFolderFile(String filePath, boolean deleteThisPath) {
+    private void deleteFolderFile(String filePath, boolean deleteThisPath) {
         if (!TextUtils.isEmpty(filePath)) {
             try {
                 File file = new File(filePath);
@@ -484,7 +502,7 @@ public class GlideUtils {
      * @param size size
      * @return size
      */
-    private static String getFormatSize(double size) {
+    private String getFormatSize(double size) {
 
         double kiloByte = size / 1024;
         if (kiloByte < 1) {

@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.hengyi.baseandroidcore.utils.GlideUtils;
+import com.hengyi.baseandroidcore.utils.ImageUtils;
 
 
 /**
@@ -66,7 +66,7 @@ public class CommonViewHolder {
         ImageView mImageView = (ImageView) mView;
         if(listener != null)
             mImageView.setOnClickListener(listener);
-        GlideUtils.showImageView(context,image_url,mImageView);
+        ImageUtils.getInstance().showImageView(context,image_url,mImageView);
     }
 
     //设置圆角图片
@@ -79,7 +79,7 @@ public class CommonViewHolder {
         ImageView mImageView = (ImageView) mView;
         if(listener != null)
             mImageView.setOnClickListener(listener);
-        GlideUtils.showImageViewToCircle(context,image_url,mImageView);
+        ImageUtils.getInstance().showImageViewToCircle(context,image_url,mImageView);
     }
 
     /**

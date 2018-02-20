@@ -8,4 +8,15 @@
     <dimen name="font_large">18sp</dimen>
     <dimen name="font_normal">15sp</dimen>
     <dimen name="font_small">12sp</dimen>
+
+    <dimen name="text_size_s">12sp</dimen>
+    <dimen name="text_size_m">14sp</dimen>
+    <dimen name="text_size_l">16sp</dimen>
+    <dimen name="text_size_xl">18sp</dimen>
+    <dimen name="text_size_xxl">20sp</dimen>
+
+    <dimen name="margin_s">5dp</dimen>
+    <dimen name="margin_m">10dp</dimen>
+    <dimen name="margin_l">15dp</dimen>
+    <dimen name="margin_xl">20dp</dimen>
 </resources>

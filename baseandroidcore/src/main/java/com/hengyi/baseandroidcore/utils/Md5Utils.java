@@ -4,12 +4,12 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 
- public class MD5 {
+ public class Md5Utils {
     
     private final static String[] strDigits = { "0", "1", "2", "3", "4", "5",
             "6", "7", "8", "9", "a", "b", "c", "d", "e", "f" };
 
-    public MD5() {
+    public Md5Utils() {
     }
 
     private static String byteToArrayString(byte bByte) {

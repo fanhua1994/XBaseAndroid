@@ -21,6 +21,7 @@ public class EaseTitleBar extends RelativeLayout{
     protected ImageView leftImage;
     protected RelativeLayout rightLayout;
     protected ImageView rightImage;
+    protected TextView rightText;
     protected TextView titleView;
     protected RelativeLayout titleLayout;
 
@@ -40,12 +41,13 @@ public class EaseTitleBar extends RelativeLayout{
     
     private void init(Context context, AttributeSet attrs){
         LayoutInflater.from(context).inflate(R.layout.widget_title_bar, this);
-        leftLayout = (RelativeLayout) findViewById(R.id.left_layout);
-        leftImage = (ImageView) findViewById(R.id.left_image);
-        rightLayout = (RelativeLayout) findViewById(R.id.right_layout);
-        rightImage = (ImageView) findViewById(R.id.right_image);
-        titleView = (TextView) findViewById(R.id.title);
-        titleLayout = (RelativeLayout) findViewById(R.id.root);
+        leftLayout = findViewById(R.id.left_layout);
+        leftImage = findViewById(R.id.left_image);
+        rightLayout = findViewById(R.id.right_layout);
+        rightImage = findViewById(R.id.right_image);
+        titleView = findViewById(R.id.title);
+        titleLayout = findViewById(R.id.root);
+        rightText = findViewById(R.id.right_text);
         
         parseStyle(context, attrs);
     }
@@ -89,6 +91,10 @@ public class EaseTitleBar extends RelativeLayout{
     public void setRightLayoutClickListener(OnClickListener listener){
         rightLayout.setOnClickListener(listener);
     }
+
+    public void setRightTextClickListener(OnClickListener listener){
+        rightText.setOnClickListener(listener);
+    }
     
     public void setLeftLayoutVisibility(int visibility){
         leftLayout.setVisibility(visibility);
@@ -100,6 +106,10 @@ public class EaseTitleBar extends RelativeLayout{
     
     public void setTitle(String title){
         titleView.setText(title);
+    }
+
+    public void setRightText(String mRightText){
+        rightText.setText(mRightText);
     }
     
     public void setBackgroundColor(int color){

@@ -6,8 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.hengyi.baseandroidcore.R;
 
@@ -20,22 +22,33 @@ public class ListUtilityUtils {
 	 * @param listview
 	 * @param context
 	 */
-	public static void setListViewNoDataView(ListView listview,Context context){
+	public static void setListViewNoDataView(ListView listview,Context context,String show_text,int show_image){
 		View view = listview.getEmptyView();
-		if(view == null){
-			view = LayoutInflater.from(context).inflate(R.layout.layout_default_no_data_view, null);
-			((ViewGroup)listview.getParent()).addView(view);   
-			listview.setEmptyView(view);
+		if(view != null){
+			listview.setEmptyView(null);
 		}
+		view = LayoutInflater.from(context).inflate(R.layout.layout_default_no_data_view, null);
+		TextView textView = view.findViewById(R.id.textView);
+		ImageView imageView = view.findViewById(R.id.imageView);
+		textView.setText(show_text);
+		imageView.setImageResource(show_image);
+		((ViewGroup)listview.getParent()).addView(view);
+		listview.setEmptyView(view);
+
 	}
 	
-	public static void setGridViewNoDataView(GridView listview,Context context){
-		View view = listview.getEmptyView();
-		if(view == null){
-			view = LayoutInflater.from(context).inflate(R.layout.layout_default_no_data_view, null);
-			((ViewGroup)listview.getParent()).addView(view);
-			listview.setEmptyView(view);
+	public static void setGridViewNoDataView(GridView gridView,Context context,String show_text,int show_image){
+		View view = gridView.getEmptyView();
+		if(view != null){
+			gridView.setEmptyView(null);
 		}
+		view = LayoutInflater.from(context).inflate(R.layout.layout_default_no_data_view, null);
+		TextView textView = view.findViewById(R.id.textView);
+		ImageView imageView = view.findViewById(R.id.imageView);
+		textView.setText(show_text);
+		imageView.setImageResource(show_image);
+		((ViewGroup)gridView.getParent()).addView(view);
+		gridView.setEmptyView(view);
 	}
 	
 	

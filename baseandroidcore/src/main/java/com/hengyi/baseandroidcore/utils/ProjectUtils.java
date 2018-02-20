@@ -57,11 +57,11 @@ public class ProjectUtils {
     }
 
     private String getDefalutName() {
-        return MD5.get(Math.random()+":" + System.currentTimeMillis());
+        return Md5Utils.get(Math.random()+":" + System.currentTimeMillis());
     }
 
     private String getDefalutName(String Suffix) {
-        return MD5.get(Math.random()+":" + System.currentTimeMillis())+"."+Suffix;
+        return Md5Utils.get(Math.random()+":" + System.currentTimeMillis())+"."+Suffix;
     }
 
     /**
@@ -265,7 +265,7 @@ public class ProjectUtils {
      * @return
      */
     public File getDefaultWorkFile(String Suffix){
-        String filename = MD5.get(new Date().toString())+ "." + Suffix;
+        String filename = Md5Utils.get(new Date().toString())+ "." + Suffix;
         File files = new File(getWorkDir() + File.separator + filename);
         return files;
     }
@@ -281,7 +281,7 @@ public class ProjectUtils {
     }
 
     public File getDefaultWorkGroupFile(String dirname,String Suffix){
-        String filename = MD5.get(new Date().toString())+ "." + Suffix;
+        String filename = Md5Utils.get(new Date().toString())+ "." + Suffix;
         File files = new File(getWorkDir() + File.separator + dirname + File.separator + filename);
         return files;
     }

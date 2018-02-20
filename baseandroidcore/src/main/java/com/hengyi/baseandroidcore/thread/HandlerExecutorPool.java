@@ -17,7 +17,6 @@ import java.util.concurrent.TimeUnit;
  *
  public ThreadPoolExecutor(int corePoolSize,int maximumPoolSize,long keepAliveTime,TimeUnit unit,BlockingQueue<Runnable> workQueue)
 
-
  corePoolSize  线程池中核心线程的数量
  maximumPoolSize  线程池中最大线程数量
  keepAliveTime 非核心线程的超时时长，当系统中非核心线程闲置时间超过keepAliveTime之后，则会被回收。如果ThreadPoolExecutor的allowCoreThreadTimeOut属性设置为true，则该参数也表示核心线程的超时时长

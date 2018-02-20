@@ -34,8 +34,9 @@ import com.hengyi.baseandroidcore.weight.EaseTitleBar;
  * 名称：通用安卓web引擎
  */
 public class XBaseWebActivity extends XBaseActivity {
-	public static final String WEB_LOCAL_PATH = "file:///android_asset/";
+	public static final String ANDROID_ASSSET_PATH = "file:///android_asset/";
 	public static final String WEB_SHOW_TITLE_BAR = "show_title_bar";
+	public static final String WEB_STATUS_COLOR = "statusbar_color";
 	public static final String WEB_URL_PARAM = "url";
 
 	private EaseTitleBar easeTitleBar;
@@ -47,15 +48,13 @@ public class XBaseWebActivity extends XBaseActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		StatusBarCompat.setStatusBarColor(this, Color.parseColor(ColorUtils.changeColor(this,R.color.main_color)));
 
-		progressBar = (ProgressBar) findViewById(R.id.progressBar);
-		swipe_container = (SwipeRefreshLayout) findViewById(R.id.swipe_container);
-		easeTitleBar = (EaseTitleBar) findViewById(R.id.titleBar);
-		linerLayout_webview = (LinearLayout) findViewById(R.id.linerLayout_webview);
+		progressBar = findViewById(R.id.progressBar);
+		swipe_container = findViewById(R.id.swipe_container);
+		easeTitleBar = findViewById(R.id.titleBar);
+		linerLayout_webview = findViewById(R.id.linerLayout_webview);
 		webview = new WebView(this);
 		linerLayout_webview.addView(webview);
-
         init();
 	}
 
@@ -63,12 +62,24 @@ public class XBaseWebActivity extends XBaseActivity {
 		Intent i = getIntent();
 		String url = i.getStringExtra(WEB_URL_PARAM);
 		boolean show_title_bar = i.getBooleanExtra(WEB_SHOW_TITLE_BAR,true);
-		InitWeb(url);
+		int status_color = i.getIntExtra(WEB_STATUS_COLOR,R.color.main_color);
+		StatusBarCompat.setStatusBarColor(this, Color.parseColor(ColorUtils.changeColor(this,status_color)));
+
+		initWeb(url);
 		if(show_title_bar){
 			easeTitleBar.setLeftLayoutClickListener(new View.OnClickListener(){
 				@Override
 				public void onClick(View view) {
 					back();
+				}
+			});
+
+			easeTitleBar.setRightText(getString(R.string.close));
+			easeTitleBar.setRightTextClickListener(new View.OnClickListener(){
+
+				@Override
+				public void onClick(View view) {
+					destory();
 				}
 			});
 		}else{
@@ -99,7 +110,7 @@ public class XBaseWebActivity extends XBaseActivity {
 		return R.layout.activity_web_engines;
 	}
 
-	private void InitWeb(String url){
+	private void initWeb(String url){
 		progressBar.setVisibility(View.VISIBLE);
 		WebSettings settings = webview.getSettings();
 		settings.setJavaScriptEnabled(true);
@@ -182,7 +193,7 @@ public class XBaseWebActivity extends XBaseActivity {
 		{
 			webview.loadUrl("about:blank");
 			destory();
-			ActivityStack.getInstance().popActivity(this);
+
 		}
 	}
 
@@ -221,6 +232,8 @@ public class XBaseWebActivity extends XBaseActivity {
 
 			}
 		}
+
+		ActivityStack.getInstance().popActivity(this);
 	}
 
 	@Override

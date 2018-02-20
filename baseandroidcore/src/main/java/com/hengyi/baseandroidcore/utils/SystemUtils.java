@@ -67,7 +67,7 @@ public class SystemUtils {
         sb.append(Build.TAGS.length()%10);
         sb.append(Build.TYPE.length()%10);
         sb.append(Build.USER.length()%10);
-        return MD5.get(sb.toString());
+        return Md5Utils.get(sb.toString());
     }
 
     public static String getClientID(){
@@ -76,12 +76,12 @@ public class SystemUtils {
 
     public static String getShortClientID(Context context,String channel){
         String cid = getClientID(channel);
-        return MD5.get(cid + getUUID(context));
+        return Md5Utils.get(cid + getUUID(context));
     }
 
     public static String getShortClientID(Context context){
         String cid = getClientID("xbaseandroid");
-        return MD5.get(cid + getUUID(context));
+        return Md5Utils.get(cid + getUUID(context));
     }
 
     /**

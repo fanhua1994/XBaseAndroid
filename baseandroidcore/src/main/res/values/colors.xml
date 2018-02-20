@@ -11,4 +11,6 @@
 
     <color name="gray">#ccc</color>
     <color name="white">#fff</color>
+
+    <color name="list_divider">#d8d8d8</color>
 </resources>

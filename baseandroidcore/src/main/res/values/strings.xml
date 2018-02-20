@@ -4,4 +4,5 @@
     <string name="app_update_manager_description_str">软件描述：</string>
     <string name="app_update_manager_dialog_download">立即更新</string>
     <string name="app_update_manager_dialog_cancel">下次再说</string>
+    <string name="close">关闭</string>
 </resources>

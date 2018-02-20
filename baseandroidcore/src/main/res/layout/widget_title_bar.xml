@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/root"
     android:layout_width="match_parent"
-    android:layout_height="72dp"
+    android:layout_height="50dp"
     android:background="@color/main_color"
     android:gravity="center_vertical"
     android:fitsSystemWindows="true"
@@ -35,7 +35,7 @@
         android:maxLines="1"
         android:ellipsize="end"
         android:textSize="16sp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="15dp"
         android:text=""
         android:layout_marginLeft="50dp"
         />
@@ -54,6 +54,21 @@
             android:layout_margin="10dp"
             android:layout_centerInParent="true"
             android:scaleType="centerInside" />
+
+
+        <TextView
+            android:id="@+id/right_text"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:textColor="@color/white"
+            android:maxEms="2"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:textSize="16sp"
+            android:layout_marginTop="15dp"
+            android:text=""
+            />
     </RelativeLayout>
 
 </RelativeLayout>

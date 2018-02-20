@@ -23,7 +23,7 @@ public class ServiceStack {
     // 弹出当前activity并销毁
     public void popService(Class service) {
         if (service != null) {
-            ServiceUtils.StopService(XBaseApplication.getApplication(),service);
+            ServiceUtils.stopService(XBaseApplication.getApplication(),service);
             mActivityStack.remove(service);
         }
     }
