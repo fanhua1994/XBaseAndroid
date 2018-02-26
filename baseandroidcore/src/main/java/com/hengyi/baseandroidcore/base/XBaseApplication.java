@@ -26,6 +26,13 @@ public class XBaseApplication extends Application {
     public void onCreate() {
         super.onCreate();
         application = this;
+
+        //热修复
+        //PatchManager patchManager = new PatchManager(this);
+       /// patchManager.init(VersionUtils.getAppVersion(this,"1.0.0.0"));//current version
+
+        //patchManager.loadPatch();
+
         Utils.init(this);
         OkGo.getInstance().init(this);
         if(!stat_debug)

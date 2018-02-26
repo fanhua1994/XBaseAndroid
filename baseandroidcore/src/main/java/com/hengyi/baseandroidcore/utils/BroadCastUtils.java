@@ -45,6 +45,13 @@ public class BroadCastUtils {
         activity.registerReceiver(broadcastReceiver,filter);
     }
 
+    public static void registerBroadCast(Activity activity, BroadcastReceiver broadcastReceiver,String[] actions){
+        IntentFilter filter = new IntentFilter();
+        for(String action : actions)
+            filter.addAction(action);
+        activity.registerReceiver(broadcastReceiver,filter);
+    }
+
     //动态注销广播
     public static void unregisterBroadCast(Activity activity,BroadcastReceiver broadcastReceiver){
         activity.unregisterReceiver(broadcastReceiver);
