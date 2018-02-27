@@ -1,4 +1,4 @@
-![](https://jitpack.io/v/fanhua1994/XBaseAndroid.svg)](https://jitpack.io/#fanhua1994/XBaseAndroid)
+![Jitpack](https://jitpack.io/v/fanhua1994/XBaseAndroid.svg)
 ![Platform](https://img.shields.io/badge/Platform-Android-ff69b4.svg)
 ![License](https://img.shields.io/github/license/alibaba/dubbo.svg)
 ![Author](https://img.shields.io/badge/Author-%E7%B9%81%E5%8D%8E-blue.svg)
