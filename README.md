@@ -1,3 +1,8 @@
+![](https://jitpack.io/v/fanhua1994/XBaseAndroid.svg)](https://jitpack.io/#fanhua1994/XBaseAndroid)
+![Platform](https://img.shields.io/badge/Platform-Android-ff69b4.svg)
+![License](https://img.shields.io/github/license/alibaba/dubbo.svg)
+![Author](https://img.shields.io/badge/Author-%E7%B9%81%E5%8D%8E-blue.svg)
+
 # XBaseAndroid
 一款集成了网络请求，本地缓存，配置文件，数据库映射，权限申请，链表管理Activity，简化Activity、Service、Broadcast启动，
 万能ListView,GridView适配器、高仿IOS弹窗、倒计时/延迟执行，标题栏组件,图片显示，webview引擎，APP更新组件，APP崩溃日志组件，事件总线（热更新组件暂未加入，有需要请联系）。
