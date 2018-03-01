@@ -6,21 +6,15 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.hengyi.baseandroidcore.base.XBaseWebActivity;
-import com.hengyi.baseandroidcore.dialog.CustomConfirmDialog;
 import com.hengyi.baseandroidcore.statusbar.StatusBarCompat;
-import com.hengyi.baseandroidcore.update.Apatch;
 import com.hengyi.baseandroidcore.update.AppUpdateManager;
 import com.hengyi.baseandroidcore.update.BuildType;
-import com.hengyi.baseandroidcore.update.PatchBean;
 import com.hengyi.baseandroidcore.utils.ActivityUtils;
 import com.hengyi.baseandroidcore.utils.ColorUtils;
 import com.hengyi.baseandroidcore.utils.CommonUtils;
 import com.hengyi.baseandroidcore.utils.SystemUtils;
 import com.hengyi.baseandroidcore.utils.VersionUtils;
 import com.hengyi.baseandroidcore.weight.EaseTitleBar;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -72,36 +66,8 @@ public class MainActivity extends BaseActivity{
                 ActivityUtils.startActivity(this,XBaseWebActivity.class,new String[]{XBaseWebActivity.WEB_URL_PARAM, XBaseWebActivity.WEB_SHOW_TITLE_BAR}, "https://www.jianshu.com/u/50c9e5f00da3",true);
                 break;
             case R.id.xbase_patch:
-                CustomConfirmDialog dialog = new CustomConfirmDialog(this).builder();
-                dialog.setTitle("补丁下载路径");
-                dialog.setHintText("请输入补丁下载地址");
-                dialog.setNegativeButton("取消", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-
-                    }
-                });
-
-                dialog.setPositiveButton("打补丁",new CustomConfirmDialog.OnPostListener(){
-
-                    @Override
-                    public void OnPost(String value) {
-                        PatchBean patchBean = new PatchBean();
-                        patchBean.setMsg("OK");
-                        patchBean.setResult(true);
-                        List<Apatch> patch = new ArrayList<>();
-                        Apatch apatch = new Apatch();
-                        apatch.setBuild_type(BuildType.DEBUG);
-                        apatch.setMd5(null);
-                        apatch.setPath(value);
-                        patch.add(apatch);
-                        patchBean.setData(patch);
-
-                        AppUpdateManager appUpdateManager = AppUpdateManager.getInstance();
-                        appUpdateManager.loadPatch(patchBean,BuildType.DEBUG);
-                    }
-                });
-                dialog.show();
+                AppUpdateManager appUpdateManager = AppUpdateManager.getInstance();
+                appUpdateManager.doRequestPatch("http://192.168.1.2:8020/myhome/test.html", BuildType.RELEASE);
                 break;
             case R.id.xbase_open_patch:
                 ActivityUtils.startActivity(MainActivity.this,PatchActivity.class);

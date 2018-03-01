@@ -22,7 +22,7 @@ public class PatchActivity extends BaseActivity {
     }
 
     private void showToast(){
-        toast("发行版本，已打补丁");
+        toast("我是修复版本，我已经打了补丁啦");
     }
 
     @Override

@@ -7,17 +7,17 @@ import java.util.List;
  */
 
 public class PatchBean {
-    private int statuCode;
+    private int statusCode;
     private String msg;
     private boolean result;
     private List<Apatch> data;
 
-    public int getStatuCode() {
-        return statuCode;
+    public int getStatusCode() {
+        return statusCode;
     }
 
-    public void setStatuCode(int statuCode) {
-        this.statuCode = statuCode;
+    public void setStatusCode(int statuCode) {
+        this.statusCode = statuCode;
     }
 
     public String getMsg() {

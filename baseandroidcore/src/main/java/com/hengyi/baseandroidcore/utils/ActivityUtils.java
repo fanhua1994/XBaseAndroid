@@ -163,4 +163,9 @@ public class ActivityUtils {
         }
         context.startActivityForResult(intent, result);
     }
+
+    public static void closeAllActivity(){
+        ActivityStack.getInstance().clearAllActivity();
+        CommonUtils.kill();
+    }
 }

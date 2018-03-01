@@ -3,6 +3,7 @@ package com.hengyi.baseandroidcore.update;
 import android.content.Context;
 import android.os.Build;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 
 import com.hengyi.baseandroidcore.R;
@@ -81,14 +82,15 @@ public class AppUpdateManager {
 
     private void addPatch(File patchFile,String md5){
         try {
+            LogUtils.d("AppUpdateManage","准备进行补丁替换");
             String file_md5 = EncryptUtils.encryptMD5File2String(patchFile).toLowerCase();
             if(!TextUtils.isEmpty(md5) && !md5.equals(file_md5)){
+                LogUtils.d("AppUpdateManage","MD5签名出现问题");
                 return ;
             }
 
             XBaseApplication.getPatchManager().addPatch(patchFile.getAbsolutePath());
             LogUtils.d("补丁" + patchFile.getAbsolutePath() + "加载成功，重启生效");
-            //FileUtils.deleteFile(patchFile);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -107,9 +109,7 @@ public class AppUpdateManager {
         OkGo.<File>get(apatch.getPath()).tag(this).execute(new FileCallback(download_path,download_name) {
             @Override
             public void onSuccess(Response<File> response) {
-                String file_md5 = EncryptUtils.encryptMD5File2String(response.body()).toLowerCase();
-                if(!TextUtils.isEmpty(apatch.getMd5()) && apatch.getMd5().equals(file_md5))
-                    addPatch(response.body(),apatch.getMd5());
+                addPatch(response.body(),apatch.getMd5());
             }
         });
     }
