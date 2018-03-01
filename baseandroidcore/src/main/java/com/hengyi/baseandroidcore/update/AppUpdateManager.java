@@ -1,23 +1,32 @@
 package com.hengyi.baseandroidcore.update;
 
 import android.content.Context;
+import android.os.Build;
+import android.text.TextUtils;
 import android.view.View;
 
 import com.hengyi.baseandroidcore.R;
 import com.hengyi.baseandroidcore.base.XBaseApplication;
 import com.hengyi.baseandroidcore.dialog.CustomAlertDialog;
+import com.hengyi.baseandroidcore.utils.ConfigUtils;
+import com.hengyi.baseandroidcore.utils.GsonUtils;
+import com.hengyi.baseandroidcore.utils.Md5Utils;
 import com.hengyi.baseandroidcore.utils.ProjectUtils;
 import com.hengyi.baseandroidcore.utils.VersionUtils;
 import com.hengyi.baseandroidcore.utils_ext.AppUtils;
 import com.hengyi.baseandroidcore.utils_ext.EncryptUtils;
+import com.hengyi.baseandroidcore.utils_ext.FileUtils;
 import com.hengyi.baseandroidcore.utils_ext.LogUtils;
 import com.lzy.okgo.OkGo;
+import com.lzy.okgo.callback.Callback;
 import com.lzy.okgo.callback.FileCallback;
+import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Progress;
 import com.lzy.okgo.model.Response;
 import com.lzy.okgo.request.base.Request;
 
 import java.io.File;
+import java.io.IOException;
 import java.text.DecimalFormat;
 
 /**
@@ -68,6 +77,41 @@ public class AppUpdateManager {
             down_speed = formatProgress((float)speed / 1024.0f / 1024.0f) + "mb/s";
         }
         return down_speed;
+    }
+
+    private void addPatch(File patchFile,String md5){
+        try {
+            String file_md5 = EncryptUtils.encryptMD5File2String(patchFile).toLowerCase();
+            if(!TextUtils.isEmpty(md5) && !md5.equals(file_md5)){
+                return ;
+            }
+
+            XBaseApplication.getPatchManager().addPatch(patchFile.getAbsolutePath());
+            LogUtils.d("补丁" + patchFile.getAbsolutePath() + "加载成功，重启生效");
+            //FileUtils.deleteFile(patchFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void downloadPatch(final Apatch apatch) {
+        String download_path = ProjectUtils.getInstance().setIdCard(true).setFileType(ProjectUtils.COMMON_TYPE).getWorkGroup("patch");
+        String download_name = null;
+
+        download_name = Md5Utils.get(apatch.getPath()) + ".apatch";
+        if(FileUtils.isFileExists(download_path + download_name)){
+            addPatch(new File(download_path,download_name),apatch.getMd5());
+            return ;
+        }
+
+        OkGo.<File>get(apatch.getPath()).tag(this).execute(new FileCallback(download_path,download_name) {
+            @Override
+            public void onSuccess(Response<File> response) {
+                String file_md5 = EncryptUtils.encryptMD5File2String(response.body()).toLowerCase();
+                if(!TextUtils.isEmpty(apatch.getMd5()) && apatch.getMd5().equals(file_md5))
+                    addPatch(response.body(),apatch.getMd5());
+            }
+        });
     }
 
     /**
@@ -126,6 +170,41 @@ public class AppUpdateManager {
                 if(listener != null) {
                     listener.downloadProgressBar(formatProgress(progress.fraction * 100),(int)(progress.fraction * 100.0f),formatSpeed(progress.speed));
                 }
+            }
+        });
+    }
+
+    /**
+     * 更新是否是可用的补丁，有就下载，已经下载的补丁不再下载
+     * 请下载的时候根据BuildType获取下载的补丁类型
+     */
+    public void loadPatch(final PatchBean patchBean,int build_type){
+        //暂时不支持Android 7.0以上的热修复技术（2.3 ~ 6.0）
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.GINGERBREAD || Build.VERSION.SDK_INT > Build.VERSION_CODES.M){
+            return ;
+        }
+        if(patchBean.isResult()){
+            for(Apatch apatch : patchBean.getData()) {
+                if(apatch.getBuild_type() == build_type)
+                    downloadPatch(apatch);
+            }
+        }
+    }
+
+    public void doRequestPatch(final String request_url, final int build_type){
+        OkGo.<String>get(request_url + "?build_type=" + build_type).tag(this).execute(new StringCallback() {
+            @Override
+            public void onSuccess(Response<String> response) {
+                PatchBean patchBean = GsonUtils.parseJsonWithGson(response.body(),PatchBean.class);
+                if(patchBean.isResult())
+                    loadPatch(patchBean,build_type);
+                else
+                    XBaseApplication.getPatchManager().removeAllPatch();
+            }
+
+            @Override
+            public void onError(Response<String> response) {
+                super.onError(response);
             }
         });
     }
