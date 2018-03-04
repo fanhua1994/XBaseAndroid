@@ -87,4 +87,8 @@ public class NotifacationUtils {
 		mNotificationManager.notify(notify_id, mNotification);
 
 	}
+
+	public void cancelNotify(){
+		mNotificationManager.cancel(notifyId);
+	}
 }

@@ -7,14 +7,18 @@ import android.widget.TextView;
 
 import com.hengyi.baseandroidcore.base.XBaseWebActivity;
 import com.hengyi.baseandroidcore.statusbar.StatusBarCompat;
+import com.hengyi.baseandroidcore.tools.FileDownloader;
 import com.hengyi.baseandroidcore.update.AppUpdateManager;
 import com.hengyi.baseandroidcore.update.BuildType;
 import com.hengyi.baseandroidcore.utils.ActivityUtils;
 import com.hengyi.baseandroidcore.utils.ColorUtils;
 import com.hengyi.baseandroidcore.utils.CommonUtils;
+import com.hengyi.baseandroidcore.utils.ProjectUtils;
 import com.hengyi.baseandroidcore.utils.SystemUtils;
 import com.hengyi.baseandroidcore.utils.VersionUtils;
 import com.hengyi.baseandroidcore.weight.EaseTitleBar;
+
+import java.io.File;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -47,11 +51,12 @@ public class MainActivity extends BaseActivity{
         return R.layout.activity_main;
     }
 
-    @OnClick({R.id.xbase_jianshu_blog,R.id.xbase_home,R.id.xbase_demo,R.id.xbase_csdn_blog,R.id.xbase_patch,R.id.xbase_open_patch})
+    @OnClick({R.id.xbase_jianshu_blog,R.id.xbase_home,R.id.xbase_demo,R.id.xbase_csdn_blog,R.id.downloader})
     public void Click(View view){
         switch(view.getId()){
             case R.id.xbase_home:
-                ActivityUtils.startActivity(this,XBaseWebActivity.class,new String[]{XBaseWebActivity.WEB_URL_PARAM, XBaseWebActivity.WEB_SHOW_TITLE_BAR}, "https://github.com/fanhua1994/XBaseAndroid",true);
+                //ActivityUtils.startActivity(this,XBaseWebActivity.class,new String[]{XBaseWebActivity.WEB_URL_PARAM, XBaseWebActivity.WEB_SHOW_TITLE_BAR}, "https://github.com/fanhua1994/XBaseAndroid",true);
+                ActivityUtils.startActivity(this,XBaseWebActivity.class,new String[]{XBaseWebActivity.WEB_URL_PARAM, XBaseWebActivity.WEB_SHOW_TITLE_BAR}, "https://www.immomo.com/",true);
                 break;
 
             case R.id.xbase_demo:
@@ -65,12 +70,20 @@ public class MainActivity extends BaseActivity{
             case R.id.xbase_jianshu_blog:
                 ActivityUtils.startActivity(this,XBaseWebActivity.class,new String[]{XBaseWebActivity.WEB_URL_PARAM, XBaseWebActivity.WEB_SHOW_TITLE_BAR}, "https://www.jianshu.com/u/50c9e5f00da3",true);
                 break;
-            case R.id.xbase_patch:
-                AppUpdateManager appUpdateManager = AppUpdateManager.getInstance();
-                appUpdateManager.doRequestPatch("http://192.168.1.2:8020/myhome/test.html", BuildType.RELEASE);
-                break;
-            case R.id.xbase_open_patch:
-                ActivityUtils.startActivity(MainActivity.this,PatchActivity.class);
+            case R.id.downloader:
+                //String downloadPath = ProjectUtils.getInstance().setFileType(ProjectUtils.COMMON_TYPE).setIdCard(true).getWorkGroup("downloader");
+                FileDownloader fileDownloader = FileDownloader.getInstance();
+                fileDownloader.download(this, "http://sqdd.myapp.com/myapp/qqteam/tim/down/tim.apk", fileDownloader.getDefaultPath(), "tim.apk", new FileDownloader.DownloadStatusListener() {
+                    @Override
+                    public void onSuccess(File file) {
+                        toast("下载成功");
+                    }
+
+                    @Override
+                    public void OnError(String message) {
+                        toast("下载失败");
+                    }
+                },true);
                 break;
 
         }

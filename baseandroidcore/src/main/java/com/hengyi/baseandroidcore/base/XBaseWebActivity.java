@@ -12,6 +12,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
+import android.webkit.DownloadListener;
 import android.webkit.JsPromptResult;
 import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
@@ -25,15 +26,18 @@ import android.widget.ProgressBar;
 import com.hengyi.baseandroidcore.R;
 import com.hengyi.baseandroidcore.dialog.CustomAlertDialog;
 import com.hengyi.baseandroidcore.statusbar.StatusBarCompat;
+import com.hengyi.baseandroidcore.tools.FileDownloader;
 import com.hengyi.baseandroidcore.utils.ActivityStack;
 import com.hengyi.baseandroidcore.utils.ColorUtils;
 import com.hengyi.baseandroidcore.weight.EaseTitleBar;
+
+import java.io.File;
 
 /*
  * 作者：董志平
  * 名称：通用安卓web引擎
  */
-public class XBaseWebActivity extends XBaseActivity {
+public class XBaseWebActivity extends XBaseActivity implements DownloadListener {
 	public static final String ANDROID_ASSSET_PATH = "file:///android_asset/";
 	public static final String WEB_SHOW_TITLE_BAR = "show_title_bar";
 	public static final String WEB_STATUS_COLOR = "statusbar_color";
@@ -119,18 +123,30 @@ public class XBaseWebActivity extends XBaseActivity {
 		settings.setPluginState(WebSettings.PluginState.ON);
 		settings.setUseWideViewPort(true); // 关键点
 		settings.setAllowFileAccess(true); // 允许访问文件
-		settings.setSupportZoom(true); // 支持缩放
 		settings.setLoadWithOverviewMode(true);
+
+
+
+		settings.setBuiltInZoomControls(false);
+		settings.setSupportZoom(false);
+		settings.setDisplayZoomControls(false);
+
+		settings.setJavaScriptCanOpenWindowsAutomatically(true);
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 			settings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
 		}
-		
+
+		webview.setVerticalScrollBarEnabled(false);
+		webview.setHorizontalScrollBarEnabled(false);
+
+		webview.setDownloadListener(this);
 		webview.loadUrl(url);
 		
 		webview.setWebViewClient(new WebViewClient(){
 			@Override
 			public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-				return super.shouldOverrideUrlLoading(view, request);
+
+				return true;
 			}
 		});
 		
@@ -241,5 +257,31 @@ public class XBaseWebActivity extends XBaseActivity {
 		super.onDestroy();
 		//销毁网页
 		destory();
+	}
+
+	@Override
+	public void onDownloadStart(final String s, String s1, String s2, String s3, long l) {
+		final CustomAlertDialog customAlertDialog = new CustomAlertDialog(getContext()).builder();
+		customAlertDialog.setMsg("您真的要下载该文件吗？");
+		customAlertDialog.setTitle("温馨提示");
+		customAlertDialog.setPositiveButton("确定", new View.OnClickListener() {
+					@Override
+					public void onClick(View view) {
+						FileDownloader fileDownloader = FileDownloader.getInstance();
+						fileDownloader.download(getContext(), s, fileDownloader.getDefaultPath(), fileDownloader.getDefaultFilename(s), new FileDownloader.DownloadStatusListener() {
+							@Override
+							public void onSuccess(File file) {
+								toast("文件下载成功");
+							}
+
+							@Override
+							public void OnError(String message) {
+								toast("文件下载失败");
+							}
+						}, true);
+					}
+				});
+		customAlertDialog.setNegativeButton("取消",null);
+		customAlertDialog.show();
 	}
 }

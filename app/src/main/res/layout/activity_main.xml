@@ -60,18 +60,10 @@
         />
 
     <Button
-        android:id="@+id/xbase_patch"
+        android:id="@+id/downloader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="打补丁"
-        android:layout_margin="10dp"
-        />
-
-    <Button
-        android:id="@+id/xbase_open_patch"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="进入补丁界面"
+        android:text="下载文件"
         android:layout_margin="10dp"
         />
 </LinearLayout>

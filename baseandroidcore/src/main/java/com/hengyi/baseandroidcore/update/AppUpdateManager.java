@@ -9,6 +9,7 @@ import android.view.View;
 import com.hengyi.baseandroidcore.R;
 import com.hengyi.baseandroidcore.base.XBaseApplication;
 import com.hengyi.baseandroidcore.dialog.CustomAlertDialog;
+import com.hengyi.baseandroidcore.listener.FileDownloadListener;
 import com.hengyi.baseandroidcore.utils.ConfigUtils;
 import com.hengyi.baseandroidcore.utils.GsonUtils;
 import com.hengyi.baseandroidcore.utils.Md5Utils;
@@ -41,7 +42,7 @@ import java.text.DecimalFormat;
 
 public class AppUpdateManager {
     private static AppUpdateManager instance = null;
-    private AppUpdateListener listener = null;
+    private FileDownloadListener listener = null;
 
     /**
      * 双重枷锁
@@ -52,7 +53,6 @@ public class AppUpdateManager {
             if(instance == null){
                 instance = new AppUpdateManager();
             }
-
             return instance;
         }
     }
@@ -249,19 +249,8 @@ public class AppUpdateManager {
         }
     }
 
-    public void setAppUpdateListener(AppUpdateListener listener){
+    public void setAppUpdateListener(FileDownloadListener listener){
         this.listener = listener;
-    }
-
-
-    public interface AppUpdateListener{
-        public void downloadProgressBar(String progress,int progress2,String speed);
-        public void downloadSuccess(File app_path);
-        public void downloadStart();
-        public void downloadError(String message);
-        public void downloadFinish();
-        public void cancelDownload();
-        public void NoUpdate();
     }
 
 }

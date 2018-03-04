@@ -10,11 +10,11 @@ import android.content.IntentFilter;
  * Created by Administrator on 2017/10/10.
  */
 
-public class BroadCastUtils {
+public class BroadcastUtils {
     //发送广播
-    public static void sendBroadCast(Context mContext,Class cla,String[] names, Object... param){
-        Intent intent  = null;
-        intent = new Intent(mContext,cla);
+    public static void sendBroadcast(Context mContext,String action,String[] names, Object... param){
+        Intent intent = new Intent();
+        intent.setAction(action);
         for (int i = 0; i < param.length; i++) {
             if (param[i].getClass().equals(Integer.class)) {
                 intent.putExtra(names[i], (Integer) param[i]);
@@ -32,20 +32,18 @@ public class BroadCastUtils {
     }
 
 
-    public static void sendBroadCast(Context mContext, Class cla) {
-        Intent intent = null;
-        intent = new Intent(mContext, cla);
+    public static void sendBroadcast(Context mContext, String action) {
+        Intent intent = new Intent();
+        intent.setAction(action);
         mContext.sendBroadcast(intent);
     }
 
     //动态注册广播
-    public static void registerBroadCast(Activity activity, BroadcastReceiver broadcastReceiver,String action){
-        IntentFilter filter = new IntentFilter();
-        filter.addAction(action);
-        activity.registerReceiver(broadcastReceiver,filter);
+    public static void registerBroadcast(Activity activity, BroadcastReceiver broadcastReceiver,String action){
+        registerBroadcast(activity,broadcastReceiver,new String[]{action});
     }
 
-    public static void registerBroadCast(Activity activity, BroadcastReceiver broadcastReceiver,String[] actions){
+    public static void registerBroadcast(Activity activity, BroadcastReceiver broadcastReceiver,String[] actions){
         IntentFilter filter = new IntentFilter();
         for(String action : actions)
             filter.addAction(action);
@@ -53,7 +51,7 @@ public class BroadCastUtils {
     }
 
     //动态注销广播
-    public static void unregisterBroadCast(Activity activity,BroadcastReceiver broadcastReceiver){
+    public static void unregisterBroadcast(Activity activity,BroadcastReceiver broadcastReceiver){
         activity.unregisterReceiver(broadcastReceiver);
     }
 }
