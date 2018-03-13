@@ -3,7 +3,6 @@ package com.hengyi.baseandroidcore.update;
 /**
  * Created by fanhua on 17-11-11.
  */
-
 public class UpdateBean {
     private String new_version;//版本号
     private String description;//描述

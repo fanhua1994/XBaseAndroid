@@ -34,7 +34,6 @@ public class VersionUtils {
 
     private static int[] parseVersion(String version) {
         String[] ver_arr = version.split("\\.");
-        System.out.println("parseVersion str" + ver_arr.length);
         int[] version_code = new int[ver_arr.length];
         for(int i = 0;i<ver_arr.length;i++) {
             version_code[i] = parseInt(ver_arr[i]);
