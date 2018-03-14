@@ -9,14 +9,14 @@
 
 项目地址：[https://github.com/fanhua1994/XBaseAndroid](https://github.com/fanhua1994/XBaseAndroid)
 
-demo地址：[https://github.com/fanhua1994/XBaseAndroidDemo](https://github.com/fanhua1994/XBaseAndroidDemo)
+~~demo地址：[https://github.com/fanhua1994/XBaseAndroidDemo](https://github.com/fanhua1994/XBaseAndroidDemo)~~
 
-文档地址：https://www.jianshu.com/nb/20489476	（正在努力更新中，要不要个Star鼓励一下,最近比较忙，不明白的朋友请联系邮箱，有问题直接问）
+文档地址：https://www.jianshu.com/nb/20489476
 
 ![BaseAndroid](https://github.com/fanhua1994/BaseAndroid/blob/master/image/logo.png?raw=true)
 
 # 版本更新
-目前最新版本是1.0.6.4
+目前最新版本是1.0.6.5
 [更新日志](https://github.com/fanhua1994/XBaseAndroid/blob/master/LOG.md)
 
 引用方式：
@@ -28,7 +28,7 @@ allprojects {
     }
 }
 ```
-compile 'com.github.fanhua1994:XBaseAndroid:1.0.6.4'
+compile 'com.github.fanhua1994:XBaseAndroid:1.0.6.5'
 
 # 联系作者
 简书：[http://www.jianshu.com/u/50c9e5f00da3](http://www.jianshu.com/u/50c9e5f00da3)

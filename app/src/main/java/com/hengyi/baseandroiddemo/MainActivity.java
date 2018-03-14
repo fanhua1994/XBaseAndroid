@@ -5,7 +5,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.hengyi.baseandroidcore.base.XBaseWebActivity;
+import com.hengyi.baseandroidcore.base.XBaseBrowserActivity;
+import com.hengyi.baseandroidcore.base.XBaseBrowserActivity;
 import com.hengyi.baseandroidcore.statusbar.StatusBarCompat;
 import com.hengyi.baseandroidcore.tools.FileDownloader;
 import com.hengyi.baseandroidcore.utils.ActivityUtils;
@@ -56,20 +57,20 @@ public class MainActivity extends BaseActivity{
     public void Click(View view){
         switch(view.getId()){
             case R.id.xbase_home:
-                //ActivityUtils.startActivity(this,XBaseWebActivity.class,new String[]{XBaseWebActivity.WEB_URL_PARAM, XBaseWebActivity.WEB_SHOW_TITLE_BAR}, "https://github.com/fanhua1994/XBaseAndroid",true);
-                ActivityUtils.startActivity(this,XBaseWebActivity.class,new String[]{XBaseWebActivity.WEB_URL_PARAM, XBaseWebActivity.WEB_SHOW_TITLE_BAR}, "https://www.immomo.com/",true);
+                //ActivityUtils.startActivity(this,XBaseBrowserActivity.class,new String[]{XBaseBrowserActivity.WEB_URL_PARAM, XBaseBrowserActivity.WEB_SHOW_TITLE_BAR}, "https://github.com/fanhua1994/XBaseAndroid",true);
+                ActivityUtils.startActivity(this,XBaseBrowserActivity.class,new String[]{XBaseBrowserActivity.WEB_URL_PARAM, XBaseBrowserActivity.WEB_SHOW_TITLE_BAR}, "https://www.immomo.com/",true);
                 break;
 
             case R.id.xbase_demo:
-                ActivityUtils.startActivity(this,XBaseWebActivity.class,new String[]{XBaseWebActivity.WEB_URL_PARAM, XBaseWebActivity.WEB_SHOW_TITLE_BAR}, "https://github.com/fanhua1994/XBaseAndroidDemo",true);
+                ActivityUtils.startActivity(this,XBaseBrowserActivity.class,new String[]{XBaseBrowserActivity.WEB_URL_PARAM, XBaseBrowserActivity.WEB_SHOW_TITLE_BAR}, "https://github.com/fanhua1994/XBaseAndroidDemo",true);
                 break;
 
             case R.id.xbase_csdn_blog:
-                ActivityUtils.startActivity(this,XBaseWebActivity.class,new String[]{XBaseWebActivity.WEB_URL_PARAM, XBaseWebActivity.WEB_SHOW_TITLE_BAR}, "http://blog.csdn.net/dong_18383219470?viewmode=list",true);
+                ActivityUtils.startActivity(this,XBaseBrowserActivity.class,new String[]{XBaseBrowserActivity.WEB_URL_PARAM, XBaseBrowserActivity.WEB_SHOW_TITLE_BAR}, "http://blog.csdn.net/dong_18383219470?viewmode=list",true);
                 break;
 
             case R.id.xbase_jianshu_blog:
-                ActivityUtils.startActivity(this,XBaseWebActivity.class,new String[]{XBaseWebActivity.WEB_URL_PARAM, XBaseWebActivity.WEB_SHOW_TITLE_BAR}, "https://www.jianshu.com/u/50c9e5f00da3",true);
+                ActivityUtils.startActivity(this,XBaseBrowserActivity.class,new String[]{XBaseBrowserActivity.WEB_URL_PARAM, XBaseBrowserActivity.WEB_SHOW_TITLE_BAR}, "https://www.jianshu.com/u/50c9e5f00da3",true);
                 break;
             case R.id.downloader:
                 //String downloadPath = ProjectUtils.getInstance().setFileType(ProjectUtils.COMMON_TYPE).setIdCard(true).getWorkGroup("downloader");

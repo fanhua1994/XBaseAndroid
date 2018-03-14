@@ -5,8 +5,10 @@ import android.app.Application;
 import com.alipay.euler.andfix.patch.PatchManager;
 import com.hengyi.baseandroidcore.utils.VersionUtils;
 import com.hengyi.baseandroidcore.utils_ext.CrashUtils;
+import com.hengyi.baseandroidcore.utils_ext.LogUtils;
 import com.hengyi.baseandroidcore.utils_ext.Utils;
 import com.lzy.okgo.OkGo;
+import com.tencent.smtt.sdk.QbSdk;
 
 import java.io.File;
 
@@ -45,6 +47,17 @@ public class XBaseApplication extends Application {
         OkGo.getInstance().init(this);
         if(!stat_debug)
             CrashUtils.init();
+
+        QbSdk.PreInitCallback cb = new QbSdk.PreInitCallback() {
+            @Override
+            public void onViewInitFinished(boolean arg0) {
+                LogUtils.d("QbSDK加载：" + arg0);
+            } @
+                    Override
+            public void onCoreInitFinished() {
+            }
+        };
+        QbSdk.initX5Environment(getApplicationContext(), cb);
     }
 
     @Override

@@ -3,7 +3,7 @@ package com.hengyi.baseandroidcore.base;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.os.Build;
+import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -12,14 +12,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
-import android.webkit.DownloadListener;
-import android.webkit.JsPromptResult;
-import android.webkit.JsResult;
-import android.webkit.WebChromeClient;
-import android.webkit.WebResourceRequest;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
@@ -30,6 +23,13 @@ import com.hengyi.baseandroidcore.tools.FileDownloader;
 import com.hengyi.baseandroidcore.utils.ActivityStack;
 import com.hengyi.baseandroidcore.utils.ColorUtils;
 import com.hengyi.baseandroidcore.weight.EaseTitleBar;
+import com.tencent.smtt.export.external.interfaces.JsPromptResult;
+import com.tencent.smtt.export.external.interfaces.JsResult;
+import com.tencent.smtt.sdk.DownloadListener;
+import com.tencent.smtt.sdk.WebChromeClient;
+import com.tencent.smtt.sdk.WebSettings;
+import com.tencent.smtt.sdk.WebView;
+import com.tencent.smtt.sdk.WebViewClient;
 
 import java.io.File;
 
@@ -37,7 +37,7 @@ import java.io.File;
  * 作者：董志平
  * 名称：通用安卓web引擎
  */
-public class XBaseWebActivity extends XBaseActivity implements DownloadListener {
+public class XBaseBrowserActivity extends XBaseActivity implements DownloadListener {
 	public static final String ANDROID_ASSSET_PATH = "file:///android_asset/";
 	public static final String WEB_SHOW_TITLE_BAR = "show_title_bar";
 	public static final String WEB_STATUS_COLOR = "statusbar_color";
@@ -52,6 +52,8 @@ public class XBaseWebActivity extends XBaseActivity implements DownloadListener 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		getWindow().setFormat(PixelFormat.TRANSLUCENT);
+		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE | WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
 		progressBar = findViewById(R.id.progressBar);
 		swipe_container = findViewById(R.id.swipe_container);
@@ -104,7 +106,7 @@ public class XBaseWebActivity extends XBaseActivity implements DownloadListener 
 		swipe_container.setOnChildScrollUpCallback(new SwipeRefreshLayout.OnChildScrollUpCallback() {
 			@Override
 			public boolean canChildScrollUp(SwipeRefreshLayout parent, @Nullable View child) {
-				return webview.getScrollY() > 0;
+				return webview.getView().getScrollY() > 0;
 			}
 		});
 	}
@@ -120,21 +122,15 @@ public class XBaseWebActivity extends XBaseActivity implements DownloadListener 
 		settings.setJavaScriptEnabled(true);
 		settings.setDomStorageEnabled(true);
 		settings.setCacheMode(WebSettings.LOAD_NO_CACHE);
-		settings.setPluginState(WebSettings.PluginState.ON);
+		//settings.setPluginState(WebSettings.PluginState.ON);
 		settings.setUseWideViewPort(true); // 关键点
 		settings.setAllowFileAccess(true); // 允许访问文件
 		settings.setLoadWithOverviewMode(true);
-
-
-
 		settings.setBuiltInZoomControls(false);
 		settings.setSupportZoom(false);
 		settings.setDisplayZoomControls(false);
 
 		settings.setJavaScriptCanOpenWindowsAutomatically(true);
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-			settings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
-		}
 
 		webview.setVerticalScrollBarEnabled(false);
 		webview.setHorizontalScrollBarEnabled(false);
@@ -144,9 +140,22 @@ public class XBaseWebActivity extends XBaseActivity implements DownloadListener 
 		
 		webview.setWebViewClient(new WebViewClient(){
 			@Override
-			public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-
+			public boolean shouldOverrideUrlLoading(WebView view,String url) {
+				view.loadUrl(url);
 				return true;
+			}
+
+			@Override
+			public void onPageStarted(WebView webView, String s, Bitmap bitmap) {
+				progressBar.setVisibility(View.VISIBLE);
+				super.onPageStarted(webView, s, bitmap);
+			}
+
+			@Override
+			public void onPageFinished(WebView webView, String s) {
+				progressBar.setVisibility(View.GONE);
+				swipe_container.setRefreshing(false);
+				super.onPageFinished(webView, s);
 			}
 		});
 		
@@ -154,13 +163,6 @@ public class XBaseWebActivity extends XBaseActivity implements DownloadListener 
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
             	progressBar.setProgress(newProgress);
-				if(newProgress == 1){
-					progressBar.setVisibility(View.VISIBLE);
-				}
-            	if(newProgress == 100){
-            		 swipe_container.setRefreshing(false);
-					progressBar.setVisibility(View.GONE);
-            	}
             }
 
             @Override
@@ -170,7 +172,7 @@ public class XBaseWebActivity extends XBaseActivity implements DownloadListener 
 
 			@Override
 			public boolean onJsAlert(WebView view, String url, String message, final JsResult result) {
-				CustomAlertDialog alert = new CustomAlertDialog(XBaseWebActivity.this).builder();
+				CustomAlertDialog alert = new CustomAlertDialog(XBaseBrowserActivity.this).builder();
 				alert.setTitle("温馨提示");
 				alert.setMsg(message);
 				alert.show();
@@ -201,15 +203,11 @@ public class XBaseWebActivity extends XBaseActivity implements DownloadListener 
 	}
 
 	private void back(){
-		if(webview.canGoBack())
-		{
+		if(webview.canGoBack()) {
 			webview.goBack();//返回上一页面
-		}
-		else
-		{
+		} else {
 			webview.loadUrl("about:blank");
 			destory();
-
 		}
 	}
 
@@ -227,8 +225,6 @@ public class XBaseWebActivity extends XBaseActivity implements DownloadListener 
 			linerLayout_webview = null;
 		}
 		if (webview != null) {
-			// 如果先调用destroy()方法，则会命中if (isDestroyed()) return;这一行代码，需要先onDetachedFromWindow()，再
-			// destory()
 			ViewParent parent = webview.getParent();
 			if (parent != null) {
 				((ViewGroup) parent).removeView(webview);
@@ -239,7 +235,6 @@ public class XBaseWebActivity extends XBaseActivity implements DownloadListener 
 			webview.loadUrl("about:blank"); // clearView() should be changed to loadUrl("about:blank"), since clearView() is deprecated now
 			webview.pauseTimers();
 			webview.stopLoading();
-			webview.getSettings().setJavaScriptEnabled(false);
 			webview.removeAllViews();
 			webview = null;
 			try {
@@ -248,14 +243,12 @@ public class XBaseWebActivity extends XBaseActivity implements DownloadListener 
 
 			}
 		}
-
 		ActivityStack.getInstance().popActivity(this);
 	}
 
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		//销毁网页
 		destory();
 	}
 
@@ -265,22 +258,22 @@ public class XBaseWebActivity extends XBaseActivity implements DownloadListener 
 		customAlertDialog.setMsg("您真的要下载该文件吗？");
 		customAlertDialog.setTitle("温馨提示");
 		customAlertDialog.setPositiveButton("确定", new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				final FileDownloader fileDownloader = FileDownloader.getInstance();
+				fileDownloader.download(getContext(), s, fileDownloader.getDefaultPath(), fileDownloader.getDefaultFilename(s), new FileDownloader.DownloadStatusListener() {
 					@Override
-					public void onClick(View view) {
-						FileDownloader fileDownloader = FileDownloader.getInstance();
-						fileDownloader.download(getContext(), s, fileDownloader.getDefaultPath(), fileDownloader.getDefaultFilename(s), new FileDownloader.DownloadStatusListener() {
-							@Override
-							public void onSuccess(File file) {
-								toast("文件下载成功");
-							}
-
-							@Override
-							public void OnError(String message) {
-								toast("文件下载失败");
-							}
-						}, true);
+					public void onSuccess(File file) {
+						toast("文件下载成功，文件存入" + fileDownloader.getDefaultPath());
 					}
-				});
+
+					@Override
+					public void OnError(String message) {
+						toast("文件下载失败");
+					}
+				}, true);
+			}
+		});
 		customAlertDialog.setNegativeButton("取消",null);
 		customAlertDialog.show();
 	}
