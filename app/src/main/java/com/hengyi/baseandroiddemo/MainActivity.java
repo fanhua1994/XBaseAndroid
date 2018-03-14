@@ -8,12 +8,10 @@ import android.widget.TextView;
 import com.hengyi.baseandroidcore.base.XBaseWebActivity;
 import com.hengyi.baseandroidcore.statusbar.StatusBarCompat;
 import com.hengyi.baseandroidcore.tools.FileDownloader;
-import com.hengyi.baseandroidcore.update.AppUpdateManager;
-import com.hengyi.baseandroidcore.update.BuildType;
 import com.hengyi.baseandroidcore.utils.ActivityUtils;
+import com.hengyi.baseandroidcore.utils.AppConfig;
 import com.hengyi.baseandroidcore.utils.ColorUtils;
 import com.hengyi.baseandroidcore.utils.CommonUtils;
-import com.hengyi.baseandroidcore.utils.ProjectUtils;
 import com.hengyi.baseandroidcore.utils.SystemUtils;
 import com.hengyi.baseandroidcore.utils.VersionUtils;
 import com.hengyi.baseandroidcore.weight.EaseTitleBar;
@@ -44,6 +42,9 @@ public class MainActivity extends BaseActivity{
         version.setText("当前版本：" + VersionUtils.getAppVersion(this,"1.0.0.0"));
 
         cid.setText("您的永久CID：" + SystemUtils.getClientID() +"\n" + "您的临时CID："+SystemUtils.getShortClientID(this)+"\n（重装失效）");
+
+        String name = AppConfig.getInstance().load(this).getValue("name");
+        toast("读取到配置：" + name);
     }
 
     @Override
