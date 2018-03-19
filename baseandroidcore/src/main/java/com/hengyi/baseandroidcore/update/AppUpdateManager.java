@@ -192,7 +192,7 @@ public class AppUpdateManager {
     }
 
     public void doRequestPatch(final String request_url, final int build_type){
-        OkGo.<String>get(request_url + "?build_type=" + build_type).tag(this).execute(new StringCallback() {
+        OkGo.<String>get(request_url + "?release_type=" + build_type).tag(this).execute(new StringCallback() {
             @Override
             public void onSuccess(Response<String> response) {
                 PatchBean patchBean = GsonUtils.parseJsonWithGson(response.body(),PatchBean.class);
