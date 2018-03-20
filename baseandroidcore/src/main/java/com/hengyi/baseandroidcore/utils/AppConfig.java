@@ -2,9 +2,11 @@ package com.hengyi.baseandroidcore.utils;
 
 import android.content.Context;
 
+import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Properties;
 
 /**
@@ -33,7 +35,8 @@ public class AppConfig {
 
     public AppConfig load(Context context,String config_name){
         try {
-            properties.load(context.getAssets().open(config_name));
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(context.getAssets().open(config_name)));
+            properties.load(bufferedReader);
         } catch (IOException e) {
             e.printStackTrace();
         }
