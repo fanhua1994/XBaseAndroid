@@ -17,53 +17,73 @@
 
     </com.hengyi.baseandroidcore.weight.EaseTitleBar>
 
-    <TextView
-        android:id="@+id/version"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/cid"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
 
-    <Button
-        android:id="@+id/xbase_home"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="打开XBaseAndroid主页"
-        android:layout_margin="10dp"
-        />
+                <com.hengyi.baseandroidcore.weight.LoadingLayout
+                    android:id="@+id/loading_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-    <Button
-        android:id="@+id/xbase_demo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="打开XBaseAndroid演示"
-        android:layout_margin="10dp"
-        />
+                </com.hengyi.baseandroidcore.weight.LoadingLayout>
 
-    <Button
-        android:id="@+id/xbase_csdn_blog"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="作者CDSN博客"
-        android:layout_margin="10dp"
-        />
+                <TextView
+                    android:id="@+id/version"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
-    <Button
-        android:id="@+id/xbase_jianshu_blog"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="作者简书博客"
-        android:layout_margin="10dp"
-        />
+                <TextView
+                    android:id="@+id/cid"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
-    <Button
-        android:id="@+id/downloader"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="下载文件"
-        android:layout_margin="10dp"
-        />
+                <Button
+                    android:id="@+id/xbase_home"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="打开XBaseAndroid主页"
+                    android:layout_margin="10dp"
+                    />
+
+                <Button
+                    android:id="@+id/xbase_demo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="打开XBaseAndroid演示"
+                    android:layout_margin="10dp"
+                    />
+
+                <Button
+                    android:id="@+id/xbase_csdn_blog"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="作者CDSN博客"
+                    android:layout_margin="10dp"
+                    />
+
+                <Button
+                    android:id="@+id/xbase_jianshu_blog"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="作者简书博客"
+                    android:layout_margin="10dp"
+                    />
+
+                <Button
+                    android:id="@+id/downloader"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="下载文件"
+                    android:layout_margin="10dp"
+                    />
+        </LinearLayout>
+
+    </ScrollView>
 </LinearLayout>

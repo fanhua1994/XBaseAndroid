@@ -16,6 +16,7 @@ import com.hengyi.baseandroidcore.utils.CommonUtils;
 import com.hengyi.baseandroidcore.utils.SystemUtils;
 import com.hengyi.baseandroidcore.utils.VersionUtils;
 import com.hengyi.baseandroidcore.weight.EaseTitleBar;
+import com.hengyi.baseandroidcore.weight.LoadingLayout;
 
 import java.io.File;
 
@@ -26,6 +27,7 @@ public class MainActivity extends BaseActivity{
     @BindView(R.id.titleBar)EaseTitleBar easeTitleBar;
     @BindView(R.id.cid)TextView cid;
     @BindView(R.id.version)TextView version;
+    @BindView(R.id.loading_view)LoadingLayout loadingLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +46,17 @@ public class MainActivity extends BaseActivity{
 
         cid.setText("您的永久CID：" + SystemUtils.getClientID() +"\n" + "您的临时CID："+SystemUtils.getShortClientID(this)+"\n（重装失效）");
 
-        String name = AppConfig.getInstance().load(this).getValue("name");
-        toast("读取到配置：" + name);
+//        String name = AppConfig.getInstance().load(this).getValue("name");
+//        toast("读取到配置：" + name);
+
+        loadingLayout.setError();
+        loadingLayout.setErrorClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                toast("重新加载");
+            }
+        });
     }
 
     @Override

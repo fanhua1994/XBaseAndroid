@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/nodata_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -20,8 +19,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="没有任何数据"
+        android:text="加载错误..."
         android:layout_margin="10dp"
+        />
+
+    <Button
+        android:id="@+id/btn_loading_error"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:text="刷新"
+        android:layout_gravity="center"
         />
 
 </LinearLayout>

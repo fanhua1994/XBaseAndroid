@@ -7,6 +7,12 @@
         <attr name="titleBarBackground" format="reference|color"/>
     </declare-styleable>
 
+    <declare-styleable name="LoadingLayout">
+        <attr name="loadingView" format="reference" />
+        <attr name="stateView" format="reference" />
+        <attr name="emptyView" format="reference" />
+    </declare-styleable>
+
     <!-- Defines the custom XML attributes supported for a HorizontalListView -->
     <declare-styleable name="HorizontalListView">
         <attr name="dividerWidth" format="dimension" />

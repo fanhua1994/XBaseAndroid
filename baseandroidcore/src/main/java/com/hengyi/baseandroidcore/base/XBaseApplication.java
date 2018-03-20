@@ -4,13 +4,11 @@ import android.app.Application;
 
 import com.alipay.euler.andfix.patch.PatchManager;
 import com.hengyi.baseandroidcore.utils.VersionUtils;
-import com.hengyi.baseandroidcore.utils_ext.CrashUtils;
-import com.hengyi.baseandroidcore.utils_ext.LogUtils;
-import com.hengyi.baseandroidcore.utils_ext.Utils;
+import com.hengyi.baseandroidcore.xutils.CrashUtils;
+import com.hengyi.baseandroidcore.xutils.LogUtils;
+import com.hengyi.baseandroidcore.xutils.Utils;
 import com.lzy.okgo.OkGo;
 import com.tencent.smtt.sdk.QbSdk;
-
-import java.io.File;
 
 /**
  * Created by Administrator on 2017/9/12.
