@@ -46,17 +46,17 @@ public class MainActivity extends BaseActivity{
 
         cid.setText("您的永久CID：" + SystemUtils.getClientID() +"\n" + "您的临时CID："+SystemUtils.getShortClientID(this)+"\n（重装失效）");
 
-//        String name = AppConfig.getInstance().load(this).getValue("name");
-//        toast("读取到配置：" + name);
+        String name = AppConfig.getInstance().load(this).getValue("name");
+        toast("读取到配置：" + name);
 
-        loadingLayout.setError();
-        loadingLayout.setErrorClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View view) {
-                toast("重新加载");
-            }
-        });
+//        loadingLayout.setError();
+//        loadingLayout.setErrorClickListener(new View.OnClickListener(){
+//
+//            @Override
+//            public void onClick(View view) {
+//                toast("重新加载");
+//            }
+//        });
     }
 
     @Override

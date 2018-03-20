@@ -28,8 +28,12 @@ public class AppConfig {
     }
 
     public AppConfig load(Context context){
+        return load(context,CONFIG_NAME);
+    }
+
+    public AppConfig load(Context context,String config_name){
         try {
-            properties.load(context.getAssets().open(CONFIG_NAME));
+            properties.load(context.getAssets().open(config_name));
         } catch (IOException e) {
             e.printStackTrace();
         }
