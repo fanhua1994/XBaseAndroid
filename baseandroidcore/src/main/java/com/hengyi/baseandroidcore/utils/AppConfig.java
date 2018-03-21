@@ -10,7 +10,7 @@ import java.io.InputStreamReader;
 import java.util.Properties;
 
 /**
- * Created by ZW-2 on 2018/3/14.
+ * Created by Fanhua on 2018/3/14.
  */
 
 public class AppConfig {

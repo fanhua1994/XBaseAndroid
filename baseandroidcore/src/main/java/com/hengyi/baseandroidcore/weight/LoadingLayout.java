@@ -70,7 +70,7 @@ public class LoadingLayout extends FrameLayout {
      * @param listener
      */
     public void setEmptyClickListener(final OnClickListener listener) {
-        if( listener != null )
+        if( listener != null)
             findViewById(R.id.nodata_view).setOnClickListener(listener);
     }
 
@@ -106,53 +106,9 @@ public class LoadingLayout extends FrameLayout {
      * @param resoureId
      * @param img
      */
-    public void setViewImage(int resoureId,int img ){
+    public void setViewImage(int resoureId,int img){
         ((ImageView)findViewById(resoureId)).setImageResource(img);
     }
-
-    /**
-     * State View
-     */
-    public void setError() {
-        for (int i = 0; i < this.getChildCount(); i++) {
-            View child = this.getChildAt(i);
-            if (i == 0) {
-                child.setVisibility(VISIBLE);
-            } else {
-                child.setVisibility(GONE);
-            }
-        }
-    }
-
-    /**
-     * Empty view
-     */
-    public void showEmpty() {
-        for (int i = 0; i < this.getChildCount(); i++) {
-            View child = this.getChildAt(i);
-            if (i == 2) {
-                child.setVisibility(VISIBLE);
-            } else {
-                child.setVisibility(GONE);
-            }
-        }
-    }
-
-
-    /**
-     * Loading view
-     */
-    public void showLoading() {
-        for (int i = 0; i < this.getChildCount(); i++) {
-            View child = this.getChildAt(i);
-            if (i == 1) {
-                child.setVisibility(VISIBLE);
-            } else {
-                child.setVisibility(GONE);
-            }
-        }
-    }
-
 
     /**
      *
@@ -169,7 +125,6 @@ public class LoadingLayout extends FrameLayout {
             }
         }
     }
-
 
     /**
      * Empty view
@@ -188,24 +143,21 @@ public class LoadingLayout extends FrameLayout {
         }
     }
 
-
     /**
      *
      * @param tips
      */
-    public void setError(String tips) {
+    public void showError(String tips) {
         for (int i = 0; i < this.getChildCount(); i++) {
             View child = this.getChildAt(i);
             if (i == 0) {
                 child.setVisibility(VISIBLE);
-                ((TextView) child.findViewById(R.id.tv_show_text)).setText(tips + "");
+                ((TextView) child.findViewById(R.id.tv_show_text)).setText(tips);
             } else {
                 child.setVisibility(GONE);
             }
         }
     }
-
-
 
     /**
      * 展示内容
