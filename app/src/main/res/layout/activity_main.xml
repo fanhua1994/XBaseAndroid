@@ -48,7 +48,7 @@
                     android:id="@+id/xbase_home"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="打开XBaseAndroid主页"
+                    android:text="打开XBaseAndroid介绍"
                     android:layout_margin="10dp"
                     />
 

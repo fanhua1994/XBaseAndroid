@@ -21,7 +21,7 @@ public class XBaseJsMappingAndroid extends Object {
     }
 
     @JavascriptInterface
-    public void test(String msg) {
+    public void toast(String msg) {
         Toast.makeText(context,msg,Toast.LENGTH_LONG).show();
     }
 
