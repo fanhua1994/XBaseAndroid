@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 import com.hengyi.baseandroidcore.R;
+import com.hengyi.baseandroidcore.browser.XBaseJsMappingAndroid;
 import com.hengyi.baseandroidcore.dialog.CustomAlertDialog;
 import com.hengyi.baseandroidcore.statusbar.StatusBarCompat;
 import com.hengyi.baseandroidcore.tools.FileDownloader;
@@ -41,7 +42,7 @@ public class XBaseBrowserActivity extends XBaseActivity implements DownloadListe
 	public static final String ANDROID_ASSSET_PATH = "file:///android_asset/";
 	public static final String WEB_SHOW_TITLE_BAR = "show_title_bar";
 	public static final String WEB_STATUS_COLOR = "statusbar_color";
-	public static final String WEB_URL_PARAM = "url";
+	public static final String WEB_URL = "url";
 
 	private EaseTitleBar easeTitleBar;
 	private SwipeRefreshLayout swipe_container;
@@ -122,19 +123,17 @@ public class XBaseBrowserActivity extends XBaseActivity implements DownloadListe
 		settings.setJavaScriptEnabled(true);
 		settings.setDomStorageEnabled(true);
 		settings.setCacheMode(WebSettings.LOAD_NO_CACHE);
-		//settings.setPluginState(WebSettings.PluginState.ON);
 		settings.setUseWideViewPort(true); // 关键点
 		settings.setAllowFileAccess(true); // 允许访问文件
 		settings.setLoadWithOverviewMode(true);
 		settings.setBuiltInZoomControls(false);
 		settings.setSupportZoom(false);
 		settings.setDisplayZoomControls(false);
-
 		settings.setJavaScriptCanOpenWindowsAutomatically(true);
 
+		webview.addJavascriptInterface(new XBaseJsMappingAndroid(getContext()), "xbase");
 		webview.setVerticalScrollBarEnabled(false);
 		webview.setHorizontalScrollBarEnabled(false);
-
 		webview.setDownloadListener(this);
 		webview.loadUrl(url);
 		
