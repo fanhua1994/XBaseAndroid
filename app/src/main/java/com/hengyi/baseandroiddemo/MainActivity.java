@@ -69,19 +69,19 @@ public class MainActivity extends BaseActivity{
         switch(view.getId()){
             case R.id.xbase_home:
                 //ActivityUtils.startActivity(this,XBaseBrowserActivity.class,new String[]{XBaseBrowserActivity.WEB_URL_PARAM, XBaseBrowserActivity.WEB_SHOW_TITLE_BAR}, "https://github.com/fanhua1994/XBaseAndroid",true);
-                ActivityUtils.startActivity(this,XBaseBrowserActivity.class,new String[]{XBaseBrowserActivity.WEB_URL, XBaseBrowserActivity.WEB_SHOW_TITLE_BAR}, "https://www.immomo.com/",true);
+                ActivityUtils.startActivity(this,XBaseBrowserActivity.class,new String[]{XBaseBrowserActivity.WEB_URL, XBaseBrowserActivity.SHOW_TITLE_BAR,XBaseBrowserActivity.SHOW_REFRESH}, XBaseBrowserActivity.ANDROID_ASSSET_PATH + "template/index.html",true,false);
                 break;
 
             case R.id.xbase_demo:
-                ActivityUtils.startActivity(this,XBaseBrowserActivity.class,new String[]{XBaseBrowserActivity.WEB_URL, XBaseBrowserActivity.WEB_SHOW_TITLE_BAR}, "https://github.com/fanhua1994/XBaseAndroidDemo",true);
+                ActivityUtils.startActivity(this,XBaseBrowserActivity.class,new String[]{XBaseBrowserActivity.WEB_URL, XBaseBrowserActivity.SHOW_TITLE_BAR}, "https://github.com/fanhua1994/XBaseAndroidDemo",true);
                 break;
 
             case R.id.xbase_csdn_blog:
-                ActivityUtils.startActivity(this,XBaseBrowserActivity.class,new String[]{XBaseBrowserActivity.WEB_URL, XBaseBrowserActivity.WEB_SHOW_TITLE_BAR}, "http://blog.csdn.net/dong_18383219470?viewmode=list",true);
+                ActivityUtils.startActivity(this,XBaseBrowserActivity.class,new String[]{XBaseBrowserActivity.WEB_URL, XBaseBrowserActivity.SHOW_TITLE_BAR}, "http://blog.csdn.net/dong_18383219470?viewmode=list",true);
                 break;
 
             case R.id.xbase_jianshu_blog:
-                ActivityUtils.startActivity(this,XBaseBrowserActivity.class,new String[]{XBaseBrowserActivity.WEB_URL, XBaseBrowserActivity.WEB_SHOW_TITLE_BAR}, "https://www.jianshu.com/u/50c9e5f00da3",true);
+                ActivityUtils.startActivity(this,XBaseBrowserActivity.class,new String[]{XBaseBrowserActivity.WEB_URL, XBaseBrowserActivity.SHOW_TITLE_BAR}, "https://www.jianshu.com/u/50c9e5f00da3",true);
                 break;
             case R.id.downloader:
                 //String downloadPath = ProjectUtils.getInstance().setFileType(ProjectUtils.COMMON_TYPE).setIdCard(true).getWorkGroup("downloader");

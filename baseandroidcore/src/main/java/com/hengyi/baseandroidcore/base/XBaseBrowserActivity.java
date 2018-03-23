@@ -40,8 +40,9 @@ import java.io.File;
  */
 public class XBaseBrowserActivity extends XBaseActivity implements DownloadListener {
 	public static final String ANDROID_ASSSET_PATH = "file:///android_asset/";
-	public static final String WEB_SHOW_TITLE_BAR = "show_title_bar";
-	public static final String WEB_STATUS_COLOR = "statusbar_color";
+	public static final String SHOW_TITLE_BAR = "show_title_bar";
+	public static final String SHOW_REFRESH = "show_refresh";
+	public static final String STATUS_COLOR = "statusbar_color";
 	public static final String WEB_URL = "url";
 
 	private EaseTitleBar easeTitleBar;
@@ -67,9 +68,10 @@ public class XBaseBrowserActivity extends XBaseActivity implements DownloadListe
 
 	private void init(){
 		Intent i = getIntent();
-		String url = i.getStringExtra(WEB_URL_PARAM);
-		boolean show_title_bar = i.getBooleanExtra(WEB_SHOW_TITLE_BAR,true);
-		int status_color = i.getIntExtra(WEB_STATUS_COLOR,R.color.main_color);
+		String url = i.getStringExtra(WEB_URL);
+		boolean show_title_bar = i.getBooleanExtra(SHOW_TITLE_BAR,true);
+		boolean show_refresh = i.getBooleanExtra(SHOW_REFRESH,false);
+		int status_color = i.getIntExtra(STATUS_COLOR,R.color.main_color);
 		StatusBarCompat.setStatusBarColor(this, Color.parseColor(ColorUtils.changeColor(this,status_color)));
 
 		initWeb(url);
@@ -93,23 +95,27 @@ public class XBaseBrowserActivity extends XBaseActivity implements DownloadListe
 			easeTitleBar.setVisibility(View.GONE);
 		}
 
-		swipe_container.setColorSchemeColors(getResources().getColor(R.color.main_color));
-		swipe_container.setOnRefreshListener(new OnRefreshListener() {
-			@Override
-			public void onRefresh() {
-				progressBar.setVisibility(View.VISIBLE);
-				swipe_container.setRefreshing(true);
-				webview.reload();
-			}
-		});
+		if(show_refresh) {
+			swipe_container.setColorSchemeColors(getResources().getColor(R.color.main_color));
+			swipe_container.setOnRefreshListener(new OnRefreshListener() {
+				@Override
+				public void onRefresh() {
+					progressBar.setVisibility(View.VISIBLE);
+					swipe_container.setRefreshing(true);
+					webview.reload();
+				}
+			});
 
-		// 设置子视图是否允许滚动到顶部
-		swipe_container.setOnChildScrollUpCallback(new SwipeRefreshLayout.OnChildScrollUpCallback() {
-			@Override
-			public boolean canChildScrollUp(SwipeRefreshLayout parent, @Nullable View child) {
-				return webview.getView().getScrollY() > 0;
-			}
-		});
+			// 设置子视图是否允许滚动到顶部
+			swipe_container.setOnChildScrollUpCallback(new SwipeRefreshLayout.OnChildScrollUpCallback() {
+				@Override
+				public boolean canChildScrollUp(SwipeRefreshLayout parent, @Nullable View child) {
+					return webview.getView().getScrollY() > 0;
+				}
+			});
+		}else {
+			swipe_container.setEnabled(false);
+		}
 	}
 
 	@Override
