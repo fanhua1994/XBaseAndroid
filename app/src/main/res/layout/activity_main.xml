@@ -67,6 +67,15 @@
                     android:text="打开SUI演示"
                     android:layout_margin="10dp"
                     />
+
+            <Button
+                android:id="@+id/xbase_youku"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="打开优酷视频播放"
+                android:layout_margin="10dp"
+                />
+
         </LinearLayout>
 
     </ScrollView>

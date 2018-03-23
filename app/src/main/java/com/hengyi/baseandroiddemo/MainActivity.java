@@ -51,7 +51,7 @@ public class MainActivity extends BaseActivity{
         return R.layout.activity_main;
     }
 
-    @OnClick({R.id.xbase_home,R.id.xbase_mui,R.id.xbase_sui})
+    @OnClick({R.id.xbase_home,R.id.xbase_mui,R.id.xbase_sui,R.id.xbase_youku})
     public void Click(View view){
         switch(view.getId()){
             case R.id.xbase_home:
@@ -64,6 +64,9 @@ public class MainActivity extends BaseActivity{
 
             case R.id.xbase_sui:
                 ActivityUtils.startActivity(this,XBaseBrowserActivity.class,new String[]{XBaseBrowserActivity.WEB_URL, XBaseBrowserActivity.SHOW_TITLE_BAR}, "http://m.sui.taobao.org/demos/",false);
+                break;
+            case R.id.xbase_youku:
+                ActivityUtils.startActivity(this,XBaseBrowserActivity.class,new String[]{XBaseBrowserActivity.WEB_URL, XBaseBrowserActivity.SHOW_TITLE_BAR}, "https://www.youku.com/",false);
                 break;
         }
     }
