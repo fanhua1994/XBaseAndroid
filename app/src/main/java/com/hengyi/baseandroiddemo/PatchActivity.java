@@ -10,7 +10,6 @@ import butterknife.OnClick;
  */
 
 public class PatchActivity extends BaseActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

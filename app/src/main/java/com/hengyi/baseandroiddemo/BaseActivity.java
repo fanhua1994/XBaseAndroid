@@ -9,7 +9,7 @@ import butterknife.Unbinder;
 
 /**
  * Created by Fanhua on 2017/10/10.
- * 由于ButterKnife不能再lib中不能bind。所以必须继承BaseActivity进行二次封装
+ * 由于ButterKnife不能再lib中bind。所以必须继承BaseActivity进行二次封装
  */
 
 public abstract class BaseActivity extends XBaseActivity {
