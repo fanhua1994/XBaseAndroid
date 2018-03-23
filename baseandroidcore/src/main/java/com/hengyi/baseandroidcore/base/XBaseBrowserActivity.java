@@ -36,7 +36,7 @@ import java.io.File;
 
 /*
  * 作者：董志平
- * 名称：内部浏览器 支持隐藏标题栏
+ * 名称：内部浏览器 支持隐藏标题栏 支持不刷新 支持长按选中
  */
 public class XBaseBrowserActivity extends XBaseActivity implements DownloadListener {
 	public static final String ANDROID_ASSSET_PATH = "file:///android_asset/";

@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.hengyi.baseandroidcore.base.XBaseBrowserActivity;
-import com.hengyi.baseandroidcore.base.XBaseBrowserActivity;
 import com.hengyi.baseandroidcore.statusbar.StatusBarCompat;
 import com.hengyi.baseandroidcore.tools.FileDownloader;
 import com.hengyi.baseandroidcore.utils.ActivityUtils;
