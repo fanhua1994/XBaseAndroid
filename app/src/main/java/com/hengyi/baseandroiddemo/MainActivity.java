@@ -7,7 +7,6 @@ import android.widget.TextView;
 
 import com.hengyi.baseandroidcore.base.XBaseBrowserActivity;
 import com.hengyi.baseandroidcore.statusbar.StatusBarCompat;
-import com.hengyi.baseandroidcore.tools.FileDownloader;
 import com.hengyi.baseandroidcore.utils.ActivityUtils;
 import com.hengyi.baseandroidcore.utils.AppConfig;
 import com.hengyi.baseandroidcore.utils.ColorUtils;
@@ -16,8 +15,6 @@ import com.hengyi.baseandroidcore.utils.SystemUtils;
 import com.hengyi.baseandroidcore.utils.VersionUtils;
 import com.hengyi.baseandroidcore.weight.EaseTitleBar;
 import com.hengyi.baseandroidcore.weight.LoadingLayout;
-
-import java.io.File;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -47,15 +44,6 @@ public class MainActivity extends BaseActivity{
 
         String name = AppConfig.getInstance().load(this).getValue("name");
         toast("读取到配置：" + name);
-
-//        loadingLayout.setError();
-//        loadingLayout.setErrorClickListener(new View.OnClickListener(){
-//
-//            @Override
-//            public void onClick(View view) {
-//                toast("重新加载");
-//            }
-//        });
     }
 
     @Override
