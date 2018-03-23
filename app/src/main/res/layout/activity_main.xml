@@ -48,39 +48,23 @@
                     android:id="@+id/xbase_home"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="打开XBaseAndroid介绍"
+                    android:text="打开XBaseAndroid主页"
                     android:layout_margin="10dp"
                     />
 
                 <Button
-                    android:id="@+id/xbase_demo"
+                    android:id="@+id/xbase_mui"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="打开XBaseAndroid演示"
+                    android:text="打开MUI演示"
                     android:layout_margin="10dp"
                     />
 
                 <Button
-                    android:id="@+id/xbase_csdn_blog"
+                    android:id="@+id/xbase_sui"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="作者CDSN博客"
-                    android:layout_margin="10dp"
-                    />
-
-                <Button
-                    android:id="@+id/xbase_jianshu_blog"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="作者简书博客"
-                    android:layout_margin="10dp"
-                    />
-
-                <Button
-                    android:id="@+id/downloader"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="下载文件"
+                    android:text="打开SUI演示"
                     android:layout_margin="10dp"
                     />
         </LinearLayout>

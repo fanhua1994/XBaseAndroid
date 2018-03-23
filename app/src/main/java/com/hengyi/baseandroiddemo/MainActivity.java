@@ -63,41 +63,20 @@ public class MainActivity extends BaseActivity{
         return R.layout.activity_main;
     }
 
-    @OnClick({R.id.xbase_jianshu_blog,R.id.xbase_home,R.id.xbase_demo,R.id.xbase_csdn_blog,R.id.downloader})
+    @OnClick({R.id.xbase_home,R.id.xbase_mui,R.id.xbase_sui})
     public void Click(View view){
         switch(view.getId()){
             case R.id.xbase_home:
-                //ActivityUtils.startActivity(this,XBaseBrowserActivity.class,new String[]{XBaseBrowserActivity.WEB_URL_PARAM, XBaseBrowserActivity.WEB_SHOW_TITLE_BAR}, "https://github.com/fanhua1994/XBaseAndroid",true);
                 ActivityUtils.startActivity(this,XBaseBrowserActivity.class,new String[]{XBaseBrowserActivity.WEB_URL, XBaseBrowserActivity.SHOW_TITLE_BAR,XBaseBrowserActivity.SHOW_REFRESH}, XBaseBrowserActivity.ANDROID_ASSSET_PATH + "template/index.html",true,false);
                 break;
 
-            case R.id.xbase_demo:
-                ActivityUtils.startActivity(this,XBaseBrowserActivity.class,new String[]{XBaseBrowserActivity.WEB_URL, XBaseBrowserActivity.SHOW_TITLE_BAR}, "https://github.com/fanhua1994/XBaseAndroidDemo",true);
+            case R.id.xbase_mui:
+                ActivityUtils.startActivity(this,XBaseBrowserActivity.class,new String[]{XBaseBrowserActivity.WEB_URL, XBaseBrowserActivity.SHOW_TITLE_BAR}, "http://www.dcloud.io/hellomui/",false);
                 break;
 
-            case R.id.xbase_csdn_blog:
-                ActivityUtils.startActivity(this,XBaseBrowserActivity.class,new String[]{XBaseBrowserActivity.WEB_URL, XBaseBrowserActivity.SHOW_TITLE_BAR}, "http://blog.csdn.net/dong_18383219470?viewmode=list",true);
+            case R.id.xbase_sui:
+                ActivityUtils.startActivity(this,XBaseBrowserActivity.class,new String[]{XBaseBrowserActivity.WEB_URL, XBaseBrowserActivity.SHOW_TITLE_BAR}, "http://m.sui.taobao.org/demos/",false);
                 break;
-
-            case R.id.xbase_jianshu_blog:
-                ActivityUtils.startActivity(this,XBaseBrowserActivity.class,new String[]{XBaseBrowserActivity.WEB_URL, XBaseBrowserActivity.SHOW_TITLE_BAR}, "https://www.jianshu.com/u/50c9e5f00da3",true);
-                break;
-            case R.id.downloader:
-                //String downloadPath = ProjectUtils.getInstance().setFileType(ProjectUtils.COMMON_TYPE).setIdCard(true).getWorkGroup("downloader");
-                FileDownloader fileDownloader = FileDownloader.getInstance();
-                fileDownloader.download(this, "http://sqdd.myapp.com/myapp/qqteam/tim/down/tim.apk", fileDownloader.getDefaultPath(), "tim.apk", new FileDownloader.DownloadStatusListener() {
-                    @Override
-                    public void onSuccess(File file) {
-                        toast("下载成功");
-                    }
-
-                    @Override
-                    public void OnError(String message) {
-                        toast("下载失败");
-                    }
-                },true);
-                break;
-
         }
     }
 
