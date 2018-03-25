@@ -1,12 +1,23 @@
 package com.hengyi.baseandroidcore.browser;
 
+import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.webkit.JavascriptInterface;
 import android.widget.Toast;
 
+import com.hengyi.baseandroidcore.base.XBaseBrowserActivity;
+import com.hengyi.baseandroidcore.dialog.CustomWeiboDialogUtils;
 import com.hengyi.baseandroidcore.event.DefaultMessageEvent;
 import com.hengyi.baseandroidcore.event.EventManager;
+import com.hengyi.baseandroidcore.utils.ActivityStack;
+import com.hengyi.baseandroidcore.utils.ActivityUtils;
 import com.hengyi.baseandroidcore.utils.ConfigUtils;
+import com.hengyi.baseandroidcore.utils.DiskLruCacheHelper;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.model.Response;
+
+import java.io.IOException;
 
 /**
  * Created: 2018/3/22 16:31
@@ -16,10 +27,21 @@ import com.hengyi.baseandroidcore.utils.ConfigUtils;
  */
 
 public class XBaseJsMappingAndroid extends Object {
+    private Dialog loadingDialog = null;
     private Context context;
 
     public XBaseJsMappingAndroid(Context context){
         this.context = context;
+    }
+
+    @JavascriptInterface
+    public void showLoading(String msg){
+        loadingDialog = CustomWeiboDialogUtils.createLoadingDialog(context,msg);
+    }
+
+    @JavascriptInterface
+    public void closeLoading(){
+        CustomWeiboDialogUtils.closeDialog(loadingDialog);
     }
 
     @JavascriptInterface
@@ -43,5 +65,45 @@ public class XBaseJsMappingAndroid extends Object {
     @JavascriptInterface
     public String getStringConfig(String key){
         return ConfigUtils.getInstance(context).findStringByKey(key);
+    }
+
+    @JavascriptInterface
+    public Boolean getBooleanConfig(String key){
+        return ConfigUtils.getInstance(context).findBoolByKey(key);
+    }
+
+    @JavascriptInterface
+    public void setIntConfig(String key,int value){
+        ConfigUtils.getInstance(context).addOrUpdateIntNumber(key,value);
+    }
+
+    @JavascriptInterface
+    public void setStringConfig(String key,String value){
+        ConfigUtils.getInstance(context).addOrUpdateText(key,value);
+    }
+
+    @JavascriptInterface
+    public void setBooleanConfig(String key,Boolean value){
+        ConfigUtils.getInstance(context).addOrUpdateBoolean(key,value);
+    }
+
+    @JavascriptInterface
+    public void setCache(String key,String value){
+        DiskLruCacheHelper.getInstance(context).put(key,value);
+    }
+
+    @JavascriptInterface
+    public String getCache(String key){
+        return DiskLruCacheHelper.getInstance(context).getAsString(key);
+    }
+
+    @JavascriptInterface
+    public void close(){
+        ActivityStack.getInstance().popActivity();
+    }
+
+    @JavascriptInterface
+    public void kill(){
+        ActivityStack.getInstance().clearAllActivity();
     }
 }

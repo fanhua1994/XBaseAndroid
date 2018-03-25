@@ -4,8 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>XBaseAndroid内部网页</title>
+    <script src="../resources/js/vue.min.js"></script>
     <script type="text/javascript">
-    	xbase.toast("我是网页，我调用的安卓原生的信息");
+    	//xbase.toast("我是网页，我调用的安卓原生的信息");
     </script>
     <style>
     	body,html{padding: 0px;margin: 0px;}
@@ -28,10 +29,32 @@
     </style>
 </head>
 <body>
-<header>XBaseAndroid</header>
-<div class="content">
-    XBaseAndroid一款集成了网络请求，本地缓存，配置文件，数据库映射，权限申请，链表管理Activity，简化Activity、Service、Broadcast启动， 万能ListView,GridView适配器、高仿IOS弹窗、倒计时/延迟执行，标题栏组件,图片显示，webview引擎，APP更新组件，APP崩溃日志组件，线程池组件，视频播放器，三级地址选择，热更新组件
+	<div id="app">
+		<header>XBaseAndroid</header>
+		<div class="content">
+		    XBaseAndroid一款集成了网络请求，本地缓存，配置文件，数据库映射，权限申请，链表管理Activity，简化Activity、Service、Broadcast启动， 万能ListView,GridView适配器、高仿IOS弹窗、倒计时/延迟执行，标题栏组件,图片显示，webview引擎，APP更新组件，APP崩溃日志组件，线程池组件，视频播放器，三级地址选择，热更新组件
+		</div>
+		<button v-on:click="btn_close">关闭当前界面</button>
+
+        <button v-on:click="btn_kill">关闭整个应用</button>
 </div>
-<button>安卓测试</button>
+<script>
+    xbase.showLoading("正在加载中...");
+    setTimeout(function(){
+    	xbase.closeLoading();
+    },3000);
+
+	new Vue({
+		el:"#app",
+		methods:{
+			"btn_close":function(){
+			    xbase.close();
+			},
+			"btn_kill":function(){
+			    xbase.kill();
+			}
+		}
+	});
+</script>
 </body>
 </html>
