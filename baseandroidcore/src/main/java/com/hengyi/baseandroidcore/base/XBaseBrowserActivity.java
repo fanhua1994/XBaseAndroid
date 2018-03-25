@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.PixelFormat;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -62,6 +63,8 @@ public class XBaseBrowserActivity extends XBaseActivity implements DownloadListe
 		easeTitleBar = findViewById(R.id.titleBar);
 		linerLayout_webview = findViewById(R.id.linerLayout_webview);
 		webview = new WebView(this);
+		ViewGroup.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+		webview.setLayoutParams(layoutParams);
 		linerLayout_webview.addView(webview);
         init();
 	}
@@ -133,9 +136,10 @@ public class XBaseBrowserActivity extends XBaseActivity implements DownloadListe
 		settings.setAllowFileAccess(true); // 允许访问文件
 		settings.setLoadWithOverviewMode(true);
 		settings.setBuiltInZoomControls(false);
-		settings.setSupportZoom(false);
 		settings.setDisplayZoomControls(false);
 		settings.setJavaScriptCanOpenWindowsAutomatically(true);
+		settings.setPluginState(WebSettings.PluginState.ON);
+		settings.setSupportZoom(true); // 支持缩放
 
 		webview.addJavascriptInterface(new XBaseJsMappingAndroid(getContext()), "xbase");
 		webview.setVerticalScrollBarEnabled(false);

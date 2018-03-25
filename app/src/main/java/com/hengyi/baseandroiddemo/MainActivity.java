@@ -42,8 +42,8 @@ public class MainActivity extends BaseActivity{
 
         cid.setText("您的永久CID：" + SystemUtils.getClientID() +"\n" + "您的临时CID："+SystemUtils.getShortClientID(this)+"\n（重装失效）");
 
-        String name = AppConfig.getInstance().load(this).getValue("name");
-        toast("读取到配置：" + name);
+//        String name = AppConfig.getInstance().load(this).getValue("name");
+//        toast("读取到配置：" + name);
     }
 
     @Override
@@ -59,7 +59,7 @@ public class MainActivity extends BaseActivity{
                 break;
 
             case R.id.xbase_mui:
-                ActivityUtils.startActivity(this,XBaseBrowserActivity.class,new String[]{XBaseBrowserActivity.WEB_URL, XBaseBrowserActivity.SHOW_TITLE_BAR}, "http://www.dcloud.io/hellomui/",false);
+                ActivityUtils.startActivity(this,XBaseBrowserActivity.class,new String[]{XBaseBrowserActivity.WEB_URL, XBaseBrowserActivity.SHOW_TITLE_BAR}, "http://www.dcloud.io/hellomui/list.html?v=1",false);
                 break;
 
             case R.id.xbase_sui:
