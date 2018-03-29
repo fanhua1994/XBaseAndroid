@@ -1,23 +1,16 @@
 package com.hengyi.baseandroidcore.browser;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.webkit.JavascriptInterface;
 import android.widget.Toast;
 
-import com.hengyi.baseandroidcore.base.XBaseBrowserActivity;
 import com.hengyi.baseandroidcore.dialog.CustomWeiboDialogUtils;
-import com.hengyi.baseandroidcore.event.DefaultMessageEvent;
+import com.hengyi.baseandroidcore.event.MessageEvent;
 import com.hengyi.baseandroidcore.event.EventManager;
 import com.hengyi.baseandroidcore.utils.ActivityStack;
-import com.hengyi.baseandroidcore.utils.ActivityUtils;
 import com.hengyi.baseandroidcore.utils.ConfigUtils;
 import com.hengyi.baseandroidcore.utils.DiskLruCacheHelper;
-import com.lzy.okgo.OkGo;
-import com.lzy.okgo.model.Response;
-
-import java.io.IOException;
 
 /**
  * Created: 2018/3/22 16:31
@@ -51,7 +44,7 @@ public class XBaseJsMappingAndroid extends Object {
 
     @JavascriptInterface
     public void event(int code,String content){
-        DefaultMessageEvent event = EventManager.getDefaultMessage();
+        MessageEvent event = EventManager.getDefaultMessage();
         event.setCode(code);
         event.setContent(content);
         EventManager.sendDefaultMessage(event);

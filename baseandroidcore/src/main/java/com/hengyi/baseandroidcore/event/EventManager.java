@@ -7,10 +7,10 @@ import org.greenrobot.eventbus.EventBus;
  */
 
 public class EventManager {
-    private static DefaultMessageEvent defaultMessageEvent = null;
+    private static MessageEvent messageEvent = null;
 
-    public static void sendMessage(DefaultMessageEvent defaultMessageEvent){
-        EventBus.getDefault().post(defaultMessageEvent);
+    public static void sendMessage(MessageEvent messageEvent){
+        EventBus.getDefault().post(messageEvent);
     }
 
     public static void register(Object subscriber){
@@ -21,9 +21,9 @@ public class EventManager {
         EventBus.getDefault().unregister(subscriber);
     }
 
-    public static DefaultMessageEvent getDefaultMessage(){
-        if(defaultMessageEvent == null)
-            defaultMessageEvent = new DefaultMessageEvent();
-        return defaultMessageEvent;
+    public static MessageEvent getDefaultMessage(){
+        if(messageEvent == null)
+            messageEvent = new MessageEvent();
+        return messageEvent;
     }
 }

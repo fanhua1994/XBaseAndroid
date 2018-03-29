@@ -6,7 +6,7 @@ import java.util.Map;
 /**
  * Created by fanhua on 17-11-18.
  */
-public class DefaultMessageEvent implements Serializable{
+public class MessageEvent implements Serializable{
     private int code;
     private int status;
     private int mint1;
