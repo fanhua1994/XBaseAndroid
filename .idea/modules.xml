@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://F:\GitHub\XBaseAndroid\BaseAndroid.iml" filepath="F:\GitHub\XBaseAndroid\BaseAndroid.iml" />
       <module fileurl="file://$PROJECT_DIR$/XBaseAndroid.iml" filepath="$PROJECT_DIR$/XBaseAndroid.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/baseandroidcore/baseandroidcore.iml" filepath="$PROJECT_DIR$/baseandroidcore/baseandroidcore.iml" />

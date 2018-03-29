@@ -9,8 +9,16 @@ import org.greenrobot.eventbus.EventBus;
 public class EventManager {
     private static DefaultMessageEvent defaultMessageEvent = null;
 
-    public static void sendDefaultMessage(DefaultMessageEvent defaultMessageEvent){
+    public static void sendMessage(DefaultMessageEvent defaultMessageEvent){
         EventBus.getDefault().post(defaultMessageEvent);
+    }
+
+    public static void register(Object subscriber){
+        EventBus.getDefault().register(subscriber);
+    }
+
+    public static void unregister(Object subscriber){
+        EventBus.getDefault().unregister(subscriber);
     }
 
     public static DefaultMessageEvent getDefaultMessage(){
