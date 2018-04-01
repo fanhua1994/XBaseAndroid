@@ -15,7 +15,7 @@ import java.util.List;
  * Created by Fanhua on 2017/10/10.
 */
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
-    private static String DB_NAME = "base.db";//数据库名
+    private static String DB_NAME = "xbase.db";//数据库名
     private static int DB_VERSION = 1;//数据库版本
     private static DatabaseHelper instance;
     private static List<Class> tables = new ArrayList<Class>();

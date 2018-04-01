@@ -5,10 +5,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.hengyi.baseandroidcore.base.XBaseBrowserActivity;
+import com.hengyi.baseandroidcore.browser.XBaseBrowserActivity;
 import com.hengyi.baseandroidcore.statusbar.StatusBarCompat;
 import com.hengyi.baseandroidcore.utils.ActivityUtils;
-import com.hengyi.baseandroidcore.utils.AppConfig;
 import com.hengyi.baseandroidcore.utils.ColorUtils;
 import com.hengyi.baseandroidcore.utils.CommonUtils;
 import com.hengyi.baseandroidcore.utils.SystemUtils;

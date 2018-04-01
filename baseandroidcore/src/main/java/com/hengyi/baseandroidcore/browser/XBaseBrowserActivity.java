@@ -1,10 +1,9 @@
-package com.hengyi.baseandroidcore.base;
+package com.hengyi.baseandroidcore.browser;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.PixelFormat;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -18,7 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 import com.hengyi.baseandroidcore.R;
-import com.hengyi.baseandroidcore.browser.XBaseJsMappingAndroid;
+import com.hengyi.baseandroidcore.base.XBaseActivity;
 import com.hengyi.baseandroidcore.dialog.CustomAlertDialog;
 import com.hengyi.baseandroidcore.statusbar.StatusBarCompat;
 import com.hengyi.baseandroidcore.tools.FileDownloader;
@@ -182,7 +181,7 @@ public class XBaseBrowserActivity extends XBaseActivity implements DownloadListe
 			@Override
 			public boolean onJsAlert(WebView view, String url, String message, final JsResult result) {
 				CustomAlertDialog alert = new CustomAlertDialog(XBaseBrowserActivity.this).builder();
-				alert.setTitle("温馨提示");
+				alert.setTitle(getString(R.string.xbase_reminder));
 				alert.setMsg(message);
 				alert.show();
 				return true;

@@ -73,4 +73,9 @@ public class HandlerExecutorPool {
 		if(!executor.isShutdown())
 		executor.shutdown();
 	}
+
+	public void stutdownNow(){
+		if(!executor.isShutdown())
+			executor.shutdownNow();
+	}
 }

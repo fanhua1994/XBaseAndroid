@@ -47,7 +47,7 @@ public class XBaseJsMappingAndroid extends Object {
         MessageEvent event = EventManager.getDefaultMessage();
         event.setCode(code);
         event.setContent(content);
-        EventManager.sendDefaultMessage(event);
+        EventManager.sendMessage(event);
     }
 
     @JavascriptInterface

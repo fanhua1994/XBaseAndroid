@@ -28,7 +28,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.hengyi.baseandroidcore.base.XBaseBrowserActivity"
+        <activity android:name="com.hengyi.baseandroidcore.browser.XBaseBrowserActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             />
         <activity android:name=".PatchActivity" />
