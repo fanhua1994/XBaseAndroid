@@ -85,7 +85,7 @@ public class XBaseBrowserActivity extends XBaseActivity implements DownloadListe
 				}
 			});
 
-			easeTitleBar.setRightText(getString(R.string.close));
+			easeTitleBar.setRightText(getString(R.string.xbase_close));
 			easeTitleBar.setRightTextClickListener(new View.OnClickListener(){
 
 				@Override
