@@ -20,7 +20,7 @@
 ![BaseAndroid](https://github.com/fanhua1994/BaseAndroid/blob/master/image/logo.png?raw=true)
 
 # 版本更新
-目前最新版本是1.0.6.5
+目前最新版本是1.0.7.0
 [更新日志](https://github.com/fanhua1994/XBaseAndroid/blob/master/LOG.md)
 
 请您注意XBaseAndroid接入包体将增大：2.5MB
