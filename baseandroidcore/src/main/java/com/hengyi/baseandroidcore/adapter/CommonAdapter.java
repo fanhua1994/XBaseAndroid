@@ -39,9 +39,9 @@ public abstract class CommonAdapter<T> extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup){
         CommonViewHolder holder = CommonViewHolder.get(context,view,layout_id);
-        ViewHolder(holder,i);
+        onBindView(holder,i);
         return holder.getView();
     }
 
-    public abstract void ViewHolder(CommonViewHolder holder,int position);
+    public abstract void onBindView(CommonViewHolder holder,int position);
 }
