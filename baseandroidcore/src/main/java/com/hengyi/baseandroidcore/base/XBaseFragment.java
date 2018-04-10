@@ -5,8 +5,10 @@ import android.app.Fragment;
 import android.content.Context;
 
 import com.hengyi.baseandroidcore.dialog.CustomWeiboDialogUtils;
-import com.hengyi.baseandroidcore.utils.ActivityUtils;
+import com.hengyi.baseandroidcore.utils.ActivityRouter;
 import com.hengyi.baseandroidcore.utils.NetworkUtils;
+import com.hengyi.baseandroidcore.xutils.ToastUtils;
+
 /**
  * Created: 2018/3/23 9:52
  * Author:fanhua
@@ -26,7 +28,7 @@ public class XBaseFragment extends Fragment {
     }
 
     public void toast(String mess){
-        ActivityUtils.toast(getActivity(),mess);
+        ToastUtils.showShort(mess);
     }
 
     /**

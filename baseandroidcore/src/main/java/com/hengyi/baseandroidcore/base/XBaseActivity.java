@@ -8,8 +8,9 @@ import android.view.KeyEvent;
 
 import com.hengyi.baseandroidcore.dialog.CustomWeiboDialogUtils;
 import com.hengyi.baseandroidcore.utils.ActivityStack;
-import com.hengyi.baseandroidcore.utils.ActivityUtils;
+import com.hengyi.baseandroidcore.utils.ActivityRouter;
 import com.hengyi.baseandroidcore.utils.NetworkUtils;
+import com.hengyi.baseandroidcore.xutils.ToastUtils;
 
 /**
  * Created by 繁华 on 2017/5/14.
@@ -38,7 +39,7 @@ public abstract class XBaseActivity extends AppCompatActivity {
     }
 
     public void toast(String mess){
-        ActivityUtils.toast(this,mess);
+        ToastUtils.showShort(mess);
     }
 
     /**

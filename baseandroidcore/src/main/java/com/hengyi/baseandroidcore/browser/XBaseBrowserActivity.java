@@ -15,6 +15,7 @@ import android.view.ViewParent;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.hengyi.baseandroidcore.R;
 import com.hengyi.baseandroidcore.base.XBaseActivity;
@@ -24,6 +25,7 @@ import com.hengyi.baseandroidcore.tools.FileDownloader;
 import com.hengyi.baseandroidcore.utils.ActivityStack;
 import com.hengyi.baseandroidcore.utils.ColorUtils;
 import com.hengyi.baseandroidcore.weight.EaseTitleBar;
+import com.hengyi.baseandroidcore.xutils.LogUtils;
 import com.tencent.smtt.export.external.interfaces.JsPromptResult;
 import com.tencent.smtt.export.external.interfaces.JsResult;
 import com.tencent.smtt.sdk.DownloadListener;
@@ -149,7 +151,17 @@ public class XBaseBrowserActivity extends XBaseActivity implements DownloadListe
 		webview.setWebViewClient(new WebViewClient(){
 			@Override
 			public boolean shouldOverrideUrlLoading(WebView view,String url) {
-				view.loadUrl(url);
+				String protocol = url.substring(0,url.indexOf("://"));
+				switch (protocol){
+                    case "http":
+                        view.loadUrl(url);
+                        break;
+                    case "https":
+                        view.loadUrl(url);
+                        break;
+                    default:
+                        return false;
+                }
 				return true;
 			}
 

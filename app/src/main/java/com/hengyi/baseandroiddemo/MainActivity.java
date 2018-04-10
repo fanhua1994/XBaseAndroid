@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import com.hengyi.baseandroidcore.browser.XBaseBrowserActivity;
 import com.hengyi.baseandroidcore.statusbar.StatusBarCompat;
-import com.hengyi.baseandroidcore.utils.ActivityUtils;
+import com.hengyi.baseandroidcore.utils.ActivityRouter;
 import com.hengyi.baseandroidcore.utils.ColorUtils;
 import com.hengyi.baseandroidcore.utils.CommonUtils;
 import com.hengyi.baseandroidcore.utils.SystemUtils;
@@ -54,18 +54,31 @@ public class MainActivity extends BaseActivity{
     public void Click(View view){
         switch(view.getId()){
             case R.id.xbase_home:
-                ActivityUtils.startActivity(this,XBaseBrowserActivity.class,new String[]{XBaseBrowserActivity.WEB_URL, XBaseBrowserActivity.SHOW_TITLE_BAR,XBaseBrowserActivity.SHOW_REFRESH}, XBaseBrowserActivity.ANDROID_ASSSET_PATH + "template/index.html",true,false);
-                break;
+                ActivityRouter.getInstance()
+                        .add(XBaseBrowserActivity.WEB_URL,XBaseBrowserActivity.ANDROID_ASSSET_PATH + "template/index.html")
+                        .add(XBaseBrowserActivity.SHOW_TITLE_BAR,true)
+                        .add(XBaseBrowserActivity.SHOW_REFRESH,false)
+                        .startActivity(this,XBaseBrowserActivity.class);
+            break;
 
             case R.id.xbase_mui:
-                ActivityUtils.startActivity(this,XBaseBrowserActivity.class,new String[]{XBaseBrowserActivity.WEB_URL, XBaseBrowserActivity.SHOW_TITLE_BAR}, "http://www.dcloud.io/hellomui/list.html?v=1",false);
+                ActivityRouter.getInstance()
+                        .add(XBaseBrowserActivity.WEB_URL,"http://www.dcloud.io/hellomui/list.html?v=1")
+                        .add(XBaseBrowserActivity.SHOW_TITLE_BAR,true)
+                        .startActivity(this,XBaseBrowserActivity.class);
                 break;
 
             case R.id.xbase_sui:
-                ActivityUtils.startActivity(this,XBaseBrowserActivity.class,new String[]{XBaseBrowserActivity.WEB_URL, XBaseBrowserActivity.SHOW_TITLE_BAR}, "http://m.sui.taobao.org/demos/",false);
+                ActivityRouter.getInstance()
+                        .add(XBaseBrowserActivity.WEB_URL,"http://m.sui.taobao.org/demos/")
+                        .add(XBaseBrowserActivity.SHOW_TITLE_BAR,true)
+                        .startActivity(this,XBaseBrowserActivity.class);
                 break;
             case R.id.xbase_youku:
-                ActivityUtils.startActivity(this,XBaseBrowserActivity.class,new String[]{XBaseBrowserActivity.WEB_URL, XBaseBrowserActivity.SHOW_TITLE_BAR}, "https://www.youku.com/",false);
+                ActivityRouter.getInstance()
+                        .add(XBaseBrowserActivity.WEB_URL,"https://www.youku.com/")
+                        .add(XBaseBrowserActivity.SHOW_TITLE_BAR,true)
+                        .startActivity(this,XBaseBrowserActivity.class);
                 break;
         }
     }
