@@ -5,14 +5,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <com.hengyi.baseandroidcore.weight.EaseTitleBar
+    <com.hengyi.baseandroidcore.weight.XBaseTitleBar
         android:id="@+id/titleBar"
         android:layout_width="match_parent"
         app:titleBarTitle=""
         app:titleBarLeftImage="@drawable/icon_back"
         android:layout_height="50dp">
-
-    </com.hengyi.baseandroidcore.weight.EaseTitleBar>
+    </com.hengyi.baseandroidcore.weight.XBaseTitleBar>
 
      <ProgressBar
         android:id="@+id/progressBar"

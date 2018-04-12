@@ -15,7 +15,6 @@ import android.view.ViewParent;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.hengyi.baseandroidcore.R;
 import com.hengyi.baseandroidcore.base.XBaseActivity;
@@ -24,8 +23,7 @@ import com.hengyi.baseandroidcore.statusbar.StatusBarCompat;
 import com.hengyi.baseandroidcore.tools.FileDownloader;
 import com.hengyi.baseandroidcore.utils.ActivityStack;
 import com.hengyi.baseandroidcore.utils.ColorUtils;
-import com.hengyi.baseandroidcore.weight.EaseTitleBar;
-import com.hengyi.baseandroidcore.xutils.LogUtils;
+import com.hengyi.baseandroidcore.weight.XBaseTitleBar;
 import com.tencent.smtt.export.external.interfaces.JsPromptResult;
 import com.tencent.smtt.export.external.interfaces.JsResult;
 import com.tencent.smtt.sdk.DownloadListener;
@@ -47,7 +45,7 @@ public class XBaseBrowserActivity extends XBaseActivity implements DownloadListe
 	public static final String STATUS_COLOR = "statusbar_color";
 	public static final String WEB_URL = "url";
 
-	private EaseTitleBar easeTitleBar;
+	private XBaseTitleBar easeTitleBar;
 	private SwipeRefreshLayout swipe_container;
 	private WebView webview;
 	private LinearLayout linerLayout_webview;

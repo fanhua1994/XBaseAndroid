@@ -5,6 +5,7 @@ import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -15,8 +16,7 @@ import com.hengyi.baseandroidcore.R;
  * title bar
  *
  */
-public class EaseTitleBar extends RelativeLayout{
-
+public class XBaseTitleBar extends RelativeLayout{
     protected RelativeLayout leftLayout;
     protected ImageView leftImage;
     protected RelativeLayout rightLayout;
@@ -25,16 +25,16 @@ public class EaseTitleBar extends RelativeLayout{
     protected TextView titleView;
     protected RelativeLayout titleLayout;
 
-    public EaseTitleBar(Context context, AttributeSet attrs, int defStyle) {
+    public XBaseTitleBar(Context context, AttributeSet attrs, int defStyle) {
         this(context, attrs);
     }
 
-    public EaseTitleBar(Context context, AttributeSet attrs) {
+    public XBaseTitleBar(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context, attrs);
     }
 
-    public EaseTitleBar(Context context) {
+    public XBaseTitleBar(Context context) {
         super(context);
         init(context, null);
     }
@@ -54,20 +54,20 @@ public class EaseTitleBar extends RelativeLayout{
     
     private void parseStyle(Context context, AttributeSet attrs){
         if(attrs != null){
-            TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.EaseTitleBar);
-            String title = ta.getString(R.styleable.EaseTitleBar_titleBarTitle);
+            TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.XBaseTitleBar);
+            String title = ta.getString(R.styleable.XBaseTitleBar_titleBarTitle);
             titleView.setText(title);
             
-            Drawable leftDrawable = ta.getDrawable(R.styleable.EaseTitleBar_titleBarLeftImage);
+            Drawable leftDrawable = ta.getDrawable(R.styleable.XBaseTitleBar_titleBarLeftImage);
             if (null != leftDrawable) {
                 leftImage.setImageDrawable(leftDrawable);
             }
-            Drawable rightDrawable = ta.getDrawable(R.styleable.EaseTitleBar_titleBarRightImage);
+            Drawable rightDrawable = ta.getDrawable(R.styleable.XBaseTitleBar_titleBarRightImage);
             if (null != rightDrawable) {
                 rightImage.setImageDrawable(rightDrawable);
             }
         
-            Drawable background = ta.getDrawable(R.styleable.EaseTitleBar_titleBarBackground);
+            Drawable background = ta.getDrawable(R.styleable.XBaseTitleBar_titleBarBackground);
             if(null != background) {
                 titleLayout.setBackgroundDrawable(background);
             }
@@ -80,9 +80,7 @@ public class EaseTitleBar extends RelativeLayout{
         leftImage.setImageResource(resId);
     }
     
-    public void setRightImageResource(int resId) {
-        rightImage.setImageResource(resId);
-    }
+
     
     public void setLeftLayoutClickListener(OnClickListener listener){
         leftLayout.setOnClickListener(listener);
@@ -90,6 +88,10 @@ public class EaseTitleBar extends RelativeLayout{
     
     public void setRightLayoutClickListener(OnClickListener listener){
         rightLayout.setOnClickListener(listener);
+    }
+
+    public void setRightImageResource(int resId) {
+        rightImage.setImageResource(resId);
     }
 
     public void setRightTextClickListener(OnClickListener listener){
@@ -122,5 +124,13 @@ public class EaseTitleBar extends RelativeLayout{
     
     public RelativeLayout getRightLayout(){
         return rightLayout;
+    }
+
+    public void hideLeftLayout(){
+        leftLayout.setVisibility(View.GONE);
+    }
+
+    public void hideRightLayout(){
+        rightLayout.setVisibility(View.GONE);
     }
 }

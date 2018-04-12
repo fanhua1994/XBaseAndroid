@@ -12,14 +12,14 @@ import com.hengyi.baseandroidcore.utils.ColorUtils;
 import com.hengyi.baseandroidcore.utils.CommonUtils;
 import com.hengyi.baseandroidcore.utils.SystemUtils;
 import com.hengyi.baseandroidcore.utils.VersionUtils;
-import com.hengyi.baseandroidcore.weight.EaseTitleBar;
 import com.hengyi.baseandroidcore.weight.LoadingLayout;
+import com.hengyi.baseandroidcore.weight.XBaseTitleBar;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity{
-    @BindView(R.id.titleBar)EaseTitleBar easeTitleBar;
+    @BindView(R.id.titleBar)XBaseTitleBar easeTitleBar;
     @BindView(R.id.cid)TextView cid;
     @BindView(R.id.version)TextView version;
     @BindView(R.id.loading_view)LoadingLayout loadingLayout;
@@ -36,6 +36,8 @@ public class MainActivity extends BaseActivity{
                 CommonUtils.kill();
             }
         });
+        easeTitleBar.hideLeftLayout();
+        easeTitleBar.hideRightLayout();
 
         version.setText("当前版本：" + VersionUtils.getAppVersion(this,"1.0.0.0"));
 

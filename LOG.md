@@ -39,3 +39,5 @@
 
 ### 20180403（版本1.0.7.0）
 + 修改ViewHolder方法为onBindView
++ 优化标题栏。EaseTitleBar修改为XBaseTitleBar
++ 优化Activity工具类。
