@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by Administrator on 2017/12/4.
+ * Created by fanhua on 2017/12/4.
  */
 public class ActivityRouter {
     private static ActivityRouter instance = null;
@@ -61,6 +61,34 @@ public class ActivityRouter {
     public ActivityRouter add(String key,Serializable value){
         params.put(key,value);
         return instance;
+    }
+
+    public Integer get(Activity context,String key,Integer default_value){
+        return context.getIntent().getIntExtra(key,default_value);
+    }
+
+    public Boolean get(Activity context,String key,Boolean default_value){
+        return context.getIntent().getBooleanExtra(key,default_value);
+    }
+
+    public String get(Activity context,String key,String default_value){
+        return context.getIntent().getStringExtra(key);
+    }
+
+    public Long get(Activity context,String key,Long default_value){
+        return context.getIntent().getLongExtra(key,default_value);
+    }
+
+    public Serializable get(Activity context,String key){
+        return context.getIntent().getSerializableExtra(key);
+    }
+
+    public Double get(Activity context,String key,Double default_value){
+        return context.getIntent().getDoubleExtra(key,default_value);
+    }
+
+    public Bundle get(Activity context,String key,Bundle default_value){
+        return context.getIntent().getBundleExtra(key);
     }
 
     private Intent getIntent(Context context,Class activity){
