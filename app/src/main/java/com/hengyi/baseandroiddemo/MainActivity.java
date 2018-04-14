@@ -28,7 +28,8 @@ public class MainActivity extends BaseActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        StatusBarCompat.setStatusBarColor(this, Color.parseColor(ColorUtils.changeColor(this,R.color.main_color)));
+        StatusBarCompat.setStatusBarColor(this, Color.parseColor(ColorUtils.changeColor(this,R.color.my_main_color)));
+        easeTitleBar.setBackgroundColor(getResources().getColor(R.color.my_main_color));
 
         easeTitleBar.setLeftLayoutClickListener(new View.OnClickListener(){
             @Override
@@ -43,8 +44,6 @@ public class MainActivity extends BaseActivity{
 
         cid.setText("您的永久CID：" + SystemUtils.getClientID() +"\n" + "您的临时CID："+SystemUtils.getShortClientID(this)+"\n（重装失效）");
 
-//        String name = AppConfig.getInstance().load(this).getValue("name");
-//        toast("读取到配置：" + name);
     }
 
     @Override

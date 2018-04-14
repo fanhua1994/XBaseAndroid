@@ -14,7 +14,6 @@ import com.hengyi.baseandroidcore.R;
 
 /**
  * title bar
- *
  */
 public class XBaseTitleBar extends RelativeLayout{
     protected RelativeLayout leftLayout;

@@ -3,6 +3,7 @@ package com.hengyi.baseandroidcore.database;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.hengyi.baseandroidcore.listener.DatabaseVersionChangeListener;
 import com.hengyi.baseandroidcore.xutils.LogUtils;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.support.ConnectionSource;
