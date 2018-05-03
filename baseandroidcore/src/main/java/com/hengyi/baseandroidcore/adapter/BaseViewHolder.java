@@ -47,7 +47,6 @@ import java.util.Set;
  * https://github.com/CymChad/BaseRecyclerViewAdapterHelper
  */
 public class BaseViewHolder extends RecyclerView.ViewHolder {
-
     /**
      * Views indexed with their IDs
      */

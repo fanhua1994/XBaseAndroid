@@ -41,3 +41,7 @@
 + 修改ViewHolder方法为onBindView
 + 优化标题栏。EaseTitleBar修改为XBaseTitleBar
 + 优化Activity工具类。
+
+### 20180423（版本1.1.0）
++ 准备移除ormlite，改为Greendao
++ 引入BasePopupWindow

@@ -15,7 +15,6 @@ import com.hengyi.baseandroidcore.xutils.ToastUtils;
 /**
  * Created by 繁华 on 2017/5/14.
  */
-
 public abstract class XBaseActivity extends AppCompatActivity {
     private Dialog loadingDialog = null;
     private Context context;

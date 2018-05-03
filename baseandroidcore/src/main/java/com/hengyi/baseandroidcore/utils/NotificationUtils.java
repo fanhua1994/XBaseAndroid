@@ -8,24 +8,22 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 
-public class NotifacationUtils {
+public class NotificationUtils {
 	private Context context;
 	private NotificationManager mNotificationManager;
 	private NotificationCompat.Builder mBuilder;
 	private Notification mNotification;
 	private int notifyId = 0;
-	
-	@SuppressWarnings("static-access")
-	public NotifacationUtils(Context context) {
+
+	public NotificationUtils(Context context) {
 		mNotificationManager = (NotificationManager)context.getSystemService(context.NOTIFICATION_SERVICE);
 		this.context = context;
 	}
 	
 	/** 初始化通知栏 */
-	@SuppressLint("InlinedApi")
 	public void createProgressNotify(int icon,int notify_id,String tickerText,String title,String content,Intent intent) {
 		notifyId = notify_id;
-		mBuilder = new NotificationCompat.Builder(context);
+		mBuilder = new NotificationCompat.Builder(context,"default");
 		mBuilder.setSound(null);
 		mBuilder.setVibrate(null);
 		PendingIntent pendingIntent = PendingIntent.getActivity(context, notify_id, intent, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -67,7 +65,7 @@ public class NotifacationUtils {
 		intent.setAction(Intent.ACTION_MAIN);
 		PendingIntent pendingIntent = PendingIntent.getActivity(context, notify_id, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-		mBuilder = new NotificationCompat.Builder(context);
+		mBuilder = new NotificationCompat.Builder(context,"default");
 		mBuilder.setContentTitle(title)
 				.setContentText(content)
 				.setContentIntent(pendingIntent)

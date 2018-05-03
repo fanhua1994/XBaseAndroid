@@ -5,7 +5,7 @@ import android.content.Intent;
 
 import com.hengyi.baseandroidcore.R;
 import com.hengyi.baseandroidcore.listener.FileDownloadListener;
-import com.hengyi.baseandroidcore.utils.NotifacationUtils;
+import com.hengyi.baseandroidcore.utils.NotificationUtils;
 import com.hengyi.baseandroidcore.utils.ProjectUtils;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.FileCallback;
@@ -23,7 +23,7 @@ import java.text.DecimalFormat;
 public class FileDownloader {
     private static  FileDownloader instance = null;
     private FileDownloadListener listener = null;
-    private NotifacationUtils notifacation = null;
+    private NotificationUtils notifacation = null;
 
     public static synchronized FileDownloader getInstance(){
         synchronized (FileDownloader.class){
@@ -78,7 +78,7 @@ public class FileDownloader {
      */
     public void download(Context context, String downurl, String savepath, String filename, final DownloadStatusListener downloadStatusListener, final boolean show_notification,int image_icon,int notify_id,String tickerText,String title,String content,Intent intent){
         if(show_notification) {
-            notifacation = new NotifacationUtils(context);
+            notifacation = new NotificationUtils(context);
             notifacation.createProgressNotify(image_icon, notify_id, tickerText, title, content, intent);//创建进度条通知栏
         }
         OkGo.<File>get(downurl).tag(this).execute(new FileCallback(savepath,filename) {
