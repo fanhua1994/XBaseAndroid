@@ -7,9 +7,9 @@ import org.greenrobot.eventbus.EventBus;
  */
 
 public class EventManager {
-    private static MessageEvent messageEvent = null;
+    private static EventMessage eventMessage = null;
 
-    public static void sendMessage(MessageEvent messageEvent){
+    public static void sendMessage(EventMessage messageEvent){
         EventBus.getDefault().post(messageEvent);
     }
 
@@ -21,9 +21,9 @@ public class EventManager {
         EventBus.getDefault().unregister(subscriber);
     }
 
-    public static MessageEvent getDefaultMessage(){
-        if(messageEvent == null)
-            messageEvent = new MessageEvent();
-        return messageEvent;
+    public static EventMessage getMessage(){
+        if(eventMessage == null)
+            eventMessage = new EventMessage();
+        return eventMessage;
     }
 }

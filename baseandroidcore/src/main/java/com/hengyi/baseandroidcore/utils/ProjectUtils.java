@@ -18,17 +18,18 @@ import java.util.Date;
  */
 
 public class ProjectUtils {
-    public static final int COMMON_TYPE = 0;
-    public static final int DB_TYPE  = 1;
-    public static final int CACHE_TYPE = 2;
-    public static final int FILE_TYPE = 3;
+    public static final int ROOT_TPYE = 0;
+    public static final int COMMON_TYPE = 1;
+    public static final int DB_TYPE  = 2;
+    public static final int CACHE_TYPE = 3;
+    public static final int FILE_TYPE = 4;
 
     private static ProjectUtils instance;
     private static boolean IdCardStatus = false;
     private int file_type = 0;
 
-    public static ProjectUtils getInstance(){
-        if(instance == null) {
+    public static ProjectUtils getInstance() {
+        if (instance == null) {
             instance = new ProjectUtils();
             IdCardStatus = Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState()) || !Environment.isExternalStorageRemovable();
         }
@@ -173,6 +174,10 @@ public class ProjectUtils {
                 case FILE_TYPE:
                     workDir = XBaseApplication.getApplication().getExternalFilesDir("db").getParentFile().getAbsolutePath();
                     break;
+
+                case ROOT_TPYE:
+                    workDir = getRootDir();
+                    break;
             }
         }else{
             switch(file_type) {
@@ -201,6 +206,10 @@ public class ProjectUtils {
         return workDir;
     }
 
+    /**
+     * 获取内存卡根目录
+     * @return
+     */
     public String getRootDir(){
         return Environment.getExternalStorageDirectory().getAbsolutePath();
     }

@@ -6,7 +6,7 @@ import android.webkit.JavascriptInterface;
 import android.widget.Toast;
 
 import com.hengyi.baseandroidcore.dialog.CustomWeiboDialogUtils;
-import com.hengyi.baseandroidcore.event.MessageEvent;
+import com.hengyi.baseandroidcore.event.EventMessage;
 import com.hengyi.baseandroidcore.event.EventManager;
 import com.hengyi.baseandroidcore.utils.ActivityStack;
 import com.hengyi.baseandroidcore.utils.ConfigUtils;
@@ -44,7 +44,7 @@ public class XBaseJsMappingAndroid extends Object {
 
     @JavascriptInterface
     public void event(int code,String content){
-        MessageEvent event = EventManager.getDefaultMessage();
+        EventMessage event = EventManager.getDefaultMessage();
         event.setCode(code);
         event.setContent(content);
         EventManager.sendMessage(event);

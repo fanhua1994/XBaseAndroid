@@ -79,15 +79,14 @@ public class AppUpdateManager {
 
     private void addPatch(File patchFile,String md5){
         try {
-            LogUtils.d("AppUpdateManage","准备进行补丁替换");
+            //LogUtils.d("AppUpdateManage","准备进行补丁替换");
             String file_md5 = EncryptUtils.encryptMD5File2String(patchFile).toLowerCase();
             if(!TextUtils.isEmpty(md5) && !md5.equals(file_md5)){
-                LogUtils.d("AppUpdateManage","MD5签名出现问题");
+                //LogUtils.d("AppUpdateManage","MD5签名出现问题");
                 return ;
             }
-
             XBaseApplication.getPatchManager().addPatch(patchFile.getAbsolutePath());
-            LogUtils.d("补丁" + patchFile.getAbsolutePath() + "加载成功，重启生效");
+            //LogUtils.d("补丁" + patchFile.getAbsolutePath() + "加载成功，重启生效");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -125,7 +124,7 @@ public class AppUpdateManager {
                     listener.downloadSuccess(response.body());
 
                 String file_md5 = EncryptUtils.encryptMD5File2String(response.body()).toLowerCase();
-                LogUtils.d(AppUpdateManager.class.getName(),"下载文件的MD5:" + file_md5);
+                //LogUtils.d(AppUpdateManager.class.getName(),"下载文件的MD5:" + file_md5);
 
                 if(updateBean.getMd5_code() != null){
                     if(!updateBean.getMd5_code().equals(file_md5)){
