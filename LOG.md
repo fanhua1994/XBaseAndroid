@@ -42,6 +42,6 @@
 + 优化标题栏。EaseTitleBar修改为XBaseTitleBar
 + 优化Activity工具类。
 
-### 20180423（版本1.1.0）
-+ 准备移除ormlite，改为Greendao
-+ 引入BasePopupWindow
+### 20180704（版本1.0.8.0）
++ 新增XBasePermissionActivity权限申请更方便
++ GsonUtils新增toString方法。

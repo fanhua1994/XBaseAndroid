@@ -71,7 +71,7 @@ public class ActivityRouter {
         return context.getIntent().getBooleanExtra(key,default_value);
     }
 
-    public String get(Activity context,String key,String default_value){
+    public String getString(Activity context,String key){
         return context.getIntent().getStringExtra(key);
     }
 
@@ -87,7 +87,7 @@ public class ActivityRouter {
         return context.getIntent().getDoubleExtra(key,default_value);
     }
 
-    public Bundle get(Activity context,String key,Bundle default_value){
+    public Bundle getBundle(Activity context,String key){
         return context.getIntent().getBundleExtra(key);
     }
 

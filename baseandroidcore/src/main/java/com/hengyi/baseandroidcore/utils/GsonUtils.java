@@ -18,4 +18,10 @@ public class GsonUtils {
         T result = gson.fromJson(jsonData, type);
         return result;
     }
+
+    public String toString(Object o){
+        if(gson == null)
+            gson = new Gson();
+        return gson.toJson(o);
+    }
 }

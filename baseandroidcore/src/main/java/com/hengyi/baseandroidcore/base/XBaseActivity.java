@@ -10,6 +10,7 @@ import com.hengyi.baseandroidcore.dialog.CustomWeiboDialogUtils;
 import com.hengyi.baseandroidcore.utils.ActivityStack;
 import com.hengyi.baseandroidcore.utils.ActivityRouter;
 import com.hengyi.baseandroidcore.utils.NetworkUtils;
+import com.hengyi.baseandroidcore.xutils.PermissionUtils;
 import com.hengyi.baseandroidcore.xutils.ToastUtils;
 
 /**
