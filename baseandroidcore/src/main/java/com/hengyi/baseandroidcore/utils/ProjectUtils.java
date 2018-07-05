@@ -57,23 +57,8 @@ public class ProjectUtils {
         return this;
     }
 
-    private String getDefalutName() {
-        return Md5Utils.get(Math.random()+":" + System.currentTimeMillis());
-    }
-
     private String getDefalutName(String Suffix) {
         return Md5Utils.get(Math.random()+":" + System.currentTimeMillis())+"."+Suffix;
-    }
-
-    /**
-     * 往一个分组写入数据
-
-     * @param group_name
-     * @return
-     */
-    public void writeWorkGroup(String filename,String group_name,String content){
-        File files = this.getWorkGroupFile(group_name,filename,true);
-        writeFile(files,content,false);
     }
 
     /**
@@ -82,9 +67,9 @@ public class ProjectUtils {
      * @param content
      * @return
      */
-    public File writeWorkGroup(String group_name,String content){
-        File files = this.getWorkGroupFile(group_name,getDefalutName(),true);
-        writeFile(files,content,false);
+    public File writeWorkGroup(String group_name,String suffix,String content){
+        File files = this.getWorkGroupFile(group_name,getDefalutName(suffix),true);
+        writeFile(files,content);
         return files;
     }
     //================删除方法========================
@@ -289,9 +274,9 @@ public class ProjectUtils {
         return new File(this.getWorkDir() + File.separator + group_name);
     }
 
-    public File getDefaultWorkGroupFile(String dirname,String Suffix){
+    public File getDefaultWorkGroupFile(String group_name,String Suffix){
         String filename = Md5Utils.get(new Date().toString())+ "." + Suffix;
-        File files = new File(getWorkDir() + File.separator + dirname + File.separator + filename);
+        File files = new File(getWorkDir() + File.separator + group_name + File.separator + filename);
         return files;
     }
 
@@ -303,14 +288,14 @@ public class ProjectUtils {
      * 获取文件列表
      */
 
-    public File[] getWorkGroupDirFileList(String group_name){
+    public File[] getWorkGroupFileList(String group_name){
         File dir = getWorkGroupFile(group_name);
         return dir.listFiles();
     }
 
 
     //===========公用方法======================
-    public void writeFile(File file,String content,boolean add){
+    public void writeFile(File file,String content){
         try {
             OutputStream outputStream = new FileOutputStream(file);
             outputStream.write(content.getBytes());
@@ -328,24 +313,10 @@ public class ProjectUtils {
      * @return
      */
     public String readFile(File file,boolean is_delete){
-        try {
-            if(!file.exists()){
-                return null;
-            }
-            InputStream in = new FileInputStream(file);
-            int len = 0;
-            byte[] buffer = new byte[1024];
-            StringBuffer sb = new StringBuffer();
-            while(( len = in.read(buffer)) != -1){
-                sb.append(new String(buffer,0,len));
-            }
-            in.close();
-            if(is_delete)
+        String content = readFile(file);
+        if(is_delete)
             file.delete();
-            return sb.toString();
-        } catch (Exception e) {
-            return null;
-        }
+        return content;
     }
 
     public String readFile(File file){

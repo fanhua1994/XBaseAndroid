@@ -1,9 +1,8 @@
 package com.hengyi.baseandroiddemo;
 
 import android.os.Bundle;
-
 import com.hengyi.baseandroidcore.base.XBaseActivity;
-import com.hengyi.baseandroidcore.base.XBasePermissionActivity;
+import com.hengyi.baseandroidcore.event.EventMessage;
 
 /**
  * Created: 2018/3/21 9:41
@@ -12,12 +11,11 @@ import com.hengyi.baseandroidcore.base.XBasePermissionActivity;
  * Project:XBaseAndroid
  */
 
-public class TestActivity extends XBasePermissionActivity {
+public class TestActivity extends XBaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestPermisstion(0,new String[]{});
     }
 
     @Override
@@ -26,12 +24,7 @@ public class TestActivity extends XBasePermissionActivity {
     }
 
     @Override
-    public void onPermissionSuccess() {
-
-    }
-
-    @Override
-    public void onPermissionDenied(String[] deniedPermissions) {
-
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }

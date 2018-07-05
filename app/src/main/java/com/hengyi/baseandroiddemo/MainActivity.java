@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.hengyi.baseandroidcore.browser.XBaseBrowserActivity;
+import com.hengyi.baseandroidcore.event.EventMessage;
 import com.hengyi.baseandroidcore.statusbar.StatusBarCompat;
 import com.hengyi.baseandroidcore.utils.ActivityRouter;
 import com.hengyi.baseandroidcore.utils.ColorUtils;
@@ -56,9 +57,9 @@ public class MainActivity extends BaseActivity{
         switch(view.getId()){
             case R.id.xbase_home:
                 ActivityRouter.getInstance()
-                        .add(XBaseBrowserActivity.WEB_URL,XBaseBrowserActivity.ANDROID_ASSSET_PATH + "template/index.html")
-                        .add(XBaseBrowserActivity.SHOW_TITLE_BAR,true)
-                        .add(XBaseBrowserActivity.SHOW_REFRESH,false)
+                        .add(XBaseBrowserActivity.WEB_URL,XBaseBrowserActivity.ANDROID_ASSSET_PATH + "template/index.html")//加载本地asset加上XBaseBrowserActivity.ANDROID_ASSSET_PATH + 你的html路径。
+                        .add(XBaseBrowserActivity.SHOW_TITLE_BAR,true)//是否显示标题栏
+                        .add(XBaseBrowserActivity.SHOW_REFRESH,false)//是否可以下拉刷新
                         .startActivity(this,XBaseBrowserActivity.class);
             break;
 

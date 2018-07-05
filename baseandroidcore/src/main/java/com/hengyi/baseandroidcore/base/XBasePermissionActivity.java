@@ -13,7 +13,7 @@ import com.hengyi.baseandroidcore.xutils.PermissionUtils;
 public abstract class XBasePermissionActivity extends XBaseActivity {
 
     public abstract void onPermissionSuccess();
-    public abstract void onPermissionDenied(String[] deniedPermissions);
+    public abstract void onPermissionError(String[] deniedPermissions);
 
     public void requestPermisstion(int requestCode,String[] permisstion){
         PermissionUtils.requestPermissions(this, requestCode, permisstion, new PermissionUtils.OnPermissionListener() {
@@ -24,7 +24,7 @@ public abstract class XBasePermissionActivity extends XBaseActivity {
 
             @Override
             public void onPermissionDenied(String[] deniedPermissions) {
-                onPermissionDenied(deniedPermissions);
+                onPermissionError(deniedPermissions);
             }
         });
     }
