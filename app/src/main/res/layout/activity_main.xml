@@ -84,6 +84,14 @@
                 android:layout_margin="10dp"
                 />
 
+            <Button
+                android:id="@+id/xbase_permission"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="测试动态申请权限"
+                android:layout_margin="10dp"
+                />
+
         </LinearLayout>
 
     </ScrollView>

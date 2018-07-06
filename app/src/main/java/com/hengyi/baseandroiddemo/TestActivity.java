@@ -1,8 +1,9 @@
 package com.hengyi.baseandroiddemo;
 
+import android.Manifest;
 import android.os.Bundle;
-import com.hengyi.baseandroidcore.base.XBaseActivity;
-import com.hengyi.baseandroidcore.event.EventMessage;
+
+import com.hengyi.baseandroidcore.base.XBasePermissionActivity;
 
 /**
  * Created: 2018/3/21 9:41
@@ -11,16 +12,27 @@ import com.hengyi.baseandroidcore.event.EventMessage;
  * Project:XBaseAndroid
  */
 
-public class TestActivity extends XBaseActivity {
+public class TestActivity extends XBasePermissionActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestPermisstion(200,new String[]{Manifest.permission.CAMERA,Manifest.permission.READ_CONTACTS});
+    }
+
+    @Override
+    public void onPermissionSuccess() {
+        toast("权限申请成功");
+    }
+
+    @Override
+    public void onPermissionError(String[] deniedPermissions) {
+        toast("权限申请失败");
     }
 
     @Override
     public int setBaseContentView() {
-        return 0;
+        return R.layout.activity_test;
     }
 
     @Override

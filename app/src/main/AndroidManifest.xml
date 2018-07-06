@@ -32,8 +32,10 @@
             android:configChanges="orientation|screenSize|keyboardHidden"
             />
         <activity android:name=".LoadingActivity" />
+        <activity android:name=".TestActivity" />
 
     </application>
     <uses-permission android:name="android.permission.READ_CONTACTS"></uses-permission>
     <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.CAMERA"></uses-permission>
 </manifest>

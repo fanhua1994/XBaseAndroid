@@ -16,6 +16,8 @@ import com.hengyi.baseandroidcore.utils.VersionUtils;
 import com.hengyi.baseandroidcore.weight.LoadingLayout;
 import com.hengyi.baseandroidcore.weight.XBaseTitleBar;
 
+import junit.framework.Test;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -52,7 +54,7 @@ public class MainActivity extends BaseActivity{
         return R.layout.activity_main;
     }
 
-    @OnClick({R.id.xbase_home,R.id.xbase_mui,R.id.xbase_sui,R.id.xbase_youku,R.id.xbase_loading})
+    @OnClick({R.id.xbase_home,R.id.xbase_mui,R.id.xbase_sui,R.id.xbase_youku,R.id.xbase_loading,R.id.xbase_permission})
     public void Click(View view){
         switch(view.getId()){
             case R.id.xbase_home:
@@ -85,6 +87,10 @@ public class MainActivity extends BaseActivity{
 
             case R.id.xbase_loading:
                 ActivityRouter.getInstance().startActivity(this,LoadingActivity.class);
+                break;
+
+            case R.id.xbase_permission:
+                ActivityRouter.getInstance().startActivity(this,TestActivity.class);
                 break;
         }
     }

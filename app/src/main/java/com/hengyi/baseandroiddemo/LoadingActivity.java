@@ -31,14 +31,6 @@ public class LoadingActivity extends BaseActivity {
             }
         });
 
-        loadingLayout.setErrorClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View v) {
-                toast("错误按钮，点击刷新时，触发");
-            }
-        });
-
      //   requestPermisstion(200,new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION});
     }
 

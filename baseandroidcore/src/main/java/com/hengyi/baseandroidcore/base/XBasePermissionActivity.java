@@ -1,5 +1,7 @@
 package com.hengyi.baseandroidcore.base;
 
+import android.os.Bundle;
+
 import com.hengyi.baseandroidcore.xutils.PermissionUtils;
 
 /**
@@ -15,8 +17,13 @@ public abstract class XBasePermissionActivity extends XBaseActivity {
     public abstract void onPermissionSuccess();
     public abstract void onPermissionError(String[] deniedPermissions);
 
-    public void requestPermisstion(int requestCode,String[] permisstion){
-        PermissionUtils.requestPermissions(this, requestCode, permisstion, new PermissionUtils.OnPermissionListener() {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    public void requestPermisstion(final int requestCode,final String[] permisstion){
+        PermissionUtils.requestPermissions(getContext(), requestCode, permisstion, new PermissionUtils.OnPermissionListener() {
             @Override
             public void onPermissionGranted() {
                 onPermissionSuccess();
