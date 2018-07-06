@@ -5,6 +5,7 @@ import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -78,36 +79,9 @@ public class LoadingLayout extends FrameLayout {
      * 设置State点击事件
      * @param listener
      */
-    public void setErrorClickListener( OnClickListener listener ){
+    public void setErrorClickListener(OnClickListener listener){
         if(listener != null)
             findViewById(R.id.btn_loading_error).setOnClickListener(listener);
-    }
-
-    /**
-     * 设置自定义布局的点击事件
-     * @param resoureId
-     * @param listener
-     */
-    public void setViewOncClickListener(int resoureId,OnClickListener listener) {
-        findViewById(resoureId).setOnClickListener(listener);
-    }
-
-    /**
-     * 设置自定义布局的view文本
-     * @param resoureId
-     * @param text
-     */
-    public void setViewText(int resoureId,String text){
-        ((TextView)findViewById(resoureId)).setText(text);
-    }
-
-    /**
-     * 设置自定义布局的image
-     * @param resoureId
-     * @param img
-     */
-    public void setViewImage(int resoureId,int img){
-        ((ImageView)findViewById(resoureId)).setImageResource(img);
     }
 
     /**
@@ -131,11 +105,12 @@ public class LoadingLayout extends FrameLayout {
      *
      * @param text
      */
-    public void showEmpty(String text) {
+    public void showEmpty(String text,int drawableId) {
         for (int i = 0; i < this.getChildCount(); i++) {
             View child = this.getChildAt(i);
             if (i == 2) {
                 child.setVisibility(VISIBLE);
+                ((ImageView)child.findViewById(R.id.iv_image)).setImageResource(drawableId);
                 ((TextView) child.findViewById(R.id.tv_show_text)).setText(text);
             } else {
                 child.setVisibility(GONE);
@@ -144,15 +119,15 @@ public class LoadingLayout extends FrameLayout {
     }
 
     /**
-     *
-     * @param tips
+     * 显示错误信息
      */
-    public void showError(String tips) {
+    public void showError(String text,int drawableId) {
         for (int i = 0; i < this.getChildCount(); i++) {
             View child = this.getChildAt(i);
             if (i == 0) {
                 child.setVisibility(VISIBLE);
-                ((TextView) child.findViewById(R.id.tv_show_text)).setText(tips);
+                ((ImageView)child.findViewById(R.id.iv_image)).setImageResource(drawableId);
+                ((TextView) child.findViewById(R.id.tv_show_text)).setText(text);
             } else {
                 child.setVisibility(GONE);
             }

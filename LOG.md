@@ -42,6 +42,6 @@
 + 优化标题栏。EaseTitleBar修改为XBaseTitleBar
 + 优化Activity工具类。
 
-### 20180704（版本1.0.8.0）
+### 20180704（版本1.0.8.1）
 + 新增XBasePermissionActivity权限申请更方便
 + GsonUtils新增toString方法。

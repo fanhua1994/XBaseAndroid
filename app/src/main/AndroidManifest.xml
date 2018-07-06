@@ -31,7 +31,7 @@
         <activity android:name="com.hengyi.baseandroidcore.browser.XBaseBrowserActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             />
-        <activity android:name=".PatchActivity" />
+        <activity android:name=".LoadingActivity" />
 
     </application>
     <uses-permission android:name="android.permission.READ_CONTACTS"></uses-permission>

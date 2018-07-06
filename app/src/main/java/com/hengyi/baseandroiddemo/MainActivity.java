@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.hengyi.baseandroidcore.browser.XBaseBrowserActivity;
-import com.hengyi.baseandroidcore.event.EventMessage;
+import com.hengyi.baseandroidcore.event.EventManager;
 import com.hengyi.baseandroidcore.statusbar.StatusBarCompat;
 import com.hengyi.baseandroidcore.utils.ActivityRouter;
 import com.hengyi.baseandroidcore.utils.ColorUtils;
@@ -52,7 +52,7 @@ public class MainActivity extends BaseActivity{
         return R.layout.activity_main;
     }
 
-    @OnClick({R.id.xbase_home,R.id.xbase_mui,R.id.xbase_sui,R.id.xbase_youku})
+    @OnClick({R.id.xbase_home,R.id.xbase_mui,R.id.xbase_sui,R.id.xbase_youku,R.id.xbase_loading})
     public void Click(View view){
         switch(view.getId()){
             case R.id.xbase_home:
@@ -81,6 +81,10 @@ public class MainActivity extends BaseActivity{
                         .add(XBaseBrowserActivity.WEB_URL,"https://www.youku.com/")
                         .add(XBaseBrowserActivity.SHOW_TITLE_BAR,true)
                         .startActivity(this,XBaseBrowserActivity.class);
+                break;
+
+            case R.id.xbase_loading:
+                ActivityRouter.getInstance().startActivity(this,LoadingActivity.class);
                 break;
         }
     }

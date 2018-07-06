@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+   <com.hengyi.baseandroidcore.weight.LoadingLayout
+       android:id="@+id/loadingLayout"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
+
+      <Button
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="我是正常显示的内容"
+          />
+
+   </com.hengyi.baseandroidcore.weight.LoadingLayout>
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal"
+       >
+
+      <Button
+          android:id="@+id/btn_showContent"
+          android:layout_width="0dp"
+          android:layout_weight="1"
+          android:layout_height="wrap_content"
+          android:text="显示内容"
+          android:layout_margin="@dimen/dp_5"
+          />
+
+      <Button
+          android:id="@+id/btn_showLoading"
+          android:layout_width="0dp"
+          android:layout_weight="1"
+          android:layout_height="wrap_content"
+          android:text="显示加载"
+          android:layout_margin="@dimen/dp_5"
+          />
+
+      <Button
+          android:id="@+id/btn_showError"
+          android:layout_width="0dp"
+          android:layout_weight="1"
+          android:layout_height="wrap_content"
+          android:text="显示错误"
+          android:layout_margin="@dimen/dp_5"
+          />
+
+      <Button
+          android:id="@+id/btn_showEmpty"
+          android:layout_width="0dp"
+          android:layout_weight="1"
+          android:layout_height="wrap_content"
+          android:text="显示空布局"
+          android:layout_margin="@dimen/dp_5"
+          />
+
+   </LinearLayout>
+
+</LinearLayout>

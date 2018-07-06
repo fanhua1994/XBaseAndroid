@@ -7,6 +7,8 @@
 一款集成了网络请求，本地缓存，配置文件，数据库映射，权限申请，链表管理Activity，简化Activity、Service、Broadcast启动，
 万能ListView,GridView适配器、高仿IOS弹窗、倒计时/延迟执行，标题栏组件,图片显示，webview引擎，APP更新组件，APP崩溃日志组件，事件总线.
 
+[有在项目中使用XBaseAndroid请猛戳此处告诉我哦，留下您的公司名称或您的昵称](https://github.com/fanhua1994/XBaseAndroid/issues/3)
+
 项目地址：[https://github.com/fanhua1994/XBaseAndroid](https://github.com/fanhua1994/XBaseAndroid)
 
 ~~demo地址：[https://github.com/fanhua1994/XBaseAndroidDemo](https://github.com/fanhua1994/XBaseAndroidDemo)~~
@@ -15,12 +17,10 @@
 
 新文档地址：https://www.jianshu.com/nb/20489476
 
-~~旧文档：https://github.com/fanhua1994/XBaseAndroidDemo/blob/master/README.md~~
-
 ![BaseAndroid](https://github.com/fanhua1994/BaseAndroid/blob/master/image/logo.png?raw=true)
 
 # 版本更新
-目前最新版本是1.0.8.0
+目前最新版本是1.0.8.1
 [更新日志](https://github.com/fanhua1994/XBaseAndroid/blob/master/LOG.md)
 
 请您注意XBaseAndroid接入包体将增大：2.5MB
@@ -34,7 +34,7 @@ allprojects {
     }
 }
 ```
-compile 'com.github.fanhua1994:XBaseAndroid:1.0.8.0'
+compile 'com.github.fanhua1994:XBaseAndroid:1.0.8.1'
 
 # 联系作者
 简书：[http://www.jianshu.com/u/50c9e5f00da3](http://www.jianshu.com/u/50c9e5f00da3)

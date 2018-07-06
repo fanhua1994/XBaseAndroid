@@ -31,6 +31,7 @@ public class WorkGroupActivity extends XBasePermissionActivity {
         projectUtils.getWorkGroupFileList("images");//获取一个工作组下所有文件对象。
         projectUtils.writeFile(file,"你啊或");//往一个File对象写入文本。
         projectUtils.writeWorkGroup("images","txt","自动将文本写入到images");//返回一个File对象
+
     }
 
     @Override

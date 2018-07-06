@@ -16,7 +16,6 @@ import com.hengyi.baseandroidcore.utils.VersionUtils;
 import com.hengyi.baseandroidcore.xutils.AppUtils;
 import com.hengyi.baseandroidcore.xutils.EncryptUtils;
 import com.hengyi.baseandroidcore.xutils.FileUtils;
-import com.hengyi.baseandroidcore.xutils.LogUtils;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.FileCallback;
 import com.lzy.okgo.callback.StringCallback;
@@ -124,7 +123,6 @@ public class AppUpdateManager {
                     listener.downloadSuccess(response.body());
 
                 String file_md5 = EncryptUtils.encryptMD5File2String(response.body()).toLowerCase();
-                //LogUtils.d(AppUpdateManager.class.getName(),"下载文件的MD5:" + file_md5);
 
                 if(updateBean.getMd5_code() != null){
                     if(!updateBean.getMd5_code().equals(file_md5)){
