@@ -11,11 +11,11 @@
 
 ~~demo地址：[https://github.com/fanhua1994/XBaseAndroidDemo](https://github.com/fanhua1994/XBaseAndroidDemo)~~
 
-请先看旧文档。部分新功能看最新文档即可。
+新文档全部完善。
 
-文档地址：https://www.jianshu.com/nb/20489476
+新文档地址：https://www.jianshu.com/nb/20489476
 
-旧文档：https://github.com/fanhua1994/XBaseAndroidDemo/blob/master/README.md
+~~旧文档：https://github.com/fanhua1994/XBaseAndroidDemo/blob/master/README.md~~
 
 ![BaseAndroid](https://github.com/fanhua1994/BaseAndroid/blob/master/image/logo.png?raw=true)
 
