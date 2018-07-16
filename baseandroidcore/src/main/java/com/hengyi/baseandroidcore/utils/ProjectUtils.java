@@ -26,7 +26,7 @@ public class ProjectUtils {
 
     private static ProjectUtils instance;
     private static boolean IdCardStatus = false;
-    private int file_type = 0;
+    private int fileType = 0;
 
     public static ProjectUtils getInstance() {
         if (instance == null) {
@@ -37,8 +37,8 @@ public class ProjectUtils {
     }
 
     //=============创建方法========================
-    public boolean createWorkGroup(String group_name){
-        File dir = new File(this.getWorkDir() + File.separator + group_name);
+    public boolean createWorkGroup(String groupName){
+        File dir = new File(this.getWorkDir() + File.separator + groupName);
         if(!dir.exists()){
             return dir.mkdirs();
         }else{
@@ -46,8 +46,8 @@ public class ProjectUtils {
         }
     }
 
-    public ProjectUtils setFileType(int file_type){
-        this.file_type = file_type;
+    public ProjectUtils setFileType(int fileType){
+        this.fileType = fileType;
         return this;
     }
 
@@ -63,19 +63,19 @@ public class ProjectUtils {
 
     /**
      * 默认生成文件名 返回文件File,此类文件没有后缀
-     * @param group_name
+     * @param groupName
      * @param content
      * @return
      */
-    public File writeWorkGroup(String group_name,String suffix,String content){
-        File files = this.getWorkGroupFile(group_name,getDefalutName(suffix),true);
+    public File writeWorkGroup(String groupName,String suffix,String content){
+        File files = this.getWorkGroupFile(groupName,getDefalutName(suffix),true);
         writeFile(files,content);
         return files;
     }
     //================删除方法========================
     //清空工程组
-    public boolean clearWorkGroup(String group_name){
-        File dir2 = new File(this.getWorkDir() + File.separator + group_name);
+    public boolean clearWorkGroup(String groupName){
+        File dir2 = new File(this.getWorkDir() + File.separator + groupName);
         if(dir2.exists()){
             File[] files = dir2.listFiles();
             for(File f : files){
@@ -88,14 +88,14 @@ public class ProjectUtils {
     }
 
     //清空工程组
-    public boolean clearWorkGroup(String group_name,boolean delele_work_group){
-        File dir2 = new File(this.getWorkDir() + File.separator + group_name);
+    public boolean clearWorkGroup(String groupName,boolean deleleWorkGroup){
+        File dir2 = new File(this.getWorkDir() + File.separator + groupName);
         if(dir2.exists()){
             File[] files = dir2.listFiles();
             for(File f: files){
                 f.delete();
             }
-            if(delele_work_group)
+            if(deleleWorkGroup)
             dir2.delete();
             return true;
         }else{
@@ -105,12 +105,12 @@ public class ProjectUtils {
 
     /**
      * 删除子目录文件
-     * @param group_name
+     * @param groupName
      * @param filename
      * @return
      */
-    public boolean deleteWorkGroupFile(String group_name,String filename){
-        File file2 = new File(this.getWorkGroup(group_name) + File.separator + filename);
+    public boolean deleteWorkGroupFile(String groupName,String filename){
+        File file2 = new File(this.getWorkGroup(groupName) + File.separator + filename);
         if(file2.exists()){
             return file2.delete();
         }else{
@@ -140,10 +140,9 @@ public class ProjectUtils {
      * 获取工作目录
      */
     public String getWorkDir(){
-
         String workDir = null;
         if(IdCardStatus){
-            switch(file_type){
+            switch(fileType){
                 case COMMON_TYPE:
                     workDir = XBaseApplication.getApplication().getExternalCacheDir().getParentFile().getAbsolutePath();
                     break;
@@ -165,7 +164,7 @@ public class ProjectUtils {
                     break;
             }
         }else{
-            switch(file_type) {
+            switch(fileType) {
                 case COMMON_TYPE:
                     workDir = XBaseApplication.getApplication().getCacheDir().getParentFile().getAbsolutePath();
                     break;
@@ -237,13 +236,13 @@ public class ProjectUtils {
      * @param filename
      * @return
      */
-    public File getWorkGroupFile(String group_name,String filename){
-        File files = new File(getWorkGroup(group_name) + File.separator + filename);
+    public File getWorkGroupFile(String groupName,String filename){
+        File files = new File(getWorkGroup(groupName) + File.separator + filename);
         return files;
     }
 
-    public File getWorkGroupFile(String group_name,String filename,boolean auto_create){
-        File files = new File(getWorkGroup(group_name) + File.separator + filename);
+    public File getWorkGroupFile(String groupName,String filename,boolean auto_create){
+        File files = new File(getWorkGroup(groupName) + File.separator + filename);
         if(auto_create && ! files.exists()){
             try {
                 files.createNewFile();
@@ -264,19 +263,19 @@ public class ProjectUtils {
         return files;
     }
 
-    public String getWorkGroup(String group_name){
-        createWorkGroup(group_name);
-        return this.getWorkDir() + File.separator + group_name;
+    public String getWorkGroup(String groupName){
+        createWorkGroup(groupName);
+        return this.getWorkDir() + File.separator + groupName;
     }
 
-    public File getWorkGroupFile(String group_name){
-        createWorkGroup(group_name);
-        return new File(this.getWorkDir() + File.separator + group_name);
+    public File getWorkGroupFile(String groupName){
+        createWorkGroup(groupName);
+        return new File(this.getWorkDir() + File.separator + groupName);
     }
 
-    public File getDefaultWorkGroupFile(String group_name,String Suffix){
+    public File getDefaultWorkGroupFile(String groupName,String Suffix){
         String filename = Md5Utils.get(new Date().toString())+ "." + Suffix;
-        File files = new File(getWorkDir() + File.separator + group_name + File.separator + filename);
+        File files = new File(getWorkDir() + File.separator + groupName + File.separator + filename);
         return files;
     }
 
@@ -288,8 +287,8 @@ public class ProjectUtils {
      * 获取文件列表
      */
 
-    public File[] getWorkGroupFileList(String group_name){
-        File dir = getWorkGroupFile(group_name);
+    public File[] getWorkGroupFileList(String groupName){
+        File dir = getWorkGroupFile(groupName);
         return dir.listFiles();
     }
 
@@ -312,9 +311,9 @@ public class ProjectUtils {
      * @param is_delete 读取后删除源文件
      * @return
      */
-    public String readFile(File file,boolean is_delete){
+    public String readFile(File file,boolean isDelete){
         String content = readFile(file);
-        if(is_delete)
+        if(isDelete)
             file.delete();
         return content;
     }

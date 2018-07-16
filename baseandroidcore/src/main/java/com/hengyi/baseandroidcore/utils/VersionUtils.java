@@ -14,18 +14,28 @@ public class VersionUtils {
      * now version：1.2.0.7  最新版本
      * 如果old_version 更大 返回-1  new_version 更大 返回1 相等返回 0   出现错误返回-2
      */
-    public static int checkVersion(String old_version,String new_version) {
-        return check(parseVersion(old_version),parseVersion(new_version));
+    public static int checkVersion(String oldVersion,String newVersion) {
+        return check(parseVersion(oldVersion),parseVersion(newVersion));
     }
 
-    public static String getAppVersion(Context context,String default_version) {
+    public static String getVersionName(Context context,String defaultVersion) {
         try {
             PackageInfo info = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
             return info.versionName;
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
-        return default_version;
+        return defaultVersion;
+    }
+
+    public static int getVersionCode(Context context,int defaultVersion) {
+        try {
+            PackageInfo info = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
+            return info.versionCode;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return defaultVersion;
     }
 
     private static int parseInt(String num) {

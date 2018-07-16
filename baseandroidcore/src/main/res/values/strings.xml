@@ -1,5 +1,5 @@
 <resources>
-    <string name="framework_name">XBaseAndroid_软件更新</string>
+    <string name="framework_name">XBaseAndroid</string>
     <string name="app_update_manager_veriosn_str">软件版本：</string>
     <string name="app_update_manager_description_str">软件描述：</string>
     <string name="app_update_manager_dialog_download">立即更新</string>

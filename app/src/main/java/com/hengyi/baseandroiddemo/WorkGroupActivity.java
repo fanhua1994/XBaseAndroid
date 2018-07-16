@@ -2,7 +2,7 @@ package com.hengyi.baseandroiddemo;
 
 import android.os.Bundle;
 
-import com.hengyi.baseandroidcore.base.XBasePermissionActivity;
+import com.hengyi.baseandroidcore.base.XBaseActivity;
 import com.hengyi.baseandroidcore.utils.ProjectUtils;
 
 import java.io.File;
@@ -15,7 +15,7 @@ import java.io.File;
  * Project：XBaseAndroid
  * Use：
  */
-public class WorkGroupActivity extends XBasePermissionActivity {
+public class WorkGroupActivity extends XBaseActivity {
 
 
     @Override

@@ -114,9 +114,9 @@ public class AppUpdateManager {
      */
     private void downloadApk(Context context, final UpdateBean updateBean){
         String download_path = ProjectUtils.getInstance().setIdCard(true).setFileType(ProjectUtils.COMMON_TYPE).getWorkGroup("download");
-        String download_name = context.getString(R.string.framework_name) + "_" + updateBean.getNew_version() +".apk";
+        String download_name = context.getString(R.string.framework_name) + "_" + updateBean.getVersionName() +".apk";
 
-        OkGo.<File>get(updateBean.getDownload_url()).tag(this).execute(new FileCallback(download_path,download_name) {
+        OkGo.<File>get(updateBean.getDownloadUrl()).tag(this).execute(new FileCallback(download_path,download_name) {
             @Override
             public void onSuccess(Response<File> response) {
                 if(listener != null)
@@ -124,8 +124,8 @@ public class AppUpdateManager {
 
                 String file_md5 = EncryptUtils.encryptMD5File2String(response.body()).toLowerCase();
 
-                if(updateBean.getMd5_code() != null){
-                    if(!updateBean.getMd5_code().equals(file_md5)){
+                if(updateBean.getMd5Code() != null){
+                    if(!updateBean.getMd5Code().equals(file_md5)){
                         return ;
                     }
                 }
@@ -185,13 +185,13 @@ public class AppUpdateManager {
         }
     }
 
-    public void doRequestPatch(final String request_url, final int build_type){
-        OkGo.<String>get(request_url + "?release_type=" + build_type).tag(this).execute(new StringCallback() {
+    public void doRequestPatch(final String requestUrl, final int buildType){
+        OkGo.<String>get(requestUrl + "?release_type=" + buildType).tag(this).execute(new StringCallback() {
             @Override
             public void onSuccess(Response<String> response) {
                 PatchBean patchBean = GsonUtils.parseJsonWithGson(response.body(),PatchBean.class);
                 if(patchBean.isResult())
-                    loadPatch(patchBean,build_type);
+                    loadPatch(patchBean,buildType);
                 else
                     XBaseApplication.getPatchManager().removeAllPatch();
             }
@@ -203,12 +203,32 @@ public class AppUpdateManager {
         });
     }
 
-    public void checkUpdate(final UpdateBean updateBean, final Context context){
-         boolean haveUpdate = !VersionUtils.getAppVersion(XBaseApplication.getApplication(),"1.0.0.0").equals(updateBean.getNew_version());
+    /**
+     *
+     * @param updateBean            升级实体
+     * @param versionType           1 为已版本名为更新判断标识，2为已版本编码w为判断标准
+     * @param fine                  是否精细化升级。false 只要是与当前版本不同则更新。true必须大于当前版本
+     * @param context
+     */
+    public void checkUpdate(final UpdateBean updateBean, int versionType,boolean fine,final Context context){
+        boolean haveUpdate = false;
+         if(versionType == 1){
+             if(fine)
+                 haveUpdate = VersionUtils.checkVersion(VersionUtils.getVersionName(XBaseApplication.getApplication(),"1.0.0.0"),updateBean.getVersionName()) == 1;
+             else
+                 haveUpdate = !VersionUtils.getVersionName(XBaseApplication.getApplication(), "1.0.0.0").equals(updateBean.getVersionName());
+
+         }else{
+             if(fine)
+                 haveUpdate = updateBean.getVersionCode() > VersionUtils.getVersionCode(XBaseApplication.getApplication(),0);
+             else
+                haveUpdate = updateBean.getVersionCode() != VersionUtils.getVersionCode(XBaseApplication.getApplication(),0);
+         }
+
         if(haveUpdate){
             StringBuffer desc = new StringBuffer();
             desc.append(context.getString(R.string.app_update_manager_veriosn_str));
-            desc.append(updateBean.getNew_version());
+            desc.append(updateBean.getVersionName());
             desc.append("\n");
             desc.append(context.getString(R.string.app_update_manager_description_str));
             desc.append(updateBean.getDescription());

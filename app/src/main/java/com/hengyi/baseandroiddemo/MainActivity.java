@@ -43,6 +43,8 @@ public class MainActivity extends BaseActivity{
         easeTitleBar.hideLeftLayout();
         easeTitleBar.hideRightLayout();
 
+
+
         version.setText("当前版本：" + VersionUtils.getAppVersion(this,"1.0.0.0"));
 
         cid.setText("您的永久CID：" + SystemUtils.getClientID() +"\n" + "您的临时CID："+SystemUtils.getShortClientID(this)+"\n（重装失效）");

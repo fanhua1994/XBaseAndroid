@@ -45,3 +45,7 @@
 ### 20180704（版本1.0.8.1）
 + 新增XBasePermissionActivity权限申请更方便
 + GsonUtils新增toString方法。
+
+### 20180716（版本1.0.9.0）
++ 移除XBasePermissionActivity  将功能移植到XBaseActivity  需要回调直接重写onPermissionSuccess，onPermissionError
++ 移除腾讯浏览器引擎。

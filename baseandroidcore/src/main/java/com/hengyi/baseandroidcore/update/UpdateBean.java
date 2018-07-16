@@ -4,28 +4,29 @@ package com.hengyi.baseandroidcore.update;
  * Created by fanhua on 17-11-11.
  */
 public class UpdateBean {
-    private String new_version;//版本号
+    private String versionName;//版本号
+    private int versionCode;//版本编码
     private String description;//描述
     private String title;//更新提示标题
     private boolean isForce = false;//是否强制更新，不更新允许运行。
-    private String download_url;//下载地址
-    private String md5_code;//apk文件的MD5
+    private String downloadUrl;//下载地址
+    private String md5Code;//apk文件的MD5
     private String authority;//安卓7.0适配
 
-    public String getAuthority() {
-        return authority;
+    public String getVersionName() {
+        return versionName;
     }
 
-    public void setAuthority(String authority) {
-        this.authority = authority;
+    public void setVersionName(String versionName) {
+        this.versionName = versionName;
     }
 
-    public String getNew_version() {
-        return new_version;
+    public int getVersionCode() {
+        return versionCode;
     }
 
-    public void setNew_version(String new_version) {
-        this.new_version = new_version;
+    public void setVersionCode(int versionCode) {
+        this.versionCode = versionCode;
     }
 
     public String getDescription() {
@@ -52,19 +53,27 @@ public class UpdateBean {
         isForce = force;
     }
 
-    public String getDownload_url() {
-        return download_url;
+    public String getDownloadUrl() {
+        return downloadUrl;
     }
 
-    public void setDownload_url(String download_url) {
-        this.download_url = download_url;
+    public void setDownloadUrl(String downloadUrl) {
+        this.downloadUrl = downloadUrl;
     }
 
-    public String getMd5_code() {
-        return md5_code;
+    public String getMd5Code() {
+        return md5Code;
     }
 
-    public void setMd5_code(String md5_code) {
-        this.md5_code = md5_code;
+    public void setMd5Code(String md5Code) {
+        this.md5Code = md5Code;
+    }
+
+    public String getAuthority() {
+        return authority;
+    }
+
+    public void setAuthority(String authority) {
+        this.authority = authority;
     }
 }

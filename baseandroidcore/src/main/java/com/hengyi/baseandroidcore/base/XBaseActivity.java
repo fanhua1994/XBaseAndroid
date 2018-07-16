@@ -9,6 +9,7 @@ import android.view.KeyEvent;
 import com.hengyi.baseandroidcore.dialog.CustomWeiboDialogUtils;
 import com.hengyi.baseandroidcore.utils.ActivityStack;
 import com.hengyi.baseandroidcore.utils.NetworkUtils;
+import com.hengyi.baseandroidcore.xutils.PermissionUtils;
 import com.hengyi.baseandroidcore.xutils.ToastUtils;
 
 /**
@@ -78,5 +79,27 @@ public abstract class XBaseActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         ActivityStack.getInstance().popActivity(this);
+    }
+
+    public void onPermissionSuccess(){
+
+    }
+
+    public void onPermissionError(String[] deniedPermissions){
+
+    }
+
+    public void requestPermission(final int requestCode,final String[] permission){
+        PermissionUtils.requestPermissions(getContext(), requestCode, permission, new PermissionUtils.OnPermissionListener() {
+            @Override
+            public void onPermissionGranted() {
+                onPermissionSuccess();
+            }
+
+            @Override
+            public void onPermissionDenied(String[] deniedPermissions) {
+                onPermissionError(deniedPermissions);
+            }
+        });
     }
 }
