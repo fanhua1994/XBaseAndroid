@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.hengyi.baseandroidcore.browser.XBaseBrowserActivity;
-import com.hengyi.baseandroidcore.event.EventManager;
 import com.hengyi.baseandroidcore.statusbar.StatusBarCompat;
 import com.hengyi.baseandroidcore.utils.ActivityRouter;
 import com.hengyi.baseandroidcore.utils.ColorUtils;
@@ -15,8 +14,6 @@ import com.hengyi.baseandroidcore.utils.SystemUtils;
 import com.hengyi.baseandroidcore.utils.VersionUtils;
 import com.hengyi.baseandroidcore.weight.LoadingLayout;
 import com.hengyi.baseandroidcore.weight.XBaseTitleBar;
-
-import junit.framework.Test;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -44,12 +41,12 @@ public class MainActivity extends BaseActivity{
         easeTitleBar.hideRightLayout();
 
 
-
-        version.setText("当前版本：" + VersionUtils.getAppVersion(this,"1.0.0.0"));
+        version.setText("当前版本：" + VersionUtils.getVersionName(this,"1.0.0.0"));
 
         cid.setText("您的永久CID：" + SystemUtils.getClientID() +"\n" + "您的临时CID："+SystemUtils.getShortClientID(this)+"\n（重装失效）");
 
     }
+
 
     @Override
     public int setContentView() {
@@ -103,4 +100,5 @@ public class MainActivity extends BaseActivity{
         super.onDestroy();
         CommonUtils.kill();
     }
+
 }
