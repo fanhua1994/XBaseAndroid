@@ -20,7 +20,7 @@
 ![BaseAndroid](https://github.com/fanhua1994/BaseAndroid/blob/master/image/logo.png?raw=true)
 
 # 版本更新
-目前最新版本是1.0.8.1
+目前最新版本是1.0.9.0
 [更新日志](https://github.com/fanhua1994/XBaseAndroid/blob/master/LOG.md)
 
 请您注意XBaseAndroid接入包体将增大：2.5MB
@@ -34,7 +34,7 @@ allprojects {
     }
 }
 ```
-compile 'com.github.fanhua1994:XBaseAndroid:1.0.8.1'
+compile 'com.github.fanhua1994:XBaseAndroid:1.0.9.0'
 
 # 联系作者
 简书：[http://www.jianshu.com/u/50c9e5f00da3](http://www.jianshu.com/u/50c9e5f00da3)
