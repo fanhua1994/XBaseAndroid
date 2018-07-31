@@ -14,7 +14,6 @@ import com.hengyi.baseandroidcore.utils.SystemUtils;
 import com.hengyi.baseandroidcore.utils.VersionUtils;
 import com.hengyi.baseandroidcore.weight.LoadingLayout;
 import com.hengyi.baseandroidcore.weight.XBaseTitleBar;
-import com.lzy.okgo.OkGo;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -45,6 +44,7 @@ public class MainActivity extends BaseActivity{
 
         cid.setText("您的永久CID：" + SystemUtils.getClientID() +"\n" + "您的临时CID："+SystemUtils.getShortClientID(this)+"\n（重装失效）");
 
+        OkGo.
     }
 
 
