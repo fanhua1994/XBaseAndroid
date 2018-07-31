@@ -14,6 +14,7 @@ import com.hengyi.baseandroidcore.utils.SystemUtils;
 import com.hengyi.baseandroidcore.utils.VersionUtils;
 import com.hengyi.baseandroidcore.weight.LoadingLayout;
 import com.hengyi.baseandroidcore.weight.XBaseTitleBar;
+import com.lzy.okgo.OkGo;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -39,7 +40,6 @@ public class MainActivity extends BaseActivity{
         });
         easeTitleBar.hideLeftLayout();
         easeTitleBar.hideRightLayout();
-
 
         version.setText("当前版本：" + VersionUtils.getVersionName(this,"1.0.0.0"));
 

@@ -32,7 +32,7 @@ public class XBaseApplication extends Application {
 
         //热修复
         patchManager = new PatchManager(this);
-        patchManager.init(VersionUtils.getAppVersion(this,"1.0.0.0"));//current version
+        patchManager.init(VersionUtils.getVersionName(this,"1.0.0.0"));//current version
         patchManager.loadPatch();
 
         Utils.init(this);

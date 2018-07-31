@@ -8,13 +8,9 @@ android {
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 26
-        versionCode 3
-        versionName "1.0.9.0"
+        versionCode 4
+        versionName "1.0.9.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
-        ndk {
-            abiFilters "armeabi", "armeabi-v7a", "x86", "mips"
-        }
     }
     buildTypes {
         release {
@@ -25,15 +21,15 @@ android {
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:design:26.1.0'
     implementation 'com.android.support:appcompat-v7:26.+'
-    implementation 'com.google.code.gson:gson:2.6.2'
-    implementation 'com.j256.ormlite:ormlite-core:4.48'
-    implementation 'com.j256.ormlite:ormlite-android:4.48'
     implementation 'com.github.bumptech.glide:glide:3.7.0'
     implementation 'jp.wasabeef:glide-transformations:2.0.2'
     implementation 'com.alipay.euler:andfix:0.4.1'
+
+    api 'com.google.code.gson:gson:2.6.2'
     api 'com.lzy.net:okgo:3.0.4'
     api 'org.greenrobot:eventbus:3.1.1'
+    api 'com.j256.ormlite:ormlite-core:4.48'
+    api 'com.j256.ormlite:ormlite-android:4.48'
 }
