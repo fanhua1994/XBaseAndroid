@@ -34,7 +34,7 @@ allprojects {
     }
 }
 ```
-compile 'com.github.fanhua1994:XBaseAndroid:1.0.9.0'
+compile 'com.github.fanhua1994:XBaseAndroid:1.0.9.1'
 
 # 联系作者
 简书：[http://www.jianshu.com/u/50c9e5f00da3](http://www.jianshu.com/u/50c9e5f00da3)
