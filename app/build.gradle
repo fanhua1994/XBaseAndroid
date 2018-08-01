@@ -27,8 +27,7 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:26.+'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     implementation project(path: ':baseandroidcore')
-    //implementation 'com.github.fanhua1994:XBaseAndroid:1.0.9.2'
-    //compile 'com.github.fanhua1994:XBaseAndroid:1.0.8.1'
+   // implementation 'com.github.fanhua1994:XBaseAndroid:1.0.9.3'
 
     implementation 'com.jakewharton:butterknife:8.5.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'

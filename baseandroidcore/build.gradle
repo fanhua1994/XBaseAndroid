@@ -27,9 +27,9 @@ dependencies {
     implementation 'jp.wasabeef:glide-transformations:2.0.2'
     implementation 'com.alipay.euler:andfix:0.4.1'
 
-    api 'com.google.code.gson:gson:2.6.2'
-    api 'com.lzy.net:okgo:3.0.4'
-    api 'org.greenrobot:eventbus:3.1.1'
-    api 'com.j256.ormlite:ormlite-core:4.48'
-    api 'com.j256.ormlite:ormlite-android:4.48'
+    implementation 'com.google.code.gson:gson:2.6.2'
+    implementation 'com.lzy.net:okgo:3.0.4'
+    implementation 'org.greenrobot:eventbus:3.1.1'
+    implementation 'com.j256.ormlite:ormlite-core:4.48'
+    implementation 'com.j256.ormlite:ormlite-android:4.48'
 }

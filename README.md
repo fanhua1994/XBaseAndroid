@@ -26,6 +26,8 @@
 请您注意XBaseAndroid接入包体将增大：2.5MB
 
 引用方式：
+
+1.加入repositories
 ```
 allprojects {
     repositories {
@@ -34,7 +36,16 @@ allprojects {
     }
 }
 ```
-compile 'com.github.fanhua1994:XBaseAndroid:1.0.9.1'
+2.引用第三方库
+```
+implementation 'com.google.code.gson:gson:2.6.2'
+implementation 'com.lzy.net:okgo:3.0.4'
+implementation 'org.greenrobot:eventbus:3.1.1'
+implementation 'com.j256.ormlite:ormlite-core:4.48'
+implementation 'com.j256.ormlite:ormlite-android:4.48'
+```
+3.引用XBaseAndroid
+compile 'com.github.fanhua1994:XBaseAndroid:1.0.9.3'
 
 # 联系作者
 简书：[http://www.jianshu.com/u/50c9e5f00da3](http://www.jianshu.com/u/50c9e5f00da3)
