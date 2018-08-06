@@ -34,24 +34,70 @@
 		<div class="content">
 		    XBaseAndroid一款集成了网络请求，本地缓存，配置文件，数据库映射，权限申请，链表管理Activity，简化Activity、Service、Broadcast启动， 万能ListView,GridView适配器、高仿IOS弹窗、倒计时/延迟执行，标题栏组件,图片显示，webview引擎，APP更新组件，APP崩溃日志组件，线程池组件，视频播放器，三级地址选择，热更新组件
 		</div>
+        <button v-on:click="btn_showloading">显示Loading</button>
+
 		<button v-on:click="btn_close">关闭当前界面</button>
 
         <button v-on:click="btn_kill">关闭整个应用</button>
+
+        <button v-on:click="btn_get">发送get请求</button>
+
+        <button v-on:click="btn_post">发送post请求</button>
+
+        <button v-on:click="btn_alert">alert弹窗</button>
+
+        <button v-on:click="btn_confirm">confirm弹窗</button>
+
+        <button v-on:click="btn_prompt">prompt弹窗</button>
+
+        <button v-on:click="btn_notification">发送通知</button>
+
+        <button v-on:click="btn_activity">打开Activity</button>
 </div>
 <script>
-   /* xbase.showLoading("正在加载中...");
-    setTimeout(function(){
-    	xbase.closeLoading();
-    },3000);*/
+
 
 	new Vue({
 		el:"#app",
 		methods:{
+		    "btn_showloading":function(){
+                xbase.showLoading("正在加载中");
+                var timer = setTimeout(function(){
+                    xbase.closeLoading();
+                    clearTimeout(timer);
+                },2000);
+
+		    },
 			"btn_close":function(){
-			    xbase.close();
+			   xbase.close();
 			},
 			"btn_kill":function(){
 			    xbase.kill();
+			},
+			"btn_get":function(){
+			    var res = xbase.get("http://api.cleveriip.com/","123");
+			    alert(res);
+			},
+			"btn_post":function(){
+                var res = xbase.post("http://api.cleveriip.com",JSON.stringify({name:"123","age":21}),"123");
+                alert(res);
+			},
+			"btn_alert":function(){
+			    alert("弹窗");
+			},
+			"btn_confirm":function(){
+			    var res = confirm("你是安卓开发工程师吗");
+			    alert(res);
+			},
+			"btn_prompt":function(){
+			    var info = prompt("请输入您的姓名");
+			    alert("您输入的姓名是：" + info);
+			},
+			"btn_notification":function(){
+                xbase.showNotification("head","com.hengyi.baseandroiddemo.MainActivity","您有一个通知","温馨提示","您正在使用XBaseAndroid H5功能",12566);
+			},
+			"btn_activity":function(){
+			    xbase.openActivity("com.hengyi.baseandroiddemo.MainActivity","name=1&time=2");
 			}
 		}
 	});

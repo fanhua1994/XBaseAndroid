@@ -4,6 +4,7 @@ import android.Manifest;
 import android.os.Bundle;
 
 import com.hengyi.baseandroidcore.base.XBaseActivity;
+import com.hengyi.baseandroidcore.database.BaseDao;
 
 /**
  * Created: 2018/3/21 9:41
@@ -18,6 +19,7 @@ public class TestActivity extends XBaseActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestPermission(200,new String[]{Manifest.permission.CAMERA,Manifest.permission.READ_CONTACTS});
+
     }
 
     @Override

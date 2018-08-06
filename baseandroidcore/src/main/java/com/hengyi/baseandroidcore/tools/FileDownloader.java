@@ -67,7 +67,6 @@ public class FileDownloader {
      * @param downurl                   下载地址
      * @param savepath                  保存路径
      * @param filename                  保存文件名
-     * @param downloadStatusListener    下载监听器
      * @param show_notification         是否现实通知栏
      * @param image_icon                通知栏图标
      * @param notify_id                 通知ID
@@ -76,7 +75,7 @@ public class FileDownloader {
      * @param content                   显示内容
      * @param intent                    意图
      */
-    public void download(Context context, String downurl, String savepath, String filename, final DownloadStatusListener downloadStatusListener, final boolean show_notification,int image_icon,int notify_id,String tickerText,String title,String content,Intent intent){
+    public void download(Context context, String downurl, String savepath, String filename,final boolean show_notification,int image_icon,int notify_id,String tickerText,String title,String content,Intent intent){
         if(show_notification) {
             notifacation = new NotificationUtils(context);
             notifacation.createProgressNotify(image_icon, notify_id, tickerText, title, content, intent);//创建进度条通知栏
@@ -84,7 +83,6 @@ public class FileDownloader {
         OkGo.<File>get(downurl).tag(this).execute(new FileCallback(savepath,filename) {
             @Override
             public void onSuccess(Response<File> response) {
-                downloadStatusListener.onSuccess(response.body());
                 if(show_notification)
                     notifacation.cancelNotify();
                 if(listener != null)
@@ -101,7 +99,6 @@ public class FileDownloader {
             @Override
             public void onError(Response<File> response) {
                 super.onError(response);
-                downloadStatusListener.OnError(response.message());
                 if(listener != null)
                     listener.downloadError(response.message());
             }
@@ -128,8 +125,8 @@ public class FileDownloader {
     }
 
 
-    public void download(Context context, String downurl, String savepath, String filename, final DownloadStatusListener downloadStatusListener, final boolean show_notification){
-        download(context,downurl,savepath,filename,downloadStatusListener,true,R.drawable.ic_launcher,1899,"正在加载中","文件下载器","文件正在准备下载...",new Intent());
+    public void download(Context context, String downurl, String savepath, String filename, final boolean show_notification){
+        download(context,downurl,savepath,filename,true,R.drawable.ic_launcher,1899,"正在加载中","文件下载器","文件正在准备下载...",new Intent());
     }
 
     public String getDefaultPath(){
@@ -138,10 +135,5 @@ public class FileDownloader {
 
     public String getDefaultFilename(String url){
         return url.substring(url.lastIndexOf("/"));
-    }
-
-    public interface DownloadStatusListener{
-        public void onSuccess(File file);
-        public void OnError(String message);
     }
 }

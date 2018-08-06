@@ -22,8 +22,7 @@ public class LoadingActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        loadingLayout.setEmptyClickListener(new View.OnClickListener(){
+        loadingLayout.setEmptyClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -31,18 +30,13 @@ public class LoadingActivity extends BaseActivity {
             }
         });
 
-     //   requestPermisstion(200,new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION});
+        loadingLayout.setErrorClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                toast("错误视图 刷新事件 ");
+            }
+        });
     }
-
-//    @Override
-//    public void onPermissionSuccess() {
-//        toast("权限申请成功");
-//    }
-//
-//    @Override
-//    public void onPermissionError(String[] deniedPermissions) {
-//        toast("权限申请失败");
-//    }
 
     @Override
     public int setContentView() {

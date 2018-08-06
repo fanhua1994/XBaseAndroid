@@ -1,15 +1,18 @@
 package com.hengyi.baseandroiddemo;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.hengyi.baseandroidcore.base.XBaseActivity;
 import com.hengyi.baseandroidcore.browser.XBaseBrowserActivity;
 import com.hengyi.baseandroidcore.statusbar.StatusBarCompat;
 import com.hengyi.baseandroidcore.utils.ActivityRouter;
 import com.hengyi.baseandroidcore.utils.ColorUtils;
 import com.hengyi.baseandroidcore.utils.CommonUtils;
+import com.hengyi.baseandroidcore.utils.NotificationUtils;
 import com.hengyi.baseandroidcore.utils.SystemUtils;
 import com.hengyi.baseandroidcore.utils.VersionUtils;
 import com.hengyi.baseandroidcore.weight.LoadingLayout;
@@ -59,7 +62,9 @@ public class MainActivity extends BaseActivity{
                 ActivityRouter.getInstance()
                         .add(XBaseBrowserActivity.WEB_URL,XBaseBrowserActivity.ANDROID_ASSSET_PATH + "template/index.html")//加载本地asset加上XBaseBrowserActivity.ANDROID_ASSSET_PATH + 你的html路径。
                         .add(XBaseBrowserActivity.SHOW_TITLE_BAR,true)//是否显示标题栏
-                        .add(XBaseBrowserActivity.SHOW_REFRESH,false)//是否可以下拉刷新
+                        .add(XBaseBrowserActivity.SHOW_REFRESH,true)//是否可以下拉刷新
+                        .add(XBaseBrowserActivity.STATUS_COLOR,R.color.main_color)//设置状态栏颜色，默认是蓝色
+                        .add(XBaseBrowserActivity.START_CACHE,false)//是否开启缓存
                         .startActivity(this,XBaseBrowserActivity.class);
             break;
 

@@ -26,6 +26,7 @@ import android.widget.ProgressBar;
 import com.hengyi.baseandroidcore.R;
 import com.hengyi.baseandroidcore.base.XBaseActivity;
 import com.hengyi.baseandroidcore.dialog.CustomAlertDialog;
+import com.hengyi.baseandroidcore.dialog.CustomConfirmDialog;
 import com.hengyi.baseandroidcore.statusbar.StatusBarCompat;
 import com.hengyi.baseandroidcore.tools.FileDownloader;
 import com.hengyi.baseandroidcore.utils.ActivityStack;
@@ -40,9 +41,10 @@ import java.io.File;
  */
 public class XBaseBrowserActivity extends XBaseActivity implements DownloadListener {
 	public static final String ANDROID_ASSSET_PATH = "file:///android_asset/";
-	public static final String SHOW_TITLE_BAR = "show_title_bar";
-	public static final String SHOW_REFRESH = "show_refresh";
-	public static final String STATUS_COLOR = "statusbar_color";
+	public static final String START_CACHE = "start_cache";//是否开启缓存
+	public static final String SHOW_TITLE_BAR = "show_title_bar";//显示标题栏
+	public static final String SHOW_REFRESH = "show_refresh";//显示刷新
+	public static final String STATUS_COLOR = "statusbar_color";//状态栏颜色
 	public static final String WEB_URL = "url";
 
 	private XBaseTitleBar easeTitleBar;
@@ -73,10 +75,11 @@ public class XBaseBrowserActivity extends XBaseActivity implements DownloadListe
 		String url = i.getStringExtra(WEB_URL);
 		boolean show_title_bar = i.getBooleanExtra(SHOW_TITLE_BAR,true);
 		boolean show_refresh = i.getBooleanExtra(SHOW_REFRESH,false);
+		boolean start_cache = i.getBooleanExtra(START_CACHE,false);
 		int status_color = i.getIntExtra(STATUS_COLOR,R.color.main_color);
 		StatusBarCompat.setStatusBarColor(this, Color.parseColor(ColorUtils.changeColor(this,status_color)));
 
-		initWeb(url);
+		initWeb(url,start_cache);
 		if(show_title_bar){
 			easeTitleBar.setLeftLayoutClickListener(new View.OnClickListener(){
 				@Override
@@ -125,12 +128,19 @@ public class XBaseBrowserActivity extends XBaseActivity implements DownloadListe
 		return R.layout.activity_web_engines;
 	}
 
-	private void initWeb(String url){
+	private void initWeb(String url,Boolean startCache){
 		progressBar.setVisibility(View.VISIBLE);
 		WebSettings settings = webview.getSettings();
 		settings.setJavaScriptEnabled(true);
 		settings.setDomStorageEnabled(true);
-		settings.setCacheMode(WebSettings.LOAD_NO_CACHE);
+		if(startCache) {
+			if(getNetworkStatus())
+				settings.setCacheMode(WebSettings.LOAD_DEFAULT);
+			else
+				settings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+		}else {
+			settings.setCacheMode(WebSettings.LOAD_NO_CACHE);
+		}
 		settings.setUseWideViewPort(true); // 关键点
 		settings.setAllowFileAccess(true); // 允许访问文件
 		settings.setLoadWithOverviewMode(true);
@@ -140,7 +150,7 @@ public class XBaseBrowserActivity extends XBaseActivity implements DownloadListe
 		settings.setPluginState(WebSettings.PluginState.ON);
 		settings.setSupportZoom(true); // 支持缩放
 
-		webview.addJavascriptInterface(new XBaseJsMappingAndroid(getContext()), "xbase");
+		webview.addJavascriptInterface(new XBaseJsMappingAndroid(getContext(),webview,getPackageName()), "xbase");
 		webview.setVerticalScrollBarEnabled(false);
 		webview.setHorizontalScrollBarEnabled(false);
 		webview.setDownloadListener(this);
@@ -194,6 +204,7 @@ public class XBaseBrowserActivity extends XBaseActivity implements DownloadListe
 				alert.setTitle(getString(R.string.xbase_reminder));
 				alert.setMsg(message);
 				alert.show();
+				result.confirm();
 				return true;
 			}
 
@@ -209,13 +220,49 @@ public class XBaseBrowserActivity extends XBaseActivity implements DownloadListe
 			}
 
 			@Override
-			public boolean onJsConfirm(WebView view, String url, String message, JsResult result) {
-				return super.onJsConfirm(view, url, message, result);
+			public boolean onJsConfirm(WebView view, String url, String message, final JsResult result) {
+				CustomAlertDialog dialog = new CustomAlertDialog(XBaseBrowserActivity.this).builder();
+				dialog.setTitle(getString(R.string.xbase_reminder));
+				dialog.setMsg(message);
+				dialog.setNegativeButton(getString(R.string.xbase_confirm), new View.OnClickListener() {
+					@Override
+					public void onClick(View view) {
+						result.confirm();
+					}
+				});
+
+				dialog.setPositiveButton(getString(R.string.xbase_cancel),new View.OnClickListener(){
+					@Override
+					public void onClick(View v) {
+						result.cancel();
+					}
+				});
+				dialog.show();
+
+				return true;
 			}
 
 			@Override
-			public boolean onJsPrompt(WebView view, String url, String message, String defaultValue, JsPromptResult result) {
-				return super.onJsPrompt(view, url, message, defaultValue, result);
+			public boolean onJsPrompt(WebView view, String url, String message, String defaultValue, final JsPromptResult result) {
+				CustomConfirmDialog dialog = new CustomConfirmDialog(XBaseBrowserActivity.this).builder();
+				dialog.setTitle(getString(R.string.xbase_reminder));
+				dialog.setHintText(message);
+
+				dialog.setPositiveButton(getString(R.string.xbase_confirm),new CustomConfirmDialog.OnPostListener(){
+					@Override
+					public void OnPost(String value) {
+						result.confirm(value);
+					}
+				});
+
+				dialog.setNegativeButton(getString(R.string.xbase_cancel), new View.OnClickListener() {
+					@Override
+					public void onClick(View view) {
+						result.cancel();
+					}
+				});
+				dialog.show();
+				return true;
 			}
 		});
 	}
@@ -248,6 +295,7 @@ public class XBaseBrowserActivity extends XBaseActivity implements DownloadListe
 				((ViewGroup) parent).removeView(webview);
 			}
 
+			webview.pauseTimers();
 			webview.clearHistory();
 			webview.clearCache(true);
 			webview.loadUrl("about:blank"); // clearView() should be changed to loadUrl("about:blank"), since clearView() is deprecated now
@@ -274,25 +322,15 @@ public class XBaseBrowserActivity extends XBaseActivity implements DownloadListe
 	public void onDownloadStart(final String s, String s1, String s2, String s3, long l) {
 		final CustomAlertDialog customAlertDialog = new CustomAlertDialog(getContext()).builder();
 		customAlertDialog.setMsg("您真的要下载该文件吗？");
-		customAlertDialog.setTitle("温馨提示");
-		customAlertDialog.setPositiveButton("确定", new View.OnClickListener() {
+		customAlertDialog.setTitle(getString(R.string.xbase_reminder));
+		customAlertDialog.setPositiveButton(getString(R.string.xbase_confirm), new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
 				final FileDownloader fileDownloader = FileDownloader.getInstance();
-				fileDownloader.download(getContext(), s, fileDownloader.getDefaultPath(), fileDownloader.getDefaultFilename(s), new FileDownloader.DownloadStatusListener() {
-					@Override
-					public void onSuccess(File file) {
-						toast("文件下载成功，文件存入" + fileDownloader.getDefaultPath());
-					}
-
-					@Override
-					public void OnError(String message) {
-						toast("文件下载失败");
-					}
-				}, true);
+				fileDownloader.download(getContext(), s, fileDownloader.getDefaultPath(), fileDownloader.getDefaultFilename(s), true);
 			}
 		});
-		customAlertDialog.setNegativeButton("取消",null);
+		customAlertDialog.setNegativeButton(getString(R.string.xbase_cancel),null);
 		customAlertDialog.show();
 	}
 }

@@ -7,11 +7,11 @@ import java.io.File;
  */
 
 public interface FileDownloadListener{
-    public void downloadProgressBar(String progress,int progress2,String speed);
-    public void downloadSuccess(File app_path);
-    public void downloadStart();
-    public void downloadError(String message);
-    public void downloadFinish();
-    public void cancelDownload();
-    public void NoUpdate();
+    void downloadProgressBar(String progress,int progress2,String speed);
+    void downloadSuccess(File appPath);
+    void downloadStart();
+    void downloadError(String message);
+    void downloadFinish();
+    void cancelDownload();
+    void NoUpdate();
 }

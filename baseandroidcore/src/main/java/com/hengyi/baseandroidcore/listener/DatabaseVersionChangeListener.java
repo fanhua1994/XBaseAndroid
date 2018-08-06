@@ -5,5 +5,5 @@ package com.hengyi.baseandroidcore.listener;
  */
 
 public interface DatabaseVersionChangeListener {
-    public void onChange(int oldVersion,int newVersion);
+    void onChange(int oldVersion,int newVersion);
 }
