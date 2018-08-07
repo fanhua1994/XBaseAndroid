@@ -47,6 +47,11 @@ public class MainActivity extends BaseActivity{
 
         cid.setText("您的永久CID：" + SystemUtils.getClientID() +"\n" + "您的临时CID："+SystemUtils.getShortClientID(this)+"\n（重装失效）");
 
+
+        NotificationUtils notifacation = new NotificationUtils(this);//实例化通知栏
+        Intent intent = new Intent(this,MainActivity.class);
+       // int icon = getResources().getIdentifier("head","drawable",getPackageName());
+        notifacation.createNotify(R.mipmap.head, "提示", "温馨提示", "哈哈哈", intent, 3333);
     }
 
 

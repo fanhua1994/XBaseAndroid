@@ -1,6 +1,5 @@
 package com.hengyi.baseandroidcore.browser;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -8,7 +7,6 @@ import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
 import android.widget.Toast;
 
-import com.hengyi.baseandroidcore.R;
 import com.hengyi.baseandroidcore.dialog.CustomWeiboDialogUtils;
 import com.hengyi.baseandroidcore.event.EventMessage;
 import com.hengyi.baseandroidcore.event.EventManager;
@@ -20,14 +18,12 @@ import com.hengyi.baseandroidcore.utils.GsonUtils;
 import com.hengyi.baseandroidcore.utils.NetworkUtils;
 import com.hengyi.baseandroidcore.utils.NotificationUtils;
 import com.lzy.okgo.OkGo;
+import com.lzy.okgo.callback.StringCallback;
+import com.lzy.okgo.model.Response;
 import com.lzy.okgo.request.PostRequest;
-import com.lzy.okgo.request.base.Request;
 
-import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
 
-import okhttp3.Response;
 
 /**
  * Created: 2018/3/22 16:31
@@ -189,13 +185,16 @@ public class XBaseJsMappingAndroid extends Object {
      * 发起get请求
      */
     @JavascriptInterface
-    public String get(String url,String tag){
+    public void doGet(String url, final String tag,final int notifyId){
         try {
-            okhttp3.Response response = OkGo.get(url).tag(tag).execute();
-            return response.body().string();
-        } catch (IOException e) {
-            toast(e.getMessage());
-            return null;
+            OkGo.<String>get(url).tag(tag).execute(new StringCallback() {
+                @Override
+                public void onSuccess(Response<String> response) {
+                    webView.loadUrl("javascript:httpCallback(true,'"+ tag +"',"+ notifyId +",'"+ response.body() +"')");
+                }
+            });
+        } catch (Exception e) {
+            webView.loadUrl("javascript:httpCallback(false,'"+ tag +"',"+ notifyId +",'"+ e.getMessage() +"')");
         }
     }
 
@@ -203,17 +202,21 @@ public class XBaseJsMappingAndroid extends Object {
      * 发起post请求
      */
     @JavascriptInterface
-    public String post(String url,String params, String tag) {
+    public void doPost(String url, String params, final String tag, final int notifyId) {
         try{
             Map<String, Object> map = GsonUtils.parseJsonWithGson(params, Map.class);
-            PostRequest request = OkGo.post(url).tag(tag);
+            PostRequest request = OkGo.<String>post(url).tag(tag);
             for (Map.Entry<String, Object> entry : map.entrySet()) {
                 request.params(entry.getKey(), entry.getValue().toString());
             }
-            return request.execute().body().string();
+            request.execute(new StringCallback() {
+                @Override
+                public void onSuccess(Response<String> response) {
+                    webView.loadUrl("javascript:httpCallback(true,'"+ tag +"',"+ notifyId +",'"+ response.body() +"')");
+                }
+            });
         }catch (Exception e){
-            toast(e.getMessage());
-            return null;
+            webView.loadUrl("javascript:httpCallback(false,'"+ tag +"',"+ notifyId +",'"+ e.getMessage() +"')");
         }
     }
 
@@ -226,7 +229,7 @@ public class XBaseJsMappingAndroid extends Object {
     }
 
     /**
-     * 发起弹窗
+     * 发起通知
      */
     @JavascriptInterface
     public void showNotification(String imageId,String activityName,String tickerText,String title,String content,int notifyId){

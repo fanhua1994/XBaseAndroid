@@ -55,10 +55,22 @@
         <button v-on:click="btn_activity">打开Activity</button>
 </div>
 <script>
+/**
+* 1参数  是否请求成功
+* 2参数  请求tag
+* 3参数   notifyId 唯一标识符
+*/
+function httpCallback(status,tag,notifyId,response){
+    alert(status+","+ tag +"，" + notifyId +","+ response );
+    xbase.closeLoading();
+}
 
 
 	new Vue({
 		el:"#app",
+		created:function(){
+		xbase.toast("当前网络状态：" + xbase.getNetworkStatus());
+		},
 		methods:{
 		    "btn_showloading":function(){
                 xbase.showLoading("正在加载中");
@@ -75,12 +87,13 @@
 			    xbase.kill();
 			},
 			"btn_get":function(){
-			    var res = xbase.get("http://api.cleveriip.com/","123");
-			    alert(res);
+			    xbase.showLoading("正在请求中");
+			    xbase.doGet("http://api.cleveriip.com/","123",9000);
 			},
 			"btn_post":function(){
-                var res = xbase.post("http://api.cleveriip.com",JSON.stringify({name:"123","age":21}),"123");
-                alert(res);
+			    xbase.showLoading("正在请求中");
+                xbase.doPost("http://api.cleveriip.com",JSON.stringify({name:"123","age":21}),"123",8000);
+
 			},
 			"btn_alert":function(){
 			    alert("弹窗");
