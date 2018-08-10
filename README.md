@@ -20,10 +20,8 @@
 ![BaseAndroid](https://github.com/fanhua1994/BaseAndroid/blob/master/image/logo.png?raw=true)
 
 # 版本更新
-目前最新版本是1.0.9.3
+目前最新版本是1.0.9.4
 [更新日志](https://github.com/fanhua1994/XBaseAndroid/blob/master/LOG.md)
-
-请您注意XBaseAndroid接入包体将增大：2.5MB
 
 引用方式：
 
@@ -45,7 +43,7 @@ implementation 'com.j256.ormlite:ormlite-core:4.48'
 implementation 'com.j256.ormlite:ormlite-android:4.48'
 ```
 3.引用XBaseAndroid
-compile 'com.github.fanhua1994:XBaseAndroid:1.0.9.3'
+compile 'com.github.fanhua1994:XBaseAndroid:1.0.9.4'
 
 # 联系作者
 简书：[http://www.jianshu.com/u/50c9e5f00da3](http://www.jianshu.com/u/50c9e5f00da3)

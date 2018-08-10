@@ -49,3 +49,6 @@
 ### 20180725（版本1.0.9.3）
 + 移除XBasePermissionActivity  将功能移植到XBaseActivity  需要回调直接重写onPermissionSuccess，onPermissionError
 + 移除腾讯浏览器引擎。
+
+### 20180810（版本1.0.9.4）
++ 增强XBaseBrowserActivity JS安卓交互功能。详情请看https://www.jianshu.com/p/de02e5629d3c
