@@ -1,18 +1,15 @@
 package com.hengyi.baseandroiddemo;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.hengyi.baseandroidcore.base.XBaseActivity;
 import com.hengyi.baseandroidcore.browser.XBaseBrowserActivity;
 import com.hengyi.baseandroidcore.statusbar.StatusBarCompat;
 import com.hengyi.baseandroidcore.utils.ActivityRouter;
 import com.hengyi.baseandroidcore.utils.ColorUtils;
 import com.hengyi.baseandroidcore.utils.CommonUtils;
-import com.hengyi.baseandroidcore.utils.NotificationUtils;
 import com.hengyi.baseandroidcore.utils.SystemUtils;
 import com.hengyi.baseandroidcore.utils.VersionUtils;
 import com.hengyi.baseandroidcore.weight.LoadingLayout;
@@ -46,12 +43,6 @@ public class MainActivity extends BaseActivity{
         version.setText("当前版本：" + VersionUtils.getVersionName(this,"1.0.0.0"));
 
         cid.setText("您的永久CID：" + SystemUtils.getClientID() +"\n" + "您的临时CID："+SystemUtils.getShortClientID(this)+"\n（重装失效）");
-
-
-        NotificationUtils notifacation = new NotificationUtils(this);//实例化通知栏
-        Intent intent = new Intent(this,MainActivity.class);
-       // int icon = getResources().getIdentifier("head","drawable",getPackageName());
-        notifacation.createNotify(R.mipmap.head, "提示", "温馨提示", "哈哈哈", intent, 3333);
     }
 
 

@@ -33,8 +33,6 @@ import com.hengyi.baseandroidcore.utils.ActivityStack;
 import com.hengyi.baseandroidcore.utils.ColorUtils;
 import com.hengyi.baseandroidcore.weight.XBaseTitleBar;
 
-import java.io.File;
-
 /*
  * 作者：董志平
  * 名称：内部浏览器 支持隐藏标题栏 支持不刷新 支持长按选中
@@ -150,7 +148,7 @@ public class XBaseBrowserActivity extends XBaseActivity implements DownloadListe
 		settings.setPluginState(WebSettings.PluginState.ON);
 		settings.setSupportZoom(true); // 支持缩放
 
-		webview.addJavascriptInterface(new XBaseJsMappingAndroid(getContext(),webview,getPackageName()), "xbase");
+		webview.addJavascriptInterface(new XBaseJsMapping(this,webview,getPackageName()), "xbase");
 		webview.setVerticalScrollBarEnabled(false);
 		webview.setHorizontalScrollBarEnabled(false);
 		webview.setDownloadListener(this);

@@ -1,7 +1,7 @@
 package com.hengyi.baseandroidcore.browser;
 
+import android.app.Activity;
 import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
@@ -10,6 +10,8 @@ import android.widget.Toast;
 import com.hengyi.baseandroidcore.dialog.CustomWeiboDialogUtils;
 import com.hengyi.baseandroidcore.event.EventMessage;
 import com.hengyi.baseandroidcore.event.EventManager;
+import com.hengyi.baseandroidcore.listener.FileDownloadListener;
+import com.hengyi.baseandroidcore.tools.FileDownloader;
 import com.hengyi.baseandroidcore.utils.ActivityRouter;
 import com.hengyi.baseandroidcore.utils.ActivityStack;
 import com.hengyi.baseandroidcore.utils.ConfigUtils;
@@ -17,13 +19,16 @@ import com.hengyi.baseandroidcore.utils.DiskLruCacheHelper;
 import com.hengyi.baseandroidcore.utils.GsonUtils;
 import com.hengyi.baseandroidcore.utils.NetworkUtils;
 import com.hengyi.baseandroidcore.utils.NotificationUtils;
+import com.hengyi.baseandroidcore.xutils.AppUtils;
+import com.hengyi.baseandroidcore.xutils.FileUtils;
+import com.hengyi.baseandroidcore.xutils.RegexUtils;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 import com.lzy.okgo.request.PostRequest;
 
+import java.io.File;
 import java.util.Map;
-
 
 /**
  * Created: 2018/3/22 16:31
@@ -32,18 +37,53 @@ import java.util.Map;
  * Project:XBaseAndroid
  */
 
-public class XBaseJsMappingAndroid extends Object {
+public class XBaseJsMapping extends Object implements IBaseJsMapping {
     private Dialog loadingDialog = null;
-    private Context context;
+    private Activity context;
     private WebView webView;
     private String packageName;
 
-    public XBaseJsMappingAndroid(Context context, WebView webView,String packageName){
+    public XBaseJsMapping(Activity context, WebView webView, String packageName){
         this.context = context;
         this.webView = webView;
         this.packageName = packageName;
     }
 
+    /**
+     * 执行JS回调方法
+     * webView.loadUrl("javascript:httpCallback(true,'"+ tag +"',"+ notifyId +",'"+ response.body() +"')");
+     * @param methodName
+     * @param params
+     */
+    private void executeJsFunction(String methodName,Object... params){
+        StringBuilder sb = new StringBuilder();
+        sb.append("javascript:");
+        sb.append(methodName);
+        sb.append("(");
+        for(int i = 0;i<params.length;i++){
+            if(params[i] instanceof String){
+                sb.append("'");
+                sb.append((String)params[i]);
+                sb.append("'");
+            }
+            if(params[i] instanceof Boolean){
+                sb.append((Boolean)params[i]);
+            }
+            if(params[i] instanceof Integer){
+                sb.append((Integer)params[i]);
+            }
+            if(i != params.length - 1)
+                sb.append(",");
+        }
+        sb.append(")");
+        webView.loadUrl(sb.toString());
+    }
+
+    /**
+     * 打开一个Activity
+     * @param activityName
+     * @param params
+     */
    @JavascriptInterface
    public void openActivity(String activityName,String params){
         try{
@@ -55,7 +95,14 @@ public class XBaseJsMappingAndroid extends Object {
                     String[] value = null;
                     for(String param : p){
                         value = param.split("=");
-                        router.add(value[0],value[1]);
+                        if(value == null || value.length != 2)
+                            continue;
+                        if(RegexUtils.isDigit(value[1])){
+                            router.add(value[0],Integer.parseInt(value[1]));
+                        }else{
+                            router.add(value[0],value[1]);
+                        }
+
                     }
                 }
                 router.startActivity(context,clazz);
@@ -126,7 +173,7 @@ public class XBaseJsMappingAndroid extends Object {
     }
 
     @JavascriptInterface
-    public Boolean getBooleanConfig(String key){
+    public boolean getBooleanConfig(String key){
         return ConfigUtils.getInstance(context).findBoolByKey(key);
     }
 
@@ -141,7 +188,7 @@ public class XBaseJsMappingAndroid extends Object {
     }
 
     @JavascriptInterface
-    public void setBooleanConfig(String key,Boolean value){
+    public void setBooleanConfig(String key,boolean value){
         ConfigUtils.getInstance(context).addOrUpdateBoolean(key,value);
     }
 
@@ -190,11 +237,11 @@ public class XBaseJsMappingAndroid extends Object {
             OkGo.<String>get(url).tag(tag).execute(new StringCallback() {
                 @Override
                 public void onSuccess(Response<String> response) {
-                    webView.loadUrl("javascript:httpCallback(true,'"+ tag +"',"+ notifyId +",'"+ response.body() +"')");
+                    executeJsFunction("httpCallback",true,tag,notifyId,response.body());
                 }
             });
         } catch (Exception e) {
-            webView.loadUrl("javascript:httpCallback(false,'"+ tag +"',"+ notifyId +",'"+ e.getMessage() +"')");
+            executeJsFunction("httpCallback",false,tag,notifyId,e.getMessage());
         }
     }
 
@@ -205,34 +252,84 @@ public class XBaseJsMappingAndroid extends Object {
     public void doPost(String url, String params, final String tag, final int notifyId) {
         try{
             Map<String, Object> map = GsonUtils.parseJsonWithGson(params, Map.class);
-            PostRequest request = OkGo.<String>post(url).tag(tag);
+            final PostRequest request = OkGo.<String>post(url).tag(tag);
             for (Map.Entry<String, Object> entry : map.entrySet()) {
                 request.params(entry.getKey(), entry.getValue().toString());
             }
             request.execute(new StringCallback() {
                 @Override
                 public void onSuccess(Response<String> response) {
-                    webView.loadUrl("javascript:httpCallback(true,'"+ tag +"',"+ notifyId +",'"+ response.body() +"')");
+                    executeJsFunction("httpCallback",true,tag,notifyId,response.body());
                 }
             });
         }catch (Exception e){
-            webView.loadUrl("javascript:httpCallback(false,'"+ tag +"',"+ notifyId +",'"+ e.getMessage() +"')");
+            executeJsFunction("httpCallback",false,tag,notifyId,e.getMessage());
         }
     }
 
     /**
      * 发起文件下载
+     * @param fileUrl   下载文件的地址
+     * @param saveFilename  保存的文件名
+     * @param showNotification  是否显示通知
+     * @param isCallback    是否回调到js
      */
     @JavascriptInterface
-    public void download(){
+    public void download(String fileUrl, String saveFilename, final String authorities, boolean showNotification, boolean isCallback, final int notifyId){
+        final FileDownloader downloader = new FileDownloader();
+        if(saveFilename == null || saveFilename.length()  == 0)
+            saveFilename = downloader.getDefaultFilename(fileUrl);
+        downloader.download(context,fileUrl,downloader.getDefaultPath(),saveFilename,showNotification);
+        if(isCallback ){
+            downloader.setDownloadListener(new FileDownloadListener() {
+                @Override
+                public void downloadProgressBar(String progress, int progress2, String speed) {
+                    executeJsFunction("downloadProgressBar",progress,progress2,speed,notifyId);
+                }
 
+                @Override
+                public void downloadSuccess(File filePath) {
+                    if(authorities != null && authorities.length() > 0) {
+                        if (FileUtils.getFileExtension(filePath).equals("apk")) {
+                            AppUtils.installApp(filePath, "authorities");
+                        }
+                    }
+                    executeJsFunction("downloadSuccess",filePath.getAbsolutePath(),notifyId);
+                }
+
+                @Override
+                public void downloadStart() {
+                    executeJsFunction("downloadStart",notifyId);
+                }
+
+                @Override
+                public void downloadError(String message) {
+                    executeJsFunction("downloadError",message,notifyId);
+                }
+
+                @Override
+                public void downloadFinish() {
+                    executeJsFunction("downloadFinish",downloader.getDefaultPath(),notifyId);
+                }
+
+                @Override
+                public void cancelDownload() {
+
+                }
+
+                @Override
+                public void NoUpdate() {
+                    //此方法不使用。
+                }
+            });
+        }
     }
 
     /**
      * 发起通知
      */
     @JavascriptInterface
-    public void showNotification(String imageId,String activityName,String tickerText,String title,String content,int notifyId){
+    public void showNotification(String iconId,String resourceDir,String activityName,String tickerText,String title,String content,int notifyId){
         try {
             NotificationUtils notifacation = new NotificationUtils(context);//实例化通知栏
             Intent intent = null;
@@ -240,7 +337,7 @@ public class XBaseJsMappingAndroid extends Object {
                 Class clazz = Class.forName(activityName);
                 intent = new Intent(context, clazz);
             }
-            int icon = context.getResources().getIdentifier(imageId,"drawable",packageName);
+            int icon = context.getResources().getIdentifier(iconId,resourceDir,packageName);
             notifacation.createNotify(icon, tickerText, title, content, intent, notifyId);
         }catch (Exception e){
             e.printStackTrace();
@@ -256,4 +353,35 @@ public class XBaseJsMappingAndroid extends Object {
         return NetworkUtils.isNetworkConnected(context);
     }
 
+    /**
+     * 获取Intent参数值
+     * @param name
+     * @param defaultValue
+     * @return
+     */
+    @JavascriptInterface
+    public boolean getBooleanExtra(String name,boolean defaultValue){
+        return context.getIntent().getBooleanExtra(name,defaultValue);
+    }
+
+    /**
+     * 获取Intent参数值
+     * @param name
+     * @param defaultValue
+     * @return
+     */
+    @JavascriptInterface
+    public int getIntExtra(String name,int defaultValue){
+        return context.getIntent().getIntExtra(name,defaultValue);
+    }
+
+    /**
+     * 获取Intent参数值
+     * @param name
+     * @return
+     */
+    @JavascriptInterface
+    public String getStringExtra(String name){
+        return context.getIntent().getStringExtra(name);
+    }
 }

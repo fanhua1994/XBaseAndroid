@@ -53,8 +53,13 @@
         <button v-on:click="btn_notification">发送通知</button>
 
         <button v-on:click="btn_activity">打开Activity</button>
+
+        <button v-on:click="btn_params">获取当前Activity intent参数</button>
+
+        <button v-on:click="btn_download" v-text="downloadText"></button>
 </div>
 <script>
+var vue = null;
 /**
 * 1参数  是否请求成功
 * 2参数  请求tag
@@ -65,11 +70,49 @@ function httpCallback(status,tag,notifyId,response){
     xbase.closeLoading();
 }
 
+/**
+* 文件下载进度条回调
+*/
+function downloadProgressBar(progress,progress2,speed,notifyId){
+    vue.downloadText = "演示下载文件  当前网速：" + speed +"  下载：" + progress;
+}
 
-	new Vue({
+/**
+* 文件路径回调
+*/
+function downloadSuccess(filename,notifyId){
+
+}
+
+/**
+* 下载文件开始
+*/
+function downloadStart(notifyId){
+
+}
+
+/**
+* 下载错误回调  message为错误信息
+*/
+function downloadError(message,notifyId){
+
+}
+
+/**
+* 保存路径回调
+*/
+function downloadFinish(savePath,notifyId){
+
+}
+
+
+	vue = new Vue({
 		el:"#app",
+		data:{
+            "downloadText":"演示下载文件",
+		},
 		created:function(){
-		xbase.toast("当前网络状态：" + xbase.getNetworkStatus());
+		    xbase.toast("当前网络状态：" + xbase.getNetworkStatus());
 		},
 		methods:{
 		    "btn_showloading":function(){
@@ -107,10 +150,24 @@ function httpCallback(status,tag,notifyId,response){
 			    alert("您输入的姓名是：" + info);
 			},
 			"btn_notification":function(){
-                xbase.showNotification("head","com.hengyi.baseandroiddemo.MainActivity","您有一个通知","温馨提示","您正在使用XBaseAndroid H5功能",12566);
+                xbase.showNotification("head","drawable","com.hengyi.baseandroiddemo.MainActivity","您有一个通知","温馨提示","您正在使用XBaseAndroid H5功能",12566);
 			},
 			"btn_activity":function(){
 			    xbase.openActivity("com.hengyi.baseandroiddemo.MainActivity","name=1&time=2");
+			},
+			"btn_params":function(){
+			    var res = xbase.getBooleanExtra("show_title_bar",false);
+			    alert("当前是否开启缓存：" + res);
+			},
+			"btn_download":function(){
+			    var fileName = prompt("请输入保存的文件名");
+			    if(fileName == "null" || fileName==null){
+			        fileName = "";
+			    }else{
+			        fileName = fileName+".apk";
+			    }
+			     var showNotify = confirm("是否在通知栏显示下载进度");
+			    xbase.download("http://sqdd.myapp.com/myapp/qqteam/tim/down/tim.apk",fileName,'authorities   不为空 如果下载的是apk会自动安装',showNotify,true,123456);
 			}
 		}
 	});

@@ -63,8 +63,6 @@ public class NotificationUtils {
 	 */
 	public void createNotify(int icon, String tickerText, String title, String content, Intent intent, int notify_id) {
 		notifyId = notify_id;
-		intent.addCategory(Intent.CATEGORY_LAUNCHER);
-		intent.setAction(Intent.ACTION_MAIN);
 		PendingIntent pendingIntent = PendingIntent.getActivity(context, notify_id, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 		mBuilder = new NotificationCompat.Builder(context,"default");
 		mBuilder.setContentTitle(title)

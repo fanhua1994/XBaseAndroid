@@ -21,9 +21,16 @@ public final class RegexUtils {
         throw new UnsupportedOperationException("u can't instantiate me...");
     }
 
-    ///////////////////////////////////////////////////////////////////////////
-    // If u want more please visit http://toutiao.com/i6231678548520731137
-    ///////////////////////////////////////////////////////////////////////////
+    /**
+     * 验证是否是数字
+     * @param strNum
+     * @return
+     */
+    public static boolean isDigit(String strNum) {
+        Pattern pattern = Pattern.compile("[0-9]{1,}");
+        Matcher matcher = pattern.matcher(strNum);
+        return matcher.matches();
+    }
 
     /**
      * 验证手机号（简单）
