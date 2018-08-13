@@ -2,6 +2,7 @@ package com.hengyi.baseandroiddemo;
 
 import android.Manifest;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 
 import com.hengyi.baseandroidcore.base.XBaseActivity;
 import com.hengyi.baseandroidcore.database.BaseDao;
@@ -19,7 +20,6 @@ public class TestActivity extends XBaseActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestPermission(200,new String[]{Manifest.permission.CAMERA,Manifest.permission.READ_CONTACTS});
-
     }
 
     @Override

@@ -2,7 +2,9 @@ package com.hengyi.baseandroidcore.base;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 
@@ -89,7 +91,13 @@ public abstract class XBaseActivity extends AppCompatActivity {
 
     }
 
-    public void requestPermission(final int requestCode,final String[] permission){
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        PermissionUtils.onRequestPermissionsResult(this,requestCode,permissions,grantResults);
+    }
+
+    public void requestPermission(final int requestCode, final String[] permission){
         PermissionUtils.requestPermissions(getContext(), requestCode, permission, new PermissionUtils.OnPermissionListener() {
             @Override
             public void onPermissionGranted() {
