@@ -59,8 +59,10 @@ public class MainActivity extends BaseActivity{
                         .add(XBaseBrowserActivity.WEB_URL,XBaseBrowserActivity.ANDROID_ASSSET_PATH + "template/index.html")//加载本地asset加上XBaseBrowserActivity.ANDROID_ASSSET_PATH + 你的html路径。
                         .add(XBaseBrowserActivity.SHOW_TITLE_BAR,true)//是否显示标题栏
                         .add(XBaseBrowserActivity.SHOW_REFRESH,true)//是否可以下拉刷新
-                        .add(XBaseBrowserActivity.STATUS_COLOR,R.color.main_color)//设置状态栏颜色，默认是蓝色
+                        .add(XBaseBrowserActivity.STATUS_COLOR,R.color.colorPrimaryDark)//设置状态栏颜色，默认是蓝色
                         .add(XBaseBrowserActivity.START_CACHE,false)//是否开启缓存
+                        .add(XBaseBrowserActivity.SHOW_CLOSE_APP_DIALOG,true)
+                        .add(XBaseBrowserActivity.SHOW_CLOSE_APP_MSG,"请问真的要退出吗？")
                         .startActivity(this,XBaseBrowserActivity.class);
             break;
 
@@ -68,6 +70,7 @@ public class MainActivity extends BaseActivity{
                 ActivityRouter.getInstance()
                         .add(XBaseBrowserActivity.WEB_URL,"http://www.dcloud.io/hellomui/list.html?v=1")
                         .add(XBaseBrowserActivity.SHOW_TITLE_BAR,true)
+                        .add(XBaseBrowserActivity.STATUS_COLOR,R.color.my_main_color)//设置状态栏颜色，默认是蓝色
                         .startActivity(this,XBaseBrowserActivity.class);
                 break;
 
