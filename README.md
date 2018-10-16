@@ -41,11 +41,10 @@ implementation 'com.lzy.net:okgo:3.0.4'
 implementation 'org.greenrobot:eventbus:3.1.1'
 implementation 'com.j256.ormlite:ormlite-core:4.48'
 implementation 'com.j256.ormlite:ormlite-android:4.48'
- implementation 'com.alipay.euler:andfix:0.4.1'
 ```
 3.引用XBaseAndroid
 ```
-compile 'com.github.fanhua1994:XBaseAndroid:1.1.0.1'
+implementation 'com.github.fanhua1994:XBaseAndroid:1.1.0.1'
 ```
 
 # 联系作者
