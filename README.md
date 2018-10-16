@@ -44,7 +44,9 @@ implementation 'com.j256.ormlite:ormlite-android:4.48'
  implementation 'com.alipay.euler:andfix:0.4.1'
 ```
 3.引用XBaseAndroid
+```
 compile 'com.github.fanhua1994:XBaseAndroid:1.1.0.1'
+```
 
 # 联系作者
 简书：[http://www.jianshu.com/u/50c9e5f00da3](http://www.jianshu.com/u/50c9e5f00da3)
