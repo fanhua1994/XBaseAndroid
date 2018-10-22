@@ -13,13 +13,7 @@
         android:layout_height="50dp">
     </com.hengyi.baseandroidcore.weight.XBaseTitleBar>
 
-     <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyleHorizontal" 
-        android:layout_width="match_parent"
-        android:max="100"
-        android:progressDrawable="@drawable/public_progressbar_style"
-        android:layout_height="4dip" />
+
     
      <android.support.v4.widget.SwipeRefreshLayout  
         android:id="@+id/swipe_container"  

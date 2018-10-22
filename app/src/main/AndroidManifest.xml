@@ -29,7 +29,8 @@
             </intent-filter>
         </activity>
         <activity android:name="com.hengyi.baseandroidcore.browser.XBaseBrowserActivity"
-            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:hardwareAccelerated="true"
+            android:configChanges="orientation|screenSize"
             />
         <activity android:name=".LoadingActivity" />
         <activity android:name=".TestActivity" />
