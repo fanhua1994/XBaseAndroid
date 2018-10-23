@@ -141,8 +141,12 @@ public class XBaseBrowserActivity extends XBaseActivity {
 			@Override
 			public boolean shouldOverrideUrlLoading(WebView view,String url) {
 				String protocol = url.substring(0,url.indexOf("://"));
-				view.loadUrl(url);
-				return true;
+				if(protocol.contains("http")) {
+					view.loadUrl(url);
+					return true;
+				}else {
+					return false;
+				}
 			}
 
 			@Override
