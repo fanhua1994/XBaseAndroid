@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.PixelFormat;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -14,6 +15,7 @@ import android.view.WindowManager;
 import android.webkit.JsPromptResult;
 import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
@@ -125,6 +127,8 @@ public class XBaseBrowserActivity extends XBaseActivity {
 				.go(webUrl);
 
 		agentWeb.getJsInterfaceHolder().addJavaObject("xbase",new XBaseJsMapping(this,agentWeb.getWebCreator().getWebView(),getPackageName()));
+
+
 	}
 
 	@Override
@@ -137,16 +141,7 @@ public class XBaseBrowserActivity extends XBaseActivity {
 			@Override
 			public boolean shouldOverrideUrlLoading(WebView view,String url) {
 				String protocol = url.substring(0,url.indexOf("://"));
-				switch (protocol){
-                    case "http":
-                        view.loadUrl(url);
-                        break;
-                    case "https":
-                        view.loadUrl(url);
-                        break;
-                    default:
-                        return false;
-                }
+				view.loadUrl(url);
 				return true;
 			}
 
