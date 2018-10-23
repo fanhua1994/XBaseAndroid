@@ -51,7 +51,6 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         try {
             for(int i = 0;i<tables.size() ;i++){
                 TableUtils.createTableIfNotExists(connectionSource,tables.get(i));
-                LogUtils.d("创建数据表：",tables.get(i).getClass().toString());
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -74,6 +73,23 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+
+    /**
+     * 检查表中某列是否存在
+     * @return
+     */
+    private boolean checkColumnExists(Class table,String columnName) {
+       return false;
+    }
+
+    private boolean addColumn(){
+        return false;
+    }
+
+    private boolean deleteColumn(){
+        return false;
     }
 
     /**

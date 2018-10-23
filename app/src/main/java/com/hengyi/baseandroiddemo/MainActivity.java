@@ -6,6 +6,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.hengyi.baseandroidcore.browser.XBaseBrowserActivity;
+import com.hengyi.baseandroidcore.database.DatabaseHelper;
+import com.hengyi.baseandroidcore.listener.DatabaseVersionChangeListener;
 import com.hengyi.baseandroidcore.statusbar.StatusBarCompat;
 import com.hengyi.baseandroidcore.utils.ActivityRouter;
 import com.hengyi.baseandroidcore.utils.ColorUtils;
@@ -14,6 +16,8 @@ import com.hengyi.baseandroidcore.utils.SystemUtils;
 import com.hengyi.baseandroidcore.utils.VersionUtils;
 import com.hengyi.baseandroidcore.weight.LoadingLayout;
 import com.hengyi.baseandroidcore.weight.XBaseTitleBar;
+import com.hengyi.baseandroiddemo.database.User;
+import com.hengyi.baseandroiddemo.database.UserDao;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -24,9 +28,24 @@ public class MainActivity extends BaseActivity{
     @BindView(R.id.version)TextView version;
     @BindView(R.id.loading_view)LoadingLayout loadingLayout;
 
+
+    private UserDao userDao;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+        userDao = new UserDao(this);
+        DatabaseHelper.setDatabase("xxxx",2);
+        DatabaseHelper.addTable(User.class);
+
+        DatabaseHelper.getInstance(this).setDatabaseVersionChangeListener(new DatabaseVersionChangeListener() {
+            @Override
+            public void onChange(int oldVersion, int newVersion) {
+                toast("数据库版本发生变化:" + oldVersion + " > " + newVersion);
+            }
+        });
 
         StatusBarCompat.setStatusBarColor(this, Color.parseColor(ColorUtils.changeColor(this,R.color.my_main_color)));
         easeTitleBar.setBackgroundColor(getResources().getColor(R.color.my_main_color));
@@ -51,7 +70,7 @@ public class MainActivity extends BaseActivity{
         return R.layout.activity_main;
     }
 
-    @OnClick({R.id.xbase_home,R.id.xbase_mui,R.id.xbase_sui,R.id.xbase_youku,R.id.xbase_loading,R.id.xbase_permission})
+    @OnClick({R.id.xbase_home,R.id.xbase_mui,R.id.xbase_sui,R.id.xbase_youku,R.id.xbase_loading,R.id.xbase_permission,R.id.xbase_db_add})
     public void Click(View view){
         switch(view.getId()){
             case R.id.xbase_home:
@@ -93,6 +112,13 @@ public class MainActivity extends BaseActivity{
 
             case R.id.xbase_permission:
                 ActivityRouter.getInstance().startActivity(this,TestActivity.class);
+                break;
+
+            case R.id.xbase_db_add:
+                User user = new User();
+                user.setName("董志平");
+                int res = userDao.add(user);
+                toast("操作结果：" + (res > 0));
                 break;
         }
     }
