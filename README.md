@@ -20,7 +20,7 @@
 ![BaseAndroid](https://github.com/fanhua1994/BaseAndroid/blob/master/image/logo.png?raw=true)
 
 # 版本更新
-目前最新版本是1.1.0.1
+目前最新版本是1.2.0
 [更新日志](https://github.com/fanhua1994/XBaseAndroid/blob/master/LOG.md)
 
 引用方式：
@@ -36,14 +36,20 @@ allprojects {
 ```
 2.引用第三方库
 ```
-implementation 'com.google.code.gson:gson:2.6.2'
-implementation 'org.greenrobot:eventbus:3.1.1'
-implementation 'com.j256.ormlite:ormlite-core:4.48'
-implementation 'com.j256.ormlite:ormlite-android:4.48'
+api 'com.github.bumptech.glide:glide:3.7.0'
+    api 'jp.wasabeef:glide-transformations:2.0.2'
+    api 'com.google.code.gson:gson:2.6.2'
+    api 'com.lzy.net:okgo:3.0.4'
+    api 'org.greenrobot:eventbus:3.1.1'
+    api 'com.j256.ormlite:ormlite-core:4.48'
+    api 'com.j256.ormlite:ormlite-android:4.48'
+    api 'com.squareup.okhttp3:okhttp:3.11.0'
+    api 'com.just.agentweb:agentweb:4.0.2'
+    api 'com.just.agentweb:download:4.0.2'
 ```
 3.引用XBaseAndroid
 ```
-implementation 'com.github.fanhua1994:XBaseAndroid:1.1.0.1'
+implementation 'com.github.fanhua1994:XBaseAndroid:1.2.0'
 ```
 
 # 联系作者
