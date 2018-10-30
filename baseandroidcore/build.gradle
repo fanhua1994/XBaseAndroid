@@ -32,7 +32,6 @@ dependencies {
     api 'com.j256.ormlite:ormlite-core:4.48'
     api 'com.j256.ormlite:ormlite-android:4.48'
     api 'com.squareup.okhttp3:okhttp:3.11.0'
-    implementation 'com.just.agentweb:agentweb:4.0.2'
-    implementation 'com.just.agentweb:download:4.0.2'
-    implementation 'com.just.agentweb:filechooser:4.0.2'
+    api 'com.just.agentweb:agentweb:4.0.2'
+    api 'com.just.agentweb:download:4.0.2'
 }
