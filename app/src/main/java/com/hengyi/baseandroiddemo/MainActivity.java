@@ -80,7 +80,7 @@ public class MainActivity extends BaseActivity{
                         .add(XBaseBrowserActivity.SHOW_REFRESH,true)//是否可以下拉刷新
                         .add(XBaseBrowserActivity.STATUS_COLOR,R.color.colorPrimaryDark)//设置状态栏颜色，默认是蓝色
                         .add(XBaseBrowserActivity.START_CACHE,false)//是否开启缓存
-                        .add(XBaseBrowserActivity.SHOW_CLOSE_APP_DIALOG,true)
+                        .add(XBaseBrowserActivity.SHOW_CLOSE_APP_DIALOG,false)
                         .add(XBaseBrowserActivity.SHOW_CLOSE_APP_MSG,"请问真的要退出吗？")
                         .startActivity(this,XBaseBrowserActivity.class);
             break;

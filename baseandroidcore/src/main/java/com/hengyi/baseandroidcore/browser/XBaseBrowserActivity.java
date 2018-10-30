@@ -268,7 +268,7 @@ public class XBaseBrowserActivity extends XBaseActivity {
 					ActivityStack.getInstance().popActivity();
 			}
 		}
-		return super.onKeyDown(keyCode,event);
+		return true;
 	}
 
 	@Override
