@@ -23,15 +23,17 @@ android {
 dependencies {
     implementation 'com.android.support:design:26.1.0'
     implementation 'com.android.support:appcompat-v7:26.+'
+    implementation "com.android.support:support-v4:26.1.0"
 
-    api 'com.github.bumptech.glide:glide:3.7.0'
+    api 'com.github.bumptech.glide:glide:3.8.0'
     api 'jp.wasabeef:glide-transformations:2.0.2'
-    api 'com.google.code.gson:gson:2.6.2'
+    api 'com.google.code.gson:gson:2.8.0'
     api 'com.lzy.net:okgo:3.0.4'
     api 'org.greenrobot:eventbus:3.1.1'
-    api 'com.j256.ormlite:ormlite-core:4.48'
-    api 'com.j256.ormlite:ormlite-android:4.48'
+    api 'com.j256.ormlite:ormlite-core:5.0'
+    api 'com.j256.ormlite:ormlite-android:5.0'
     api 'com.squareup.okhttp3:okhttp:3.11.0'
     api 'com.just.agentweb:agentweb:4.0.2'
     api 'com.just.agentweb:download:4.0.2'
+    api 'com.just.agentweb:filechooser:4.0.2'
 }

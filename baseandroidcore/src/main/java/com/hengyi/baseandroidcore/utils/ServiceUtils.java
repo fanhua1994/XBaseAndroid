@@ -1,12 +1,11 @@
 package com.hengyi.baseandroidcore.utils;
 
-import java.util.List;
-
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningServiceInfo;
-import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+
+import java.util.List;
 
 /**
  * by繁华
@@ -42,7 +41,6 @@ public class ServiceUtils {
 		Intent intent = null;
 		intent = new Intent(mContext,service);
 		mContext.startService(intent);
-		ServiceStack.getInstance().pushService(service);
 	}
 
 	public static void startService(Context mContext,Class service,String[] names, Object... param){
@@ -62,14 +60,12 @@ public class ServiceUtils {
 			}
 		}
 		mContext.startService(intent);
-		ServiceStack.getInstance().pushService(service);
 	}
 
 	public static void stopService(Context mContext,Class service){
 		Intent intent = null;
 		intent = new Intent(mContext,service);
 		mContext.stopService(intent);
-		ServiceStack.getInstance().popService(service);
 	}
 	
 }

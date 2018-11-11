@@ -71,7 +71,6 @@ public class CommonUtils {
 
     //杀死进程
     public static void kill(){
-        ServiceStack.getInstance().stopAllService();
         ActivityStack.getInstance().clearAllActivity();
         Process.killProcess(Process.myPid());
     }
