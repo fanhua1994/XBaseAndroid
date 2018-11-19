@@ -28,7 +28,20 @@ dependencies {
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
 
 
-    implementation project(path: ':baseandroidcore')
+   // implementation project(path: ':baseandroidcore')
+    api 'com.github.fanhua1994:XBaseAndroid:1.3.0'
+
+    api 'com.github.bumptech.glide:glide:3.8.0'
+    api 'jp.wasabeef:glide-transformations:2.0.2'
+    api 'com.google.code.gson:gson:2.8.2'
+    api 'com.lzy.net:okgo:3.0.4'
+    api 'org.greenrobot:eventbus:3.1.1'
+    api 'com.j256.ormlite:ormlite-core:5.0'
+    api 'com.j256.ormlite:ormlite-android:5.0'
+    api 'com.squareup.okhttp3:okhttp:3.11.0'
+    api 'com.just.agentweb:agentweb:4.0.2'
+    api 'com.just.agentweb:download:4.0.2'
+    api 'com.just.agentweb:filechooser:4.0.2'
 
     implementation 'com.jakewharton:butterknife:8.5.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'

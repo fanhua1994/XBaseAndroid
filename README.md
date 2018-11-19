@@ -20,7 +20,7 @@
 ![BaseAndroid](https://github.com/fanhua1994/BaseAndroid/blob/master/image/logo.png?raw=true)
 
 # 版本更新
-目前最新版本是1.2.0
+目前最新版本是1.3.0
 [更新日志](https://github.com/fanhua1994/XBaseAndroid/blob/master/LOG.md)
 
 引用方式：
@@ -46,10 +46,11 @@ api 'com.github.bumptech.glide:glide:3.7.0'
     api 'com.squareup.okhttp3:okhttp:3.11.0'
     api 'com.just.agentweb:agentweb:4.0.2'
     api 'com.just.agentweb:download:4.0.2'
+    api 'com.just.agentweb:filechooser:4.0.2'
 ```
 3.引用XBaseAndroid
 ```
-implementation 'com.github.fanhua1994:XBaseAndroid:1.2.0'
+implementation 'com.github.fanhua1994:XBaseAndroid:1.3.0'
 ```
 
 # 联系作者
