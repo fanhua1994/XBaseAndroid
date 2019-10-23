@@ -28,12 +28,14 @@ public class ProjectUtils {
     private static boolean IdCardStatus = false;
     private int fileType = 0;
 
-    public static ProjectUtils getInstance() {
-        if (instance == null) {
-            instance = new ProjectUtils();
-            IdCardStatus = Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState()) || !Environment.isExternalStorageRemovable();
+    public static synchronized ProjectUtils getInstance() {
+        synchronized(ProjectUtils.class) {
+            if (instance == null) {
+                instance = new ProjectUtils();
+                IdCardStatus = Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState()) || !Environment.isExternalStorageRemovable();
+            }
+            return instance;
         }
-        return instance;
     }
 
     //=============创建方法========================
