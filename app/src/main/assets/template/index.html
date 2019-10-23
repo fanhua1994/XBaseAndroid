@@ -58,6 +58,8 @@
         <button v-on:click="btn_params">获取当前Activity intent参数</button>
 
         <button v-on:click="btn_download" v-text="downloadText"></button>
+
+        <button v-on:click="btn_clear_cache">清空web缓存</button>
 </div>
 <script>
 var vue = null;
@@ -132,11 +134,11 @@ function downloadFinish(savePath,notifyId){
 			},
 			"btn_get":function(){
 			    xbase.showLoading("正在请求中");
-			    xbase.doGet("http://api.cleveriip.com/","123",9000);
+			    xbase.doGet("http://www.51hyi.cn:8080/login?username=admin&password=222","123",9000);
 			},
 			"btn_post":function(){
 			    xbase.showLoading("正在请求中");
-                xbase.doPost("http://api.cleveriip.com",JSON.stringify({name:"123","age":21}),"123",8000);
+                xbase.doPost("http://www.51hyi.cn:8080/login",JSON.stringify({username:"admin","password":21}),"123",8000);
 
 			},
 			"btn_alert":function(){
@@ -169,6 +171,10 @@ function downloadFinish(savePath,notifyId){
 			    }
 			     var showNotify = confirm("是否在通知栏显示下载进度");
 			    xbase.download("http://sqdd.myapp.com/myapp/qqteam/tim/down/tim.apk",fileName,'authorities   不为空 如果下载的是apk会自动安装',showNotify,true,123456);
+			},
+			btn_clear_cache:function(){
+			    xbase.clearWebCache();
+			    alert("清除成功");
 			}
 		}
 	});

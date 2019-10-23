@@ -34,4 +34,5 @@ public interface IBaseJsMapping {
     boolean getBooleanExtra(String name,boolean defaultValue);
     int getIntExtra(String name,int defaultValue);
     String getStringExtra(String name);
+    void clearWebCache();
 }

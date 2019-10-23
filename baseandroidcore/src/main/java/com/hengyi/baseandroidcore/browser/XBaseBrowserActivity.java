@@ -68,13 +68,14 @@ public class XBaseBrowserActivity extends XBaseActivity {
 		webUrl = i.getStringExtra(WEB_URL);
 		isShowCloseAppMsg = i.getStringExtra(SHOW_CLOSE_APP_MSG);
 		isShowCloseAppDialog = i.getBooleanExtra(SHOW_CLOSE_APP_DIALOG,false);
-		boolean show_title_bar = i.getBooleanExtra(SHOW_TITLE_BAR,true);
-		boolean show_refresh = i.getBooleanExtra(SHOW_REFRESH,false);
-		int status_color = i.getIntExtra(STATUS_COLOR,R.color.main_color);
-		easeTitleBar.setBackgroundColor(getResources().getColor(status_color));
-		StatusBarCompat.setStatusBarColor(this, Color.parseColor(ColorUtils.changeColor(this,status_color)));
+		boolean showTitleBar = i.getBooleanExtra(SHOW_TITLE_BAR,true);
+		boolean showRefresh = i.getBooleanExtra(SHOW_REFRESH,false);
+		boolean startCache = i.getBooleanExtra(START_CACHE,false);
+		int statusColor = i.getIntExtra(STATUS_COLOR,R.color.main_color);
+		easeTitleBar.setBackgroundColor(getResources().getColor(statusColor));
+		StatusBarCompat.setStatusBarColor(this, Color.parseColor(ColorUtils.changeColor(this,statusColor)));
 
-		if(show_title_bar){
+		if(showTitleBar){
 			easeTitleBar.setLeftLayoutClickListener(new View.OnClickListener(){
 				@Override
 				public void onClick(View view) {
@@ -94,7 +95,7 @@ public class XBaseBrowserActivity extends XBaseActivity {
 			easeTitleBar.setVisibility(View.GONE);
 		}
 
-		if(show_refresh) {
+		if(showRefresh) {
 			swipe_container.setColorSchemeColors(getResources().getColor(R.color.main_color));
 			swipe_container.setOnRefreshListener(new OnRefreshListener() {
 				@Override
@@ -124,7 +125,10 @@ public class XBaseBrowserActivity extends XBaseActivity {
 				.ready()
 				.go(webUrl);
 
-		agentWeb.getJsInterfaceHolder().addJavaObject("xbase",new XBaseJsMapping(this,agentWeb.getWebCreator().getWebView(),getPackageName()));
+		if(!startCache){
+			agentWeb.clearWebCache();
+		}
+		agentWeb.getJsInterfaceHolder().addJavaObject("xbase",new XBaseJsMapping(this,agentWeb,getPackageName()));
 
 
 	}

@@ -4,12 +4,11 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.webkit.JavascriptInterface;
-import android.webkit.WebView;
 import android.widget.Toast;
 
 import com.hengyi.baseandroidcore.dialog.CustomWeiboDialogUtils;
-import com.hengyi.baseandroidcore.event.EventMessage;
 import com.hengyi.baseandroidcore.event.EventManager;
+import com.hengyi.baseandroidcore.event.EventMessage;
 import com.hengyi.baseandroidcore.listener.FileDownloadListener;
 import com.hengyi.baseandroidcore.tools.FileDownloader;
 import com.hengyi.baseandroidcore.utils.ActivityRouter;
@@ -22,6 +21,7 @@ import com.hengyi.baseandroidcore.utils.NotificationUtils;
 import com.hengyi.baseandroidcore.xutils.AppUtils;
 import com.hengyi.baseandroidcore.xutils.FileUtils;
 import com.hengyi.baseandroidcore.xutils.RegexUtils;
+import com.just.agentweb.AgentWeb;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
@@ -40,12 +40,12 @@ import java.util.Map;
 public class XBaseJsMapping extends Object implements IBaseJsMapping {
     private Dialog loadingDialog = null;
     private Activity context;
-    private WebView webView;
+    private AgentWeb agentWeb;
     private String packageName;
 
-    public XBaseJsMapping(Activity context, WebView webView, String packageName){
+    public XBaseJsMapping(Activity context, AgentWeb agentWeb, String packageName){
         this.context = context;
-        this.webView = webView;
+        this.agentWeb = agentWeb;
         this.packageName = packageName;
     }
 
@@ -76,7 +76,7 @@ public class XBaseJsMapping extends Object implements IBaseJsMapping {
                 sb.append(",");
         }
         sb.append(")");
-        webView.loadUrl(sb.toString());
+        agentWeb.getWebCreator().getWebView().loadUrl(sb.toString());
     }
 
     /**
@@ -383,5 +383,10 @@ public class XBaseJsMapping extends Object implements IBaseJsMapping {
     @JavascriptInterface
     public String getStringExtra(String name){
         return context.getIntent().getStringExtra(name);
+    }
+
+    @Override
+    public void clearWebCache() {
+        agentWeb.clearWebCache();
     }
 }
