@@ -13,9 +13,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.webkit.JsPromptResult;
 import android.webkit.JsResult;
-import android.webkit.WebChromeClient;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
 
 import com.hengyi.baseandroidcore.R;
@@ -27,6 +25,8 @@ import com.hengyi.baseandroidcore.utils.ActivityStack;
 import com.hengyi.baseandroidcore.utils.ColorUtils;
 import com.hengyi.baseandroidcore.weight.XBaseTitleBar;
 import com.just.agentweb.AgentWeb;
+import com.just.agentweb.WebChromeClient;
+import com.just.agentweb.WebViewClient;
 
 /*
  * 作者：董志平

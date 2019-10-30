@@ -73,7 +73,7 @@ public class CommonViewHolder {
         ImageView mImageView = (ImageView) mView;
         if(listener != null)
             mImageView.setOnClickListener(listener);
-        ImageUtils.getInstance().showImageView(context,image_url,mImageView);
+        ImageUtils.loadImage(context,image_url,mImageView);
     }
 
 
@@ -90,7 +90,7 @@ public class CommonViewHolder {
         ImageView mImageView = (ImageView) mView;
         if(listener != null)
             mImageView.setOnClickListener(listener);
-        ImageUtils.getInstance().showImageViewToCircle(context,image_url,mImageView);
+        ImageUtils.loadRoundCircleImage(context,image_url,mImageView);
     }
 
     /**

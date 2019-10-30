@@ -22,6 +22,7 @@ import com.hengyi.baseandroidcore.xutils.AppUtils;
 import com.hengyi.baseandroidcore.xutils.FileUtils;
 import com.hengyi.baseandroidcore.xutils.RegexUtils;
 import com.just.agentweb.AgentWeb;
+import com.just.agentweb.AgentWebConfig;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
@@ -387,6 +388,6 @@ public class XBaseJsMapping extends Object implements IBaseJsMapping {
 
     @Override
     public void clearWebCache() {
-        agentWeb.clearWebCache();
+        AgentWebConfig.clearDiskCache(context);
     }
 }

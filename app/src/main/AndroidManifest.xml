@@ -31,7 +31,6 @@
         <activity android:name="com.hengyi.baseandroidcore.browser.XBaseBrowserActivity"
             android:hardwareAccelerated="true"
             android:configChanges="orientation|screenSize"
-
             />
         <activity android:name=".LoadingActivity" />
         <activity android:name=".TestActivity" />
