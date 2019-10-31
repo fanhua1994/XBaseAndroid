@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.webkit.JsPromptResult;
 import android.webkit.JsResult;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.widget.LinearLayout;
 
@@ -25,6 +26,7 @@ import com.hengyi.baseandroidcore.utils.ActivityStack;
 import com.hengyi.baseandroidcore.utils.ColorUtils;
 import com.hengyi.baseandroidcore.weight.XBaseTitleBar;
 import com.just.agentweb.AgentWeb;
+import com.just.agentweb.AgentWebConfig;
 import com.just.agentweb.WebChromeClient;
 import com.just.agentweb.WebViewClient;
 
@@ -45,7 +47,7 @@ public class XBaseBrowserActivity extends XBaseActivity {
 	private XBaseTitleBar easeTitleBar;
 	private SwipeRefreshLayout swipe_container;
 	private AgentWeb agentWeb;
-	private LinearLayout linerLayout_webview;
+	private LinearLayout linerLayoutWebview;
 
 	private String webUrl = null;
 	private boolean isShowCloseAppDialog = false;
@@ -59,7 +61,7 @@ public class XBaseBrowserActivity extends XBaseActivity {
 
 		swipe_container = findViewById(R.id.swipe_container);
 		easeTitleBar = findViewById(R.id.titleBar);
-		linerLayout_webview = findViewById(R.id.linerLayout_webview);
+		linerLayoutWebview = findViewById(R.id.linerLayout_webview);
         init();
 	}
 
@@ -117,7 +119,7 @@ public class XBaseBrowserActivity extends XBaseActivity {
 		}
 
 		agentWeb = AgentWeb.with(this)
-				.setAgentWebParent(linerLayout_webview, new LinearLayout.LayoutParams(-1, -1))
+				.setAgentWebParent(linerLayoutWebview, new LinearLayout.LayoutParams(-1, -1))
 				.useDefaultIndicator()
 				.setWebChromeClient(webChromeClient)
 				.setWebViewClient(webViewClient)
@@ -127,6 +129,7 @@ public class XBaseBrowserActivity extends XBaseActivity {
 
 		if(!startCache){
 			agentWeb.clearWebCache();
+			AgentWebConfig.clearDiskCache(this);
 		}
 		agentWeb.getJsInterfaceHolder().addJavaObject("xbase",new XBaseJsMapping(this,agentWeb,getPackageName()));
 
@@ -141,14 +144,8 @@ public class XBaseBrowserActivity extends XBaseActivity {
 
 		private WebViewClient webViewClient = new WebViewClient(){
 			@Override
-			public boolean shouldOverrideUrlLoading(WebView view,String url) {
-				String protocol = url.substring(0,url.indexOf("://"));
-				if(protocol.contains("http")) {
-					view.loadUrl(url);
-					return true;
-				}else {
-					return false;
-				}
+			public boolean shouldOverrideUrlLoading(WebView view,WebResourceRequest resourceRequest) {
+				return super.shouldOverrideUrlLoading(view,resourceRequest);
 			}
 
 			@Override

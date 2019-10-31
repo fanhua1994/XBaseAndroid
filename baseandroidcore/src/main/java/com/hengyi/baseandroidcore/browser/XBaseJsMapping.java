@@ -213,6 +213,18 @@ public class XBaseJsMapping extends Object implements IBaseJsMapping {
         return DiskLruCacheHelper.getInstance(context).getAsString(key);
     }
 
+    @Override
+    @JavascriptInterface
+    public void setCookie(String url, String data) {
+        AgentWebConfig.syncCookie(url,data);
+    }
+
+    @Override
+    @JavascriptInterface
+    public String getCookies(String url) {
+        return AgentWebConfig.getCookiesByUrl(url);
+    }
+
     /**
      * 关闭当前界面
      */
@@ -387,7 +399,10 @@ public class XBaseJsMapping extends Object implements IBaseJsMapping {
     }
 
     @Override
+    @JavascriptInterface
     public void clearWebCache() {
         AgentWebConfig.clearDiskCache(context);
+        AgentWebConfig.removeAllCookies();
+        AgentWebConfig.removeSessionCookies();
     }
 }

@@ -60,6 +60,8 @@
         <button v-on:click="btn_download" v-text="downloadText"></button>
 
         <button v-on:click="btn_clear_cache">清空web缓存</button>
+
+        <button v-on:click="get_cookie">获取Cookie</button>
 </div>
 <script>
 var vue = null;
@@ -71,6 +73,13 @@ var vue = null;
 function httpCallback(status,tag,notifyId,response){
     alert(status+","+ tag +"，" + notifyId +","+ response );
     xbase.closeLoading();
+    if(notifyId === 9000 && status){
+		response = JSON.parse(response);
+		if(response.status === 1){
+			xbase.setCookie("http://127.0.0.1","token=" +response.data);
+			alert("成功");
+		}
+    }
 }
 
 /**
@@ -133,12 +142,14 @@ function downloadFinish(savePath,notifyId){
 			    xbase.kill();
 			},
 			"btn_get":function(){
+			    var username = prompt("请输入用户名");
+			     var password = prompt("请输入密码");
 			    xbase.showLoading("正在请求中");
-			    xbase.doGet("http://www.51hyi.cn:8080/login?username=admin&password=222","123",9000);
+			    xbase.doGet("http://www.51hyi.cn:8080/login?username=" + username + "&password=" + password,"tag123",9000);
 			},
 			"btn_post":function(){
 			    xbase.showLoading("正在请求中");
-                xbase.doPost("http://www.51hyi.cn:8080/login",JSON.stringify({username:"admin","password":21}),"123",8000);
+                xbase.doPost("http://www.51hyi.cn:8080/login",JSON.stringify({username:"admin","password":21}),"tag124",8000);
 
 			},
 			"btn_alert":function(){
@@ -175,6 +186,10 @@ function downloadFinish(savePath,notifyId){
 			btn_clear_cache:function(){
 			    xbase.clearWebCache();
 			    alert("清除成功");
+			},
+			get_cookie:function(){
+			   var cookies = xbase.getCookies("http://127.0.0.1");
+			    alert(cookies);
 			}
 		}
 	});

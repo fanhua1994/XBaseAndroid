@@ -22,6 +22,8 @@ public interface IBaseJsMapping {
     void setBooleanConfig(String key,boolean value);
     void setCache(String key,String value);
     String getCache(String key);
+    void setCookie(String url,String data);
+    String getCookies(String url);
     //关闭当前界面
     void close();
     //杀死APP
