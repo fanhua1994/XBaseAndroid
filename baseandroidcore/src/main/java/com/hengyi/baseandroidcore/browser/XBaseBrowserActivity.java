@@ -163,6 +163,7 @@ public class XBaseBrowserActivity extends XBaseActivity {
 		private WebChromeClient webChromeClient = new WebChromeClient() {
 			@Override
 			public void onProgressChanged(WebView view, int newProgress) {
+				super.onProgressChanged(view,newProgress);
 			}
 
 			@Override
