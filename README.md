@@ -18,7 +18,7 @@
 ![BaseAndroid](https://github.com/fanhua1994/BaseAndroid/blob/master/image/logo.png?raw=true)
 
 # 版本更新
-目前最新版本是1.3.1
+目前最新版本是1.3.2
 [更新日志](https://github.com/fanhua1994/XBaseAndroid/blob/master/LOG.md)
 
 引用方式：
@@ -49,7 +49,7 @@ api 'com.download.library:Downloader:4.1.2'
 ```
 3.引用XBaseAndroid
 ```
-implementation 'com.github.fanhua1994:XBaseAndroid:1.3.1'
+implementation 'com.github.fanhua1994:XBaseAndroid:1.3.2'
 ```
 
 # 联系作者
