@@ -19,7 +19,7 @@
  * WeiBo: http://weibo.com/GcsSloop
  * WebSite: http://www.gcssloop.com
  */
-package com.gcssloop.encrypt.base;
+package com.hengyi.baseandroidcore.encrypt.base;
 
 import android.util.Base64OutputStream;
 

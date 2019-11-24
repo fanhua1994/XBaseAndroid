@@ -16,8 +16,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.support.v4.view.ViewCompat;
-import android.support.v4.widget.EdgeEffectCompat;
 import android.util.AttributeSet;
 import android.view.GestureDetector;
 import android.view.HapticFeedbackConstants;
@@ -31,6 +29,9 @@ import android.widget.ScrollView;
 import android.widget.Scroller;
 
 import com.hengyi.baseandroidcore.R;
+
+import androidx.core.view.ViewCompat;
+import androidx.core.widget.EdgeEffectCompat;
 
 // @formatter:off
 /**

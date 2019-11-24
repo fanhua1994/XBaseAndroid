@@ -2,7 +2,6 @@ package com.hengyi.baseandroidcore.utils;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.ImageView;
 
@@ -18,6 +17,7 @@ import com.hengyi.baseandroidcore.R;
 
 import java.io.File;
 
+import androidx.annotation.Nullable;
 import jp.wasabeef.glide.transformations.BlurTransformation;
 import jp.wasabeef.glide.transformations.GrayscaleTransformation;
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation;

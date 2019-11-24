@@ -20,11 +20,12 @@
  * WebSite: http://www.gcssloop.com
  */
 
-package com.gcssloop.encrypt.encode;
+package com.hengyi.baseandroidcore.encrypt.encode;
 
-import com.gcssloop.encrypt.base.Base64;
-import com.gcssloop.encrypt.base.CloseUtils;
-import com.gcssloop.encrypt.base.TextUtils;
+
+import com.hengyi.baseandroidcore.encrypt.base.Base64;
+import com.hengyi.baseandroidcore.encrypt.base.CloseUtils;
+import com.hengyi.baseandroidcore.encrypt.base.TextUtils;
 
 import java.io.File;
 import java.io.FileInputStream;

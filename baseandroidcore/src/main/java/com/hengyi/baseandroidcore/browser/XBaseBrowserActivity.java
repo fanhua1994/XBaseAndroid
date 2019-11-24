@@ -5,9 +5,6 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -29,6 +26,9 @@ import com.just.agentweb.AgentWeb;
 import com.just.agentweb.AgentWebConfig;
 import com.just.agentweb.WebChromeClient;
 import com.just.agentweb.WebViewClient;
+
+import androidx.annotation.Nullable;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 /*
  * 作者：董志平
@@ -99,7 +99,7 @@ public class XBaseBrowserActivity extends XBaseActivity {
 
 		if(showRefresh) {
 			swipe_container.setColorSchemeColors(getResources().getColor(R.color.main_color));
-			swipe_container.setOnRefreshListener(new OnRefreshListener() {
+			swipe_container.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
 				@Override
 				public void onRefresh() {
 					swipe_container.setRefreshing(true);

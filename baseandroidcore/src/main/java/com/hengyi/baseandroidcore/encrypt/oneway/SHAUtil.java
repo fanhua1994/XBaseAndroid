@@ -20,15 +20,16 @@
  * WebSite: http://www.gcssloop.com
  */
 
-package com.gcssloop.encrypt.oneway;
+package com.hengyi.baseandroidcore.encrypt.oneway;
 
-import android.support.annotation.Nullable;
-import android.support.annotation.StringDef;
 
-import com.gcssloop.encrypt.base.TextUtils;
+import com.hengyi.baseandroidcore.encrypt.base.TextUtils;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+
+import androidx.annotation.Nullable;
+import androidx.annotation.StringDef;
 
 /**
  * SHA 工具类

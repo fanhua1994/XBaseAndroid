@@ -3,12 +3,13 @@ package com.hengyi.baseandroidcore.xutils;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.support.annotation.NonNull;
-import android.support.v4.util.SimpleArrayMap;
 
 import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
+
+import androidx.annotation.NonNull;
+import androidx.collection.SimpleArrayMap;
 
 /**
  * <pre>

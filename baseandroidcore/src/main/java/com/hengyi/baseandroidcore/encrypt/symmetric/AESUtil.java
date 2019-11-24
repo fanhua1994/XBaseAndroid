@@ -20,12 +20,11 @@
  * WebSite: http://www.gcssloop.com
  */
 
-package com.gcssloop.encrypt.symmetric;
+package com.hengyi.baseandroidcore.encrypt.symmetric;
 
 import android.annotation.SuppressLint;
-import android.support.annotation.IntDef;
 
-import com.gcssloop.encrypt.base.CryptoProvider;
+import com.hengyi.baseandroidcore.encrypt.base.CryptoProvider;
 
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
@@ -41,8 +40,10 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
-import static com.gcssloop.encrypt.base.BaseUtils.parseByte2HexStr;
-import static com.gcssloop.encrypt.base.BaseUtils.parseHexStr2Byte;
+import androidx.annotation.IntDef;
+
+import static com.hengyi.baseandroidcore.encrypt.base.BaseUtils.parseByte2HexStr;
+import static com.hengyi.baseandroidcore.encrypt.base.BaseUtils.parseHexStr2Byte;
 
 /**
  * AES 工具类

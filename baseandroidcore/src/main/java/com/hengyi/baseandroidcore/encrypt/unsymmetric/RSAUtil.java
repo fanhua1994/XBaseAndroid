@@ -24,9 +24,8 @@ package com.hengyi.baseandroidcore.encrypt.unsymmetric;
 
 
 import android.os.Build;
-import android.support.annotation.IntDef;
 
-import com.gcssloop.encrypt.base.Base64;
+import com.hengyi.baseandroidcore.encrypt.base.Base64;
 
 import java.io.ByteArrayOutputStream;
 import java.security.Key;
@@ -46,6 +45,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.crypto.Cipher;
+
+import androidx.annotation.IntDef;
 
 /**
  * RSA 工具类

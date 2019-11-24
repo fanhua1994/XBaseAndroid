@@ -20,7 +20,7 @@
  * WebSite: http://www.gcssloop.com
  */
 
-package com.gcssloop.encrypt.base;
+package com.hengyi.baseandroidcore.encrypt.base;
 
 public class BaseUtils {
     /**

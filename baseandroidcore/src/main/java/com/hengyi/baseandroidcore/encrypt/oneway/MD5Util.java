@@ -20,18 +20,19 @@
  * WebSite: http://www.gcssloop.com
  */
 
-package com.gcssloop.encrypt.oneway;
+package com.hengyi.baseandroidcore.encrypt.oneway;
 
-import android.support.annotation.NonNull;
 
-import com.gcssloop.encrypt.base.CloseUtils;
-import com.gcssloop.encrypt.base.TextUtils;
+import com.hengyi.baseandroidcore.encrypt.base.CloseUtils;
+import com.hengyi.baseandroidcore.encrypt.base.TextUtils;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+
+import androidx.annotation.NonNull;
 
 /**
  * MD5 工具类

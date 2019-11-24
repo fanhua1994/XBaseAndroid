@@ -2,10 +2,8 @@ package com.hengyi.baseandroiddemo;
 
 import android.Manifest;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 
 import com.hengyi.baseandroidcore.base.XBaseActivity;
-import com.hengyi.baseandroidcore.database.BaseDao;
 
 /**
  * Created: 2018/3/21 9:41
