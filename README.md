@@ -58,5 +58,8 @@ implementation 'com.github.fanhua1994:XBaseAndroid:1.3.2'
 CSDN：[http://blog.csdn.net/dong_18383219470?viewmode=list](http://blog.csdn.net/dong_18383219470?viewmode=list)
 
 # 代码提交
-> 需要提交代码的朋友请邮箱联系并附上代码即可：90fanhua@gmail.com
+
+
+[点我立即提交代码](https://github.com/fanhua1994/XBaseAndroid/pulls)
+
 ```
