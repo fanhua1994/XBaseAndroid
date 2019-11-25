@@ -52,8 +52,10 @@ api 'com.download.library:Downloader:4.1.2'
 implementation 'com.github.fanhua1994:XBaseAndroid:1.3.2'
 ```
 
-4.1.3.2以上版本
-在gradle.properties文件下加入
+4.在gradle.properties文件下加入
+
+> 1.3.2以上版本使用时，请添加以下代码
+
 ```
 android.useAndroidX=true
 android.enableJetifier=true
