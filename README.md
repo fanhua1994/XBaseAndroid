@@ -61,6 +61,16 @@ android.useAndroidX=true
 android.enableJetifier=true
 ```
 
+5.build.gradle新增代码
+> android节点下添加
+
+```
+ compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+```
+
 # 联系作者
 简书：[http://www.jianshu.com/u/50c9e5f00da3](http://www.jianshu.com/u/50c9e5f00da3)
 
