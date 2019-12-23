@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.hengyi.baseandroidcore.utils.ImageUtils;
+import com.hengyi.baseandroidcore.utils.GlideUtils;
 
 
 /**
@@ -73,7 +73,7 @@ public class CommonViewHolder {
         ImageView mImageView = (ImageView) mView;
         if(listener != null)
             mImageView.setOnClickListener(listener);
-        ImageUtils.loadImage(context,image_url,mImageView);
+        GlideUtils.loadImage(context,image_url,mImageView);
     }
 
 
@@ -90,7 +90,7 @@ public class CommonViewHolder {
         ImageView mImageView = (ImageView) mView;
         if(listener != null)
             mImageView.setOnClickListener(listener);
-        ImageUtils.loadRoundCircleImage(context,image_url,mImageView);
+        GlideUtils.loadRoundCircleImage(context,image_url,mImageView);
     }
 
     /**

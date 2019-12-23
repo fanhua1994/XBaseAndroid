@@ -25,6 +25,8 @@ package com.hengyi.baseandroidcore.encrypt.oneway;
 
 import com.hengyi.baseandroidcore.encrypt.base.TextUtils;
 
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -42,6 +44,7 @@ public class SHAUtil {
     public final static String SHA512 = "sha-512";
 
     @StringDef({SHA224, SHA256, SHA384, SHA512})
+    @Retention(RetentionPolicy.SOURCE)
     @interface SHAType {}
 
     /**

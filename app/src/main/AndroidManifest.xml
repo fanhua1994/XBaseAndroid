@@ -35,6 +35,7 @@
             />
         <activity android:name=".LoadingActivity" />
         <activity android:name=".TestActivity" />
+        <activity android:name=".ImageActivity" />
 
     </application>
     <uses-permission android:name="android.permission.READ_CONTACTS"></uses-permission>

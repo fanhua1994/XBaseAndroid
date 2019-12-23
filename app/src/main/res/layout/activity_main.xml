@@ -27,13 +27,6 @@
             android:orientation="vertical"
             >
 
-                <com.hengyi.baseandroidcore.weight.LoadingLayout
-                    android:id="@+id/loading_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                </com.hengyi.baseandroidcore.weight.LoadingLayout>
-
                 <TextView
                     android:id="@+id/version"
                     android:layout_width="match_parent"
@@ -97,6 +90,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="测试数据库添加数据"
+                android:layout_margin="10dp"
+                />
+
+            <Button
+                android:id="@+id/xbase_image_display"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="图片显示"
                 android:layout_margin="10dp"
                 />
 

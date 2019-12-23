@@ -14,7 +14,6 @@ import com.hengyi.baseandroidcore.utils.ColorUtils;
 import com.hengyi.baseandroidcore.utils.CommonUtils;
 import com.hengyi.baseandroidcore.utils.SystemUtils;
 import com.hengyi.baseandroidcore.utils.VersionUtils;
-import com.hengyi.baseandroidcore.weight.LoadingLayout;
 import com.hengyi.baseandroidcore.weight.XBaseTitleBar;
 import com.hengyi.baseandroiddemo.database.User;
 import com.hengyi.baseandroiddemo.database.UserDao;
@@ -26,7 +25,6 @@ public class MainActivity extends BaseActivity{
     @BindView(R.id.titleBar)XBaseTitleBar easeTitleBar;
     @BindView(R.id.cid)TextView cid;
     @BindView(R.id.version)TextView version;
-    @BindView(R.id.loading_view)LoadingLayout loadingLayout;
 
 
     private UserDao userDao;
@@ -34,8 +32,6 @@ public class MainActivity extends BaseActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
         userDao = new UserDao(this);
         DatabaseHelper.setDatabase("xxxx",2);
         DatabaseHelper.addTable(User.class);
@@ -70,7 +66,7 @@ public class MainActivity extends BaseActivity{
         return R.layout.activity_main;
     }
 
-    @OnClick({R.id.xbase_home,R.id.xbase_mui,R.id.xbase_sui,R.id.xbase_youku,R.id.xbase_loading,R.id.xbase_permission,R.id.xbase_db_add})
+    @OnClick({R.id.xbase_home,R.id.xbase_mui,R.id.xbase_sui,R.id.xbase_youku,R.id.xbase_loading,R.id.xbase_permission,R.id.xbase_db_add,R.id.xbase_image_display})
     public void Click(View view){
         switch(view.getId()){
             case R.id.xbase_home:
@@ -119,6 +115,10 @@ public class MainActivity extends BaseActivity{
                 user.setName("董志平");
                 int res = userDao.add(user);
                 toast("操作结果：" + (res > 0));
+                break;
+
+            case R.id.xbase_image_display:
+                ActivityRouter.getInstance().startActivity(this,ImageActivity.class);
                 break;
         }
     }

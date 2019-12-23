@@ -1,26 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hengyi.baseandroidcore">
 
-    <!--  网络监测 -->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <!-- 内存卡 -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <!-- 安卓8.0安装权限 -->
-    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
 
-    <!-- tbs -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-
-    <uses-permission android:name="android.permission.INTERNET" />
-
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-
-    <application android:allowBackup="true" android:label="@string/framework_name" android:supportsRtl="true">
-
-
-    </application>
 </manifest>

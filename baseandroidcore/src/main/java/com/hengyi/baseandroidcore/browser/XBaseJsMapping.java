@@ -15,7 +15,7 @@ import com.hengyi.baseandroidcore.utils.ActivityRouter;
 import com.hengyi.baseandroidcore.utils.ActivityStack;
 import com.hengyi.baseandroidcore.utils.ConfigUtils;
 import com.hengyi.baseandroidcore.utils.DiskLruCacheHelper;
-import com.hengyi.baseandroidcore.utils.GsonUtils;
+import com.hengyi.baseandroidcore.utils.JsonUtils;
 import com.hengyi.baseandroidcore.utils.NetworkUtils;
 import com.hengyi.baseandroidcore.utils.NotificationUtils;
 import com.hengyi.baseandroidcore.xutils.AppUtils;
@@ -264,7 +264,7 @@ public class XBaseJsMapping extends Object implements IBaseJsMapping {
     @JavascriptInterface
     public void doPost(String url, String params, final String tag, final int notifyId) {
         try{
-            Map<String, Object> map = GsonUtils.parseJsonWithGson(params, Map.class);
+            Map<String, Object> map = JsonUtils.toBean(params, Map.class);
             final PostRequest request = OkGo.<String>post(url).tag(tag);
             for (Map.Entry<String, Object> entry : map.entrySet()) {
                 request.params(entry.getKey(), entry.getValue().toString());

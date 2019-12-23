@@ -25,6 +25,8 @@ package com.hengyi.baseandroidcore.encrypt.symmetric;
 import android.annotation.SuppressLint;
 
 import java.io.UnsupportedEncodingException;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -48,6 +50,7 @@ import static com.hengyi.baseandroidcore.encrypt.base.BaseUtils.parseHexStr2Byte
  */
 public class DESUtil {
     @IntDef({Cipher.ENCRYPT_MODE, Cipher.DECRYPT_MODE})
+    @Retention(RetentionPolicy.SOURCE)
     @interface DESType {}
 
     /**

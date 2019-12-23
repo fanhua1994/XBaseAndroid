@@ -2,10 +2,10 @@ package com.hengyi.baseandroidcore.utils;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.util.Log;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.engine.GlideException;
@@ -18,16 +18,13 @@ import com.hengyi.baseandroidcore.R;
 import java.io.File;
 
 import androidx.annotation.Nullable;
-import jp.wasabeef.glide.transformations.BlurTransformation;
-import jp.wasabeef.glide.transformations.GrayscaleTransformation;
-import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
 /**
  * 网络图片的工具类
  *
  * @author dongzp
  */
-public class ImageUtils {
+public class GlideUtils {
 
 
     public static final int placeholderSoWhite = R.color.white;
@@ -41,7 +38,7 @@ public class ImageUtils {
                 .centerCrop()
                 .placeholder(placeholderSoWhite) //占位图
                 .error(R.color.white)       //错误图
-                // .priority(Priority.HIGH)
+                 .priority(Priority.HIGH)
                 .diskCacheStrategy(DiskCacheStrategy.ALL);
         Glide.with(context).load(url).apply(options).into(imageView);
 
@@ -64,7 +61,7 @@ public class ImageUtils {
                 .placeholder(placeholderSoWhite) //占位图
                 .error(R.color.white)       //错误图
                 .override(width, height)
-                // .priority(Priority.HIGH)
+                 .priority(Priority.HIGH)
                 .diskCacheStrategy(DiskCacheStrategy.ALL);
         Glide.with(context).load(url).apply(options).into(imageView);
 
@@ -128,65 +125,9 @@ public class ImageUtils {
                 .circleCrop()//设置圆形
                 .placeholder(placeholderSoWhite)
                 .error(errorSoWhite)
-                .bitmapTransform(new RoundedCornersTransformation(45, 0, RoundedCornersTransformation.CornerType.ALL))
                 .diskCacheStrategy(DiskCacheStrategy.ALL);
         Glide.with(context).load(url).apply(options).into(imageView);
 
-    }
-
-
-    /**
-     * 加载圆角图片-指定任意部分圆角（图片上、下、左、右四个角度任意定义）
-     *
-     * @param context
-     * @param url
-     * @param imageView
-     * @param type
-     */
-    public static void loadCustRoundCircleImage(Context context, String url, ImageView imageView, RoundedCornersTransformation.CornerType type) {
-        RequestOptions options = new RequestOptions()
-                .centerCrop()
-                .placeholder(placeholderSoWhite)
-                .error(errorSoWhite)
-                //.priority(Priority.HIGH)
-                .bitmapTransform(new RoundedCornersTransformation(45, 0, type))
-                .diskCacheStrategy(DiskCacheStrategy.ALL);
-
-        Glide.with(context).load(url).apply(options).into(imageView);
-    }
-
-
-    /**
-     * 加载模糊图片（自定义透明度）
-     *
-     * @param context
-     * @param url
-     * @param imageView
-     * @param blur      模糊度，一般1-100够了，越大越模糊
-     */
-    public static void loadBlurImage(Context context, String url, ImageView imageView, int blur) {
-        RequestOptions options = new RequestOptions()
-                .centerCrop()
-                .placeholder(placeholderSoWhite)
-                .error(errorSoWhite)
-                //.priority(Priority.HIGH)
-                .bitmapTransform(new BlurTransformation(blur))
-                .diskCacheStrategy(DiskCacheStrategy.ALL);
-        Glide.with(context).load(url).apply(options).into(imageView);
-    }
-
-    /*
-     *加载灰度(黑白)图片（自定义透明度）
-     */
-    public static void loadBlackImage(Context context, String url, ImageView imageView) {
-        RequestOptions options = new RequestOptions()
-                .centerCrop()
-                .placeholder(placeholderSoWhite)
-                .error(errorSoWhite)
-                //.priority(Priority.HIGH)
-                .bitmapTransform(new GrayscaleTransformation())
-                .diskCacheStrategy(DiskCacheStrategy.ALL);
-        Glide.with(context).load(url).apply(options).into(imageView);
     }
 
     /**
@@ -232,25 +173,15 @@ public class ImageUtils {
             @Override
             public void run() {
                 try {
-                    //String url = "http://www.guolin.tech/book.png";
                     FutureTarget<File> target = Glide.with(context)
                             .asFile()
                             .load(url)
                             .submit();
-                    final File imageFile = target.get();
-                    Log.d("logcat", "下载好的图片文件路径="+imageFile.getPath());
-//                    runOnUiThread(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            Toast.makeText(context, imageFile.getPath(), Toast.LENGTH_LONG).show();
-//                        }
-//                    });
+//                    final File imageFile = target.get();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         }).start();
-
-
     }
 }

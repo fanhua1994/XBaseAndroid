@@ -28,6 +28,8 @@ import android.os.Build;
 import com.hengyi.baseandroidcore.encrypt.base.Base64;
 
 import java.io.ByteArrayOutputStream;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 import java.security.Key;
 import java.security.KeyFactory;
 import java.security.KeyPair;
@@ -181,6 +183,7 @@ public class RSAUtil {
     public static final int RSA_PRIVATE_DECRYPT = 3;
 
     @IntDef({RSA_PUBLIC_ENCRYPT, RSA_PUBLIC_DECRYPT, RSA_PRIVATE_ENCRYPT, RSA_PRIVATE_DECRYPT})
+    @Retention(RetentionPolicy.SOURCE)
     @interface RSAType {}
 
     /**

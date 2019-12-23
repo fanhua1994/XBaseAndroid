@@ -2,6 +2,7 @@ package com.hengyi.baseandroidcore.browser;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.os.Bundle;
@@ -161,6 +162,16 @@ public class XBaseBrowserActivity extends XBaseActivity {
 		};
 		
 		private WebChromeClient webChromeClient = new WebChromeClient() {
+
+			@Override
+			public Bitmap getDefaultVideoPoster() {
+				try{
+					return BitmapFactory.decodeResource(getApplicationContext().getResources(),R.drawable.image_loading_default);
+				}catch(Exception e){
+					return super.getDefaultVideoPoster();
+				}
+			}
+
 			@Override
 			public void onProgressChanged(WebView view, int newProgress) {
 				super.onProgressChanged(view,newProgress);
