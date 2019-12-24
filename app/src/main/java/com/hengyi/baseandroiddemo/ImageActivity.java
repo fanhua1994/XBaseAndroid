@@ -22,6 +22,11 @@ public class ImageActivity extends BaseActivity {
     }
 
     @Override
+    public void initView() {
+
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         GlideUtils.loadCircleImage(this,"https://xbaseweb-file-cdn.oss-cn-chengdu.aliyuncs.com/2019-11-22/3315457eba4b799ac08e62937da4d44c.png",circleImage);

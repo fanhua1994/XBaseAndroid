@@ -38,6 +38,11 @@ public class TestActivity extends XBaseActivity {
     }
 
     @Override
+    public void init() {
+
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
     }

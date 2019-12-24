@@ -3,10 +3,16 @@ package com.hengyi.baseandroidcore.base;
 import android.app.Dialog;
 import android.app.Fragment;
 import android.content.Context;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.hengyi.baseandroidcore.dialog.CustomWeiboDialogUtils;
 import com.hengyi.baseandroidcore.utils.NetworkUtils;
 import com.hengyi.baseandroidcore.xutils.ToastUtils;
+
+import androidx.annotation.Nullable;
 
 /**
  * Created: 2018/3/23 9:52
@@ -15,11 +21,28 @@ import com.hengyi.baseandroidcore.xutils.ToastUtils;
  * Project:XBaseAndroid
  * Use    :Fragment基类
  */
-public class XBaseFragment extends Fragment {
+public abstract class XBaseFragment extends Fragment {
     private Dialog loadingDialog = null;
+
+
+    public abstract int setBaseContentView();
+    public abstract void init();
 
     public boolean getNetworkStatus(){
         return NetworkUtils.isNetworkConnected(getActivity());
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+        View view =  inflater.inflate(setBaseContentView(),null);
+        return view;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        init();
     }
 
     public Context getContext(){

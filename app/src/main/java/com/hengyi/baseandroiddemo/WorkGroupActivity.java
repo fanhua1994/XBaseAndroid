@@ -3,7 +3,7 @@ package com.hengyi.baseandroiddemo;
 import android.os.Bundle;
 
 import com.hengyi.baseandroidcore.base.XBaseActivity;
-import com.hengyi.baseandroidcore.utils.ProjectUtils;
+import com.hengyi.baseandroidcore.utils.WorkGroupUtils;
 
 import java.io.File;
 
@@ -22,7 +22,7 @@ public class WorkGroupActivity extends XBaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         File file = new File("sss");//演示File
-        ProjectUtils projectUtils = ProjectUtils.getInstance().setFileType(ProjectUtils.FILE_TYPE).setIdCard(true);
+        WorkGroupUtils projectUtils = WorkGroupUtils.getInstance().setFileType(WorkGroupUtils.FILE_TYPE).setIdCard(true);
         projectUtils.createWorkGroup("images");//返回是否创建工作组成功
         projectUtils.clearWorkGroup("images");//清空工作组里的所有文件
         projectUtils.deleteWorkGroupFile("images","1.txt");//删除工作组里的1.txt
@@ -47,5 +47,10 @@ public class WorkGroupActivity extends XBaseActivity {
     @Override
     public int setBaseContentView() {
         return 0;
+    }
+
+    @Override
+    public void init() {
+
     }
 }

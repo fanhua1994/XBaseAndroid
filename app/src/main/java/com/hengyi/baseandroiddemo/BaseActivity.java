@@ -14,6 +14,7 @@ import butterknife.Unbinder;
 
 public abstract class BaseActivity extends XBaseActivity {
     private Unbinder unbind = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +26,13 @@ public abstract class BaseActivity extends XBaseActivity {
         return setContentView();
     }
 
+    @Override
+    public void init() {
+        initView();
+    }
+
     public abstract int setContentView();
+    public abstract void initView();
 
     @Override
     protected void onDestroy() {

@@ -7,7 +7,7 @@ import com.hengyi.baseandroidcore.R;
 import com.hengyi.baseandroidcore.base.XBaseApplication;
 import com.hengyi.baseandroidcore.dialog.CustomAlertDialog;
 import com.hengyi.baseandroidcore.listener.FileDownloadListener;
-import com.hengyi.baseandroidcore.utils.ProjectUtils;
+import com.hengyi.baseandroidcore.utils.WorkGroupUtils;
 import com.hengyi.baseandroidcore.utils.VersionUtils;
 import com.hengyi.baseandroidcore.xutils.AppUtils;
 import com.hengyi.baseandroidcore.xutils.EncryptUtils;
@@ -73,7 +73,7 @@ public class AppUpdateManager {
      * 下载APK
      */
     private void downloadApk(Context context, final UpdateBean updateBean){
-        String download_path = ProjectUtils.getInstance().setIdCard(true).setFileType(ProjectUtils.COMMON_TYPE).getWorkGroup("download");
+        String download_path = WorkGroupUtils.getInstance().setIdCard(true).setFileType(WorkGroupUtils.COMMON_TYPE).getWorkGroup("download");
         String download_name = context.getString(R.string.framework_name) + "_" + updateBean.getVersionName() +".apk";
 
         OkGo.<File>get(updateBean.getDownloadUrl()).tag(this).execute(new FileCallback(download_path,download_name) {

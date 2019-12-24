@@ -43,6 +43,11 @@ public class LoadingActivity extends BaseActivity {
         return R.layout.activity_loading;
     }
 
+    @Override
+    public void initView() {
+
+    }
+
     @OnClick({R.id.btn_showContent,R.id.btn_showEmpty,R.id.btn_showError,R.id.btn_showLoading})
     public void onClick(View view){
         switch (view.getId()){

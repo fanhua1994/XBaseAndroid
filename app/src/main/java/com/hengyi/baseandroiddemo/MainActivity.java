@@ -66,6 +66,11 @@ public class MainActivity extends BaseActivity{
         return R.layout.activity_main;
     }
 
+    @Override
+    public void initView() {
+
+    }
+
     @OnClick({R.id.xbase_home,R.id.xbase_mui,R.id.xbase_sui,R.id.xbase_youku,R.id.xbase_loading,R.id.xbase_permission,R.id.xbase_db_add,R.id.xbase_image_display})
     public void Click(View view){
         switch(view.getId()){
