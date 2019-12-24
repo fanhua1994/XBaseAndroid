@@ -27,8 +27,10 @@ public abstract class XBaseActivity extends AppCompatActivity {
         setContentView(setBaseContentView());//设置布局文件
         ActivityStack.getInstance().pushActivity(this);//将界面加入堆栈
         context = this;//复制上下文
-        init();
     }
+
+
+
 
     public abstract int setBaseContentView();
     public abstract void init();
@@ -71,6 +73,7 @@ public abstract class XBaseActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
+        init();
     }
 
     @Override
