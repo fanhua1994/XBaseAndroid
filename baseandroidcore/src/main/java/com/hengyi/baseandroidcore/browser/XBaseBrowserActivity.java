@@ -59,14 +59,14 @@ public class XBaseBrowserActivity extends XBaseActivity {
 		super.onCreate(savedInstanceState);
 		getWindow().setFormat(PixelFormat.TRANSLUCENT);
 		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE | WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+	}
 
+	@Override
+	public void init(){
 		swipe_container = findViewById(R.id.swipe_container);
 		easeTitleBar = findViewById(R.id.titleBar);
 		linerLayoutWebview = findViewById(R.id.linerLayout_webview);
-        init();
-	}
 
-	private void init(){
 		Intent i = getIntent();
 		webUrl = i.getStringExtra(WEB_URL);
 		isShowCloseAppMsg = i.getStringExtra(SHOW_CLOSE_APP_MSG);
