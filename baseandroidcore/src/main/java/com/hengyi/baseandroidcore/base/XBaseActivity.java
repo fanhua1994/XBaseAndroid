@@ -2,12 +2,11 @@ package com.hengyi.baseandroidcore.base;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 
 import com.hengyi.baseandroidcore.dialog.CustomWeiboDialogUtils;
-import com.hengyi.baseandroidcore.utils.ActivityStack;
+import com.hengyi.baseandroidcore.activity.ActivityStack;
 import com.hengyi.baseandroidcore.utils.NetworkUtils;
 import com.hengyi.baseandroidcore.xutils.PermissionUtils;
 import com.hengyi.baseandroidcore.xutils.ToastUtils;

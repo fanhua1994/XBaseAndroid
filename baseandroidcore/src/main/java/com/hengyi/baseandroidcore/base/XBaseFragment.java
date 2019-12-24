@@ -5,7 +5,6 @@ import android.app.Fragment;
 import android.content.Context;
 
 import com.hengyi.baseandroidcore.dialog.CustomWeiboDialogUtils;
-import com.hengyi.baseandroidcore.utils.ActivityRouter;
 import com.hengyi.baseandroidcore.utils.NetworkUtils;
 import com.hengyi.baseandroidcore.xutils.ToastUtils;
 

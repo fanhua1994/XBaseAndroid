@@ -1,11 +1,9 @@
-package com.hengyi.baseandroidcore.utils;
+package com.hengyi.baseandroidcore.activity;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Process;
-import android.widget.Toast;
 
 import java.io.Serializable;
 import java.util.HashMap;

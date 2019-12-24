@@ -12,19 +12,19 @@ import java.util.Map;
  * csdn:http://blog.csdn.net/dong_18383219470?viewmode=list
  */
 
-public class ConfigUtils {
+public class SpUtils {
 
     private static SharedPreferences sp = null;
     private static SharedPreferences.Editor edit = null;
-    private static ConfigUtils instance = null;
+    private static SpUtils instance = null;
     private static Map<String,Object> data_list = null;
     private static String data_list_name = "config";
 
 
-    public static ConfigUtils getInstance(Context context){
+    public static SpUtils getInstance(Context context){
         if(instance == null){
             sp = context.getSharedPreferences(data_list_name,Context.MODE_PRIVATE);
-            instance = new ConfigUtils();
+            instance = new SpUtils();
             if(data_list == null)
                 data_list = new HashMap<String,Object>();
         }

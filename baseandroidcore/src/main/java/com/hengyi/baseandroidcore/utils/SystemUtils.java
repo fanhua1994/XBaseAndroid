@@ -89,7 +89,7 @@ public class SystemUtils {
      */
     public static String getUUID(Context context){
         String system_uuid_key = "system_uuid";
-        ConfigUtils configUtils = ConfigUtils.getInstance(context);
+        SpUtils configUtils = SpUtils.getInstance(context);
         configUtils.setConfigName(system_uuid_key);
         String system_config_uuid =configUtils.findStringByKey(system_uuid_key);
         if(system_config_uuid == null) {

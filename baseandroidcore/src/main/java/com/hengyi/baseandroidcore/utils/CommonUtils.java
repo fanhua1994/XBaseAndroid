@@ -3,7 +3,8 @@ package com.hengyi.baseandroidcore.utils;
 import android.os.Process;
 import android.text.TextUtils;
 
-import java.io.UnsupportedEncodingException;
+import com.hengyi.baseandroidcore.activity.ActivityStack;
+
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Collections;

@@ -9,7 +9,7 @@ import com.hengyi.baseandroidcore.browser.XBaseBrowserActivity;
 import com.hengyi.baseandroidcore.database.DatabaseHelper;
 import com.hengyi.baseandroidcore.listener.DatabaseVersionChangeListener;
 import com.hengyi.baseandroidcore.statusbar.StatusBarCompat;
-import com.hengyi.baseandroidcore.utils.ActivityRouter;
+import com.hengyi.baseandroidcore.activity.ActivityRouter;
 import com.hengyi.baseandroidcore.utils.ColorUtils;
 import com.hengyi.baseandroidcore.utils.CommonUtils;
 import com.hengyi.baseandroidcore.utils.SystemUtils;

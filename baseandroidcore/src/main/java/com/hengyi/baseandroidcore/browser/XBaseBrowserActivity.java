@@ -20,7 +20,7 @@ import com.hengyi.baseandroidcore.base.XBaseActivity;
 import com.hengyi.baseandroidcore.dialog.CustomAlertDialog;
 import com.hengyi.baseandroidcore.dialog.CustomConfirmDialog;
 import com.hengyi.baseandroidcore.statusbar.StatusBarCompat;
-import com.hengyi.baseandroidcore.utils.ActivityStack;
+import com.hengyi.baseandroidcore.activity.ActivityStack;
 import com.hengyi.baseandroidcore.utils.ColorUtils;
 import com.hengyi.baseandroidcore.weight.XBaseTitleBar;
 import com.just.agentweb.AgentWeb;

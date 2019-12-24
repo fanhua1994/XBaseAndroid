@@ -1,4 +1,4 @@
-package com.hengyi.baseandroidcore.utils;
+package com.hengyi.baseandroidcore.helper;
 
 
 
@@ -25,8 +25,8 @@ import android.graphics.drawable.Drawable;
 import android.os.Environment;
 
 import com.hengyi.baseandroidcore.tools.DiskLruCache;
-import com.hengyi.baseandroidcore.tools.DiskLruCacheUtil;
 import com.hengyi.baseandroidcore.tools.DiskLruCacheUtils;
+import com.hengyi.baseandroidcore.utils.VersionUtils;
 
 /**
  * 该类用于磁盘缓存。
@@ -49,7 +49,7 @@ public class DiskLruCacheHelper
             if (instance == null) {
                 instance = new DiskLruCacheHelper();
                 mDiskLruCache = generateCache(context, DIR_NAME, MAX_COUNT);
-                NOW_APP_VERSION = DiskLruCacheUtils.getAppVersionName(context);
+                NOW_APP_VERSION = VersionUtils.getVersionName(context,"1.0.0");
                 con = context;
             }
 
@@ -63,7 +63,7 @@ public class DiskLruCacheHelper
 		try {
 			diskLruCache = DiskLruCache.open(
 			        getDiskCacheDir(context, dirName),
-			        DiskLruCacheUtils.getAppVersion(context),
+			        VersionUtils.getVersionCode(context,1),
 			        DEFAULT_VALUE_COUNT,
 			        maxCount);
 			isInit = true;
@@ -124,7 +124,7 @@ public class DiskLruCacheHelper
     		 * 直接调用底层删除方法，不需要重启缓存。之前系统方法
     		 * 需要先关闭，是为了考虑删除时，文件被占用问题。
     		 */
-    		DiskLruCacheUtil.deleteContents(getDirectory());
+    		DiskLruCacheUtils.deleteContents(getDirectory());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -176,7 +176,7 @@ public class DiskLruCacheHelper
         if (inputStream == null) return null;
         String str = null;
         try {
-            str = DiskLruCacheUtil.readFully(new InputStreamReader(inputStream, DiskLruCacheUtil.UTF_8));
+            str = DiskLruCacheUtils.readFully(new InputStreamReader(inputStream, DiskLruCacheUtils.UTF_8));
         } catch (IOException e) {
             e.printStackTrace();
             try {

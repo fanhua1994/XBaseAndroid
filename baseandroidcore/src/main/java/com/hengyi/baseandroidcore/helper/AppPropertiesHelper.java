@@ -1,11 +1,10 @@
-package com.hengyi.baseandroidcore.utils;
+package com.hengyi.baseandroidcore.helper;
 
 import android.content.Context;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Properties;
 
@@ -13,27 +12,27 @@ import java.util.Properties;
  * Created by Fanhua on 2018/3/14.
  */
 
-public class AppConfig {
+public class AppPropertiesHelper {
     private static final String CONFIG_NAME = "application.properties";
-    private static AppConfig instance = null;
+    private static AppPropertiesHelper instance = null;
     private static Properties properties = null;
 
 
-    public static synchronized AppConfig getInstance(){
-        synchronized (AppConfig.class){
+    public static synchronized AppPropertiesHelper getInstance(){
+        synchronized (AppPropertiesHelper.class){
             if( instance == null) {
                 properties = new Properties();
-                instance = new AppConfig();
+                instance = new AppPropertiesHelper();
             }
             return instance;
         }
     }
 
-    public AppConfig load(Context context){
+    public AppPropertiesHelper load(Context context){
         return load(context,CONFIG_NAME);
     }
 
-    public AppConfig load(Context context,String config_name){
+    public AppPropertiesHelper load(Context context, String config_name){
         try {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(context.getAssets().open(config_name)));
             properties.load(bufferedReader);
@@ -43,7 +42,7 @@ public class AppConfig {
         return instance;
     }
 
-    public AppConfig load(String config_path){
+    public AppPropertiesHelper load(String config_path){
         try {
             properties.load(new FileInputStream(config_path));
         } catch (IOException e) {

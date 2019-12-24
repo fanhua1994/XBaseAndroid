@@ -1,4 +1,4 @@
-package com.hengyi.baseandroidcore.utils;
+package com.hengyi.baseandroidcore.activity;
 
 import android.app.Activity;
 

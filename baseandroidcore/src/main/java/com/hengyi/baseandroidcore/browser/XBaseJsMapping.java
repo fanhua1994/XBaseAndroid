@@ -10,11 +10,11 @@ import com.hengyi.baseandroidcore.dialog.CustomWeiboDialogUtils;
 import com.hengyi.baseandroidcore.event.EventManager;
 import com.hengyi.baseandroidcore.event.EventMessage;
 import com.hengyi.baseandroidcore.listener.FileDownloadListener;
-import com.hengyi.baseandroidcore.tools.FileDownloader;
-import com.hengyi.baseandroidcore.utils.ActivityRouter;
-import com.hengyi.baseandroidcore.utils.ActivityStack;
-import com.hengyi.baseandroidcore.utils.ConfigUtils;
-import com.hengyi.baseandroidcore.utils.DiskLruCacheHelper;
+import com.hengyi.baseandroidcore.downloader.FileDownloader;
+import com.hengyi.baseandroidcore.activity.ActivityRouter;
+import com.hengyi.baseandroidcore.activity.ActivityStack;
+import com.hengyi.baseandroidcore.utils.SpUtils;
+import com.hengyi.baseandroidcore.helper.DiskLruCacheHelper;
 import com.hengyi.baseandroidcore.utils.JsonUtils;
 import com.hengyi.baseandroidcore.utils.NetworkUtils;
 import com.hengyi.baseandroidcore.utils.NotificationUtils;
@@ -160,7 +160,7 @@ public class XBaseJsMapping extends Object implements IBaseJsMapping {
      */
     @JavascriptInterface
     public int getIntConfig(String key){
-        return ConfigUtils.getInstance(context).findIntByKey(key);
+        return SpUtils.getInstance(context).findIntByKey(key);
     }
 
     /**
@@ -170,27 +170,27 @@ public class XBaseJsMapping extends Object implements IBaseJsMapping {
      */
     @JavascriptInterface
     public String getStringConfig(String key){
-        return ConfigUtils.getInstance(context).findStringByKey(key);
+        return SpUtils.getInstance(context).findStringByKey(key);
     }
 
     @JavascriptInterface
     public boolean getBooleanConfig(String key){
-        return ConfigUtils.getInstance(context).findBoolByKey(key);
+        return SpUtils.getInstance(context).findBoolByKey(key);
     }
 
     @JavascriptInterface
     public void setIntConfig(String key,int value){
-        ConfigUtils.getInstance(context).addOrUpdateIntNumber(key,value);
+        SpUtils.getInstance(context).addOrUpdateIntNumber(key,value);
     }
 
     @JavascriptInterface
     public void setStringConfig(String key,String value){
-        ConfigUtils.getInstance(context).addOrUpdateText(key,value);
+        SpUtils.getInstance(context).addOrUpdateText(key,value);
     }
 
     @JavascriptInterface
     public void setBooleanConfig(String key,boolean value){
-        ConfigUtils.getInstance(context).addOrUpdateBoolean(key,value);
+        SpUtils.getInstance(context).addOrUpdateBoolean(key,value);
     }
 
     /**

@@ -90,7 +90,7 @@ public class DiskLruCacheStrictLineReader implements Closeable {
     if (capacity < 0) {
       throw new IllegalArgumentException("capacity <= 0");
     }
-    if (!(charset.equals(DiskLruCacheUtil.US_ASCII))) {
+    if (!(charset.equals(DiskLruCacheUtils.US_ASCII))) {
       throw new IllegalArgumentException("Unsupported encoding");
     }
 

@@ -17,21 +17,21 @@ import java.util.Date;
  * Created by 繁华 on 2017/9/13.
  */
 
-public class ProjectUtils {
+public class WorkGroupUtils {
     public static final int ROOT_TPYE = 0;
     public static final int COMMON_TYPE = 1;
     public static final int DB_TYPE  = 2;
     public static final int CACHE_TYPE = 3;
     public static final int FILE_TYPE = 4;
 
-    private static ProjectUtils instance;
+    private static WorkGroupUtils instance;
     private static boolean IdCardStatus = false;
     private int fileType = 0;
 
-    public static synchronized ProjectUtils getInstance() {
-        synchronized(ProjectUtils.class) {
+    public static synchronized WorkGroupUtils getInstance() {
+        synchronized(WorkGroupUtils.class) {
             if (instance == null) {
-                instance = new ProjectUtils();
+                instance = new WorkGroupUtils();
                 IdCardStatus = Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState()) || !Environment.isExternalStorageRemovable();
             }
             return instance;
@@ -48,12 +48,12 @@ public class ProjectUtils {
         }
     }
 
-    public ProjectUtils setFileType(int fileType){
+    public WorkGroupUtils setFileType(int fileType){
         this.fileType = fileType;
         return this;
     }
 
-    public ProjectUtils setIdCard(boolean idcard) {
+    public WorkGroupUtils setIdCard(boolean idcard) {
         if(getIdCardStatus())
         this.IdCardStatus = idcard;
         return this;

@@ -1,4 +1,4 @@
-package com.hengyi.baseandroidcore.tools;
+package com.hengyi.baseandroidcore.downloader;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,7 +6,7 @@ import android.content.Intent;
 import com.hengyi.baseandroidcore.R;
 import com.hengyi.baseandroidcore.listener.FileDownloadListener;
 import com.hengyi.baseandroidcore.utils.NotificationUtils;
-import com.hengyi.baseandroidcore.utils.ProjectUtils;
+import com.hengyi.baseandroidcore.utils.WorkGroupUtils;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.FileCallback;
 import com.lzy.okgo.model.Progress;
@@ -130,7 +130,7 @@ public class FileDownloader {
     }
 
     public String getDefaultPath(){
-        return ProjectUtils.getInstance().setFileType(ProjectUtils.COMMON_TYPE).setIdCard(true).getWorkGroup("downloader");
+        return WorkGroupUtils.getInstance().setFileType(WorkGroupUtils.COMMON_TYPE).setIdCard(true).getWorkGroup("downloader");
     }
 
     public String getDefaultFilename(String url){
