@@ -38,18 +38,19 @@ allprojects {
 ```
 2.引用第三方库
 ```
-api 'com.github.bumptech.glide:glide:4.8.0'
-api 'jp.wasabeef:glide-transformations:4.0.0'
-api 'com.google.code.gson:gson:2.8.5'
-api 'com.lzy.net:okgo:3.0.4'
-api 'org.greenrobot:eventbus:3.1.1'
-api 'com.j256.ormlite:ormlite-core:5.1'
-api 'com.j256.ormlite:ormlite-android:5.1'
-api 'com.squareup.okhttp3:okhttp:4.2.2'
-如果不使用webview相关功能，请不引用
-api 'com.just.agentweb:agentweb:4.1.2'
-api 'com.just.agentweb:filechooser:4.1.2'
-api 'com.download.library:Downloader:4.1.2'
+	implementation 'com.github.bumptech.glide:glide:4.10.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
+
+    api 'com.alibaba:fastjson:1.1.71.android'
+    api 'com.lzy.net:okgo:3.0.4'
+    api 'org.greenrobot:eventbus:3.1.1'
+    api 'com.j256.ormlite:ormlite-core:5.1'
+    api 'com.j256.ormlite:ormlite-android:5.1'
+    api 'com.squareup.okhttp3:okhttp:4.2.2'
+	//不使用webview不引用
+    api 'com.just.agentweb:agentweb:4.1.2'
+    api 'com.just.agentweb:filechooser:4.1.2'
+    api 'com.download.library:Downloader:4.1.2'
 ```
 3.引用XBaseAndroid
 ```
