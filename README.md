@@ -18,10 +18,14 @@
 ![BaseAndroid](https://github.com/fanhua1994/BaseAndroid/blob/master/image/logo.png?raw=true)
 
 # 版本更新
-目前最新版本是1.3.2
+目前最新版本是1.3.3
 [更新日志](https://github.com/fanhua1994/XBaseAndroid/blob/master/LOG.md)
 
 引用方式：
+
+## 注意：
+
+androidx请使用1.3.2及以上版本。不是androidx请用1.3.1以下版本
 
 1.加入repositories
 ```
@@ -49,7 +53,7 @@ api 'com.download.library:Downloader:4.1.2'
 ```
 3.引用XBaseAndroid
 ```
-implementation 'com.github.fanhua1994:XBaseAndroid:1.3.2'
+implementation 'com.github.fanhua1994:XBaseAndroid:1.3.3'
 ```
 
 4.在gradle.properties文件下加入

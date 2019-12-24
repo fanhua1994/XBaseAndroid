@@ -69,3 +69,10 @@
 
 ### 2019112（版本1.3.2）
 + 升级到androidx
+
+
+### 20191224（版本1.3.3）
++ 优化XBaseFragment
++ 重命名ConfigUtils 为 SpUtils,ProjectUtils 为 WorkGroupUtils，AppConfig为PropertiesHelper
++ 将GSON 换为 FastJSON ，升级glide版本为1.10.0
++ 解决Webview出现的崩溃问题
