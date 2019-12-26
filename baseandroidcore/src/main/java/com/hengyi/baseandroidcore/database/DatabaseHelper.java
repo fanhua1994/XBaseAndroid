@@ -117,7 +117,11 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         try {
             Dao dao = getDao(table);
             if(!StringUtils.isTrimEmpty(defaultValue)){
-                defaultValue = " DEFAULT " + defaultValue;
+                if(columnType.toLowerCase().contains("char")){
+                    defaultValue = " DEFAULT '" + defaultValue + "'";
+                }else {
+                    defaultValue = " DEFAULT " + defaultValue;
+                }
             }else{
                 defaultValue = "";
             }

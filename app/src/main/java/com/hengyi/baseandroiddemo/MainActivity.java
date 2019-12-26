@@ -111,7 +111,7 @@ public class MainActivity extends BaseActivity {
                 User user = new User();
                 user.setName("董志平");
                 int res = userDao.add(user);
-//                toast("操作结果：" + (res > 0));
+                toast("操作结果：" + (res > 0));
                 break;
 
             case R.id.xbase_image_display:

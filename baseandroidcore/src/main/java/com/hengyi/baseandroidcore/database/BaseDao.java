@@ -1,7 +1,5 @@
 package com.hengyi.baseandroidcore.database;
 
-import android.content.Context;
-
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.stmt.PreparedDelete;
 import com.j256.ormlite.stmt.PreparedQuery;
@@ -20,18 +18,9 @@ import java.util.Map;
  * Created by Administrator on 2017/10/10.
  */
 public abstract class BaseDao<T, Integer> {
-    protected DatabaseHelper mDatabaseHelper;
-
-    //helper
-    protected Context mContext;
 
     //上下文
-    public BaseDao(Context context) {
-        if (context == null) {
-            throw new IllegalArgumentException("Context can't be null!");
-        }
-        mContext = context.getApplicationContext();
-        mDatabaseHelper = DatabaseHelper.getInstance(context);
+    public BaseDao() {
     }
 
     /**

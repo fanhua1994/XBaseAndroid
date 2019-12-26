@@ -20,6 +20,7 @@ public class User {
     @DatabaseField
     private String name;
 
+
     public int getUserId() {
         return userId;
     }
