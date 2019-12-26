@@ -76,3 +76,7 @@
 + 重命名ConfigUtils 为 SpUtils,ProjectUtils 为 WorkGroupUtils，AppConfig为PropertiesHelper
 + 将GSON 换为 FastJSON ，升级glide版本为1.10.0
 + 解决Webview出现的崩溃问题
+
+### 20191226（版本1.3.4）
++ 新增recyclerview，listview万能适配器（代码源自https://github.com/hongyangAndroid）
++ 增强DatabaseHelper工具

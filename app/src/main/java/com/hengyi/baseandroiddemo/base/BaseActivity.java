@@ -1,4 +1,4 @@
-package com.hengyi.baseandroiddemo;
+package com.hengyi.baseandroiddemo.base;
 
 import android.os.Bundle;
 

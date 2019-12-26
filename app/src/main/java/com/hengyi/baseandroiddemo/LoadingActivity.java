@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.hengyi.baseandroidcore.weight.LoadingLayout;
+import com.hengyi.baseandroiddemo.base.BaseActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;

@@ -9,7 +9,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:name="com.hengyi.baseandroidcore.base.XBaseApplication"
+        android:name="com.hengyi.baseandroiddemo.app.MyApplication"
         android:theme="@style/NoActionBarTheme">
 
         <provider

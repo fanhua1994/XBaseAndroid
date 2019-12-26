@@ -6,6 +6,7 @@ import android.widget.ImageView;
 
 
 import com.hengyi.baseandroidcore.utils.GlideUtils;
+import com.hengyi.baseandroiddemo.base.BaseActivity;
 
 import butterknife.BindView;
 

@@ -1,10 +1,9 @@
 package com.hengyi.baseandroiddemo;
 
 import android.content.Context;
-import android.widget.TextView;
 
-import com.hengyi.baseandroidcore.adapter.CommonAdapter;
-import com.hengyi.baseandroidcore.adapter.CommonViewHolder;
+import com.hengyi.baseandroidcore.adapter.listview.CommonAdapter;
+import com.hengyi.baseandroidcore.adapter.listview.ViewHolder;
 
 import java.util.List;
 
@@ -23,7 +22,7 @@ public class TestAdapter extends CommonAdapter<String> {
     }
 
     @Override
-    public void onBindView(CommonViewHolder holder, int position) {
+    public void onBindView(ViewHolder holder, int position) {
         String item = getItem(position);
 //        holder.setCircleImage(R.id.left_layout,"https://www.baidu.com/logo.png",null);
 //        holder.setImage(R.id.left_layout,"https://www.baidu.com/logo.png",null);

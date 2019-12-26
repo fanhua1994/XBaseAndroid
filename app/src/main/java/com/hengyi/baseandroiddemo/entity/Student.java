@@ -1,4 +1,4 @@
-package com.hengyi.baseandroiddemo;
+package com.hengyi.baseandroiddemo.entity;
 
 /**
  * Created：2018/8/2

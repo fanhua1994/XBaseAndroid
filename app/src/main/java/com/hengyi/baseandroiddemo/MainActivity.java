@@ -15,13 +15,14 @@ import com.hengyi.baseandroidcore.utils.CommonUtils;
 import com.hengyi.baseandroidcore.utils.SystemUtils;
 import com.hengyi.baseandroidcore.utils.VersionUtils;
 import com.hengyi.baseandroidcore.weight.XBaseTitleBar;
+import com.hengyi.baseandroiddemo.base.BaseActivity;
 import com.hengyi.baseandroiddemo.database.User;
 import com.hengyi.baseandroiddemo.database.UserDao;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class MainActivity extends BaseActivity{
+public class MainActivity extends BaseActivity {
     @BindView(R.id.titleBar)XBaseTitleBar easeTitleBar;
     @BindView(R.id.cid)TextView cid;
     @BindView(R.id.version)TextView version;
@@ -33,16 +34,6 @@ public class MainActivity extends BaseActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         userDao = new UserDao(this);
-
-        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(this);
-        databaseHelper.addTable(User.class);
-
-        databaseHelper.setVersionChangeListener(new DatabaseVersionChangeListener() {
-            @Override
-            public void onChange(int oldVersion, int newVersion) {
-                toast("数据库版本发生变化:" + oldVersion + " > " + newVersion);
-            }
-        });
 
         StatusBarCompat.setStatusBarColor(this, Color.parseColor(ColorUtils.changeColor(this,R.color.my_main_color)));
         easeTitleBar.setBackgroundColor(getResources().getColor(R.color.my_main_color));

@@ -1,4 +1,4 @@
-package com.hengyi.baseandroidcore.adapter;
+package com.hengyi.baseandroidcore.adapter.listview;
 
 import android.content.Context;
 import android.view.View;
@@ -38,10 +38,10 @@ public abstract class CommonAdapter<T> extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup){
-        CommonViewHolder holder = CommonViewHolder.get(context,view,layout_id);
+        ViewHolder holder = ViewHolder.get(context,view,layout_id);
         onBindView(holder,i);
         return holder.getView();
     }
 
-    public abstract void onBindView(CommonViewHolder holder,int position);
+    public abstract void onBindView(ViewHolder holder,int position);
 }
