@@ -40,8 +40,8 @@ public class WorkGroupActivity extends XBaseActivity {
     }
 
     @Override
-    public void onPermissionError(String[] deniedPermissions) {
-
+    public void onPermissionDenied(String[] deniedPermissions) {
+        super.onPermissionDenied(deniedPermissions);
     }
 
     @Override

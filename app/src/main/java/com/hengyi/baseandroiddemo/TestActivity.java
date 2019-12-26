@@ -17,7 +17,7 @@ public class TestActivity extends XBaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestPermission(200,new String[]{Manifest.permission.CAMERA,Manifest.permission.READ_CONTACTS});
+        requestPermissions(200,new String[]{Manifest.permission.CAMERA,Manifest.permission.READ_CONTACTS});
     }
 
     @Override
@@ -27,9 +27,9 @@ public class TestActivity extends XBaseActivity {
     }
 
     @Override
-    public void onPermissionError(String[] deniedPermissions) {
-        super.onPermissionError(deniedPermissions);
-        toast("申请失败");
+    public void onPermissionDenied(String[] deniedPermissions) {
+        super.onPermissionDenied(deniedPermissions);
+        toast("权限申请失败");
     }
 
     @Override

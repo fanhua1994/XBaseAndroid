@@ -33,10 +33,11 @@ public class MainActivity extends BaseActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         userDao = new UserDao(this);
-        DatabaseHelper.setDatabase("xxxx",2);
-        DatabaseHelper.addTable(User.class);
 
-        DatabaseHelper.getInstance(this).setDatabaseVersionChangeListener(new DatabaseVersionChangeListener() {
+        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(this);
+        databaseHelper.addTable(User.class);
+
+        databaseHelper.setVersionChangeListener(new DatabaseVersionChangeListener() {
             @Override
             public void onChange(int oldVersion, int newVersion) {
                 toast("数据库版本发生变化:" + oldVersion + " > " + newVersion);
@@ -68,7 +69,7 @@ public class MainActivity extends BaseActivity{
 
     @Override
     public void initView() {
-        toast("初始化成功");
+//        toast("初始化成功");
     }
 
     @OnClick({R.id.xbase_home,R.id.xbase_mui,R.id.xbase_sui,R.id.xbase_youku,R.id.xbase_loading,R.id.xbase_permission,R.id.xbase_db_add,R.id.xbase_image_display})
@@ -119,7 +120,7 @@ public class MainActivity extends BaseActivity{
                 User user = new User();
                 user.setName("董志平");
                 int res = userDao.add(user);
-                toast("操作结果：" + (res > 0));
+//                toast("操作结果：" + (res > 0));
                 break;
 
             case R.id.xbase_image_display:

@@ -31,7 +31,7 @@ public abstract class BaseDao<T, Integer> {
             throw new IllegalArgumentException("Context can't be null!");
         }
         mContext = context.getApplicationContext();
-        mDatabaseHelper = DatabaseHelper.getInstance(mContext);
+        mDatabaseHelper = DatabaseHelper.getInstance(context);
     }
 
     /**

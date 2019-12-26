@@ -9,6 +9,7 @@ import android.os.Build;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -136,5 +137,28 @@ public final class PermissionUtils {
             if (rationale) return true;
         }
         return false;
+    }
+
+    /**
+     * 判断是否有某个权限
+     * @param context
+     * @param perms
+     * @return
+     */
+    public static boolean hasPermissions(Context context, @NonNull String... perms) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            return true;
+        }
+
+        if (context == null) {
+            throw new IllegalArgumentException("Can't check permissions for null context");
+        }
+
+        for (String perm : perms) {
+            if (ContextCompat.checkSelfPermission(context, perm) != PackageManager.PERMISSION_GRANTED) {
+                return false;
+            }
+        }
+        return true;
     }
 }

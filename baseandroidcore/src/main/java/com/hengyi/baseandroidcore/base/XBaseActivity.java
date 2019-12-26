@@ -92,7 +92,7 @@ public abstract class XBaseActivity extends AppCompatActivity {
 
     }
 
-    public void onPermissionError(String[] deniedPermissions){
+    public void onPermissionDenied(String[] deniedPermissions){
 
     }
 
@@ -102,7 +102,11 @@ public abstract class XBaseActivity extends AppCompatActivity {
         PermissionUtils.onRequestPermissionsResult(this,requestCode,permissions,grantResults);
     }
 
-    public void requestPermission(final int requestCode, final String[] permission){
+    public void hasPermission(String... permission){
+        PermissionUtils.hasPermissions(context,permission);
+    }
+
+    public void requestPermissions(final int requestCode, final String[] permission){
         PermissionUtils.requestPermissions(getContext(), requestCode, permission, new PermissionUtils.OnPermissionListener() {
             @Override
             public void onPermissionGranted() {
@@ -111,7 +115,7 @@ public abstract class XBaseActivity extends AppCompatActivity {
 
             @Override
             public void onPermissionDenied(String[] deniedPermissions) {
-                onPermissionError(deniedPermissions);
+                onPermissionDenied(deniedPermissions);
             }
         });
     }
