@@ -157,6 +157,22 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             return false;
         }
     }
+    
+    
+    /**
+     * 删除表
+     * @param table
+     * @return
+     */
+    public boolean dropTable(Class table){
+        try {
+            int raw = execute("drop table " + dao.getTableName());
+            return raw > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
 
     /**
