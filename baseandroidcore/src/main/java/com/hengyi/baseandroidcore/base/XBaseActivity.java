@@ -20,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public abstract class XBaseActivity extends AppCompatActivity {
     private Dialog loadingDialog = null;
     private Context context;
+    private Boolean isInit = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,9 +29,6 @@ public abstract class XBaseActivity extends AppCompatActivity {
         ActivityStack.getInstance().pushActivity(this);//将界面加入堆栈
         context = this;//复制上下文
     }
-
-
-
 
     public abstract int setBaseContentView();
     public abstract void init();
@@ -73,7 +71,10 @@ public abstract class XBaseActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        init();
+        if(!isInit) {
+            init();
+            isInit = true;
+        }
     }
 
     @Override
