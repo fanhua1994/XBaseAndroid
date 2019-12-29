@@ -82,7 +82,7 @@ public class XBaseBrowserActivity extends XBaseActivity {
 			easeTitleBar.setLeftLayoutClickListener(new View.OnClickListener(){
 				@Override
 				public void onClick(View view) {
-					agentWeb.back();
+					toBack();
 				}
 			});
 
@@ -271,15 +271,19 @@ public class XBaseBrowserActivity extends XBaseActivity {
 		dialog.show();
 	}
 
+	private void toBack(){
+		if (!agentWeb.back()){
+			if(isShowCloseAppDialog)
+				closeAppDialog();
+			else
+				ActivityStack.getInstance().popActivity();
+		}
+	}
+
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if(keyCode == KeyEvent.KEYCODE_BACK){
-			if (!agentWeb.back()){
-				if(isShowCloseAppDialog)
-					closeAppDialog();
-				else
-					ActivityStack.getInstance().popActivity();
-			}
+			toBack();
 		}
 		return true;
 	}

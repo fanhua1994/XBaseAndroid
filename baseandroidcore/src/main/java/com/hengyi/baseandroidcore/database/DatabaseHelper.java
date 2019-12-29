@@ -166,7 +166,8 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
      */
     public boolean dropTable(Class table){
         try {
-            int raw = execute("drop table " + dao.getTableName());
+            Dao dao = getDao(table);
+            int raw = dao.executeRaw("drop table " + dao.getTableName());
             return raw > 0;
         } catch (SQLException e) {
             e.printStackTrace();
