@@ -31,6 +31,16 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+
+    @Override
+    public int setContentView() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    public void initView() {
         userDao = new UserDao(this);
 
         StatusBarCompat.setStatusBarColor(this, Color.parseColor(ColorUtils.changeColor(this,R.color.my_main_color)));
@@ -48,17 +58,6 @@ public class MainActivity extends BaseActivity {
         version.setText("当前版本：" + VersionUtils.getVersionName(this,"1.0.0.0"));
 
         cid.setText("您的永久CID：" + SystemUtils.getClientID() +"\n" + "您的临时CID："+SystemUtils.getShortClientID(this)+"\n（重装失效）");
-    }
-
-
-    @Override
-    public int setContentView() {
-        return R.layout.activity_main;
-    }
-
-    @Override
-    public void initView() {
-
     }
 
 

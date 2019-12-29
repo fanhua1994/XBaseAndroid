@@ -81,3 +81,6 @@
 + 新增recyclerview，listview万能适配器（代码源自https://github.com/hongyangAndroid）
 + 增强DatabaseHelper工具
 + 解决上个版本的BUG
+
+### 20191229（版本1.3.5）
++ 优化相关BUG
