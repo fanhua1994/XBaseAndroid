@@ -33,7 +33,6 @@ public class CustomConfirmDialog {
     private boolean showMsg = false;
     private boolean showPosBtn = false;
     private boolean showNegBtn = false;
-    private boolean inputNumber = false;
 
     public CustomConfirmDialog(Context context) {
         this.context = context;

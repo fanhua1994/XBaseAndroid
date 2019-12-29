@@ -5,11 +5,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.hengyi.baseandroidcore.browser.XBaseBrowserActivity;
-import com.hengyi.baseandroidcore.database.DatabaseHelper;
-import com.hengyi.baseandroidcore.listener.DatabaseVersionChangeListener;
-import com.hengyi.baseandroidcore.statusbar.StatusBarCompat;
 import com.hengyi.baseandroidcore.activity.ActivityRouter;
+import com.hengyi.baseandroidcore.browser.XBaseBrowserActivity;
+import com.hengyi.baseandroidcore.statusbar.StatusBarCompat;
 import com.hengyi.baseandroidcore.utils.ColorUtils;
 import com.hengyi.baseandroidcore.utils.CommonUtils;
 import com.hengyi.baseandroidcore.utils.SystemUtils;
@@ -60,8 +58,9 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void initView() {
-//        toast("初始化成功");
+
     }
+
 
     @OnClick({R.id.xbase_home,R.id.xbase_mui,R.id.xbase_sui,R.id.xbase_youku,R.id.xbase_loading,R.id.xbase_permission,R.id.xbase_db_add,R.id.xbase_image_display})
     public void Click(View view){

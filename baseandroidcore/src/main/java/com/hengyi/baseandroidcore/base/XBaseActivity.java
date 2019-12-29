@@ -51,6 +51,7 @@ public abstract class XBaseActivity extends AppCompatActivity {
      */
     public void showLoadingDialog(String message){
         loadingDialog = CustomWeiboDialogUtils.createLoadingDialog(this,message);
+        CustomWeiboDialogUtils.showDialog(loadingDialog);
     }
 
     /**

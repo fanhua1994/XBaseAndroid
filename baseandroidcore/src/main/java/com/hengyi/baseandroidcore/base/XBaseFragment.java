@@ -23,6 +23,7 @@ import androidx.annotation.Nullable;
  */
 public abstract class XBaseFragment extends Fragment {
     private Dialog loadingDialog = null;
+    private Boolean isInit = false;
 
 
     public abstract int setBaseContentView();
@@ -42,7 +43,10 @@ public abstract class XBaseFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        init();
+        if(!isInit) {
+            init();
+            isInit = true;
+        }
     }
 
     public Context getContext(){
