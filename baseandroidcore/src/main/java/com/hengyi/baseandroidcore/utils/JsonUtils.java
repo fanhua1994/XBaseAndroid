@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 
 public class JsonUtils {
@@ -22,11 +23,16 @@ public class JsonUtils {
 	}
 	
 	// 转换为对象
-	public static <T> T toBean(String text, Class<T> clazz) {  
-        return JSON.parseObject(text, clazz);  
-    }  
-	
-	 // 转换为数组  
+	public static <T> T toBean(String text, TypeReference<T> type) {
+        return JSON.parseObject(text, type);
+    }
+
+    // 转换为对象
+    public static <T> T toBean(String text, Class<T> clazz) {
+        return JSON.parseObject(text,clazz);
+    }
+
+    // 转换为数组
     public static <T> Object[] toArray(String text) {  
         return toArray(text, null);  
     }  
