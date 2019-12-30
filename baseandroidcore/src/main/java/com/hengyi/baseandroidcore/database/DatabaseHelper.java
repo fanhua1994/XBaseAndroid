@@ -13,6 +13,7 @@ import com.j256.ormlite.stmt.QueryBuilder;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 
+import java.io.File;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -71,6 +72,19 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     public void onUpgrade(SQLiteDatabase database, ConnectionSource connectionSource, int oldVersion, int newVersion) {
         if(listener != null){
             listener.onChange(oldVersion,newVersion);
+        }
+    }
+
+    /**
+     * 获取数据库文件大小
+     * @return
+     */
+    public long getDatabaseSize(){
+        File dbFile = new File(getReadableDatabase().getPath());
+        if(dbFile.exists()){
+            return dbFile.length();
+        }else{
+            return 0;
         }
     }
 
@@ -177,6 +191,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
 
     /**
+     * 不带事务
      * 执行SQL  返回影响行数
      * @return
      */
@@ -189,6 +204,29 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             e.printStackTrace();
             return 0;
         }
+    }
+
+    /**
+     * 带事务
+     * 执行SQL
+     * @return
+     */
+    public int executeTransaction(Class table,String... sqls){
+        SQLiteDatabase writableDatabase = getWritableDatabase();
+        writableDatabase.beginTransaction();
+        int raw = 0;
+        try {
+            for(String sql : sqls){
+                raw = raw + execute(table,sql);
+            }
+            writableDatabase.setTransactionSuccessful();
+        } catch (Exception e) {
+            raw = 0;
+            e.printStackTrace();
+        }finally {
+            writableDatabase.endTransaction();
+        }
+        return raw;
     }
 
 }

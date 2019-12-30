@@ -19,7 +19,7 @@ public class MyApplication extends XBaseApplication {
         DatabaseHelper databaseHelper = DatabaseHelper.getInstance(this);
         databaseHelper.addTable(User.class);
 
-        ToastUtils.showLong("数据库加载成功！");
+        ToastUtils.showLong("数据库加载成功，数据库大小：" + databaseHelper.getDatabaseSize());
 
         databaseHelper.setVersionChangeListener(new DatabaseVersionChangeListener() {
             @Override
