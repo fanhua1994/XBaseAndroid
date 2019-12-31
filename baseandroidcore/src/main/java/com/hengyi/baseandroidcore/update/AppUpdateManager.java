@@ -7,6 +7,7 @@ import com.hengyi.baseandroidcore.R;
 import com.hengyi.baseandroidcore.base.XBaseApplication;
 import com.hengyi.baseandroidcore.dialog.CustomAlertDialog;
 import com.hengyi.baseandroidcore.listener.FileDownloadListener;
+import com.hengyi.baseandroidcore.utils.StringUtils;
 import com.hengyi.baseandroidcore.utils.WorkGroupUtils;
 import com.hengyi.baseandroidcore.utils.VersionUtils;
 import com.hengyi.baseandroidcore.xutils.AppUtils;
@@ -84,8 +85,10 @@ public class AppUpdateManager {
 
                 String file_md5 = EncryptUtils.encryptMD5File2String(response.body()).toLowerCase();
 
-                if(updateBean.getMd5Code() != null){
+                if(!StringUtils.isBlank(updateBean.getMd5Code())){
                     if(!updateBean.getMd5Code().equals(file_md5)){
+                        if(listener != null)
+                            listener.downloadError("MD5校验错误");
                         return ;
                     }
                 }
