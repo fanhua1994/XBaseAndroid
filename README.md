@@ -38,7 +38,7 @@ allprojects {
 ```
 2.引用第三方库
 ```
-	implementation 'com.github.bumptech.glide:glide:4.10.0'
+    implementation 'com.github.bumptech.glide:glide:4.10.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
 
     api 'com.alibaba:fastjson:1.1.71.android'
