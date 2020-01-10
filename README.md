@@ -84,6 +84,8 @@ android.enableJetifier=true
 
 CSDN：[http://blog.csdn.net/dong_18383219470?viewmode=list](http://blog.csdn.net/dong_18383219470?viewmode=list)
 
+邮箱：90fanhua@gmail.com 、 18383219470@163.com
+
 # 代码提交
 
 
