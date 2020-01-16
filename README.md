@@ -8,7 +8,7 @@
 万能ListView,GridView适配器、高仿IOS弹窗、倒计时/延迟执行，标题栏组件,图片显示，webview引擎，APP更新组件，APP崩溃日志组件，事件总线.
 
 
-> 本人学疏才浅，希望有兴趣的朋友一起加入进来完善框架，致力于打造最方便快捷的开发框架。由于最近我的全部业余时间都投入到了XBaseWeb-Plus的开发当中（基于Springboot的后端开发框架，让开发专注于业务功能，敏捷开发）。文档DEMO并非详细，大家可以看看源码，有建议或者不懂得地方欢迎打扰！（联系我的邮箱↓↓↓↓）
+> 本人学疏才浅，希望有兴趣的朋友一起加入进来完善框架，致力于打造最方便快捷的开发框架。由于最近我的全部业余时间都投入到了XBaseWeb-Plus的开发当中（基于Springboot的后端开发框架，让开发专注于业务功能，敏捷开发）。文档DEMO并非详细，大家可以看看源码，有建议或者不懂得地方欢迎打扰！（![↓↓↓↓联系我↓↓↓↓](https://github.com/fanhua1994/XBaseAndroid#%E8%81%94%E7%B3%BB%E4%BD%9C%E8%80%85)）
 
 
 项目地址：[https://github.com/fanhua1994/XBaseAndroid](https://github.com/fanhua1994/XBaseAndroid)
