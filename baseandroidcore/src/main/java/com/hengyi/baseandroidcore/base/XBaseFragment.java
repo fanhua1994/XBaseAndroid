@@ -1,7 +1,6 @@
 package com.hengyi.baseandroidcore.base;
 
 import android.app.Dialog;
-import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,6 +12,7 @@ import com.hengyi.baseandroidcore.utils.NetworkUtils;
 import com.hengyi.baseandroidcore.xutils.ToastUtils;
 
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 /**
  * Created: 2018/3/23 9:52
